@@ -1,0 +1,1177 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to The Hub · Westminster Christian School</title>
+  <style>
+    @font-face {
+      font-family: 'Zapf Humanist 601';
+      src: local('Zapf Humanist 601'), local('ZapfHumanist601BT-Roman'), local('Zapf Humanist 601 BT');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    :root {
+      --forest: #2c5234;
+      --gold:   #B9975B;
+      --cream:  #fdf8ef;
+      --sage:   #4a7c59;
+      --sky:    #4a90c4;
+      --light-gold:  #f5ead8;
+      --light-blue:  #e8f2f9;
+      --light-green: #eaf3ec;
+      --text:   #2c2c2c;
+      --muted:  #6b6b6b;
+      --gold-rgb: 185, 151, 91;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #2c5234 0%, #3d6e47 55%, #224028 100%);
+      color: white;
+      text-align: center;
+      padding: 4rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1.5' fill='%23ffffff' fill-opacity='0.07'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .hero-school {
+      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 4.2rem);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      line-height: 1.1;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.82);
+      max-width: 540px;
+      margin: 1rem auto 0;
+      font-style: italic;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      margin-top: 2rem;
+      background: rgba(185,151,91,0.18);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.45rem 1.25rem;
+      border-radius: 2rem;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    .section-label {
+      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      color: var(--forest);
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+
+    /* ── WHAT IS THE HUB ── */
+    .what-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+      margin-top: 2.5rem;
+    }
+
+    @media (max-width: 640px) {
+      .what-grid { grid-template-columns: 1fr; }
+    }
+
+    .what-text p {
+      margin-bottom: 1rem;
+      color: #3a3a3a;
+    }
+
+    .goal-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .goal-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      background: var(--light-green);
+      border-left: 3px solid var(--sage);
+      padding: 0.7rem 1rem;
+      border-radius: 0 0.5rem 0.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    .goal-list li .icon-sm {
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+      color: var(--sage);
+    }
+
+    /* ── HUB PATHWAY ── */
+    .pathway-section {
+      background: var(--forest);
+      color: white;
+    }
+
+    .pathway-section h2 {
+      color: var(--gold);
+    }
+
+    .pathway-section .section-label {
+      color: rgba(185,151,91,0.75);
+    }
+
+    .pathway-intro {
+      color: rgba(255,255,255,0.8);
+      max-width: 620px;
+      margin-top: 0.5rem;
+    }
+
+    .pathway-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 700px) {
+      .pathway-cards { grid-template-columns: 1fr; }
+    }
+
+    .pathway-card {
+      border-radius: 1rem;
+      padding: 2rem 1.5rem;
+      background: rgba(0,0,0,0.2);
+    }
+
+    .pathway-card.harness   { border-top: 4px solid var(--sky); }
+    .pathway-card.understand { border-top: 4px solid var(--gold); }
+    .pathway-card.become    { border-top: 4px solid #72c98a; }
+
+    .pathway-letter {
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+    }
+
+    .pathway-card.harness  .pathway-letter  { color: var(--sky); }
+    .pathway-card.understand .pathway-letter { color: var(--gold); }
+    .pathway-card.become   .pathway-letter  { color: #72c98a; }
+
+    .pathway-word {
+      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1rem;
+    }
+
+    .pathway-card h3 {
+      font-size: 1.1rem;
+      color: white;
+      margin-bottom: 0.75rem;
+    }
+
+    .pathway-card p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .pathway-steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .pathway-steps li {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.65);
+      padding-left: 1.1rem;
+      position: relative;
+    }
+
+    .pathway-steps li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+    }
+
+    .pathway-card.harness  .pathway-steps li::before { color: var(--sky); }
+    .pathway-card.understand .pathway-steps li::before { color: var(--gold); }
+    .pathway-card.become   .pathway-steps li::before { color: #72c98a; }
+
+    /* ── FEATURES ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .features-grid { grid-template-columns: 1fr; }
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border-top: 3px solid transparent;
+      transition: transform 0.15s;
+    }
+
+    .feature-card:nth-child(1) { border-top-color: var(--forest); }
+    .feature-card:nth-child(2) { border-top-color: var(--gold); }
+    .feature-card:nth-child(3) { border-top-color: var(--sage); }
+    .feature-card:nth-child(4) { border-top-color: var(--sky); }
+
+    .feature-card:hover { transform: translateY(-3px); }
+
+    .feature-card-featured {
+      border-top-color: var(--gold);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .feature-card-featured .feature-icon {
+      color: var(--gold);
+    }
+
+    .feature-card-featured h3 {
+      color: var(--forest);
+    }
+
+    .feature-card-featured .feature-body {
+      flex: 1;
+    }
+
+    .learn-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      align-self: flex-start;
+      margin-top: 1rem;
+      background: var(--forest);
+      color: var(--gold);
+      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.4rem;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .learn-more:hover {
+      background: var(--gold);
+      color: var(--forest);
+    }
+
+    .learn-more svg {
+      width: 0.8rem;
+      height: 0.8rem;
+    }
+
+    .feature-card-sublabel {
+      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+
+    .feature-icon {
+      width: 2.25rem;
+      height: 2.25rem;
+      margin-bottom: 0.85rem;
+      color: var(--forest);
+    }
+
+    .feature-card:nth-child(2) .feature-icon { color: var(--gold); }
+    .feature-card:nth-child(3) .feature-icon { color: var(--sage); }
+    .feature-card:nth-child(4) .feature-icon { color: var(--sky); }
+
+    .feature-card h3 {
+      font-size: 1rem;
+      color: var(--forest);
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── READING PROGRAM ── */
+    .reading-section {
+      background: var(--light-green);
+      border-top: 1px solid #c8dece;
+      border-bottom: 1px solid #c8dece;
+    }
+
+    .reading-philosophy {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin: 2.5rem 0;
+    }
+
+    @media (max-width: 650px) {
+      .reading-philosophy { grid-template-columns: 1fr; }
+    }
+
+    .philosophy-card {
+      background: white;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+    }
+
+    .phil-icon {
+      width: 2.25rem;
+      height: 2.25rem;
+      margin: 0 auto 0.75rem;
+      color: var(--forest);
+    }
+
+    .philosophy-card:nth-child(2) .phil-icon { color: var(--gold); }
+    .philosophy-card:nth-child(3) .phil-icon { color: var(--sage); }
+
+    .philosophy-card h3 {
+      font-size: 0.95rem;
+      color: var(--forest);
+      margin-bottom: 0.5rem;
+    }
+
+    .philosophy-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .mission-quote {
+      background: var(--forest);
+      color: white;
+      border-radius: 1rem;
+      padding: 2rem 2.5rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .mission-quote p {
+      font-size: 1.1rem;
+      font-style: italic;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .mission-quote strong {
+      display: block;
+      margin-top: 1rem;
+      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    /* ── GRADE BANDS ── */
+    .grade-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+      background: white;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      font-size: 0.88rem;
+    }
+
+    .grade-table thead {
+      background: var(--forest);
+      color: white;
+    }
+
+    .grade-table th {
+      padding: 0.9rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .grade-table td {
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+      line-height: 1.5;
+      color: #3a3a3a;
+    }
+
+    .grade-table tr:last-child td { border-bottom: none; }
+    .grade-table tr:nth-child(even) td { background: #fafafa; }
+
+    .grade-badge {
+      display: inline-block;
+      background: var(--forest);
+      color: var(--gold);
+      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 0.25rem;
+      white-space: nowrap;
+    }
+
+    .ar-goal {
+      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-weight: 700;
+      color: var(--forest);
+    }
+
+    .ar-na {
+      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    /* ── ASSESSMENT ── */
+    .assessment-section {
+      background: white;
+    }
+
+    .assess-why {
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
+      gap: 1.25rem;
+      align-items: flex-start;
+      background: var(--light-gold);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 0.75rem 0.75rem 0;
+      padding: 1.5rem 1.75rem;
+      margin: 2rem 0 3rem;
+    }
+
+    .assess-why-icon {
+      color: var(--gold);
+      margin-top: 0.15rem;
+    }
+
+    .assess-why h3 {
+      font-size: 1rem;
+      color: var(--forest);
+      margin-bottom: 0.5rem;
+    }
+
+    .assess-why p {
+      font-size: 0.92rem;
+      color: #3a3a3a;
+      line-height: 1.65;
+      margin-bottom: 0.5rem;
+    }
+
+    .assess-why p:last-child { margin-bottom: 0; }
+
+    .assess-types-label {
+      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .maps-card {
+      background: var(--forest);
+      color: white;
+      border-radius: 1rem;
+      padding: 2rem 2rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 680px) {
+      .maps-card { grid-template-columns: 1fr; }
+    }
+
+    .maps-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .maps-badge {
+      background: var(--gold);
+      color: var(--forest);
+      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+      border-radius: 0.25rem;
+    }
+
+    .maps-grade-range {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .maps-card h3 {
+      font-size: 1.4rem;
+      color: white;
+      margin-bottom: 0.25rem;
+      line-height: 1.2;
+    }
+
+    .maps-full-name {
+      font-size: 0.8rem;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+
+    .maps-card p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.65;
+    }
+
+    .maps-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .maps-detail-block h4 {
+      font-size: 0.72rem;
+      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .maps-windows {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .window-pill {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      font-size: 0.8rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 2rem;
+    }
+
+    .maps-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .maps-list li {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.78);
+      padding-left: 1.1rem;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .maps-list li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+
+    .maps-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .assess-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 680px) {
+      .assess-pair { grid-template-columns: 1fr; }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--forest);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-size: 0.82rem;
+    }
+
+    footer strong {
+      color: var(--gold);
+    }
+
+    /* ── LOGO ── */
+    .hero-logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto 1.75rem;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+    }
+
+    .footer-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto 0.75rem;
+      opacity: 0.9;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 3rem;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin: 1.25rem 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <img src="hub%20logo.png" alt="The Hub logo" class="hero-logo" />
+    <p class="hero-school">Westminster Christian School · PreK–5th Grade</p>
+    <h1>WELCOME TO <span>THE HUB</span></h1>
+    <p class="hero-sub">A collaborative learning space where curiosity, literacy, and discovery come alive.</p>
+    <span class="hero-badge">Harnessing · Understanding · Becoming</span>
+  </header>
+
+  <!-- WHAT IS THE HUB -->
+  <section>
+    <div class="container">
+      <p class="section-label">About Our Space</p>
+      <h2>What Is The Hub?</h2>
+      <div class="divider"></div>
+      <div class="what-grid">
+        <div class="what-text">
+          <p>The Hub is a central, flexible, and welcoming space designed for students in Preschool through 5th grade. It serves as an extension of the classroom, a place where literacy, curiosity, enrichment learning, and digital citizenship all come together.</p>
+          <p>Students don't just visit The Hub, they grow here, guided by dedicated educators and surrounded by resources curated to spark wonder and deepen understanding.</p>
+        </div>
+        <ul class="goal-list">
+          <li>
+            <svg class="icon-sm" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            Develop a love of reading in print and digital forms
+          </li>
+          <li>
+            <svg class="icon-sm" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            Strengthen digital citizenship and responsible technology use
+          </li>
+          <li>
+            <svg class="icon-sm" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Engage in enrichment activities that extend classroom learning
+          </li>
+          <li>
+            <svg class="icon-sm" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Cultivate curiosity, inquiry, and critical thinking
+          </li>
+          <li>
+            <svg class="icon-sm" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Grow academically, socially, and spiritually alongside caring teachers
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- H.U.B. PATHWAY -->
+  <section class="pathway-section">
+    <div class="container">
+      <p class="section-label">Our Framework</p>
+      <h2>The H.U.B. Pathway</h2>
+      <div class="divider" style="background: rgba(185,151,91,0.5);"></div>
+      <p class="pathway-intro">Everything students do in The Hub flows through three interconnected stages of growth, a pathway that shapes how they engage with information and become confident learners.</p>
+
+      <div class="pathway-cards">
+
+        <div class="pathway-card harness">
+          <div class="pathway-letter">H</div>
+          <div class="pathway-word">Harnessing</div>
+          <h3>Gather &amp; Focus</h3>
+          <p>Students actively gather, focus, and direct curiosity toward meaningful learning, identifying sources, collecting relevant information, and applying it to real questions.</p>
+          <ul class="pathway-steps">
+            <li>Notice: identify interesting ideas</li>
+            <li>Collect: choose reliable sources</li>
+            <li>Focus: decide what matters most</li>
+            <li>Apply: use knowledge to learn</li>
+          </ul>
+        </div>
+
+        <div class="pathway-card understand">
+          <div class="pathway-letter">U</div>
+          <div class="pathway-word">Understanding</div>
+          <h3>Connect &amp; Make Meaning</h3>
+          <p>Students make sense of ideas by analyzing, synthesizing, and reflecting, moving from isolated facts to rich, connected understanding across texts and experiences.</p>
+          <ul class="pathway-steps">
+            <li>Compare: spot similarities and differences</li>
+            <li>Analyze: examine how parts fit together</li>
+            <li>Synthesize: combine ideas into new insight</li>
+            <li>Reflect: connect to what you already know</li>
+          </ul>
+        </div>
+
+        <div class="pathway-card become">
+          <div class="pathway-letter">B</div>
+          <div class="pathway-word">Becoming</div>
+          <h3>Grow &amp; Contribute</h3>
+          <p>Students become confident, thoughtful, Christ-centered learners, applying knowledge, collaborating with others, and contributing positively to their world.</p>
+          <ul class="pathway-steps">
+            <li>Practice: use skills in real situations</li>
+            <li>Collaborate: work with and for others</li>
+            <li>Reflect: notice how you have grown</li>
+            <li>Apply: serve and create meaningfully</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY FEATURES -->
+  <section>
+    <div class="container">
+      <p class="section-label">What to Expect</p>
+      <h2>Key Features of The Hub</h2>
+      <div class="divider"></div>
+      <div class="features-grid">
+
+        <div class="feature-card">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+          <h3>Curated Resources</h3>
+          <p>Print and digital resources selected to support enrichment learning, literacy, and guided exploration across 20+ nonfiction genres and a rich fiction collection.</p>
+        </div>
+
+        <div class="feature-card">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"/>
+            <rect x="14" y="3" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/>
+          </svg>
+          <h3>Flexible Learning Spaces</h3>
+          <p>Flexible seating and open learning areas designed for both small-group instruction and individual exploration, a space that adapts to the learner.</p>
+        </div>
+
+        <div class="feature-card">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="9" y1="18" x2="15" y2="18"/>
+            <line x1="10" y1="22" x2="14" y2="22"/>
+            <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/>
+          </svg>
+          <h3>Teacher-Led Inquiry</h3>
+          <p>Educators model thinking aloud, ask open-ended questions, and guide students in connecting information across subjects, building critical and creative thinkers.</p>
+        </div>
+
+        <div class="feature-card">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <h3>Digital Citizenship</h3>
+          <p>Students learn to navigate technology responsibly, curating digital resources, evaluating online information, and developing habits for thoughtful, ethical tech use.</p>
+        </div>
+
+        <div class="feature-card feature-card-featured">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+          </svg>
+          <div class="feature-body">
+            <h3>Signature Program Pathway</h3>
+            <p>Engage in enrichment activities that extend classroom learning through purposeful, connected experiences designed to deepen curiosity and develop the whole learner.</p>
+          </div>
+          <a class="learn-more" href="https://mglavach.github.io/wcs-signature-programs/" target="_blank" rel="noopener">
+            Learn More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <div class="feature-card feature-card-featured">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          <div class="feature-body">
+            <h3>Community Connect Initiative</h3>
+            <p>Students become confident, thoughtful, Christ-centered learners, applying knowledge, collaborating with others, and contributing positively to their world.</p>
+          </div>
+          <a class="learn-more" href="https://mglavach.github.io/community-connect-initiative/" target="_blank" rel="noopener">
+            Learn More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <div class="feature-card feature-card-featured">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+          <div class="feature-body">
+            <p class="feature-card-sublabel">Literacy</p>
+            <h3>Reading Program</h3>
+            <p>Our reading program is built on the belief that wide, joyful reading creates the strongest readers, aligned to Florida B.E.S.T. ELA Standards for every grade level.</p>
+          </div>
+          <a class="learn-more" href="#reading">
+            Learn More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <div class="feature-card feature-card-featured">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+          <div class="feature-body">
+            <p class="feature-card-sublabel">Measurement &amp; Growth</p>
+            <h3>Reading Assessment</h3>
+            <p>Assessment in The Hub celebrates growth, informs instruction, and helps teachers have meaningful conversations with students and families, always in service of the reader.</p>
+          </div>
+          <a class="learn-more" href="#assessment">
+            Learn More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- READING PROGRAM -->
+  <section class="reading-section" id="reading">
+    <div class="container">
+      <p class="section-label">Literacy</p>
+      <h2>Reading Program</h2>
+      <div class="divider"></div>
+      <p style="color: #3a3a3a; max-width: 640px;">Our reading program is built on the belief that wide, joyful reading creates the strongest readers, aligned to Florida B.E.S.T. ELA Standards for every grade level.</p>
+
+      <div class="reading-philosophy">
+        <div class="philosophy-card">
+          <svg class="phil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+          <h3>Wide Reading</h3>
+          <p>Students read within, above, and below their level, exploring fiction, nonfiction, poetry, biography, graphic novels, and more. Genre variety builds vocabulary and empathy.</p>
+        </div>
+        <div class="philosophy-card">
+          <svg class="phil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <h3>Sustained Independent Reading</h3>
+          <p>Daily sustained silent reading builds stamina. From 5–10 minutes in Kindergarten to 30+ minutes in 5th grade, students grow as focused, independent readers.</p>
+        </div>
+        <div class="philosophy-card">
+          <svg class="phil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          <h3>AR as Motivation</h3>
+          <p>Accelerated Reader celebrates reading milestones and encourages goal-setting, a tool for motivation and accountability, never a restriction on book choice.</p>
+        </div>
+      </div>
+
+      <!-- Grade band summary table -->
+      <table class="grade-table">
+        <thead>
+          <tr>
+            <th>Grade</th>
+            <th>Reading Focus</th>
+            <th>Sustained Reading Goal</th>
+            <th>AR Points (Quarterly)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="grade-badge">PK3 &amp; PK4</span></td>
+            <td>Listening comprehension, print awareness, love of stories</td>
+            <td>Daily read-alouds; independent picture book exploration; share favorite books with the class</td>
+            <td><span class="ar-na">N/A</span></td>
+          </tr>
+          <tr>
+            <td><span class="grade-badge">K</span></td>
+            <td>Concepts of print, story structure, oral retell</td>
+            <td>5–10 minutes sustained attention; weekly book checkout; share favorite books with classmates</td>
+            <td><span class="ar-na">N/A</span></td>
+          </tr>
+          <tr>
+            <td><span class="grade-badge">1st</span></td>
+            <td>Foundational decoding, fluency, comprehension monitoring</td>
+            <td>10–15 minutes; wide reading across formats; share book picks with classmates</td>
+            <td><span class="ar-na">N/A</span></td>
+          </tr>
+          <tr>
+            <td><span class="grade-badge">2nd</span></td>
+            <td>Independent reading growth, vocabulary, story elements</td>
+            <td>15–20 minutes; fiction and nonfiction regularly; peer book recommendations</td>
+            <td><span class="ar-goal">25 pts</span></td>
+          </tr>
+          <tr>
+            <td><span class="grade-badge">3rd</span></td>
+            <td>Reading stamina, text evidence, genre comparison</td>
+            <td>20–25 minutes; 5+ genres annually; one "stretch" book per quarter; peer book recommendations</td>
+            <td><span class="ar-goal">50 pts</span></td>
+          </tr>
+          <tr>
+            <td><span class="grade-badge">4th</span></td>
+            <td>Deeper comprehension, theme, cross-text connections</td>
+            <td>25–30 minutes; wide reading including history, biography, poetry; peer book recommendations</td>
+            <td><span class="ar-goal">75 pts</span></td>
+          </tr>
+          <tr>
+            <td><span class="grade-badge">5th</span></td>
+            <td>Analytical thinking, argument, reading independence</td>
+            <td>30+ minutes; long-form novels each quarter; lead peer book recommendations</td>
+            <td><span class="ar-goal">100 pts</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </section>
+
+  <!-- ASSESSMENT -->
+  <section class="assessment-section" id="assessment">
+    <div class="container">
+      <p class="section-label">Measurement &amp; Growth</p>
+      <h2>Reading Assessment</h2>
+      <div class="divider"></div>
+
+      <div class="assess-why">
+        <svg class="assess-why-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        <div>
+          <h3>Why Reading Assessment?</h3>
+          <p>Assessment in The Hub is not about labeling students or restricting their reading, it is about understanding each learner so we can serve them better. When we know where a student is, we can celebrate how far they have come and guide them toward what is next.</p>
+          <p>Our assessments measure growth over time, inform instruction, and help teachers have meaningful conversations with students and families. They work alongside, never instead of, wide reading, curiosity, and the joy of books.</p>
+        </div>
+      </div>
+
+      <p class="assess-types-label">Assessment Types</p>
+
+      <!-- MAPS -->
+      <div class="maps-card" style="margin-bottom: 1.25rem;">
+        <div>
+          <svg class="maps-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+          <div class="maps-header">
+            <span class="maps-badge">MAPS</span>
+            <span class="maps-grade-range">Grades K–5</span>
+          </div>
+          <h3>Measures of Academic Progress</h3>
+          <p class="maps-full-name">MAP Growth · NWEA</p>
+          <p>A computer-adaptive benchmark assessment that adjusts in real time to each student's responses, delivering a precise RIT score that measures exactly where a student is, and how much they have grown from one testing window to the next.</p>
+        </div>
+        <div class="maps-details">
+          <div class="maps-detail-block">
+            <h4>Testing Windows</h4>
+            <div class="maps-windows">
+              <span class="window-pill">Fall</span>
+              <span class="window-pill">Winter</span>
+              <span class="window-pill">Spring</span>
+            </div>
+          </div>
+          <div class="maps-detail-block">
+            <h4>What It Measures</h4>
+            <ul class="maps-list">
+              <li>Reading comprehension and vocabulary</li>
+              <li>Foundational skills (K–2)</li>
+              <li>Literature and informational text</li>
+              <li>Growth from window to window</li>
+            </ul>
+          </div>
+          <div class="maps-detail-block">
+            <h4>How We Use Results</h4>
+            <ul class="maps-list">
+              <li>Inform instruction and small-group support</li>
+              <li>Set individual growth goals with students</li>
+              <li>Guide family conferences</li>
+              <li>Celebrate measurable growth</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAR & FLUENCY side by side -->
+      <div class="assess-pair">
+
+        <!-- STAR -->
+        <div class="maps-card" style="background: #3d6e47;">
+          <div style="grid-column: 1 / -1;">
+            <svg class="maps-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            <div class="maps-header">
+              <span class="maps-badge">STAR</span>
+              <span class="maps-grade-range">Grades 2–4</span>
+            </div>
+            <h3>STAR Reading</h3>
+            <p class="maps-full-name">Renaissance STAR</p>
+            <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.65; margin-bottom: 1.25rem;">A computer-adaptive assessment that provides a Scaled Score and grade equivalent, offering a quick, reliable snapshot of reading comprehension and vocabulary to supplement MAP data and inform targeted instruction.</p>
+            <div class="maps-detail-block">
+              <h4>What It Measures</h4>
+              <ul class="maps-list">
+                <li>Reading comprehension</li>
+                <li>Vocabulary in context</li>
+                <li>Instructional reading level</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- FLUENCY -->
+        <div class="maps-card" style="background: #1e4a38;">
+          <div style="grid-column: 1 / -1;">
+            <svg class="maps-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+              <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+            </svg>
+            <div class="maps-header">
+              <span class="maps-badge">Fluency</span>
+              <span class="maps-grade-range">Grades 1–3</span>
+            </div>
+            <h3>Oral Reading Fluency</h3>
+            <p class="maps-full-name">ORF / CBM-R</p>
+            <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.65; margin-bottom: 1.25rem;">A brief, teacher-administered reading passage assessment that measures words read correctly per minute (WCPM), tracking the development of accurate, expressive, and automatic decoding as a foundation for comprehension.</p>
+            <div class="maps-detail-block">
+              <h4>What It Measures</h4>
+              <ul class="maps-list">
+                <li>Words correct per minute (WCPM)</li>
+                <li>Accuracy and expression</li>
+                <li>Decoding automaticity</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.82rem; color: var(--muted); font-style: italic;">Assessment results are shared with classroom teachers and families to celebrate growth and guide next steps, never to define or limit a reader.</p>
+    </div>
+  </section>
+
+  <!-- MISSION QUOTE -->
+  <div class="mission-quote" style="border-radius: 0; padding: 3rem 2rem;">
+    <div style="max-width: 680px; margin: 0 auto;">
+      <p>"We do not raise strong readers by narrowing their choices.<br>We raise strong readers by widening their world."</p>
+      <strong>Hub Library Mission</strong>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="hub%20logo.png" alt="The Hub logo" class="footer-logo" />
+    <p><strong>The Hub</strong> · Westminster Christian School · PreK through 5th Grade</p>
+    <p style="margin-top: 0.4rem;">A space for Harnessing · Understanding · Becoming</p>
+  </footer>
+
+</body>
+</html>
