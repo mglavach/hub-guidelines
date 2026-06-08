@@ -1127,6 +1127,51 @@
       border-radius: 2px;
       margin: 1.25rem 0;
     }
+
+    /* ── ASK WREN BUTTON ── */
+    .ask-wren-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--forest);
+      color: white;
+      text-decoration: none;
+      padding: 0.55rem 1.1rem 0.55rem 0.55rem;
+      border-radius: 999px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-top: 1.35rem;
+      transition: background 0.18s, transform 0.18s;
+      box-shadow: 0 2px 10px rgba(44,82,52,0.22);
+      border: 2px solid var(--gold);
+    }
+    .ask-wren-btn:hover {
+      background: var(--sage);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(44,82,52,0.28);
+    }
+    .ask-wren-img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+    .ask-wren-label {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    .ask-wren-label span:first-child {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
   </style>
 </head>
 <body>
@@ -1149,6 +1194,13 @@
         <div class="what-text">
           <p>The Hub is a central, flexible, and welcoming space designed for students in Preschool through 5th grade. It serves as an extension of the classroom, a place where literacy, curiosity, enrichment learning, and digital citizenship all come together.</p>
           <p>Students don't just visit The Hub, they grow here, guided by dedicated educators and surrounded by resources curated to spark wonder and deepen understanding.</p>
+          <a href="wren.html" class="ask-wren-btn">
+            <img src="Wren.png" alt="Wren" class="ask-wren-img">
+            <span class="ask-wren-label">
+              <span>Have a question?</span>
+              Ask Wren
+            </span>
+          </a>
         </div>
         <div class="hub-diagram-wrap">
         <div class="hub-diagram">
@@ -1307,86 +1359,7 @@
       <div class="divider"></div>
       <div class="features-grid">
 
-        <!-- 1. Curated Resources -->
-        <div class="feature-card" id="kf-curated">
-          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-          </svg>
-          <h3>Curated Resources</h3>
-          <p>Print and digital resources selected to support enrichment learning, literacy, and guided exploration across 20+ nonfiction genres and a rich fiction collection.</p>
-        </div>
-
-        <!-- 2. Flexible Learning Spaces -->
-        <div class="feature-card" id="kf-flexible">
-          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="7" height="7"/>
-            <rect x="14" y="3" width="7" height="7"/>
-            <rect x="14" y="14" width="7" height="7"/>
-            <rect x="3" y="14" width="7" height="7"/>
-          </svg>
-          <h3>Flexible Learning Spaces</h3>
-          <p>Flexible seating and open learning areas designed for both small-group instruction and individual exploration, a space that adapts to the learner.</p>
-        </div>
-
-        <!-- 3. Teacher-Led Inquiry -->
-        <div class="feature-card" id="kf-inquiry">
-          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="9" y1="18" x2="15" y2="18"/>
-            <line x1="10" y1="22" x2="14" y2="22"/>
-            <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/>
-          </svg>
-          <h3>Teacher-Led Inquiry</h3>
-          <p>Educators model thinking aloud, ask open-ended questions, and guide students in connecting information across subjects, building critical and creative thinkers.</p>
-        </div>
-
-        <!-- 4. Technology & Innovation -->
-        <div class="feature-card feature-card-featured" id="kf-tech">
-          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-          </svg>
-          <div class="feature-body">
-            <h3>Technology &amp; Innovation</h3>
-            <p>Students leverage technology as a tool for creativity, communication, collaboration, problem-solving, and innovation while learning to navigate the digital world responsibly. Through thoughtful evaluation of information, responsible digital citizenship, and ethical decision-making, students develop the skills and character needed to use technology wisely and purposefully.</p>
-          </div>
-        </div>
-
-        <!-- 5. Enrichment & Extension -->
-        <div class="feature-card feature-card-featured" id="kf-enrichment">
-          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-          </svg>
-          <div class="feature-body">
-            <p class="feature-card-sublabel">Signature Program Pathway</p>
-            <h3>Enrichment &amp; Extension</h3>
-            <p>Engage in enrichment activities that extend classroom learning through purposeful, connected experiences designed to deepen curiosity and develop the whole learner.</p>
-          </div>
-          <a class="learn-more" href="https://mglavach.github.io/wcs-signature-programs/" target="_blank" rel="noopener">
-            Learn More
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </div>
-
-        <!-- 6. Faith, Service & Leadership -->
-        <div class="feature-card feature-card-featured" id="kf-service">
-          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-          <div class="feature-body">
-            <p class="feature-card-sublabel">Community Connect Initiative</p>
-            <h3>Faith, Service &amp; Leadership</h3>
-            <p>Students become confident, thoughtful, Christ-centered learners, applying knowledge, collaborating with others, and contributing positively to their world.</p>
-          </div>
-          <a class="learn-more" href="https://mglavach.github.io/community-connect-initiative/" target="_blank" rel="noopener">
-            Learn More
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </div>
-
-        <!-- 7. Core Academics -->
+        <!-- 1. Core Academics -->
         <div class="feature-card feature-card-featured" id="kf-core">
           <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
             <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
@@ -1408,7 +1381,7 @@
           </div>
         </div>
 
-        <!-- 8. Responsive Learning -->
+        <!-- 2. Responsive Learning -->
         <div class="feature-card feature-card-featured" id="kf-responsive">
           <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
@@ -1419,6 +1392,72 @@
             <p>Assessment at WCS is used to understand where students are in their learning journey and to guide responsive instruction. Through ongoing data and observation, we intentionally differentiate instruction with both support and enrichment to meet the needs of every learner.</p>
           </div>
           <a class="learn-more" href="#assessment">
+            Learn More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- 3. Enrichment & Extension -->
+        <div class="feature-card feature-card-featured" id="kf-enrichment">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          <div class="feature-body">
+            <p class="feature-card-sublabel">Signature Program Pathway</p>
+            <h3>Enrichment &amp; Extension</h3>
+            <p>Engage in enrichment activities that extend classroom learning through purposeful, connected experiences designed to deepen curiosity and develop the whole learner.</p>
+          </div>
+          <a class="learn-more" href="https://mglavach.github.io/wcs-signature-programs/" target="_blank" rel="noopener">
+            Learn More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- 4. Curated Resources -->
+        <div class="feature-card feature-card-featured" id="kf-curated">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+          <div class="feature-body">
+            <h3>Curated Resources</h3>
+            <p>Print and digital resources selected to support enrichment learning, literacy, and guided exploration across 20+ nonfiction genres and a rich fiction collection.</p>
+          </div>
+          <a class="learn-more" href="library-resources.html">
+            Learn More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- 5. Technology & Innovation -->
+        <div class="feature-card feature-card-featured" id="kf-tech">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+          <div class="feature-body">
+            <h3>Technology &amp; Innovation</h3>
+            <p>Students leverage technology as a tool for creativity, communication, collaboration, problem-solving, and innovation while learning to navigate the digital world responsibly. Through thoughtful evaluation of information, responsible digital citizenship, and ethical decision-making, students develop the skills and character needed to use technology wisely and purposefully.</p>
+          </div>
+          <a class="learn-more" href="technology-innovation.html">
+            Learn More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- 6. Faith, Service & Leadership -->
+        <div class="feature-card feature-card-featured" id="kf-service">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          <div class="feature-body">
+            <p class="feature-card-sublabel">Community Connect Initiative</p>
+            <h3>Faith, Service &amp; Leadership</h3>
+            <p>Students become confident, thoughtful, Christ-centered learners, applying knowledge, collaborating with others, and contributing positively to their world.</p>
+          </div>
+          <a class="learn-more" href="https://mglavach.github.io/community-connect-initiative/" target="_blank" rel="noopener">
             Learn More
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
@@ -1461,12 +1500,16 @@
             <h3>Sustained Independent Reading</h3>
             <p>Daily sustained silent reading builds stamina. From 5–10 minutes in Kindergarten to 30+ minutes in 5th grade, students grow as focused, independent readers.</p>
           </div>
-          <div class="philosophy-card">
+          <div class="philosophy-card" style="display:flex; flex-direction:column;">
             <svg class="phil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
             </svg>
             <h3>AR as Motivation</h3>
-            <p>Accelerated Reader celebrates reading milestones and encourages goal-setting, a tool for motivation and accountability, never a restriction on book choice.</p>
+            <p style="flex:1;">Accelerated Reader celebrates reading milestones and encourages goal-setting, a tool for motivation and accountability, never a restriction on book choice.</p>
+            <a class="learn-more" href="ar-guidelines.html" style="margin-top:1rem;">
+              Learn More
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
           </div>
         </div>
         <table class="grade-table">
@@ -2106,6 +2149,7 @@
               <li>Homework Club (fee)</li>
               <li>Free peer mentor (no intervention provided)</li>
               <li>Teacher tutor (fee)</li>
+              <li>Contact <a href="mailto:mglavach@wcsmiami.org" style="color: var(--forest); text-decoration: underline;">Mrs. Glavach</a> for Homework Club and tutoring questions</li>
             </ul>
           </div>
 

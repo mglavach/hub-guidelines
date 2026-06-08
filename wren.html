@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wren – The Hub Navigator | WCS Elementary Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --forest: #2c5234; --gold: #B9975B; --cream: #fdf8ef;
+      --sage: #4a7c59; --light-green: #eaf3ec; --text: #2c2c2c; --muted: #6b6b6b;
+    }
+    body { font-family: 'Montserrat', sans-serif; background: var(--cream); height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
+
+    /* HEADER */
+    .chat-header { background: var(--forest); padding: 0.85rem 1.25rem; flex-shrink: 0; box-shadow: 0 2px 12px rgba(0,0,0,0.22); }
+    .header-inner { max-width: 740px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .wren-id { display: flex; align-items: center; gap: 0.8rem; }
+    .wren-avatar { width: 46px; height: 46px; border-radius: 50%; overflow: hidden; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.25); border: 2px solid var(--gold); }
+    .wren-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .wren-name { font-size: 1.1rem; font-weight: 800; color: white; letter-spacing: 0.02em; }
+    .wren-sub { font-size: 0.7rem; color: rgba(255,255,255,0.65); font-weight: 500; margin-top: 1px; }
+    .hub-link { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22); color: rgba(255,255,255,0.85); border-radius: 0.5rem; padding: 0.38rem 0.85rem; font-family: 'Montserrat', sans-serif; font-size: 0.76rem; font-weight: 600; text-decoration: none; transition: background 0.15s; }
+    .hub-link:hover { background: rgba(255,255,255,0.2); }
+
+    /* CHAT BODY */
+    .chat-body { flex: 1; overflow-y: auto; padding: 1.25rem 1.25rem 0.5rem; max-width: 740px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+
+    /* MESSAGES */
+    .msg-row { display: flex; gap: 0.65rem; align-items: flex-end; }
+    .msg-row.user { flex-direction: row-reverse; }
+    .msg-av { width: 30px; height: 30px; border-radius: 50%; background: var(--forest); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.58rem; font-weight: 700; color: white; }
+    .msg-row.user .msg-av { background: var(--sage); }
+    .msg-bubble { max-width: 82%; padding: 0.75rem 1rem; font-size: 0.88rem; line-height: 1.65; border-radius: 1.2rem; }
+    .msg-row.wren .msg-bubble { background: white; color: var(--text); border-radius: 0.3rem 1.2rem 1.2rem 1.2rem; box-shadow: 0 1px 5px rgba(0,0,0,0.07); border: 1px solid rgba(44,82,52,0.1); }
+    .msg-row.user .msg-bubble { background: var(--forest); color: white; border-radius: 1.2rem 1.2rem 0.3rem 1.2rem; }
+    .msg-bubble p { margin-bottom: 0.5rem; }
+    .msg-bubble p:last-child { margin-bottom: 0; }
+    .msg-bubble ul { padding-left: 1.2rem; margin: 0.35rem 0; }
+    .msg-bubble li { margin-bottom: 0.25rem; }
+    .msg-bubble strong { font-weight: 700; }
+    .msg-bubble .follow-up { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(44,82,52,0.1); font-size: 0.82rem; color: var(--sage); font-style: italic; }
+
+    /* QUICK ACTIONS */
+    .quick-wrap { max-width: 740px; width: 100%; margin: 0 auto; padding: 0.5rem 1.25rem 0.35rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .qa-btn { background: white; border: 1.5px solid var(--gold); color: var(--forest); padding: 0.4rem 0.85rem; border-radius: 999px; font-family: 'Montserrat', sans-serif; font-size: 0.76rem; font-weight: 600; cursor: pointer; transition: background 0.15s, color 0.15s; white-space: nowrap; }
+    .qa-btn:hover { background: var(--gold); color: white; }
+
+    /* STATUS */
+    .status-bar { font-size: 0.68rem; color: var(--muted); text-align: center; padding: 0.15rem 1rem 0.35rem; max-width: 740px; width: 100%; margin: 0 auto; }
+
+    /* INPUT */
+    .chat-input-wrap { background: white; border-top: 1px solid rgba(0,0,0,0.08); padding: 0.7rem 1.25rem; flex-shrink: 0; }
+    .input-inner { max-width: 740px; margin: 0 auto; display: flex; gap: 0.65rem; align-items: flex-end; }
+    .chat-ta { flex: 1; border: 1.5px solid #ddd; border-radius: 1.2rem; padding: 0.62rem 1rem; font-family: 'Montserrat', sans-serif; font-size: 0.88rem; resize: none; line-height: 1.5; max-height: 110px; overflow-y: auto; outline: none; transition: border-color 0.15s; }
+    .chat-ta:focus { border-color: var(--forest); }
+    .send-btn { background: var(--forest); color: white; border: none; border-radius: 50%; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: background 0.15s; }
+    .send-btn:hover { background: var(--sage); }
+  </style>
+</head>
+<body>
+
+<header class="chat-header">
+  <div class="header-inner">
+    <div class="wren-id">
+      <div class="wren-avatar">
+        <img src="Wren.png" alt="Wren">
+      </div>
+      <div>
+        <div class="wren-name">Wren</div>
+        <div class="wren-sub">The Hub Navigator &middot; WCS Elementary</div>
+      </div>
+    </div>
+    <a class="hub-link" href="index.html">&#8592; Hub Guidelines</a>
+  </div>
+</header>
+
+<div class="chat-body" id="chatBody"></div>
+
+<div class="quick-wrap" id="quickWrap">
+  <button class="qa-btn" onclick="sendQuick('What is the Hub?')">What is the Hub?</button>
+  <button class="qa-btn" onclick="sendQuick('Tell me about reading')">Reading</button>
+  <button class="qa-btn" onclick="sendQuick('Tell me about math')">Math</button>
+  <button class="qa-btn" onclick="sendQuick('How does assessment work?')">Assessments</button>
+  <button class="qa-btn" onclick="sendQuick('What intervention support is available?')">Support</button>
+  <button class="qa-btn" onclick="sendQuick('What is the H.U.B. Pathway?')">H.U.B. Pathway</button>
+  <button class="qa-btn" onclick="sendQuick('Who can I contact?')">Contacts</button>
+  <button class="qa-btn" onclick="sendQuick('What can you help me with?')">What can you help with?</button>
+</div>
+
+<div class="status-bar">Wren knows the Hub Guidelines &middot; Ask anything about WCS Elementary Hub programs</div>
+
+<div class="chat-input-wrap">
+  <div class="input-inner">
+    <textarea class="chat-ta" id="userInput" placeholder="Ask Wren about the Hub..." rows="1"></textarea>
+    <button class="send-btn" id="sendBtn">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"/>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+/* ── KNOWLEDGE BASE ─────────────────────────────────────────────────────────
+   Each entry has:
+     tags  – array of strings; more tags = more specific match wins
+     reply – HTML string shown in chat bubble
+   Scoring: count how many tags appear in the lowercased user query.
+   Highest score wins. Ties go to the first match.
+─────────────────────────────────────────────────────────────────────────── */
+const KB = [
+
+  /* ── Identity / greeting ─────────────────────────────────── */
+  {
+    id: 'greeting',
+    tags: ['hello', 'hi wren', 'hey wren', 'good morning', 'good afternoon', 'hi there'],
+    reply: `<p>Hello! I'm so glad you stopped by. I'm Wren, your guide to the WCS Elementary Hub.</p>
+<p>I can answer questions about our reading and math programs, assessments, intervention support, enrichment activities, and more — all from the Hub Guidelines.</p>
+<p class="follow-up">What would you like to explore today?</p>`
+  },
+  {
+    id: 'who_is_wren',
+    tags: ['who are you', 'what are you', 'tell me about yourself', 'about wren', 'wren navigator', 'hub navigator'],
+    reply: `<p>I'm <strong>Wren</strong> — The Hub Navigator!</p>
+<p>I'm named after a small, curious bird that finds its way through any space. My job is to help you find your way through the WCS Elementary Hub. I can answer questions about:</p>
+<ul>
+  <li>Reading &amp; Math programs</li>
+  <li>Assessment tools (IXL, MAP, ORF, STAR)</li>
+  <li>Intervention and support options</li>
+  <li>Enrichment and extension activities</li>
+  <li>The H.U.B. Pathway framework</li>
+  <li>Contacts and resources</li>
+</ul>
+<p class="follow-up">Everything I know comes directly from the Hub Guidelines. What can I help you find?</p>`
+  },
+  {
+    id: 'help',
+    tags: ['what can you help', 'what can you do', 'what do you know', 'help me', 'help with'],
+    reply: `<p>Here's what I can help you with:</p>
+<ul>
+  <li><strong>Reading Program</strong> — Wide reading, AR, sustained reading goals by grade</li>
+  <li><strong>Math Program</strong> — IXL, Reflex, FRACS, grade-level focus</li>
+  <li><strong>Assessments</strong> — IXL, MAP Growth, ORF, STAR Reading, and testing windows</li>
+  <li><strong>Assessment System</strong> — The 4 types of assessment and how they work together</li>
+  <li><strong>Intervention</strong> — Internal (Foundations, GRASP), External (Westbridge), After School, At Home (Lexia, Learning Ally)</li>
+  <li><strong>The H.U.B. Pathway</strong> — Harness, Understand, Become</li>
+  <li><strong>Key Features</strong> — All 8 features of The Hub</li>
+  <li><strong>Contacts</strong> — Who to reach out to for each program</li>
+</ul>
+<p class="follow-up">Just ask — I'm here to help!</p>`
+  },
+
+  /* ── What is the Hub ─────────────────────────────────────── */
+  {
+    id: 'what_hub',
+    tags: ['what is the hub', 'about the hub', 'hub is', 'describe the hub', 'explain the hub', 'hub space', 'hub program', 'elementary hub'],
+    reply: `<p>Let's take a look! <strong>The Hub</strong> is a central, flexible, and welcoming learning space at Westminster Christian School for students in Preschool through 5th grade.</p>
+<p>It serves as an extension of the classroom — a place where literacy, curiosity, enrichment learning, and digital citizenship all come together. Students don't just visit The Hub; they <em>grow</em> here, guided by dedicated educators and surrounded by curated resources that spark wonder and deepen understanding.</p>
+<p>The Hub weaves together Core Academics, Technology &amp; Innovation, Enrichment, Faith &amp; Service, and Responsive Learning into one connected experience.</p>
+<p class="follow-up">Want to explore a specific part? Try asking about the H.U.B. Pathway, Key Features, or any program!</p>`
+  },
+
+  /* ── H.U.B. Pathway ─────────────────────────────────────── */
+  {
+    id: 'pathway_full',
+    tags: ['h.u.b', 'hub pathway', 'pathway', 'harness understand become', 'framework', 'three stages', 'three steps', 'hub letters', 'h u b'],
+    reply: `<p>Here's what I found! The <strong>H.U.B. Pathway</strong> is the learning framework that shapes everything students do in The Hub — three connected stages of growth:</p>
+<ul>
+  <li><strong>H — Harness (Gather &amp; Focus):</strong> Students gather, focus, and direct curiosity toward meaningful learning. They notice interesting ideas, choose reliable sources, decide what matters most, and apply knowledge.</li>
+  <li><strong>U — Understand (Connect &amp; Make Meaning):</strong> Students make sense of ideas by comparing, analyzing, synthesizing, and reflecting — moving from isolated facts to rich, connected understanding.</li>
+  <li><strong>B — Become (Grow &amp; Contribute):</strong> Students become confident, Christ-centered learners who practice skills in real situations, collaborate with others, reflect on their growth, and serve and create meaningfully.</li>
+</ul>
+<p class="follow-up">Want to know more about any one of these stages?</p>`
+  },
+  {
+    id: 'harness',
+    tags: ['harness', 'gather and focus', 'gather focus', 'first stage', 'collect sources', 'notice ideas'],
+    reply: `<p><strong>H — Harness</strong> is the first stage of the H.U.B. Pathway. It's all about <em>Gather &amp; Focus</em>.</p>
+<p>Students actively gather, focus, and direct their curiosity toward meaningful learning — identifying sources, collecting relevant information, and applying it to real questions.</p>
+<p>The four steps in this stage:</p>
+<ul>
+  <li><strong>Notice:</strong> Identify interesting ideas</li>
+  <li><strong>Collect:</strong> Choose reliable sources</li>
+  <li><strong>Focus:</strong> Decide what matters most</li>
+  <li><strong>Apply:</strong> Use knowledge to learn</li>
+</ul>
+<p class="follow-up">Want to hear about Understand or Become next?</p>`
+  },
+  {
+    id: 'understand',
+    tags: ['understand', 'connect make meaning', 'analyze synthesize', 'make meaning', 'second stage', 'synthesize', 'make sense of'],
+    reply: `<p><strong>U — Understand</strong> is the second stage of the H.U.B. Pathway. It's all about <em>Connect &amp; Make Meaning</em>.</p>
+<p>Students make sense of ideas by analyzing, synthesizing, and reflecting — moving from isolated facts to rich, connected understanding across texts and experiences.</p>
+<p>The four steps in this stage:</p>
+<ul>
+  <li><strong>Compare:</strong> Spot similarities and differences</li>
+  <li><strong>Analyze:</strong> Examine how parts fit together</li>
+  <li><strong>Synthesize:</strong> Combine ideas into new insight</li>
+  <li><strong>Reflect:</strong> Connect to what you already know</li>
+</ul>
+<p class="follow-up">Want to hear about Harness or Become too?</p>`
+  },
+  {
+    id: 'become',
+    tags: ['become', 'grow contribute', 'grow and contribute', 'third stage', 'christ-centered learner', 'serve create', 'collaborate'],
+    reply: `<p><strong>B — Become</strong> is the third stage of the H.U.B. Pathway. It's all about <em>Grow &amp; Contribute</em>.</p>
+<p>Students become confident, thoughtful, Christ-centered learners — applying knowledge, collaborating with others, and contributing positively to their world.</p>
+<p>The four steps in this stage:</p>
+<ul>
+  <li><strong>Practice:</strong> Use skills in real situations</li>
+  <li><strong>Collaborate:</strong> Work with and for others</li>
+  <li><strong>Reflect:</strong> Notice how you have grown</li>
+  <li><strong>Apply:</strong> Serve and create meaningfully</li>
+</ul>
+<p class="follow-up">Want to know about Harness or Understand too?</p>`
+  },
+
+  /* ── Key Features ────────────────────────────────────────── */
+  {
+    id: 'key_features',
+    tags: ['key features', 'features of the hub', 'what does the hub offer', 'hub features', 'all features', 'eight features', '8 features'],
+    reply: `<p>The Hub has <strong>8 Key Features</strong>:</p>
+<ul>
+  <li><strong>Curated Resources</strong> — Print and digital resources across 20+ nonfiction genres and a rich fiction collection</li>
+  <li><strong>Flexible Learning Spaces</strong> — Flexible seating and open areas for small-group or individual work</li>
+  <li><strong>Teacher-Led Inquiry</strong> — Educators model thinking, ask open-ended questions, and build critical thinkers</li>
+  <li><strong>Technology &amp; Innovation</strong> — Creativity, communication, and responsible digital citizenship</li>
+  <li><strong>Enrichment &amp; Extension</strong> — The Signature Program Pathway: purposeful experiences that deepen curiosity</li>
+  <li><strong>Faith, Service &amp; Leadership</strong> — The Community Connect Initiative: Christ-centered service and leadership</li>
+  <li><strong>Core Academics</strong> — Hub instruction supporting Mathematics and Literacy for K–5</li>
+  <li><strong>Responsive Learning</strong> — Assessment-guided differentiation for support and enrichment</li>
+</ul>
+<p class="follow-up">Want to know more about any of these?</p>`
+  },
+  {
+    id: 'technology',
+    tags: ['technology', 'digital citizenship', 'innovation', 'tech', 'computers', 'ipads', 'digital', 'responsible technology'],
+    reply: `<p>Here's what I found about <strong>Technology &amp; Innovation</strong> at The Hub!</p>
+<p>Students leverage technology as a tool for creativity, communication, collaboration, problem-solving, and innovation — while also learning to navigate the digital world responsibly.</p>
+<p>This includes:</p>
+<ul>
+  <li>Thoughtful evaluation of information</li>
+  <li>Responsible digital citizenship</li>
+  <li>Ethical decision-making with technology</li>
+</ul>
+<p>For technology support, contact <strong>Mrs. Arlene Castellanos</strong> (acastellanos@wcsmiami.org) — ES Technology/Enrichment/Resource Teacher.</p>
+<p class="follow-up">Want to know about the digital programs students use (IXL, Reflex, etc.)?</p>`
+  },
+  {
+    id: 'enrichment',
+    tags: ['enrichment', 'extension', 'signature program', 'signature pathway', 'deepen curiosity', 'enrichment activities', 'stem'],
+    reply: `<p>Let's take a look at <strong>Enrichment &amp; Extension</strong>!</p>
+<p>This is part of The Hub's <em>Signature Program Pathway</em> — purposeful, connected experiences designed to extend classroom learning, deepen curiosity, and develop the whole learner.</p>
+<p>Students engage in enrichment activities that go beyond the regular classroom, building wonder and skills through exploration and creativity.</p>
+<p>For more information about Signature Programs, visit the Hub Guidelines page or contact <strong>Mrs. Arlene Castellanos</strong> (acastellanos@wcsmiami.org).</p>
+<p class="follow-up">Want to know about Faith, Service &amp; Leadership or Core Academics too?</p>`
+  },
+  {
+    id: 'faith_service',
+    tags: ['faith', 'service', 'leadership', 'community connect', 'christ', 'christian', 'faith service leadership', 'serve', 'community'],
+    reply: `<p>Here's what I found about <strong>Faith, Service &amp; Leadership</strong>!</p>
+<p>This Hub feature is connected to the <em>Community Connect Initiative</em> — helping students become confident, thoughtful, Christ-centered learners who apply knowledge, collaborate with others, and contribute positively to their world.</p>
+<p>Students are encouraged to:</p>
+<ul>
+  <li>Live out their faith through acts of service</li>
+  <li>Lead with kindness and purpose</li>
+  <li>Connect with and give back to their community</li>
+</ul>
+<p class="follow-up">Want to know about other Key Features or the H.U.B. Pathway?</p>`
+  },
+
+  /* ── Reading ─────────────────────────────────────────────── */
+  {
+    id: 'accelerated_reader',
+    tags: ['accelerated reader', 'ar points', 'ar goals', 'ar quiz', 'ar goal', 'renaissance ar', 'ar program', 'what is ar', 'about ar', 'my ar', ' ar ', 'ar login', 'ar username', 'ar password', 'log into ar', 'login for ar', 'ar user', 'ar pass', 'ar sign in', 'cant sign in', "can't sign in", 'ar not working', 'ar trouble', 'ar site', 'ar website'],
+    reply: `<p>Here's what I found about <strong>Accelerated Reader (AR)</strong>!</p>
+<p>AR is a reading motivation tool that celebrates milestones and encourages goal-setting. It is never a restriction on book choice.</p>
+<p><strong>Annual AR point goals by grade:</strong></p>
+<ul>
+  <li><strong>PK3, PK4, K, 1st:</strong> N/A</li>
+  <li><strong>2nd:</strong> 25 points &nbsp; <strong>3rd:</strong> 50 points &nbsp; <strong>4th:</strong> 75 points &nbsp; <strong>5th:</strong> 100 points</li>
+</ul>
+<p><strong>How to Log In:</strong></p>
+<ul>
+  <li><strong>Username:</strong> First initial + last name + graduation year &nbsp;<em>(example: jsmith32)</em></li>
+  <li><strong>Password:</strong> pass + 4-digit student ID &nbsp;<em>(example: pass9999)</em></li>
+  <li>You must use the <strong>WCS-assigned website</strong> to log in, not a general AR or Renaissance site.</li>
+</ul>
+<p><strong>Can't sign in? Common fixes:</strong></p>
+<ul>
+  <li>Use a <strong>lowercase "p"</strong> in your password (pass9999, not Pass9999)</li>
+  <li>Make sure you are on the <strong>WCS site</strong>, not a general Renaissance or AR website</li>
+  <li>Double-check your username: first initial + last name + grad year, all lowercase, no spaces</li>
+</ul>
+<p>For login help, contact <strong>Mrs. Glavach</strong> at mglavach@wcsmiami.org.</p>
+<p class="follow-up">Want to know more about AR goals by grade or the full reading program?</p>`
+  },
+  {
+    id: 'reading',
+    tags: ['reading program', 'reading', 'literacy', 'books', 'read', 'wide reading', 'sustained reading', 'florida best', 'fiction nonfiction', 'book checkout'],
+    reply: `<p>Our <strong>Reading Program</strong> is built on the belief that wide, joyful reading creates the strongest readers — aligned to Florida B.E.S.T. ELA Standards.</p>
+<p>Three pillars of the program:</p>
+<ul>
+  <li><strong>Wide Reading:</strong> Students read within, above, and below their level — fiction, nonfiction, poetry, biography, graphic novels, and more</li>
+  <li><strong>Sustained Independent Reading:</strong> Daily reading builds stamina — from 5–10 minutes in Kindergarten to 30+ minutes in 5th grade</li>
+  <li><strong>Accelerated Reader (AR):</strong> A motivation tool that celebrates reading milestones. Annual goals: 2nd: 25 pts, 3rd: 50 pts, 4th: 75 pts, 5th: 100 pts</li>
+</ul>
+<p>For AR questions, contact <strong>Mrs. Manya Glavach</strong> — mglavach@wcsmiami.org.</p>
+<p class="follow-up">Want to know about the math program or assessment tools too?</p>`
+  },
+
+  /* ── Math ────────────────────────────────────────────────── */
+  {
+    id: 'reflex',
+    tags: ['reflex', 'math facts', 'automaticity', 'math fluency', 'fact fluency'],
+    reply: `<p>Here's what I found about <strong>Reflex</strong>!</p>
+<p>Reflex is used in Grades 1–5 to build math fact automaticity — so students can focus their thinking on problem-solving rather than computation. It's the Foundation &amp; Fluency piece of our math program.</p>
+<p>For Reflex questions, contact <strong>Mrs. Arlene Castellanos</strong> — acastellanos@wcsmiami.org.</p>
+<p class="follow-up">Want to know about IXL or FRACS too?</p>`
+  },
+  {
+    id: 'fracs',
+    tags: ['fracs', 'fractions', 'algebraic reasoning', 'fraction program', 'algebraic thinking', 'fraction enrichment'],
+    reply: `<p>Here's what I found about <strong>FRACS</strong>!</p>
+<p>FRACS is used in Grades 3–5 to deepen fraction and algebraic reasoning, challenging students to think beyond grade-level computation and develop stronger mathematical thinking.</p>
+<p>It's part of the Enrichment &amp; Extension focus in our math program.</p>
+<p class="follow-up">Want to know about Reflex, IXL, or the full math program?</p>`
+  },
+  {
+    id: 'math',
+    tags: ['math program', 'mathematics', 'math', 'numbers', 'counting', 'multiplication', 'division', 'geometry', 'algebra'],
+    reply: `<p>Our <strong>Math Program</strong> is built on the belief that math is a language of patterns, logic, and wonder — every student deserves both foundational confidence and mathematical exploration!</p>
+<p>Three pillars of the program:</p>
+<ul>
+  <li><strong>Foundation &amp; Fluency:</strong> Reflex (Grades 1–5) builds math fact automaticity</li>
+  <li><strong>Enrichment &amp; Extension:</strong> FRACS (Grades 3–5) for deeper fraction and algebraic reasoning; IXL personalizes practice K–5</li>
+  <li><strong>Responsive Intervention:</strong> MAP Math data and IXL diagnostic reports guide small-group support</li>
+</ul>
+<p>Program tools by grade:</p>
+<ul>
+  <li><strong>K:</strong> IXL Math</li>
+  <li><strong>1st–2nd:</strong> Reflex, IXL Math</li>
+  <li><strong>3rd–5th:</strong> FRACS, Reflex, IXL Math</li>
+</ul>
+<p class="follow-up">Want to know about IXL, MAP, or reading programs?</p>`
+  },
+
+  /* ── IXL ─────────────────────────────────────────────────── */
+  {
+    id: 'ixl',
+    tags: ['ixl', 'ixl learning', 'smart score', 'ixl diagnostic', 'personalized practice', 'adaptive practice'],
+    reply: `<p>Here's what I found about <strong>IXL</strong>!</p>
+<p>IXL is an adaptive practice and diagnostic platform for <em>Grades K–5 in both Reading and Math</em>.</p>
+<ul>
+  <li>Provides personalized practice paths in reading and math</li>
+  <li>Diagnostic scores identify skill gaps and guide targeted instruction</li>
+  <li>SmartScore system tracks mastery in real time</li>
+  <li>Adjusts difficulty based on student responses</li>
+  <li>Used for instruction and skill development (not formal benchmarking)</li>
+  <li><strong>Testing window: Fall</strong></li>
+</ul>
+<p>For IXL questions, contact <strong>Mrs. Arlene Castellanos</strong> — acastellanos@wcsmiami.org.</p>
+<p class="follow-up">Want to know about MAP, STAR, or ORF too?</p>`
+  },
+
+  /* ── MAP ─────────────────────────────────────────────────── */
+  {
+    id: 'map',
+    tags: ['map growth', 'map test', 'nwea', 'rit score', 'rit', 'map assessment', 'benchmark assessment', 'map reading', 'map math'],
+    reply: `<p>Here's what I found about <strong>MAP Growth</strong>!</p>
+<p>MAP Growth (by NWEA) is a computer-adaptive benchmark assessment for <em>Grades K–5 in Reading and Math</em>.</p>
+<ul>
+  <li>Adjusts question difficulty in real time based on student responses</li>
+  <li>Delivers a precise <strong>RIT score</strong> measuring long-term growth</li>
+  <li><strong>Testing windows: Fall &amp; Spring</strong></li>
+</ul>
+<p>What it measures:</p>
+<ul>
+  <li>Reading comprehension, vocabulary, foundational skills (K–2), literature, informational text</li>
+  <li>Number operations, algebraic thinking, geometry, measurement, data</li>
+</ul>
+<p>Results are used to set growth goals, inform instruction, guide IXL and Reflex paths, and celebrate progress with families.</p>
+<p class="follow-up">Want to know about STAR, ORF, or IXL too?</p>`
+  },
+
+  /* ── ORF ─────────────────────────────────────────────────── */
+  {
+    id: 'orf',
+    tags: ['orf', 'oral reading fluency', 'words per minute', 'wcpm', 'words correct per minute', 'fluency assessment', 'fluency test', 'reading fluency'],
+    reply: `<p>Here's what I found about <strong>ORF (Oral Reading Fluency)</strong>!</p>
+<p>ORF is a brief, <em>teacher-administered</em> reading assessment for <em>Grades 1–3</em>.</p>
+<ul>
+  <li>Student reads a passage for one minute</li>
+  <li>Measures <strong>words correct per minute (WCPM)</strong></li>
+  <li>Tracks accuracy, expression, and decoding automaticity</li>
+  <li>Important for early literacy development</li>
+  <li><strong>Testing windows: Fall &amp; Spring</strong></li>
+</ul>
+<p>ORF results help teachers track fluency growth and guide targeted reading support.</p>
+<p class="follow-up">Want to know about MAP, STAR, or IXL too?</p>`
+  },
+
+  /* ── STAR ────────────────────────────────────────────────── */
+  {
+    id: 'star',
+    tags: ['star reading', 'star test', 'renaissance star', 'star assessment', 'scaled score', 'grade equivalent', 'star screening'],
+    reply: `<p>Here's what I found about <strong>STAR Reading</strong>!</p>
+<p>STAR (by Renaissance) is a computer-adaptive assessment for <em>Grades 2–4</em>.</p>
+<ul>
+  <li>Adjusts question difficulty in real time</li>
+  <li>Provides a <strong>Scaled Score</strong> and grade equivalent</li>
+  <li>Quick, reliable snapshot of reading comprehension and vocabulary</li>
+  <li>Supplements MAP Growth data to inform targeted instruction</li>
+  <li><strong>Testing windows: Fall &amp; Spring</strong></li>
+</ul>
+<p>STAR is used to identify students who may need extra support or enrichment in reading.</p>
+<p class="follow-up">Want to know about MAP, ORF, or IXL too?</p>`
+  },
+
+  /* ── Assessment Overview ─────────────────────────────────── */
+  {
+    id: 'assessment_system',
+    tags: ['assessment system', 'how assessment works', 'four types', '4 types', 'assessment cycle', 'teach assess respond', 'types of assessment', 'how we assess'],
+    reply: `<p>Here's how our <strong>Assessment System</strong> works!</p>
+<p>WCS uses a balanced system of 4 assessment types, each serving a distinct purpose:</p>
+<ul>
+  <li><strong>1 — Growth Measurement (MAP Growth):</strong> Long-term growth in reading and math; administered Fall &amp; Spring</li>
+  <li><strong>2 — Benchmark &amp; Screening (STAR):</strong> Quick, reliable snapshot of current performance</li>
+  <li><strong>3 — Reading Fluency (ORF):</strong> Tracks fluency development, especially in early grades</li>
+  <li><strong>4 — Daily Learning &amp; Practice (IXL):</strong> Checks understanding of recent learning; guides next steps</li>
+</ul>
+<p>These tools work together in a connected cycle:</p>
+<p><strong>Teach → Assess → Respond → Differentiate → Grow</strong></p>
+<p>Together they ensure every student is supported, challenged, and growing.</p>
+<p class="follow-up">Want to know about a specific assessment tool?</p>`
+  },
+  {
+    id: 'assessment',
+    tags: ['assessment', 'test', 'testing', 'measure', 'evaluate', 'benchmark', 'assessment tools', 'how are students assessed', 'what tests'],
+    reply: `<p>Assessment in The Hub is about <em>understanding each learner so we can serve them better</em> — never about labeling students or restricting their learning.</p>
+<p>WCS uses <strong>4 main assessment tools</strong>:</p>
+<ul>
+  <li><strong>IXL</strong> (K–5, Reading &amp; Math) — Adaptive practice; Testing window: Fall</li>
+  <li><strong>MAP Growth</strong> (K–5, Reading &amp; Math) — Adaptive benchmark; Testing windows: Fall &amp; Spring</li>
+  <li><strong>ORF</strong> (Grades 1–3) — Oral Reading Fluency; Testing windows: Fall &amp; Spring</li>
+  <li><strong>STAR Reading</strong> (Grades 2–4) — Adaptive screening; Testing windows: Fall &amp; Spring</li>
+</ul>
+<p>Results are shared with teachers and families to celebrate growth and guide next steps — never to define or limit a learner.</p>
+<p class="follow-up">Want details on any specific assessment, or ask about the Assessment System?</p>`
+  },
+
+  /* ── Intervention ────────────────────────────────────────── */
+  {
+    id: 'grasp',
+    tags: ['grasp', 'guidance remediation', 'larosa', 'la rosa', 'grasp program', 'academic clinician', 'intensive literacy', 'literacy clinician', 'grasp director'],
+    reply: `<p>Here's what I found about <strong>GRASP</strong>!</p>
+<p>GRASP stands for <em>Guidance Remediation and Academic Support Program</em>. It is an internal intervention offering intensive, individualized literacy support.</p>
+<ul>
+  <li>Provided by GRASP team members (specialized academic clinicians)</li>
+  <li>Educational testing is required</li>
+  <li>Additional contract and program fee</li>
+</ul>
+<p>For more information, contact <strong>Mrs. Melissa La Rosa</strong> (GRASP Director) — mlarosa@wcsmiami.org.</p>
+<p class="follow-up">Want to know about other intervention options like Foundations or At Home support?</p>`
+  },
+  {
+    id: 'foundations',
+    tags: ['foundations', 'sail time', 'sail', 'skills intervention', 'academic intervention', 'internal intervention', 'no fee intervention'],
+    reply: `<p>Here's what I found about <strong>Foundations</strong>!</p>
+<p>Foundations is an internal intervention offered during <em>SAIL time</em> — designed to strengthen essential skills and prepare students for future success.</p>
+<ul>
+  <li>No additional fee</li>
+  <li>Teacher recommendation and administrative approval needed</li>
+  <li>Focuses on foundational academic skills</li>
+</ul>
+<p class="follow-up">Want to know about GRASP, or other support options?</p>`
+  },
+  {
+    id: 'westbridge',
+    tags: ['westbridge', 'external support', 'westbridge miami', 'outside support', 'external intervention'],
+    reply: `<p>Here's what I found about <strong>Westbridge</strong>!</p>
+<p>Westbridge is The Hub's <em>External Intervention</em> option — a specialized support partner outside of school.</p>
+<ul>
+  <li>External specialized support partner</li>
+  <li>For more information, visit westbridgemiami.org</li>
+</ul>
+<p class="follow-up">Want to know about GRASP, Foundations, or After School support too?</p>`
+  },
+  {
+    id: 'after_school',
+    tags: ['after school', 'homework help', 'homework club', 'tutor', 'peer mentor', 'after school support', 'tutoring'],
+    reply: `<p>Here's what I found about <strong>After School Support</strong>!</p>
+<p>The Hub offers several after-school options for extra help:</p>
+<ul>
+  <li><strong>Homework Club</strong> — Fee required</li>
+  <li><strong>Free Peer Mentor</strong> — No fee; note: peer mentors do not provide intervention</li>
+  <li><strong>Teacher Tutor</strong> — Fee required</li>
+</ul>
+<p>For Homework Club and tutoring questions, contact <strong>Mrs. Glavach</strong> — mglavach@wcsmiami.org.</p>
+<p class="follow-up">Want to know about At Home support tools like Lexia or Learning Ally?</p>`
+  },
+  {
+    id: 'lexia',
+    tags: ['lexia', 'lexia core 5', 'core 5', 'lexia reading', 'online reading program', 'adaptive reading program'],
+    reply: `<p>Here's what I found about <strong>Lexia Core 5</strong>!</p>
+<p>Lexia Core 5 is an <em>At Home</em> intervention tool — an adaptive online reading program that builds foundational literacy skills.</p>
+<ul>
+  <li>Available for Grades K–5</li>
+  <li>Adaptive — adjusts to each student's needs</li>
+  <li>Builds phonics, decoding, and reading foundations</li>
+  <li>Students log in at: lexiacore5.com</li>
+</ul>
+<p class="follow-up">Want to know about Learning Ally or other support options?</p>`
+  },
+  {
+    id: 'learning_ally',
+    tags: ['learning ally', 'audiobook', 'audio book', 'struggling reader', 'human narrated', 'audio reading', 'learning ally audio'],
+    reply: `<p>Here's what I found about <strong>Learning Ally Audio Books</strong>!</p>
+<p>Learning Ally is an <em>At Home</em> tool that provides human-narrated audiobooks for students who need reading support.</p>
+<ul>
+  <li>Supports reading comprehension while building fluency</li>
+  <li>Human-narrated (not computer-generated) for a natural listening experience</li>
+  <li>Available for qualifying students</li>
+  <li>Students log in at: learningally.org</li>
+</ul>
+<p class="follow-up">Want to know about Lexia Core 5 or other at-home support tools?</p>`
+  },
+  {
+    id: 'at_home',
+    tags: ['at home', 'home support', 'home practice', 'home resources', 'home tools', 'practice at home'],
+    reply: `<p>Here's what I found about <strong>At Home</strong> support tools!</p>
+<p>Two digital programs are available for students to use at home:</p>
+<ul>
+  <li><strong>Lexia Core 5</strong> — Adaptive online reading program that builds foundational literacy skills for Grades K–5 (lexiacore5.com)</li>
+  <li><strong>Learning Ally</strong> — Human-narrated audiobooks for struggling readers, supporting comprehension and fluency for qualifying students (learningally.org)</li>
+</ul>
+<p class="follow-up">Want to know about other intervention options or contacts?</p>`
+  },
+  {
+    id: 'intervention',
+    tags: ['intervention', 'support', 'help struggling', 'needs help', 'extra help', 'support options', 'learning support', 'what help'],
+    reply: `<p>Intervention at The Hub is a <em>targeted, responsive layer of support</em> — not a label. When data or teacher observation signals a student needs more, the Hub acts quickly.</p>
+<p>There are four types of support:</p>
+<ul>
+  <li><strong>Internal:</strong> Foundations (no fee, during SAIL) and GRASP (intensive literacy, fee, contact Mrs. La Rosa)</li>
+  <li><strong>External:</strong> Westbridge — specialized support partner (westbridgemiami.org)</li>
+  <li><strong>After School:</strong> Homework Club (fee), Free Peer Mentor, Teacher Tutor (fee)</li>
+  <li><strong>At Home:</strong> Lexia Core 5 (adaptive reading) and Learning Ally (audiobooks)</li>
+</ul>
+<p class="follow-up">Want more details on any specific support option?</p>`
+  },
+
+  /* ── Contacts ────────────────────────────────────────────── */
+  {
+    id: 'contact',
+    tags: ['contact', 'who to contact', 'email', 'reach out', 'talk to', 'who do i call', 'team', 'staff', 'who can i', 'how do i reach'],
+    reply: `<p>I can help you find that! Here's the <strong>Hub Contact Team</strong>:</p>
+<ul>
+  <li><strong>Mrs. Arlene Castellanos</strong> — acastellanos@wcsmiami.org<br><em>ES Technology/Enrichment/Resource Teacher</em> · For: Reflex, IXL</li>
+  <li><strong>Mrs. Manya Glavach</strong> — mglavach@wcsmiami.org<br><em>ES Media Specialist</em> · For: Accelerated Reader questions</li>
+  <li><strong>Mrs. Melissa La Rosa</strong> — mlarosa@wcsmiami.org<br><em>GRASP Director</em> · For: Intervention questions</li>
+  <li><strong>Mrs. Claudia Pastrana</strong> — cpastrana@wcsmiami.org<br><em>PS/ES Assistant Principal, Curriculum</em> · For: Curriculum questions</li>
+  <li><strong>Mrs. Ismarely Torres</strong> — itorres@wcsmiami.org<br><em>Assistant Director of Communications</em> · To sign up for The BRIEF newsletter</li>
+  <li><strong>IT Department</strong> — mySchoolBuilding Support Portal · For: login issues or technology problems</li>
+</ul>
+<p class="follow-up">Want to know who to contact for a specific program?</p>`
+  },
+
+  /* ── Resources / logins ──────────────────────────────────── */
+  {
+    id: 'resources',
+    tags: ['resources', 'digital programs', 'log in', 'login', 'savvas', 'trove', 'deep roots', 'program links', 'student login', 'online programs', 'digital resources'],
+    reply: `<p>Here's a summary of the <strong>digital programs</strong> used at WCS Elementary:</p>
+<ul>
+  <li><strong>Language Arts:</strong> Savvas (K–5), Accelerated Reader (1st–5th), IXL (K–5)</li>
+  <li><strong>Math:</strong> IXL (K–5), Reflex (1st–5th), FRACS (3rd–5th)</li>
+  <li><strong>Social Studies:</strong> Trove / BJU Press (K–5)</li>
+  <li><strong>Bible:</strong> Deep Roots Bible (K–5)</li>
+  <li><strong>At Home:</strong> Lexia Core 5, Learning Ally</li>
+</ul>
+<p>For login help, contact <strong>Mrs. Manya Glavach</strong> (mglavach@wcsmiami.org) or the IT Department via the mySchoolBuilding Support Portal.</p>
+<p class="follow-up">Want to know more about any specific program?</p>`
+  },
+
+  /* ── Mission ─────────────────────────────────────────────── */
+  {
+    id: 'mission',
+    tags: ['mission', 'mission statement', 'hub mission', 'quote', 'strong leaders', 'rooting students', 'vision', 'purpose'],
+    reply: `<p>Here's <strong>The Hub Library Mission</strong>:</p>
+<p><em>"Strong leaders are not formed by limiting possibilities, but by rooting students in Christ and opening doors to a world of opportunity."</em></p>
+<p>This mission shapes everything we do in The Hub — from the books on the shelves to the programs we offer and the way we support every learner.</p>
+<p class="follow-up">Want to know more about The Hub's programs or the H.U.B. Pathway?</p>`
+  },
+
+  /* ── Curated Resources ───────────────────────────────────── */
+  {
+    id: 'curated_resources',
+    tags: ['curated resources', 'books', 'nonfiction', 'fiction collection', 'book collection', 'library books', 'print resources', '20 genres', 'genres'],
+    reply: `<p>Here's what I found about <strong>Curated Resources</strong>!</p>
+<p>The Hub offers carefully selected print and digital resources to support enrichment learning, literacy, and guided exploration.</p>
+<ul>
+  <li>20+ nonfiction genres</li>
+  <li>A rich fiction collection</li>
+  <li>Materials selected to support reading across all grade levels (PK–5)</li>
+</ul>
+<p class="follow-up">Want to know about the Reading Program or other Key Features?</p>`
+  },
+
+  /* ── Flexible Spaces ─────────────────────────────────────── */
+  {
+    id: 'flexible_spaces',
+    tags: ['flexible learning', 'flexible seating', 'learning spaces', 'open areas', 'small group', 'space design', 'hub spaces'],
+    reply: `<p>Here's what I found about <strong>Flexible Learning Spaces</strong>!</p>
+<p>The Hub's learning environment features flexible seating and open learning areas designed for both small-group instruction and individual exploration. The space adapts to the learner — not the other way around.</p>
+<p class="follow-up">Want to know about other Key Features of The Hub?</p>`
+  },
+
+  /* ── Teacher-Led Inquiry ─────────────────────────────────── */
+  {
+    id: 'inquiry',
+    tags: ['teacher led inquiry', 'inquiry', 'critical thinking', 'creative thinking', 'thinking aloud', 'open ended questions', 'model thinking'],
+    reply: `<p>Here's what I found about <strong>Teacher-Led Inquiry</strong>!</p>
+<p>Hub educators model thinking aloud, ask open-ended questions, and guide students in connecting information across subjects — building <em>critical and creative thinkers</em>.</p>
+<p>This approach encourages students to ask deeper questions, explore ideas beyond the obvious, and develop strong reasoning skills.</p>
+<p class="follow-up">Want to know about other Key Features or the H.U.B. Pathway?</p>`
+  },
+
+  /* ── BRIEF Newsletter ────────────────────────────────────── */
+  {
+    id: 'brief',
+    tags: ['brief', 'newsletter', 'weekly newsletter', 'the brief', 'sign up', 'communications', 'updates'],
+    reply: `<p>Here's what I found about <strong>The BRIEF</strong>!</p>
+<p>The BRIEF is Westminster's weekly newsletter with updates on all things Westminster Christian School.</p>
+<p>To sign up, contact <strong>Mrs. Ismarely Torres</strong> — itorres@wcsmiami.org (Assistant Director of Communications).</p>
+<p class="follow-up">Want to know who else to contact for Hub programs?</p>`
+  },
+
+  /* ── Responsive Learning ─────────────────────────────────── */
+  {
+    id: 'responsive_learning',
+    tags: ['responsive learning', 'differentiation', 'differentiate', 'measurement growth', 'individual needs', 'support enrichment', 'responsive instruction'],
+    reply: `<p>Here's what I found about <strong>Responsive Learning</strong>!</p>
+<p>Assessment at WCS is used to understand where students are in their learning journey and to guide responsive instruction. Through ongoing data and observation, educators <em>intentionally differentiate</em> instruction with both support and enrichment to meet every learner's needs.</p>
+<p>This connects directly to our Assessment System — the tools we use ensure no student is left behind or held back.</p>
+<p class="follow-up">Want to know about assessment tools or the Intervention program?</p>`
+  },
+
+  /* ── Fallback ────────────────────────────────────────────── */
+  {
+    id: 'fallback',
+    tags: [],
+    reply: `<p>Hmm, I'm not sure I found that in my Hub knowledge. My answers come only from the Hub Guidelines, so I may not have that specific information.</p>
+<p>Here's what I <em>can</em> help with:</p>
+<ul>
+  <li>Reading &amp; Math programs</li>
+  <li>Assessments (IXL, MAP, ORF, STAR)</li>
+  <li>Intervention support options</li>
+  <li>The H.U.B. Pathway</li>
+  <li>Key Features of The Hub</li>
+  <li>Contacts &amp; digital resources</li>
+</ul>
+<p>You can also visit the full <a href="index.html" style="color:var(--forest);font-weight:700;">Hub Guidelines page</a> for complete details.</p>
+<p class="follow-up">Would you like to try asking differently?</p>`
+  }
+];
+
+/* ── MATCH ENGINE ──────────────────────────────────────────────────────── */
+function findReply(query) {
+  const q = query.toLowerCase().trim();
+
+  // Greetings
+  if (/^(hi|hello|hey|howdy|good morning|good afternoon|good evening|hi there|hey there)[\s!.]*$/.test(q)) {
+    return KB.find(e => e.id === 'greeting').reply;
+  }
+  // Thanks
+  if (/thank|thanks|thank you/.test(q)) {
+    return `<p>You're so welcome! It's what I'm here for.</p><p class="follow-up">Is there anything else I can help you find in the Hub?</p>`;
+  }
+  // Bye
+  if (/^(bye|goodbye|see you|see ya|good bye|farewell)[\s!.]*$/.test(q)) {
+    return `<p>Take care! Come back anytime — I'm always here to help you find your way through the Hub. 🐦</p>`;
+  }
+
+  let best = null;
+  let bestScore = 0;
+
+  for (const entry of KB) {
+    if (entry.id === 'fallback') continue;
+    let score = 0;
+    for (const tag of entry.tags) {
+      if (q.includes(tag)) score += tag.split(' ').length; // longer phrase = higher weight
+    }
+    if (score > bestScore) {
+      bestScore = score;
+      best = entry;
+    }
+  }
+
+  if (!best || bestScore === 0) {
+    return KB.find(e => e.id === 'fallback').reply;
+  }
+  return best.reply;
+}
+
+/* ── UI ──────────────────────────────────────────────────────────────── */
+const chatBody  = document.getElementById('chatBody');
+const userInput = document.getElementById('userInput');
+const sendBtn   = document.getElementById('sendBtn');
+const quickWrap = document.getElementById('quickWrap');
+
+// Welcome message
+addWrenMsg(`<p><strong>Hi there! I'm Wren</strong> — your guide to the WCS Elementary Hub.</p>
+<p>I can help you find information about reading and math programs, assessments, intervention support, enrichment, the H.U.B. Pathway, and more.</p>
+<p><em>Everything I know comes from the Hub Guidelines — just ask!</em></p>`);
+
+// Auto-resize textarea
+userInput.addEventListener('input', () => {
+  userInput.style.height = 'auto';
+  userInput.style.height = Math.min(userInput.scrollHeight, 110) + 'px';
+});
+
+// Send on Enter (not Shift+Enter)
+userInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
+});
+sendBtn.addEventListener('click', send);
+
+function sendQuick(msg) {
+  userInput.value = msg;
+  send();
+}
+
+function send() {
+  const text = userInput.value.trim();
+  if (!text) return;
+
+  quickWrap.style.display = 'none';
+  addUserMsg(text);
+  userInput.value = '';
+  userInput.style.height = 'auto';
+
+  // Small delay so it feels like Wren is "thinking"
+  setTimeout(() => {
+    const reply = findReply(text);
+    addWrenMsg(reply);
+  }, 320);
+}
+
+function addWrenMsg(html) {
+  const row = document.createElement('div');
+  row.className = 'msg-row wren';
+  row.innerHTML = `
+    <div class="msg-av" style="background:transparent; overflow:hidden; border:1.5px solid var(--gold);">
+      <img src="Wren.png" alt="Wren" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="msg-bubble">${html}</div>`;
+  chatBody.appendChild(row);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function addUserMsg(text) {
+  const row = document.createElement('div');
+  row.className = 'msg-row user';
+  row.innerHTML = `<div class="msg-av">You</div><div class="msg-bubble">${escHtml(text)}</div>`;
+  chatBody.appendChild(row);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function escHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+</script>
+</body>
+</html>

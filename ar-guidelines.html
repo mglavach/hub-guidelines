@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accelerated Reader · WCS Elementary Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest: #2c5234; --gold: #B9975B; --cream: #fdf8ef;
+      --sage: #4a7c59; --sky: #4a90c4;
+      --light-gold: #f5ead8; --light-green: #eaf3ec; --light-blue: #e8f2f9;
+      --text: #2c2c2c; --muted: #6b6b6b; --gold-rgb: 185,151,91;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--cream); color: var(--text); line-height: 1.7; }
+
+    /* ── HERO ── */
+    .hero { background: var(--forest); color: white; text-align: center; padding: 3.5rem 2rem 4.5rem; }
+    .hero-title-row { display: flex; align-items: center; justify-content: center; gap: 1.25rem; margin-top: 0; }
+    .hero-back { display: inline-flex; align-items: center; gap: 0.4rem; color: rgba(255,255,255,0.6); font-size: 0.78rem; font-weight: 600; text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.75rem; transition: color 0.15s; }
+    .hero-back:hover { color: var(--gold); }
+    .hero-icon { width: 72px; height: 72px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.25); }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.1; color: white; margin: 0; }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+    section { padding: 4rem 0; }
+    .section-label { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+    h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); color: var(--forest); line-height: 1.25; margin-bottom: 1rem; }
+    .divider { width: 3rem; height: 3px; background: var(--gold); border-radius: 2px; margin: 1.25rem 0; }
+
+    /* ── INTRO BOX ── */
+    .intro-box { background: var(--light-green); border-left: 4px solid var(--forest); border-radius: 0 0.75rem 0.75rem 0; padding: 1.25rem 1.5rem; max-width: 700px; margin-bottom: 2rem; }
+    .intro-box p { font-size: 0.95rem; color: #2a2a2a; line-height: 1.7; }
+    .intro-box strong { color: var(--forest); }
+
+    /* ── THREE CARDS ── */
+    .three-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-top: 2rem; }
+    @media (max-width: 650px) { .three-grid { grid-template-columns: 1fr; } }
+    .phil-card { background: white; border-radius: 0.75rem; padding: 1.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.06); border-top: 3px solid var(--forest); }
+    .phil-card:nth-child(2) { border-top-color: var(--gold); }
+    .phil-card:nth-child(3) { border-top-color: var(--sage); }
+    .phil-icon { width: 28px; height: 28px; color: var(--forest); margin-bottom: 0.85rem; }
+    .phil-card:nth-child(2) .phil-icon { color: var(--gold); }
+    .phil-card:nth-child(3) .phil-icon { color: var(--sage); }
+    .phil-card h3 { font-size: 0.95rem; color: var(--forest); margin-bottom: 0.5rem; }
+    .phil-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
+
+    /* ── HONOR CODE BOX ── */
+    .honor-code-box {
+      margin-top: 2.25rem;
+      background: var(--light-gold);
+      border: 2px solid var(--gold);
+      border-radius: 1rem;
+      padding: 1.75rem 2rem;
+    }
+    .honor-code-header {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 0.5rem;
+    }
+    .honor-code-icon {
+      width: 40px; height: 40px;
+      background: var(--forest);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .honor-code-box h3 {
+      font-size: 1.05rem;
+      color: var(--forest);
+      font-weight: 800;
+    }
+    .honor-code-box .honor-sub {
+      font-size: 0.85rem;
+      color: #5a4010;
+      line-height: 1.65;
+      max-width: 680px;
+      margin-bottom: 1.25rem;
+    }
+    .honor-code-box ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .honor-code-box ul li {
+      font-size: 0.88rem;
+      color: #3a2a00;
+      line-height: 1.6;
+      padding-left: 1.6rem;
+      position: relative;
+    }
+    .honor-code-box ul li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--forest);
+      font-weight: 900;
+      font-size: 0.9rem;
+    }
+    .honor-code-box ul li strong { color: var(--forest); }
+
+    /* ── LOGIN SECTION ── */
+    .login-section { background: var(--forest); }
+    .login-section h2 { color: var(--gold); }
+    .login-section .section-label { color: rgba(185,151,91,0.75); }
+    .login-section .divider { background: rgba(185,151,91,0.5); }
+    .login-intro { color: rgba(255,255,255,0.8); max-width: 600px; margin-bottom: 2.5rem; font-size: 0.95rem; line-height: 1.7; }
+    .login-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 600px) { .login-cards { grid-template-columns: 1fr; } }
+    .login-card { background: rgba(0,0,0,0.2); border-radius: 1rem; padding: 1.75rem; }
+    .login-card-label { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+    .login-card h3 { font-size: 1.05rem; color: white; font-weight: 700; margin-bottom: 0.75rem; }
+    .login-formula { display: flex; align-items: center; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.1rem; }
+    .login-part { background: rgba(255,255,255,0.12); color: white; font-size: 0.82rem; font-weight: 700; padding: 0.32rem 0.7rem; border-radius: 0.4rem; white-space: nowrap; }
+    .login-plus { color: var(--gold); font-weight: 900; font-size: 1rem; }
+    .login-example { background: var(--gold); color: white; border-radius: 0.6rem; padding: 0.85rem 1.1rem; }
+    .login-example .ex-label { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.75); margin-bottom: 0.25rem; }
+    .login-example .ex-value { font-size: 1.25rem; font-weight: 900; color: white; letter-spacing: 0.04em; }
+    .login-card p { font-size: 0.84rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin-top: 0.85rem; }
+    .login-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--gold); color: white; text-decoration: none; padding: 0.7rem 1.4rem; border-radius: 0.5rem; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 700; margin-top: 1.75rem; transition: background 0.15s, transform 0.15s; }
+    .login-btn:hover { background: #a8843e; transform: translateY(-2px); }
+    .wcs-site-note { display: flex; gap: 0.75rem; align-items: flex-start; background: rgba(185,151,91,0.18); border: 1.5px solid rgba(185,151,91,0.5); border-radius: 0.75rem; padding: 1rem 1.25rem; margin-top: 2rem; color: rgba(255,255,255,0.9); font-size: 0.88rem; line-height: 1.6; }
+    .wcs-site-note strong { color: var(--gold); }
+    .wcs-site-note p { margin: 0; }
+    .trouble-box { background: rgba(0,0,0,0.25); border-radius: 1rem; padding: 1.5rem 1.75rem; margin-top: 1.5rem; }
+    .trouble-box h3 { display: flex; align-items: center; gap: 0.5rem; color: var(--gold); font-size: 0.92rem; font-weight: 700; margin-bottom: 1rem; }
+    .trouble-box ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.65rem; }
+    .trouble-box ul li { font-size: 0.86rem; color: rgba(255,255,255,0.82); line-height: 1.6; padding-left: 1.1rem; position: relative; }
+    .trouble-box ul li::before { content: '·'; position: absolute; left: 0; color: var(--gold); font-weight: 900; }
+    .trouble-box ul li strong { color: white; }
+    .trouble-box ul li a { color: var(--gold); text-decoration: underline; }
+    .code-eg { background: rgba(255,255,255,0.12); color: white; font-family: monospace; font-size: 0.9rem; padding: 0.1rem 0.45rem; border-radius: 0.3rem; font-weight: 700; }
+
+    /* ── GOALS TABLE ── */
+    .goals-section { background: white; }
+    .grade-table { width: 100%; border-collapse: collapse; margin-top: 2rem; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.07); font-size: 0.88rem; }
+    .grade-table thead { background: var(--forest); color: white; }
+    .grade-table th { padding: 0.9rem 1rem; text-align: left; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .grade-table td { padding: 0.8rem 1rem; border-bottom: 1px solid #eee; vertical-align: middle; color: #3a3a3a; line-height: 1.5; }
+    .grade-table tr:last-child td { border-bottom: none; }
+    .grade-table tr:nth-child(even) td { background: #f8faf8; }
+    .grade-badge { display: inline-block; background: var(--forest); color: white; font-size: 0.72rem; font-weight: 700; padding: 0.22rem 0.65rem; border-radius: 999px; white-space: nowrap; }
+    .ar-goal { display: inline-block; background: var(--gold); color: white; font-size: 0.78rem; font-weight: 700; padding: 0.22rem 0.65rem; border-radius: 999px; }
+    .ar-na { display: inline-block; color: var(--muted); font-size: 0.82rem; font-style: italic; }
+    .ar-enrich { display: inline-block; background: var(--light-gold); color: #6b4a1a; font-size: 0.76rem; font-weight: 700; padding: 0.22rem 0.65rem; border-radius: 999px; white-space: nowrap; }
+    .quiz-home { display: inline-block; background: var(--light-blue); color: #1a4a6b; font-size: 0.76rem; font-weight: 700; padding: 0.22rem 0.65rem; border-radius: 999px; white-space: nowrap; }
+    .quiz-school { display: inline-block; background: var(--light-green); color: var(--forest); font-size: 0.76rem; font-weight: 700; padding: 0.22rem 0.65rem; border-radius: 999px; white-space: nowrap; }
+    .goal-note { font-size: 0.78rem; color: var(--muted); font-style: italic; margin-top: 0.35rem; line-height: 1.5; }
+
+    /* ── STEPS SECTION ── */
+    .steps-section { background: var(--cream); }
+    .steps-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-top: 2.5rem; }
+    @media (max-width: 680px) { .steps-grid { grid-template-columns: 1fr; } }
+    .step-card { background: white; border-radius: 0.75rem; padding: 1.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: relative; }
+    .step-num { width: 36px; height: 36px; background: var(--forest); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 800; margin-bottom: 1rem; flex-shrink: 0; }
+    .step-card h3 { font-size: 0.95rem; color: var(--forest); margin-bottom: 0.4rem; }
+    .step-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
+
+    /* ── TIPS ── */
+    .tips-section { background: white; }
+    .tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+    @media (max-width: 600px) { .tips-grid { grid-template-columns: 1fr; } }
+    .tips-col h3 { font-size: 0.88rem; font-weight: 700; color: var(--forest); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.85rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--light-green); }
+    .tips-col ul { list-style: none; padding: 0; }
+    .tips-col ul li { font-size: 0.88rem; color: #3a3a3a; padding: 0.45rem 0 0.45rem 1.2rem; border-bottom: 1px solid #f0f0f0; position: relative; line-height: 1.5; }
+    .tips-col ul li:last-child { border-bottom: none; }
+    .tips-col ul li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+
+    /* ── WHY WE READ ── */
+    .why-section { background: white; }
+    .why-section h2 { color: var(--forest); }
+    .why-section .section-label { color: var(--sage); }
+    .why-section .divider { background: rgba(44,82,52,0.25); }
+    .why-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-top: 1.5rem; }
+    @media (max-width: 700px) { .why-layout { grid-template-columns: 1fr; } }
+
+    .why-diagram-wrap { display: flex; justify-content: center; }
+    .why-diagram { position: relative; width: 100%; max-width: 340px; aspect-ratio: 1; }
+    .why-lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+    .why-center {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 28%; height: 28%;
+      background: var(--gold); border-radius: 50%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 4%;
+      z-index: 3; box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .why-center-label { font-family: 'Montserrat', sans-serif; font-size: clamp(0.42rem, 1.4vw, 0.58rem); font-weight: 800; color: white; line-height: 1.25; letter-spacing: 0.01em; }
+    .why-spoke {
+      position: absolute;
+      width: 26%; height: 26%;
+      border-radius: 50%;
+      background: var(--forest);
+      border: 2.5px solid var(--gold);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 4%;
+      overflow: hidden; z-index: 2;
+      transform: translate(-50%, -50%);
+      transition: transform 0.2s, background 0.2s;
+    }
+    .why-spoke:hover { transform: translate(-50%, -50%) scale(1.1); background: var(--sage); }
+    .why-spoke svg { width: clamp(12px, 3vw, 18px); height: clamp(12px, 3vw, 18px); color: var(--gold); flex-shrink: 0; margin-bottom: 3px; }
+    .why-spoke-label { font-family: 'Montserrat', sans-serif; font-size: clamp(0.42rem, 1.2vw, 0.56rem); font-weight: 700; color: white; line-height: 1.25; }
+
+    .why-text-col { color: var(--text); }
+    .why-text-col p { font-size: 0.92rem; line-height: 1.75; margin-bottom: 1rem; }
+    .why-text-col p:last-child { margin-bottom: 0; }
+    .why-text-col strong { color: var(--forest); }
+
+    .find-quiz-box {
+      background: var(--light-green);
+      border: 1.5px solid var(--sage);
+      border-radius: 1rem; padding: 1.5rem 1.75rem;
+      margin-top: 2.5rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .find-quiz-box svg { flex-shrink: 0; color: var(--forest); margin-top: 2px; }
+    .find-quiz-box h4 { font-size: 0.92rem; color: var(--forest); font-weight: 700; margin-bottom: 0.35rem; }
+    .find-quiz-box p { font-size: 0.85rem; color: var(--text); line-height: 1.6; margin: 0; }
+    .find-quiz-box a { color: var(--sage); font-weight: 700; text-decoration: underline; }
+
+    /* ── CONTACT ── */
+    .contact-section { background: var(--cream); border-top: 1px solid #e0ddd6; padding: 3rem 0; }
+    .contact-card { background: white; border-radius: 1rem; padding: 1.75rem; display: flex; align-items: center; gap: 1.25rem; max-width: 480px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); border-left: 4px solid var(--gold); }
+    .contact-photo { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); flex-shrink: 0; }
+    .contact-info h3 { font-size: 1rem; color: var(--forest); font-weight: 700; margin-bottom: 0.2rem; }
+    .contact-info p { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.25rem; }
+    .contact-info a { color: var(--forest); font-weight: 600; text-decoration: none; font-size: 0.85rem; }
+    .contact-info a:hover { color: var(--gold); text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--forest); color: rgba(255,255,255,0.6); text-align: center; padding: 2.5rem 1.5rem; font-size: 0.82rem; }
+    footer strong { color: var(--gold); }
+    .footer-logo { width: 40px; height: 40px; border-radius: 50%; display: block; margin: 0 auto 0.75rem; opacity: 0.9; }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <a href="index.html" class="hero-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Hub Guidelines
+  </a>
+  <div class="hero-title-row">
+    <div class="hero-icon">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>
+    </div>
+    <h1>Accelerated Reader</h1>
+  </div>
+</header>
+
+<!-- WHY WE READ -->
+<section class="why-section">
+  <div class="container">
+    <p class="section-label">The Bigger Picture</p>
+    <h2>Why We Read</h2>
+    <div class="divider"></div>
+    <div class="why-layout">
+
+      <!-- Starburst diagram -->
+      <div class="why-diagram-wrap">
+        <div class="why-diagram">
+          <svg class="why-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <line x1="50" y1="50" x2="50"  y2="13"  stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
+            <line x1="50" y1="50" x2="87"  y2="50"  stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
+            <line x1="50" y1="50" x2="50"  y2="87"  stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
+            <line x1="50" y1="50" x2="13"  y2="50"  stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
+          </svg>
+
+          <!-- Center -->
+          <div class="why-center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:3px;">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+            </svg>
+            <span class="why-center-label">Why We Read</span>
+          </div>
+
+          <!-- Top: For Fun -->
+          <div class="why-spoke" style="top:13%;left:50%;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M8 13s1.5 2 4 2 4-2 4-2"/>
+              <line x1="9" y1="9" x2="9.01" y2="9"/>
+              <line x1="15" y1="9" x2="15.01" y2="9"/>
+            </svg>
+            <span class="why-spoke-label">For Fun</span>
+          </div>
+
+          <!-- Right: Challenge -->
+          <div class="why-spoke" style="top:50%;left:87%;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            <span class="why-spoke-label">Challenge</span>
+          </div>
+
+          <!-- Bottom: To Learn -->
+          <div class="why-spoke" style="top:87%;left:50%;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+            <span class="why-spoke-label">To Learn</span>
+          </div>
+
+          <!-- Left: To Relax -->
+          <div class="why-spoke" style="top:50%;left:13%;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <span class="why-spoke-label">To Relax</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Text column -->
+      <div class="why-text-col">
+        <p>Reading is about so much more than earning AR points. <strong>Students read for fun, to challenge themselves, to relax, and to discover new ideas.</strong> AR is simply a tool to track and celebrate the reading that is already happening.</p>
+        <p>Every book a student picks up, whether it has an AR quiz or not, builds vocabulary, empathy, knowledge, and imagination. <strong>The goal is always a lifelong love of reading first.</strong> AR points are just one small way to celebrate that journey.</p>
+        <p>Encourage your child to read books that excite them, books that challenge them, and books that let them unwind. The points will follow.</p>
+      </div>
+
+    </div>
+
+    <!-- Find a Quiz box -->
+    <div class="find-quiz-box">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <div>
+        <h4>Want to check if a book has an AR quiz?</h4>
+        <p>Visit the AR Book Find website to search by title, author, or topic before your child starts reading: <a href="https://www.arbookfind.com/" target="_blank" rel="noopener">www.arbookfind.com</a>. You can also search directly from the WCS AR site once logged in.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT AR -->
+<section>
+  <div class="container">
+    <p class="section-label">About the Program</p>
+    <h2>What Is Accelerated Reader?</h2>
+    <div class="divider"></div>
+    <div class="intro-box">
+      <p>Accelerated Reader (AR) is a reading motivation and practice program used at WCS Elementary. Students read books they choose, take short comprehension quizzes, and earn points toward their annual reading goal. <strong>AR celebrates how much students read. It never restricts what they can read.</strong></p>
+    </div>
+    <div class="three-grid">
+      <div class="phil-card">
+        <svg class="phil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        <h3>Motivation &amp; Celebration</h3>
+        <p>AR turns reading into something to be proud of. Every quiz passed and every point earned is a milestone worth celebrating on the path to the annual goal.</p>
+      </div>
+      <div class="phil-card">
+        <svg class="phil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <h3>Goal Setting</h3>
+        <p>Students set and track annual AR point goals by grade, building accountability and the habit of seeing themselves as readers who finish books and reflect on what they've read.</p>
+      </div>
+      <div class="phil-card">
+        <svg class="phil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+        </svg>
+        <h3>Wide Reading First</h3>
+        <p>AR quizzes are available for thousands of books. Students are always encouraged to read widely across genres, formats, and levels, and let AR track what they read.</p>
+      </div>
+    </div>
+
+    <div class="honor-code-box">
+      <div class="honor-code-header">
+        <div class="honor-code-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>The AR Honor Code</h3>
+      </div>
+      <p class="honor-sub">AR points are only meaningful when they represent real reading. At WCS, we hold every student to a standard of honesty and integrity. Taking an AR quiz is a chance to show what you truly learned from a book you read.</p>
+      <ul>
+        <li><strong>Only take a quiz for a book you have read from beginning to end.</strong> Finishing the whole book is what earns the quiz.</li>
+        <li><strong>Do not take a quiz based on a movie, TV show, or summary.</strong> Even if the story is familiar, the quiz is about the specific words, details, and events in the book itself.</li>
+        <li><strong>Do not look up answers online or ask others for help during the quiz.</strong> Work independently and let your score reflect your own honest reading and understanding.</li>
+        <li><strong>Let your points be something to be truly proud of.</strong> A lower score on a book you really read is worth far more than a high score that isn't honest.</li>
+        <li><strong>Your score helps your teacher help you.</strong> AR quiz results show teachers how a student is truly doing as a reader. Honest scores allow teachers to see where each student is and provide the right support, challenge, or differentiation they need to grow.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- LOGIN -->
+<section class="login-section">
+  <div class="container">
+    <p class="section-label">Getting Started</p>
+    <h2>How to Log In</h2>
+    <div class="divider"></div>
+    <p class="login-intro">Every WCS student has an AR account. Use the format below to find your login information. If you have trouble logging in, contact Mrs. Glavach.</p>
+    <div class="login-cards">
+
+      <div class="login-card">
+        <div class="login-card-label">Username</div>
+        <h3>First Initial + Last Name + Graduation Year</h3>
+        <div class="login-formula">
+          <span class="login-part">First Initial</span>
+          <span class="login-plus">+</span>
+          <span class="login-part">Last Name</span>
+          <span class="login-plus">+</span>
+          <span class="login-part">Grad Year</span>
+        </div>
+        <div class="login-example">
+          <div class="ex-label">Example</div>
+          <div class="ex-value">jsmith32</div>
+        </div>
+        <p>John Smith graduating in 2032 would log in as <strong style="color:white;">jsmith32</strong>. All lowercase, no spaces.</p>
+      </div>
+
+      <div class="login-card">
+        <div class="login-card-label">Password</div>
+        <h3>pass + Your 4-Digit Student ID</h3>
+        <div class="login-formula">
+          <span class="login-part">pass</span>
+          <span class="login-plus">+</span>
+          <span class="login-part">4-Digit Student ID</span>
+        </div>
+        <div class="login-example">
+          <div class="ex-label">Example</div>
+          <div class="ex-value">pass9999</div>
+        </div>
+        <p>A student with ID <strong style="color:white;">9999</strong> would use the password <strong style="color:white;">pass9999</strong>. All lowercase, no spaces.</p>
+      </div>
+
+    </div>
+    <div class="wcs-site-note">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:2px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p>You must use the <strong>WCS-assigned website</strong> to log in. Do not search for AR or Renaissance on your own; use only the link below provided by Westminster Christian School.</p>
+    </div>
+
+    <a href="https://global-zone50.renaissance-go.com/welcomeportal/65790" target="_blank" rel="noopener" class="login-btn">
+      Log In to AR (WCS Site)
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+
+    <div class="trouble-box">
+      <h3>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Can't Sign In? Common Solutions
+      </h3>
+      <ul>
+        <li><strong>Use a lowercase "p" in your password.</strong> The password always starts with a lowercase <em>pass</em>, not <em>Pass</em> or <em>PASS</em>. Example: <span class="code-eg">pass9999</span></li>
+        <li><strong>Make sure you are on the WCS site.</strong> Only log in using the link above. A general Renaissance or AR website will not recognize your WCS account.</li>
+        <li><strong>Check your username carefully.</strong> Use your first initial, full last name, and graduation year with no spaces and no capital letters. Example: <span class="code-eg">jsmith32</span></li>
+        <li><strong>Still having trouble?</strong> Contact Mrs. Glavach at <a href="mailto:mglavach@wcsmiami.org">mglavach@wcsmiami.org</a> for login help.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- GOALS BY GRADE -->
+<section class="goals-section">
+  <div class="container">
+    <p class="section-label">Reading Goals</p>
+    <h2>Annual AR Point Goals by Grade</h2>
+    <div class="divider"></div>
+    <p style="color:#3a3a3a; max-width:640px; margin-bottom:0.5rem;">Goals are set annually and track cumulative points earned across the school year. Points are awarded based on book length and quiz score.</p>
+    <table class="grade-table">
+      <thead>
+        <tr>
+          <th>Grade</th>
+          <th>Annual AR Goal</th>
+          <th>Reading Focus</th>
+          <th>Sustained Reading Time</th>
+          <th>Quiz Location</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="grade-badge">PK3 &amp; PK4</span></td>
+          <td><span class="ar-na">N/A</span></td>
+          <td>Listening comprehension, print awareness, love of stories</td>
+          <td>Daily read-alouds; picture book exploration</td>
+          <td><span class="ar-na">N/A</span></td>
+        </tr>
+        <tr>
+          <td><span class="grade-badge">K</span></td>
+          <td><span class="ar-na">N/A</span></td>
+          <td>Concepts of print, story structure, oral retell</td>
+          <td>5–10 minutes; weekly book checkout</td>
+          <td><span class="ar-na">N/A</span></td>
+        </tr>
+        <tr>
+          <td><span class="grade-badge">1st</span></td>
+          <td><span class="ar-enrich">Enrichment as needed</span></td>
+          <td>Foundational decoding, fluency, comprehension</td>
+          <td>10–15 minutes; wide reading across formats</td>
+          <td><span class="quiz-home">Quizzes may be taken at home</span></td>
+        </tr>
+        <tr>
+          <td><span class="grade-badge">2nd</span></td>
+          <td><span class="ar-goal">25 pts</span></td>
+          <td>Independent reading growth, vocabulary, story elements</td>
+          <td>15–20 minutes; fiction and nonfiction regularly</td>
+          <td><span class="quiz-home">Quizzes may be taken at home or school</span></td>
+        </tr>
+        <tr>
+          <td><span class="grade-badge">3rd</span></td>
+          <td><span class="ar-goal">50 pts</span></td>
+          <td>Reading stamina, text evidence, genre comparison</td>
+          <td>20–25 minutes; one "stretch" book per quarter</td>
+          <td><span class="quiz-school">Quizzes must be taken at school</span></td>
+        </tr>
+        <tr>
+          <td><span class="grade-badge">4th</span></td>
+          <td><span class="ar-goal">75 pts</span></td>
+          <td>Deeper comprehension, theme, cross-text connections</td>
+          <td>25–30 minutes; history, biography, poetry included</td>
+          <td><span class="quiz-school">Quizzes must be taken at school</span></td>
+        </tr>
+        <tr>
+          <td><span class="grade-badge">5th</span></td>
+          <td><span class="ar-goal">100 pts</span></td>
+          <td>Analytical thinking, argument, reading independence</td>
+          <td>30+ minutes; long-form novels each quarter</td>
+          <td><span class="quiz-school">Quizzes must be taken at school</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin-top:1rem; font-size:0.82rem; color:var(--muted); font-style:italic;">Point goals are cumulative across the school year. Students can earn partial credit for any quiz score above 60%.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="steps-section">
+  <div class="container">
+    <p class="section-label">Taking a Quiz</p>
+    <h2>How It Works: Step by Step</h2>
+    <div class="divider"></div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Read Your Book</h3>
+        <p>Finish the book from cover to cover. The quiz checks real comprehension, so reading the whole book gives you the best chance of success.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Log In to AR</h3>
+        <p>Visit the Renaissance portal and log in with your username and password (see the login section above).</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Find Your Book</h3>
+        <p>Search for the title of the book you just finished. Not every book has a quiz; if yours doesn't, ask Mrs. Glavach about alternatives.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h3>Take the Quiz</h3>
+        <p>Answer the multiple-choice comprehension questions. Quizzes are usually 5–10 questions. Work independently and do your best!</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">5</div>
+        <h3>See Your Score</h3>
+        <p>AR shows your score right away. A score of 70% or higher earns passing and partial points; 100% earns the full point value for that book.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">6</div>
+        <h3>Track Your Progress</h3>
+        <p>Watch your points add up toward your annual goal. Celebrate every milestone; each point represents a book read and a story experienced!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPS -->
+<section class="tips-section">
+  <div class="container">
+    <p class="section-label">Best Practices</p>
+    <h2>Tips for AR Success</h2>
+    <div class="divider"></div>
+    <div class="tips-grid">
+      <div class="tips-col">
+        <h3>For Students</h3>
+        <ul>
+          <li>Take the quiz as soon as you finish a book; details are freshest right away</li>
+          <li>Read books you genuinely enjoy; excitement shows in quiz scores</li>
+          <li>Mix up genres</li>
+          <li>Track your points regularly and celebrate progress toward your goal</li>
+          <li>Ask your teachers or Mrs. Glavach for book recommendations that match your interests</li>
+          <li>Aim for a quiz score of 70% or higher for full credit</li>
+        </ul>
+      </div>
+      <div class="tips-col">
+        <h3>For Parents</h3>
+        <ul>
+          <li>Ask your child what they are reading and what happened in the story</li>
+          <li>Check AR point progress at home using the student login</li>
+          <li>Encourage daily reading; even 15 minutes adds up significantly over the year</li>
+          <li>Visit your local library to supplement school books</li>
+          <li>Contact Mrs. Glavach if your child is struggling to reach their goal</li>
+          <li>Celebrate milestones: 25%, 50%, 75%, and 100% of the annual goal!</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section">
+  <div class="container">
+    <p class="section-label">Questions?</p>
+    <h2>Contact</h2>
+    <div class="divider"></div>
+    <p style="color:#3a3a3a; margin-bottom:1.5rem; font-size:0.92rem;">For AR login help, goal questions, or book recommendations, reach out to Mrs. Glavach directly.</p>
+    <div class="contact-card">
+      <img class="contact-photo"
+        src="https://bbk12e1-cdn.myschoolcdn.com/ftpimages/701/user/large_user_3553023_661.jpg?resize=200,200"
+        alt="Mrs. Manya Glavach" />
+      <div class="contact-info">
+        <h3>Mrs. Manya Glavach</h3>
+        <p>ES Media Specialist</p>
+        <a href="mailto:mglavach@wcsmiami.org">mglavach@wcsmiami.org</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="hub%20logo.png" alt="The Hub logo" class="footer-logo" />
+  <p><strong>The Hub</strong> · Westminster Christian School · PreK through 5th Grade</p>
+  <p style="margin-top:0.4rem;">A space for Harness · Understand · Become</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Technology &amp; Innovation · WCS Elementary Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest: #2c5234;
+      --gold:   #B9975B;
+      --cream:  #fdf8ef;
+      --sage:   #4a7c59;
+      --sky:    #4a90c4;
+      --light-gold:  #f5ead8;
+      --light-blue:  #e8f2f9;
+      --light-green: #eaf3ec;
+      --text:   #2c2c2c;
+      --muted:  #6b6b6b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body { font-family: 'Montserrat', sans-serif; background: var(--cream); color: var(--text); line-height: 1.7; }
+
+    .container { max-width: 980px; margin: 0 auto; padding: 0 1.5rem; }
+    section { padding: 4rem 0; }
+
+    .section-label { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: var(--forest); line-height: 1.25; margin-bottom: 1rem; }
+
+    .divider { width: 3rem; height: 3px; background: var(--gold); border-radius: 2px; margin: 1.25rem 0; }
+
+    /* HERO */
+    .hero { background: var(--forest); color: white; text-align: center; padding: 3.5rem 2rem 4.5rem; }
+    .hero-back {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      color: rgba(255,255,255,0.65); font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+      margin-bottom: 2rem; transition: color 0.15s;
+    }
+    .hero-back:hover { color: var(--gold); }
+    .hero-title-row { display: flex; align-items: center; justify-content: center; gap: 1.25rem; }
+    .hero-icon {
+      width: 72px; height: 72px; background: var(--gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700;
+      letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.1; color: white; margin: 0;
+    }
+
+    /* OVERVIEW */
+    .overview-section { background: white; }
+    .overview-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; margin-top: 2rem; }
+    @media (max-width: 680px) { .overview-layout { grid-template-columns: 1fr; } }
+    .overview-text p { font-size: 0.95rem; color: #3a3a3a; line-height: 1.75; margin-bottom: 1rem; }
+    .overview-text p:last-child { margin-bottom: 0; }
+    .skills-box {
+      background: var(--forest); border-radius: 1rem; padding: 1.75rem;
+    }
+    .skills-box h3 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--gold); font-weight: 700; margin-bottom: 1rem; }
+    .skill-pill-wrap { display: flex; flex-direction: column; gap: 0.6rem; }
+    .skill-pill {
+      background: rgba(255,255,255,0.1); border-radius: 0.6rem; padding: 0.7rem 1rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .skill-pill svg { width: 18px; height: 18px; color: var(--gold); flex-shrink: 0; }
+    .skill-pill span { font-size: 0.88rem; color: rgba(255,255,255,0.88); font-weight: 500; line-height: 1.35; }
+
+    /* FOCUS TABS */
+    .pillars-section { background: var(--cream); }
+    .focus-tabs {
+      display: flex; flex-wrap: nowrap; gap: 0; overflow-x: auto;
+      border-bottom: 2px solid #ddd; margin: 2rem 0 0;
+      scrollbar-width: none;
+    }
+    .focus-tabs::-webkit-scrollbar { display: none; }
+    .focus-tab {
+      padding: 0.65rem 1rem; background: none; border: none;
+      border-bottom: 3px solid transparent; margin-bottom: -2px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap;
+      color: var(--muted); cursor: pointer; transition: color 0.15s; flex-shrink: 0;
+    }
+    .focus-tab:hover { color: var(--forest); }
+    .focus-tab.active { color: var(--forest); border-bottom-color: var(--forest); }
+    .focus-panel { display: none; }
+    .focus-panel.active { display: block; }
+    .focus-panel-inner {
+      background: white; border-radius: 0 0.75rem 0.75rem 0.75rem;
+      padding: 1.75rem 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      margin-top: 0;
+    }
+    .focus-panel-inner h3 { font-size: 1.05rem; color: var(--forest); margin-bottom: 1rem; }
+    .pillar-list { list-style: none; padding: 0; }
+    .pillar-list li {
+      font-size: 0.9rem; color: #3a3a3a; padding: 0.5rem 0 0.5rem 1.2rem;
+      position: relative; border-bottom: 1px solid #f0f0f0; line-height: 1.55;
+    }
+    .pillar-list li:last-child { border-bottom: none; }
+    .pillar-list li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+
+    /* DIGITAL CITIZENSHIP */
+    .citizenship-section { background: var(--forest); }
+    .citizenship-section h2 { color: var(--gold); }
+    .citizenship-section .section-label { color: rgba(185,151,91,0.75); }
+    .citizenship-section .divider { background: rgba(185,151,91,0.4); }
+    .citizenship-section .intro { color: rgba(255,255,255,0.8); max-width: 620px; margin-top: 0.5rem; }
+    .citizenship-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+    @media (max-width: 640px) { .citizenship-cols { grid-template-columns: 1fr; } }
+    .citizenship-block {
+      background: rgba(255,255,255,0.08); border-radius: 1rem; padding: 1.75rem;
+    }
+    .citizenship-block h3 { font-size: 0.95rem; color: white; font-weight: 700; margin-bottom: 0.85rem; }
+    .citizenship-block ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.45rem; }
+    .citizenship-block ul li {
+      font-size: 0.87rem; color: rgba(255,255,255,0.78); padding-left: 1.1rem; position: relative; line-height: 1.5;
+    }
+    .citizenship-block ul li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+
+    /* FAITH + TECH */
+    .faith-tech-section { background: var(--light-gold); border-top: 1px solid #e8d9b8; border-bottom: 1px solid #e8d9b8; padding: 3.5rem 0; }
+    .faith-tech-section .section-label { color: rgba(107,74,26,0.75); }
+    .faith-tech-section h2 { color: #6b4a1a; }
+    .faith-tech-section .divider { background: var(--gold); }
+    .faith-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-top: 2rem; }
+    @media (max-width: 700px) { .faith-grid { grid-template-columns: 1fr; } }
+    .faith-card {
+      background: white; border-radius: 1rem; padding: 1.5rem;
+      text-align: center; box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+    }
+    .faith-card-icon {
+      width: 42px; height: 42px; border-radius: 50%; background: var(--light-gold);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 0.85rem;
+    }
+    .faith-card-icon svg { width: 22px; height: 22px; color: var(--gold); }
+    .faith-card h3 { font-size: 0.95rem; color: var(--forest); font-weight: 700; margin-bottom: 0.5rem; }
+    .faith-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    /* MICROSOFT SHOWCASE */
+    .showcase-banner {
+      display: flex; align-items: center; gap: 1.75rem;
+      background: transparent;
+      border-radius: 1rem; padding: 1rem 0; margin-top: 2rem;
+    }
+    @media (max-width: 560px) { .showcase-banner { flex-direction: column; align-items: flex-start; } }
+    .showcase-badge-img {
+      width: 160px; flex-shrink: 0; display: block;
+    }
+    .showcase-banner h3 { font-size: 1rem; color: var(--forest); font-weight: 700; margin-bottom: 0.25rem; }
+    .showcase-banner p { font-size: 0.88rem; color: #3a3a3a; line-height: 1.6; }
+
+    /* DEVICES */
+    .devices-section { background: var(--light-blue); border-top: 1px solid #c8dce8; border-bottom: 1px solid #c8dce8; }
+    .devices-section .section-label { color: #3a7ca8; }
+    .devices-section h2 { color: #1a4a6b; }
+    .devices-section .divider { background: var(--sky); }
+    .device-table {
+      width: 100%; border-collapse: collapse; margin-top: 2rem;
+      background: white; border-radius: 0.75rem; overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07); font-size: 0.88rem;
+    }
+    .device-table thead { background: #1a4a6b; color: white; }
+    .device-table th {
+      padding: 0.9rem 1rem; text-align: left; font-weight: 600;
+      font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .device-table td {
+      padding: 0.85rem 1rem; border-bottom: 1px solid #e8f2f9;
+      vertical-align: middle; line-height: 1.5; color: #2a3a4a;
+    }
+    .device-table tr:last-child td { border-bottom: none; }
+    .device-table tr:nth-child(even) td { background: #f3f8fc; }
+    .grade-pill {
+      display: inline-block; background: #1a4a6b; color: white;
+      font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.6rem;
+      border-radius: 0.25rem; white-space: nowrap;
+    }
+    .device-badge {
+      display: inline-block; background: var(--light-green); color: var(--forest);
+      font-size: 0.72rem; font-weight: 600; padding: 0.2rem 0.6rem;
+      border-radius: 999px; white-space: nowrap;
+    }
+    .device-badge.home { background: var(--light-gold); color: #6b4a1a; }
+    .device-badge.tbd { background: #f0f0f0; color: var(--muted); }
+    .sail-badge {
+      display: inline-block; background: var(--light-blue); color: #1a4a6b;
+      font-size: 0.72rem; font-weight: 600; padding: 0.2rem 0.6rem;
+      border-radius: 999px; white-space: nowrap;
+    }
+
+    /* CONTACT */
+    .contact-section { background: var(--cream); border-top: 1px solid #e0ddd6; padding: 3rem 0; }
+    .contact-card {
+      background: white; border-radius: 1rem; padding: 1.75rem;
+      display: flex; align-items: center; gap: 1.25rem;
+      max-width: 480px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); border-left: 4px solid var(--gold);
+    }
+    .contact-info h3 { font-size: 1rem; color: var(--forest); font-weight: 700; margin-bottom: 0.2rem; }
+    .contact-info p { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.25rem; }
+    .contact-info a { color: var(--forest); font-weight: 600; text-decoration: none; font-size: 0.85rem; }
+    .contact-info a:hover { color: var(--gold); text-decoration: underline; }
+
+    /* FOOTER */
+    footer { background: var(--forest); color: rgba(255,255,255,0.6); text-align: center; padding: 2.5rem 1.5rem; font-size: 0.82rem; }
+    footer strong { color: var(--gold); }
+    .footer-logo { width: 40px; height: 40px; border-radius: 50%; display: block; margin: 0 auto 0.75rem; opacity: 0.9; }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <a href="index.html" class="hero-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Hub Guidelines
+  </a>
+  <div class="hero-title-row">
+    <div class="hero-icon">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+      </svg>
+    </div>
+    <h1>Technology &amp; Innovation</h1>
+  </div>
+</header>
+
+<!-- OVERVIEW -->
+<section class="overview-section">
+  <div class="container">
+
+    <h2>Technology at The Hub</h2>
+    <div class="divider"></div>
+    <div class="overview-layout">
+      <div class="overview-text">
+        <p>The Hub builds adaptive, future-ready technology skills that prepare students for a rapidly changing digital world, teaching them how to use digital tools responsibly while integrating faith-based discernment into their online interactions. Students learn to leverage technology as a tool for creativity, communication, collaboration, and problem-solving.</p>
+        <p>Our Digital Media Specialist guides students through thoughtful evaluation of information, responsible digital citizenship, and ethical decision-making, developing the skills and character needed to use technology wisely and purposefully in a complex world.</p>
+        <p>Both our Literacy and Technology roles work hand in hand, ensuring students are equipped with skills rooted in biblical truth, preparing them to be wise, compassionate, and faithful learners in both print and digital spaces.</p>
+      </div>
+      <div class="skills-box">
+        <h3>Students Will Develop</h3>
+        <div class="skill-pill-wrap">
+          <div class="skill-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <span>Source evaluation and research skills</span>
+          </div>
+          <div class="skill-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Safe and ethical internet use</span>
+          </div>
+          <div class="skill-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span>Digital creativity and media production</span>
+          </div>
+          <div class="skill-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="8" height="8" rx="1"/><rect x="14" y="2" width="8" height="8" rx="1"/><rect x="2" y="14" width="8" height="8" rx="1"/><rect x="14" y="14" width="8" height="8" rx="1"/></svg>
+            <span>Coding basics and STEM exploration</span>
+          </div>
+          <div class="skill-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>Christ-centered discernment online</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="showcase-banner">
+      <img src="microsoft%20showcase.png" alt="Microsoft Showcase School badge" class="showcase-badge-img" />
+      <div>
+        <h3>Microsoft Showcase School</h3>
+        <p>Westminster Christian School is proud to be a Microsoft Showcase School, a designation awarded to schools that demonstrate exemplary use of technology to transform teaching and learning. This recognition reflects our commitment to preparing students for a digital world through innovative, faith-centered education.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 1:1 DEVICES -->
+<section class="devices-section">
+  <div class="container">
+    <p class="section-label">Student Technology</p>
+    <h2>1:1 Devices &amp; Programs</h2>
+    <div class="divider"></div>
+    <p style="font-size:0.95rem; color:#2a3a4a; max-width:640px; margin-bottom:0;">Every student at WCS has access to technology tools designed for their grade level, supporting learning both at school and at home.</p>
+    <table class="device-table">
+      <thead>
+        <tr>
+          <th>Grade</th>
+          <th>Device Access</th>
+          <th>Tech Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="grade-pill">Preschool</span></td>
+          <td><span class="device-badge tbd">TBD</span></td>
+          <td><span class="sail-badge">Once a week Tech Time</span></td>
+        </tr>
+        <tr>
+          <td><span class="grade-pill">Kindergarten</span></td>
+          <td><span class="device-badge">Computer available at school</span></td>
+          <td><span class="sail-badge">Once a week Tech Time</span></td>
+        </tr>
+        <tr>
+          <td><span class="grade-pill">Grades 1-2</span></td>
+          <td><span class="device-badge">Computer available at school</span></td>
+          <td><span class="sail-badge">Tech Time elective (SAIL)</span></td>
+        </tr>
+        <tr>
+          <td><span class="grade-pill">Grades 3-5</span></td>
+          <td><span class="device-badge home">Personal device purchased through school (take home)</span></td>
+          <td><span class="sail-badge">Tech Time elective (SAIL)</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- FOUR AREAS OF FOCUS (tabs) -->
+<section class="pillars-section">
+  <div class="container">
+    <p class="section-label">What We Teach</p>
+    <h2>Four Areas of Focus</h2>
+    <div class="divider"></div>
+
+    <div class="focus-tabs">
+      <button class="focus-tab active" onclick="showFocusTab(event,'focus-1')">Digital Literacy &amp; Research</button>
+      <button class="focus-tab" onclick="showFocusTab(event,'focus-2')">EdTech Integration</button>
+      <button class="focus-tab" onclick="showFocusTab(event,'focus-3')">Discernment &amp; Worldview</button>
+      <button class="focus-tab" onclick="showFocusTab(event,'focus-4')">Schoolwide Initiatives</button>
+    </div>
+
+    <div id="focus-1" class="focus-panel active">
+      <div class="focus-panel-inner">
+        <h3>Digital Literacy, Responsible Research &amp; Digital Citizenship</h3>
+        <ul class="pillar-list">
+          <li>Guiding students in evaluating sources through a biblical lens, distinguishing between truth and misinformation</li>
+          <li>Instructing on safe and ethical internet use, emphasizing Christian values in digital citizenship</li>
+          <li>Teaching database navigation, online research strategies, and multimedia literacy</li>
+        </ul>
+        <p style="font-size:0.82rem; text-transform:uppercase; letter-spacing:0.14em; color:var(--muted); margin:1.25rem 0 0.75rem; font-weight:600;">For Students</p>
+        <ul class="pillar-list">
+          <li>Be kind and respectful in all online communication</li>
+          <li>Use technology only for its intended educational purpose</li>
+          <li>Never share personal information without teacher or parent permission</li>
+          <li>Think before you post: would you be proud if your teacher saw this?</li>
+          <li>Report anything that feels unsafe or unkind to a trusted adult</li>
+          <li>Evaluate what you read online before accepting it as true</li>
+        </ul>
+        <p style="font-size:0.82rem; text-transform:uppercase; letter-spacing:0.14em; color:var(--muted); margin:1.25rem 0 0.75rem; font-weight:600;">For Families</p>
+        <ul class="pillar-list">
+          <li>Keep devices in shared spaces at home for younger students</li>
+          <li>Have regular conversations about what your child is doing online and explore digital resources together</li>
+          <li>Set reasonable and consistent screen time boundaries</li>
+
+          <li>Model healthy technology habits and discernment in your own use</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="focus-2" class="focus-panel">
+      <div class="focus-panel-inner">
+        <h3>Educational Technology Integration</h3>
+        <ul class="pillar-list">
+          <li>Supporting teachers in incorporating digital tools, apps, and online resources into the curriculum</li>
+          <li>Introducing students to interactive learning platforms, coding basics, and STEM-related technology</li>
+          <li>Encouraging faith-based media creation through podcasts, videos, and digital presentations</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="focus-3" class="focus-panel">
+      <div class="focus-panel-inner">
+        <h3>Discernment &amp; Biblical Worldview Online</h3>
+        <ul class="pillar-list">
+          <li>Teaching students to approach media with a Christ-centered perspective and critical thinking</li>
+          <li>Encouraging ethical behavior online: kindness, respect, and integrity in communication</li>
+          <li>Helping students and families navigate screen time balance and healthy technology habits</li>
+        </ul>
+        <p style="font-size:0.82rem; text-transform:uppercase; letter-spacing:0.14em; color:var(--muted); margin:1.25rem 0 0.75rem; font-weight:600;">Faith in the Digital Age</p>
+        <ul class="pillar-list">
+          <li><strong>Seek Truth:</strong> Students learn to seek truth with discernment, distinguishing reliable information from misinformation through a biblical lens</li>
+          <li><strong>Love Your Neighbor:</strong> Online interactions are an extension of our call to love others. Kindness, respect, and integrity define how we communicate in digital spaces</li>
+          <li><strong>Create with Purpose:</strong> Technology is a tool for good. Students create content that reflects their values, tells meaningful stories, and serves their community</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="focus-4" class="focus-panel">
+      <div class="focus-panel-inner">
+        <h3>Schoolwide Technology Initiatives</h3>
+        <ul class="pillar-list">
+          <li>Managing access to digital learning resources, e-books, and multimedia tools</li>
+          <li>Providing professional development for teachers on faith-based technology integration</li>
+          <li>Leading workshops on internet safety, cybersecurity, and Christian media engagement</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section">
+  <div class="container">
+    <p class="section-label">Questions?</p>
+    <h2>Contact</h2>
+    <div class="divider"></div>
+    <div class="contact-card">
+      <div class="contact-info">
+        <h3>Mrs. Arlene Castellanos</h3>
+        <p>Elementary Digital Media Specialist</p>
+        <a href="mailto:acastellanos@wcsmiami.org">acastellanos@wcsmiami.org</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="hub%20logo.png" alt="The Hub" class="footer-logo" />
+  <p><strong>WCS Elementary Hub</strong> &nbsp;·&nbsp; Westminster Christian School</p>
+  <p style="margin-top:0.4rem;">Technology &amp; Innovation</p>
+</footer>
+
+<script>
+  function showFocusTab(e, id) {
+    document.querySelectorAll('.focus-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.focus-panel').forEach(p => p.classList.remove('active'));
+    e.currentTarget.classList.add('active');
+    document.getElementById(id).classList.add('active');
+  }
+</script>
+</body>
+</html>

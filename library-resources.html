@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Library Resources · WCS Elementary Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest: #2c5234;
+      --gold:   #B9975B;
+      --cream:  #fdf8ef;
+      --sage:   #4a7c59;
+      --sky:    #4a90c4;
+      --light-gold:  #f5ead8;
+      --light-blue:  #e8f2f9;
+      --light-green: #eaf3ec;
+      --text:   #2c2c2c;
+      --muted:  #6b6b6b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body { font-family: 'Montserrat', sans-serif; background: var(--cream); color: var(--text); line-height: 1.7; }
+
+    .container { max-width: 980px; margin: 0 auto; padding: 0 1.5rem; }
+    section { padding: 4rem 0; }
+
+    .section-label { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: var(--forest); line-height: 1.25; margin-bottom: 1rem; }
+
+    .divider { width: 3rem; height: 3px; background: var(--gold); border-radius: 2px; margin: 1.25rem 0; }
+
+    /* HERO */
+    .hero { background: var(--forest); color: white; text-align: center; padding: 3.5rem 2rem 4.5rem; }
+    .hero-back {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      color: rgba(255,255,255,0.65); font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+      margin-bottom: 2rem; transition: color 0.15s;
+    }
+    .hero-back:hover { color: var(--gold); }
+    .hero-title-row { display: flex; align-items: center; justify-content: center; gap: 1.25rem; }
+    .hero-icon {
+      width: 72px; height: 72px; background: var(--gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700;
+      letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.1; color: white; margin: 0;
+    }
+
+    /* MISSION */
+    .mission-section { background: white; }
+    .mission-box {
+      background: var(--forest); color: white; border-radius: 1rem;
+      padding: 2.5rem 2.5rem 2.5rem 3.5rem; margin-top: 2rem; position: relative;
+    }
+    .mission-box::before {
+      content: '\201C'; font-size: 5rem; font-family: Georgia, serif;
+      color: var(--gold); opacity: 0.4; position: absolute;
+      top: 0.25rem; left: 1.25rem; line-height: 1;
+    }
+    .mission-box p { font-size: 1rem; line-height: 1.8; color: rgba(255,255,255,0.9); font-style: italic; }
+
+    /* HOURS & RULES */
+    .hours-section { background: var(--cream); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+    @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+    .info-card {
+      background: white; border-radius: 1rem; padding: 1.75rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .info-card-header { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1.25rem; }
+    .info-icon {
+      width: 44px; height: 44px; border-radius: 50%; background: var(--light-green);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .info-icon svg { width: 22px; height: 22px; color: var(--forest); }
+    .info-card h3 { font-size: 1rem; color: var(--forest); font-weight: 700; }
+    .hours-time { font-size: 1.1rem; font-weight: 700; color: var(--forest); margin-bottom: 0.35rem; }
+    .hours-note { font-size: 0.85rem; color: var(--muted); margin-top: 0.75rem; }
+    .rules-list { list-style: none; padding: 0; }
+    .rules-list li {
+      font-size: 0.88rem; color: #3a3a3a; padding: 0.45rem 0 0.45rem 1.2rem;
+      border-bottom: 1px solid #eee; position: relative; line-height: 1.5;
+    }
+    .rules-list li:last-child { border-bottom: none; }
+    .rules-list li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+
+    /* CHECKOUT */
+    .checkout-section { background: white; }
+    .checkout-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.25rem; margin-top: 2rem; }
+    @media (max-width: 640px) { .checkout-grid { grid-template-columns: 1fr; } }
+    .checkout-card {
+      background: var(--light-green); border-radius: 1rem; padding: 1.5rem;
+      border-left: 4px solid var(--sage);
+    }
+    .checkout-card h4 {
+      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.18em;
+      color: var(--sage); font-weight: 700; margin-bottom: 0.5rem;
+    }
+    .checkout-card p { font-size: 0.9rem; color: var(--text); line-height: 1.65; }
+
+    /* PROGRAMS */
+    .programs-section { background: var(--forest); }
+    .programs-section h2 { color: var(--gold); }
+    .programs-section .section-label { color: rgba(185,151,91,0.75); }
+    .programs-section .divider { background: rgba(185,151,91,0.4); }
+    .programs-section .intro { color: rgba(255,255,255,0.8); max-width: 620px; margin-top: 0.5rem; }
+    .programs-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.25rem; margin-top: 2rem; }
+    @media (max-width: 640px) { .programs-grid { grid-template-columns: 1fr; } }
+    .program-card {
+      background: rgba(255,255,255,0.08); border-radius: 1rem; padding: 1.75rem;
+      border-top: 3px solid var(--gold);
+    }
+    .program-icon {
+      width: 42px; height: 42px; border-radius: 50%; background: rgba(185,151,91,0.18);
+      display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem;
+    }
+    .program-icon svg { width: 22px; height: 22px; color: var(--gold); }
+    .program-badge {
+      display: inline-block; background: var(--gold); color: var(--forest);
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.2rem 0.65rem; border-radius: 999px; margin-bottom: 0.65rem;
+    }
+    .program-card h3 { font-size: 1rem; color: white; margin-bottom: 0.5rem; }
+    .program-card p { font-size: 0.88rem; color: rgba(255,255,255,0.75); line-height: 1.6; }
+
+    /* NONFICTION COLLECTION */
+    .collection-section { background: white; }
+    .genre-intro { font-size: 0.95rem; color: #3a3a3a; max-width: 640px; margin-bottom: 2rem; line-height: 1.7; }
+    .genre-wrap { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .genre-tag {
+      background: var(--light-green); color: var(--forest);
+      font-size: 0.78rem; font-weight: 600;
+      padding: 0.4rem 0.95rem; border-radius: 999px;
+      border: 1.5px solid rgba(44,82,52,0.18);
+    }
+
+    /* ONLINE RESOURCES */
+    .online-section { background: var(--light-blue); border-top: 1px solid #c8dce8; border-bottom: 1px solid #c8dce8; padding: 3rem 0; }
+    .online-card {
+      background: white; border-radius: 1rem; padding: 2rem 2.5rem;
+      display: flex; gap: 1.5rem; align-items: flex-start;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07); border-left: 4px solid var(--sky);
+    }
+    .online-card svg { width: 2rem; height: 2rem; color: var(--sky); flex-shrink: 0; margin-top: 0.2rem; }
+    .online-card h3 { font-size: 1rem; color: var(--forest); font-weight: 700; margin-bottom: 0.35rem; }
+    .online-card p { font-size: 0.9rem; color: #3a3a3a; line-height: 1.65; }
+
+    /* VOLUNTEER */
+    .volunteer-section { background: var(--cream); }
+    .volunteer-section > .container > p { font-size: 0.95rem; color: #3a3a3a; max-width: 640px; margin-bottom: 2rem; }
+    .vol-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 0; }
+    .vol-card {
+      background: white; border-radius: 1rem; padding: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-top: 3px solid var(--gold);
+    }
+    .vol-card h4 { font-size: 0.88rem; color: var(--forest); font-weight: 700; margin-bottom: 0.5rem; }
+    .vol-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+    .vol-cta {
+      margin-top: 2.5rem; background: var(--forest); border-radius: 1rem;
+      padding: 2rem 2.5rem; text-align: center;
+    }
+    .vol-cta h3 { color: var(--gold); font-size: 1.1rem; margin-bottom: 0.75rem; }
+    .vol-cta p { color: rgba(255,255,255,0.8); font-size: 0.92rem; margin-bottom: 1.25rem; max-width: 540px; margin-left: auto; margin-right: auto; }
+    .vol-cta a {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: var(--gold); color: var(--forest);
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; padding: 0.6rem 1.4rem; border-radius: 0.4rem;
+      transition: background 0.15s;
+    }
+    .vol-cta a:hover { background: white; }
+
+    /* CONTACT */
+    .contact-section { background: var(--cream); border-top: 1px solid #e0ddd6; padding: 3rem 0; }
+    .contact-card {
+      background: white; border-radius: 1rem; padding: 1.75rem;
+      display: flex; align-items: center; gap: 1.25rem;
+      max-width: 480px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); border-left: 4px solid var(--gold);
+    }
+    .contact-info h3 { font-size: 1rem; color: var(--forest); font-weight: 700; margin-bottom: 0.2rem; }
+    .contact-info p { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.25rem; }
+    .contact-info a { color: var(--forest); font-weight: 600; text-decoration: none; font-size: 0.85rem; }
+    .contact-info a:hover { color: var(--gold); text-decoration: underline; }
+
+    /* FOOTER */
+    footer { background: var(--forest); color: rgba(255,255,255,0.6); text-align: center; padding: 2.5rem 1.5rem; font-size: 0.82rem; }
+    footer strong { color: var(--gold); }
+    .footer-logo { width: 40px; height: 40px; border-radius: 50%; display: block; margin: 0 auto 0.75rem; opacity: 0.9; }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <a href="index.html" class="hero-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Hub Guidelines
+  </a>
+  <div class="hero-title-row">
+    <div class="hero-icon">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+      </svg>
+    </div>
+    <h1>Library Resources</h1>
+  </div>
+</header>
+
+<!-- MISSION -->
+<section class="mission-section">
+  <div class="container">
+    <p class="section-label">Our Purpose</p>
+    <h2>Library Mission</h2>
+    <div class="divider"></div>
+    <div class="mission-box">
+      <p>The Westminster Christian School Library exists to empower learners, inspire lives, and prepare hearts through literacy and a love for learning. Grounded in a Christ-centered foundation, our library fosters a nurturing environment where students can explore knowledge, develop critical thinking, and grow in their faith. We celebrate the power of literature as both a window, offering glimpses into diverse experiences and God's work in the world, and a mirror, reflecting each student's identity as a beloved child of God. Through high-quality resources, engaging programs, and stories that cultivate empathy and understanding, we encourage students to embrace compassionate Christianity, loving others as Christ loves us. With a commitment to academic excellence and spiritual growth, we equip students to become lifelong learners and faithful ambassadors for Jesus Christ.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS & RULES -->
+<section class="hours-section">
+  <div class="container">
+    <p class="section-label">Plan Your Visit</p>
+    <h2>Hours &amp; Expectations</h2>
+    <div class="divider"></div>
+    <div class="two-col">
+
+      <div class="info-card">
+        <div class="info-card-header">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <h3>Library Hours</h3>
+        </div>
+        <p class="hours-time">Monday through Friday</p>
+        <p class="hours-time">8:00 am to 3:00 pm</p>
+        <p class="hours-note">Closed on weekends and school holidays.</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-header">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+            </svg>
+          </div>
+          <h3>Rules &amp; Expectations</h3>
+        </div>
+        <ul class="rules-list">
+          <li>Respect for Others: maintain a quiet atmosphere for reading and study</li>
+          <li>Respect for Books and Materials: handle all resources with care</li>
+          <li>Christian Conduct: speak and act in a manner that reflects our core values</li>
+          <li>Food and Drinks: not allowed in the library to protect materials</li>
+          <li>Technology Use: devices may only be used for educational purposes and with permission</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CHECKOUT & RETURNS -->
+<section class="checkout-section">
+  <div class="container">
+    <p class="section-label">Borrowing Books</p>
+    <h2>Checkout &amp; Returns</h2>
+    <div class="divider"></div>
+    <div class="checkout-grid">
+      <div class="checkout-card">
+        <h4>Loan Period</h4>
+        <p>Books may be borrowed for 2 weeks and can be renewed if no one else is waiting.</p>
+      </div>
+      <div class="checkout-card">
+        <h4>Checkout Limit</h4>
+        <p>Students may check out up to 2 books at a time.</p>
+      </div>
+      <div class="checkout-card">
+        <h4>Overdue Books</h4>
+        <p>A reminder will be sent for late books. Persistent overdue books may result in limited borrowing privileges.</p>
+      </div>
+      <div class="checkout-card">
+        <h4>Lost or Damaged Books</h4>
+        <p>Families will be responsible for the cost of replacement for lost or damaged items.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs-section">
+  <div class="container">
+    <p class="section-label">Get Involved</p>
+    <h2>Library Programs &amp; Activities</h2>
+    <div class="divider"></div>
+    <p class="intro">From weekly storytimes to monthly book club meetings, our library offers enriching programs for every age and interest.</p>
+    <div class="programs-grid">
+
+      <div class="program-card">
+        <div class="program-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+        </div>
+        <span class="program-badge">PK through K5</span>
+        <h3>Storytime &amp; Read-Alouds</h3>
+        <p>Weekly read-aloud sessions for younger students exploring picture books, Bible stories, poetry, and nonfiction that spark wonder and build listening comprehension.</p>
+      </div>
+
+      <div class="program-card">
+        <div class="program-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <span class="program-badge">Voluntary</span>
+        <h3>Nerd Herd Book Club</h3>
+        <p>Monthly sessions with engaging discussions for different grade levels. Students connect over shared reads, share recommendations, and grow as thoughtful readers and conversationalists.</p>
+      </div>
+
+      <div class="program-card">
+        <div class="program-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <span class="program-badge">All Grades</span>
+        <h3>Reading Challenges</h3>
+        <p>Encouraging students to explore different reading goals, genre milestones, and volume targets that celebrate growth, curiosity, and a love for books.</p>
+      </div>
+
+      <div class="program-card">
+        <div class="program-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+        </div>
+        <span class="program-badge">TechTime Elective</span>
+        <h3>Research &amp; Literacy Workshops</h3>
+        <p>Helping students develop strong research skills, digital literacy, and the ability to evaluate sources through a biblical lens, preparing them for independent inquiry.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- NONFICTION COLLECTION -->
+<section class="collection-section">
+  <div class="container">
+    <p class="section-label">What We Carry</p>
+    <h2>Nonfiction Collection</h2>
+    <div class="divider"></div>
+    <p class="genre-intro">Our curated nonfiction collection spans 20+ genres, giving every student the opportunity to explore topics that match their curiosity, passions, and grade-level inquiry goals.</p>
+    <div class="genre-wrap">
+      <span class="genre-tag">Animals</span>
+      <span class="genre-tag">Pets &amp; Veterinary Care</span>
+      <span class="genre-tag">Space &amp; Astronomy</span>
+      <span class="genre-tag">Earth Science</span>
+      <span class="genre-tag">Human Body &amp; Health</span>
+      <span class="genre-tag">Science &amp; STEM</span>
+      <span class="genre-tag">Technology &amp; Coding</span>
+      <span class="genre-tag">Transportation &amp; Engineering</span>
+      <span class="genre-tag">History &amp; Civilizations</span>
+      <span class="genre-tag">Geography &amp; Cultures</span>
+      <span class="genre-tag">Sports</span>
+      <span class="genre-tag">Biography</span>
+      <span class="genre-tag">Arts &amp; Music</span>
+      <span class="genre-tag">Nature &amp; Environment</span>
+      <span class="genre-tag">Government &amp; Citizenship</span>
+      <span class="genre-tag">Social-Emotional Learning</span>
+      <span class="genre-tag">Faith &amp; Values</span>
+      <span class="genre-tag">How-To &amp; DIY</span>
+      <span class="genre-tag">Math in Real Life</span>
+      <span class="genre-tag">Weird, Wacky &amp; Wonder</span>
+    </div>
+  </div>
+</section>
+
+<!-- ONLINE RESOURCES -->
+<section class="online-section">
+  <div class="container">
+    <p class="section-label">Digital Access</p>
+    <h2>Online Library Resources</h2>
+    <div class="divider"></div>
+    <div class="online-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="2" y1="12" x2="22" y2="12"/>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+      </svg>
+      <div>
+        <h3>Access via myWCSportal</h3>
+        <p>Students have access to digital books and research tools through the Hub Resource board on the myWCSportal. Login details can be requested from the librarian. Look for the resource board after logging in to find curated digital content for your grade level.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOLUNTEER -->
+<section class="volunteer-section">
+  <div class="container">
+    <p class="section-label">Parent Partners</p>
+    <h2>Volunteer Opportunities</h2>
+    <div class="divider"></div>
+    <p>Volunteers are a vital part of our library community. Whether you love books, enjoy working with children, or want to support our Christ-centered mission, there are many ways to get involved.</p>
+    <div class="vol-grid">
+      <div class="vol-card">
+        <h4>Library Organization &amp; Operations</h4>
+        <p>Shelve and organize books, assist with check-in, prepare new books for circulation, and create engaging displays that highlight Christian values and seasonal themes.</p>
+      </div>
+      <div class="vol-card">
+        <h4>Inspiring a Love for Reading</h4>
+        <p>Read aloud during storytime, help students select books that match their interests, and support our window and mirror initiative by connecting students with diverse, affirming stories.</p>
+      </div>
+      <div class="vol-card">
+        <h4>Special Events &amp; Programs</h4>
+        <p>Help organize author visits, book fairs, and literacy events. Assist with reading challenges and prepare activities for special programs throughout the year.</p>
+      </div>
+      <div class="vol-card">
+        <h4>Technology &amp; Research Support</h4>
+        <p>Guide students in using digital resources for research with discernment, assist with basic research skills, and support STEM and literacy initiatives through a biblical lens.</p>
+      </div>
+      <div class="vol-card">
+        <h4>Administrative &amp; Behind the Scenes</h4>
+        <p>Prepare materials for lessons and programs, assist with inventory and book donations, and help develop reading lists that align with academic excellence and Christian character.</p>
+      </div>
+    </div>
+    <div class="vol-cta">
+      <h3>Be a Part of Our Mission</h3>
+      <p>Volunteering in the WCS Library is an opportunity to serve with purpose, nurture young hearts and minds, and help students grow as lifelong learners and faithful ambassadors of Christ.</p>
+      <a href="mailto:mglavach@wcsmiami.org">Contact Mrs. Glavach to Get Involved</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section">
+  <div class="container">
+    <p class="section-label">Questions?</p>
+    <h2>Contact</h2>
+    <div class="divider"></div>
+    <div class="contact-card">
+      <div class="contact-info">
+        <h3>Mrs. Manya Glavach</h3>
+        <p>Elementary Library Media Specialist</p>
+        <a href="mailto:mglavach@wcsmiami.org">mglavach@wcsmiami.org</a><br>
+        <a href="tel:3052332030" style="margin-top:0.2rem; display:inline-block;">305-233-2030</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="hub%20logo.png" alt="The Hub" class="footer-logo" />
+  <p><strong>WCS Elementary Hub</strong> &nbsp;·&nbsp; Westminster Christian School</p>
+  <p style="margin-top:0.4rem;">Library Resources</p>
+</footer>
+
+</body>
+</html>

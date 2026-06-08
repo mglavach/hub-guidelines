@@ -1,4 +1,4 @@
-Font style Zapf Humanist
+Font style Montserrat Sans serif
 Colors
 2c5234
 b9975B
