@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C \"c:\\\\Users\\\\mglavach\\\\OneDrive - Westminster Christian School\\\\HUB\\\\Hub-Guidelines\" add .)",
+      "PowerShell($env:HOME = $env:USERPROFILE; git -C \"c:\\\\Users\\\\mglavach\\\\OneDrive - Westminster Christian School\\\\HUB\\\\Hub-Guidelines\" add .)"
+    ]
+  }
+}

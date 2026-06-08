@@ -1,17 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to The Hub · Westminster Christian School</title>
+  <title>WCS Elementary Hub · Westminster Christian School</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
   <style>
-    @font-face {
-      font-family: 'Zapf Humanist 601';
-      src: local('Zapf Humanist 601'), local('ZapfHumanist601BT-Roman'), local('Zapf Humanist 601 BT');
-      font-weight: normal;
-      font-style: normal;
-    }
-
     :root {
       --forest: #2c5234;
       --gold:   #B9975B;
@@ -29,7 +23,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       background: var(--cream);
       color: var(--text);
       line-height: 1.7;
@@ -37,29 +31,10 @@
 
     /* ── HERO ── */
     .hero {
-      background: linear-gradient(135deg, #2c5234 0%, #3d6e47 55%, #224028 100%);
+      background: #2c5234;
       color: white;
       text-align: center;
       padding: 4rem 2rem 5rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1.5' fill='%23ffffff' fill-opacity='0.07'/%3E%3C/svg%3E");
-      pointer-events: none;
-    }
-
-    .hero-school {
-      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.25rem;
     }
 
     .hero h1 {
@@ -69,32 +44,7 @@
       text-transform: uppercase;
       margin-bottom: 0.5rem;
       line-height: 1.1;
-    }
-
-    .hero h1 span {
-      color: var(--gold);
-    }
-
-    .hero-sub {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.82);
-      max-width: 540px;
-      margin: 1rem auto 0;
-      font-style: italic;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      margin-top: 2rem;
-      background: rgba(185,151,91,0.18);
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 0.45rem 1.25rem;
-      border-radius: 2rem;
+      color: white;
     }
 
     /* ── LAYOUT ── */
@@ -109,7 +59,7 @@
     }
 
     .section-label {
-      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.72rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
@@ -125,45 +75,43 @@
     }
 
     /* ── WHAT IS THE HUB ── */
-    .what-grid {
+    .what-header {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .what-header-logo {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+
+    .what-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2.5rem;
       align-items: center;
-      margin-top: 2.5rem;
+      margin-top: 1.5rem;
     }
 
-    @media (max-width: 640px) {
-      .what-grid { grid-template-columns: 1fr; }
+    .what-layout .hub-diagram-wrap { margin-top: 0; }
+
+    @media (max-width: 720px) {
+      .what-layout { grid-template-columns: 1fr; }
+    }
+
+    .what-text {
+      max-width: none;
+      margin-bottom: 0;
     }
 
     .what-text p {
       margin-bottom: 1rem;
       color: #3a3a3a;
-    }
-
-    .goal-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .goal-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      background: var(--light-green);
-      border-left: 3px solid var(--sage);
-      padding: 0.7rem 1rem;
-      border-radius: 0 0.5rem 0.5rem 0;
-      font-size: 0.95rem;
-    }
-
-    .goal-list li .icon-sm {
-      flex-shrink: 0;
-      margin-top: 0.1rem;
-      color: var(--sage);
     }
 
     /* ── HUB PATHWAY ── */
@@ -203,24 +151,22 @@
       background: rgba(0,0,0,0.2);
     }
 
-    .pathway-card.harness   { border-top: 4px solid var(--sky); }
-    .pathway-card.understand { border-top: 4px solid var(--gold); }
-    .pathway-card.become    { border-top: 4px solid #72c98a; }
+    .pathway-card.harness   { border-top: 4px solid #eaf3ec; }
+    .pathway-card.understand { border-top: 4px solid #fdf8ef; }
+    .pathway-card.become    { border-top: 4px solid #a8dbb5; }
 
     .pathway-letter {
       font-size: 3rem;
       font-weight: 900;
       line-height: 1;
       margin-bottom: 0.25rem;
-      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', sans-serif;
     }
 
-    .pathway-card.harness  .pathway-letter  { color: var(--sky); }
-    .pathway-card.understand .pathway-letter { color: var(--gold); }
-    .pathway-card.become   .pathway-letter  { color: #72c98a; }
+    .pathway-card .pathway-letter { color: var(--gold); }
 
     .pathway-word {
-      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.7rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -261,20 +207,32 @@
       left: 0;
     }
 
-    .pathway-card.harness  .pathway-steps li::before { color: var(--sky); }
-    .pathway-card.understand .pathway-steps li::before { color: var(--gold); }
-    .pathway-card.become   .pathway-steps li::before { color: #72c98a; }
+    .pathway-card.harness  .pathway-steps li::before { color: #eaf3ec; }
+    .pathway-card.understand .pathway-steps li::before { color: #fdf8ef; }
+    .pathway-card.become   .pathway-steps li::before { color: #a8dbb5; }
 
-    /* ── FEATURES ── */
+    /* ── FEATURE CARDS (shared by Key Features and What Is The Hub) ── */
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.25rem;
       margin-top: 2.5rem;
     }
 
+    @media (max-width: 800px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .what-features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-top: 0;
+    }
+
     @media (max-width: 600px) {
-      .features-grid { grid-template-columns: 1fr; }
+      .features-grid,
+      .what-features { grid-template-columns: 1fr; }
     }
 
     .feature-card {
@@ -282,19 +240,27 @@
       border-radius: 0.75rem;
       padding: 1.5rem;
       box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-      border-top: 3px solid transparent;
+      border-top: 3px solid var(--forest);
       transition: transform 0.15s;
     }
 
-    .feature-card:nth-child(1) { border-top-color: var(--forest); }
-    .feature-card:nth-child(2) { border-top-color: var(--gold); }
-    .feature-card:nth-child(3) { border-top-color: var(--sage); }
-    .feature-card:nth-child(4) { border-top-color: var(--sky); }
+    .features-grid .feature-card:nth-child(2) { border-top-color: var(--gold); }
+    .features-grid .feature-card:nth-child(3) { border-top-color: var(--sage); }
+    .features-grid .feature-card:nth-child(4) { border-top-color: var(--sky); }
+
+    .what-features .feature-card:nth-child(2) { border-top-color: var(--gold); }
+    .what-features .feature-card:nth-child(3) { border-top-color: var(--sage); }
+    .what-features .feature-card:nth-child(4) { border-top-color: var(--sky); }
+    .what-features .feature-card:nth-child(5) { border-top-color: var(--sage); grid-column: 1 / -1; max-width: calc(50% - 0.625rem); }
+
+    @media (max-width: 600px) {
+      .what-features .feature-card:nth-child(5) { max-width: 100%; }
+    }
 
     .feature-card:hover { transform: translateY(-3px); }
 
     .feature-card-featured {
-      border-top-color: var(--gold);
+      border-top-color: var(--gold) !important;
       display: flex;
       flex-direction: column;
     }
@@ -319,7 +285,7 @@
       margin-top: 1rem;
       background: var(--forest);
       color: var(--gold);
-      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.78rem;
       font-weight: 600;
       letter-spacing: 0.08em;
@@ -341,7 +307,7 @@
     }
 
     .feature-card-sublabel {
-      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.68rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -356,9 +322,13 @@
       color: var(--forest);
     }
 
-    .feature-card:nth-child(2) .feature-icon { color: var(--gold); }
-    .feature-card:nth-child(3) .feature-icon { color: var(--sage); }
-    .feature-card:nth-child(4) .feature-icon { color: var(--sky); }
+    .features-grid .feature-card:nth-child(2) .feature-icon { color: var(--gold); }
+    .features-grid .feature-card:nth-child(3) .feature-icon { color: var(--sage); }
+    .features-grid .feature-card:nth-child(4) .feature-icon { color: var(--sky); }
+
+    .what-features .feature-card:nth-child(2) .feature-icon { color: var(--gold); }
+    .what-features .feature-card:nth-child(3) .feature-icon { color: var(--sage); }
+    .what-features .feature-card:nth-child(4) .feature-icon { color: var(--sky); }
 
     .feature-card h3 {
       font-size: 1rem;
@@ -370,6 +340,13 @@
       font-size: 0.9rem;
       color: var(--muted);
       line-height: 1.6;
+    }
+
+    /* ── MATH PROGRAM ── */
+    .math-section {
+      background: var(--light-gold);
+      border-top: 1px solid #e8d9b8;
+      border-bottom: 1px solid #e8d9b8;
     }
 
     /* ── READING PROGRAM ── */
@@ -439,7 +416,7 @@
     .mission-quote strong {
       display: block;
       margin-top: 1rem;
-      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.8rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -448,7 +425,7 @@
       font-weight: 600;
     }
 
-    /* ── GRADE BANDS ── */
+    /* ── TABLES (grade bands, etc.) ── */
     .grade-table {
       width: 100%;
       border-collapse: collapse;
@@ -469,7 +446,7 @@
       padding: 0.9rem 1rem;
       text-align: left;
       font-weight: 600;
-      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.75rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -485,12 +462,14 @@
 
     .grade-table tr:last-child td { border-bottom: none; }
     .grade-table tr:nth-child(even) td { background: #fafafa; }
+    .grade-table th a { color: inherit; text-decoration: underline; }
+    .grade-table th a:visited { color: #aaa; }
 
     .grade-badge {
       display: inline-block;
       background: var(--forest);
       color: var(--gold);
-      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.72rem;
       font-weight: 700;
       padding: 0.2rem 0.55rem;
@@ -499,13 +478,13 @@
     }
 
     .ar-goal {
-      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-weight: 700;
       color: var(--forest);
     }
 
     .ar-na {
-      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       color: var(--muted);
       font-size: 0.82rem;
     }
@@ -548,7 +527,7 @@
     .assess-why p:last-child { margin-bottom: 0; }
 
     .assess-types-label {
-      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.72rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -560,7 +539,7 @@
       background: var(--forest);
       color: white;
       border-radius: 1rem;
-      padding: 2rem 2rem 2rem;
+      padding: 2rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
@@ -581,7 +560,7 @@
     .maps-badge {
       background: var(--gold);
       color: var(--forest);
-      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.12em;
@@ -624,7 +603,7 @@
 
     .maps-detail-block h4 {
       font-size: 0.72rem;
-      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--gold);
@@ -685,28 +664,451 @@
       .assess-pair { grid-template-columns: 1fr; }
     }
 
+    .assess-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 700px) {
+      .assess-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── INTERVENTION TABS ── */
+    .int-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      border-bottom: 2px solid #ddd;
+      margin-bottom: 2rem;
+    }
+
+    .int-tab {
+      padding: 0.65rem 1.4rem;
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .int-tab:hover { color: var(--forest); }
+    .int-tab.active { color: var(--forest); border-bottom-color: var(--forest); }
+
+    .int-panel { display: none; }
+    .int-panel.active { display: block; }
+
+    .acad-tab {
+      padding: 0.65rem 1.4rem;
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .acad-tab:hover { color: var(--forest); }
+    .acad-tab.active { color: var(--forest); border-bottom-color: var(--forest); }
+
+    .acad-panel { display: none; }
+    .acad-panel.active { display: block; }
+
+    /* ── ASSESSMENT TABS ── */
+    .assmt-tabs { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 2px solid #ddd; margin: 2rem 0; }
+    .assmt-tab {
+      padding: 0.65rem 1.4rem; background: none; border: none;
+      border-bottom: 3px solid transparent; margin-bottom: -2px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.85rem;
+      font-weight: 600; color: var(--muted); cursor: pointer; transition: color 0.15s;
+    }
+    .assmt-tab:hover { color: var(--forest); }
+    .assmt-tab.active { color: var(--forest); border-bottom-color: var(--forest); }
+    .assmt-panel { display: none; }
+    .assmt-panel.active { display: block; }
+
+    .assmt-system-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem; margin: 1.75rem 0;
+    }
+    @media (max-width: 700px) { .assmt-system-grid { grid-template-columns: 1fr; } }
+
+    .assmt-type-card {
+      background: var(--forest); color: white;
+      border-radius: 1rem; padding: 1.75rem;
+    }
+    .assmt-type-num {
+      display: inline-block; background: var(--gold); color: white;
+      font-size: 0.68rem; font-weight: 800; font-family: 'Montserrat', sans-serif;
+      letter-spacing: 0.05em; padding: 0.22rem 0.65rem; border-radius: 999px;
+      margin-bottom: 0.75rem; text-transform: uppercase;
+    }
+    .assmt-type-card h4 {
+      font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700;
+      color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.25rem;
+    }
+    .assmt-type-card h3 { font-size: 1.1rem; font-weight: 700; color: white; margin-bottom: 0.75rem; }
+    .assmt-type-card p { font-size: 0.88rem; color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 0.75rem; }
+    .assmt-type-card ul { list-style: none; padding: 0; margin: 0 0 0.75rem; }
+    .assmt-type-card ul li { font-size: 0.85rem; color: rgba(255,255,255,0.75); padding: 0.22rem 0 0.22rem 1.1rem; position: relative; }
+    .assmt-type-card ul li::before { content: '·'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+    .assmt-purpose {
+      background: rgba(255,255,255,0.1); border-left: 3px solid var(--gold);
+      padding: 0.55rem 0.85rem; border-radius: 0 0.5rem 0.5rem 0;
+      font-size: 0.82rem !important; font-style: italic; color: rgba(255,255,255,0.9) !important;
+      margin-bottom: 0 !important;
+    }
+    .assmt-cycle-box {
+      background: var(--forest); color: white; border-radius: 1rem; padding: 2rem; margin-top: 1.5rem;
+    }
+    .assmt-cycle-box h3 { font-size: 1.1rem; color: white; margin-bottom: 0.5rem; }
+    .assmt-cycle-steps { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin: 1rem 0 1.25rem; }
+    .assmt-cycle-step {
+      background: var(--gold); color: white; font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem; font-weight: 700; padding: 0.38rem 0.85rem; border-radius: 999px;
+    }
+    .assmt-cycle-arrow { color: rgba(255,255,255,0.45); font-size: 1rem; }
+    .assmt-cycle-box ul { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 1.5rem; }
+    .assmt-cycle-box ul li { font-size: 0.88rem; color: rgba(255,255,255,0.8); padding-left: 1.1rem; position: relative; }
+    .assmt-cycle-box ul li::before { content: '·'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+    @media (max-width: 600px) { .assmt-cycle-box ul { grid-template-columns: 1fr; } }
+
+    /* ── INTERVENTION ── */
+    .intervention-section {
+      background: var(--cream);
+    }
+
+    .intervention-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 800px) {
+      .intervention-cards { grid-template-columns: 1fr; }
+    }
+
+    .intervention-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 1.75rem;
+      border-top: 4px solid var(--forest);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .intervention-card .int-badge {
+      display: inline-block;
+      background: var(--forest);
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 2rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .intervention-card h3 {
+      font-size: 1.05rem;
+      color: var(--forest);
+      margin-bottom: 0.75rem;
+    }
+
+    .intervention-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .intervention-card ul li {
+      font-size: 0.9rem;
+      color: #3a3a3a;
+      line-height: 1.6;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .intervention-card ul li:last-child { border-bottom: none; }
+
+    .intervention-card ul li::before {
+      content: '→ ';
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* ── EDUCATIONAL LINKS ── */
+    .edu-links-section {
+      background: white;
+    }
+
+    .edu-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .edu-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+      background: white;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      font-size: 0.88rem;
+    }
+
+    .edu-table thead {
+      background: var(--forest);
+      color: white;
+    }
+
+    .edu-table th {
+      padding: 0.9rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .edu-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #eee;
+      vertical-align: middle;
+      line-height: 1.5;
+      color: #3a3a3a;
+    }
+
+    .edu-table tr:last-child td { border-bottom: none; }
+    .edu-table tr:nth-child(even) td { background: #f6f9fc; }
+
+    .edu-table a {
+      color: var(--forest);
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    .edu-table a:hover { color: var(--gold); }
+
+    .subj-badge {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 0.25rem;
+      white-space: nowrap;
+      background: var(--light-green);
+      color: var(--forest);
+    }
+
+    .subj-badge.math      { background: var(--light-gold); color: #6b4a1a; }
+    .subj-badge.interv    { background: #fce8e8; color: #8b2020; }
+    .subj-badge.assess    { background: var(--light-blue); color: #1a4a6b; }
+    .subj-badge.bible     { background: #f0eaf9; color: #4a2870; }
+    .subj-badge.ss        { background: #fff3e0; color: #7a4a00; }
+    .subj-badge.science   { background: #e0f4f8; color: #0a4a5c; }
+
+    /* ── TEAM ── */
+    .team-section {
+      background: var(--cream);
+      border-top: 1px solid #e0ddd6;
+      padding: 3.5rem 0;
+    }
+
+    .contact-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      font-size: 0.9rem;
+      margin-top: 1.5rem;
+    }
+
+    .contact-table thead {
+      background: var(--forest);
+      color: white;
+    }
+
+    .contact-table th {
+      padding: 0.85rem 1rem;
+      text-align: left;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .contact-table td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid #eee;
+      vertical-align: middle;
+      color: #3a3a3a;
+    }
+
+    .contact-table tr:last-child td { border-bottom: none; }
+    .contact-table tr:nth-child(even) td { background: #fafafa; }
+
+    .contact-photo {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      display: block;
+    }
+
+    .contact-name {
+      font-weight: 700;
+      color: var(--forest);
+      text-decoration: none;
+    }
+
+    .contact-name:hover { color: var(--gold); text-decoration: underline; }
+
+    .contact-title {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+
+    /* ── HUB DIAGRAM ── */
+    .hub-diagram-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 2.5rem;
+    }
+
+    .hub-diagram {
+      position: relative;
+      width: 100%;
+      max-width: 460px;
+      aspect-ratio: 1;
+    }
+
+    .hub-lines {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hub-center-logo {
+      position: absolute;
+      width: 22%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      z-index: 3;
+      object-fit: cover;
+    }
+
+    .hub-spoke {
+      position: absolute;
+      width: 23%;
+      height: 23%;
+      border-radius: 50%;
+      background: var(--forest);
+      border: 2.5px solid var(--gold);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4%;
+      box-sizing: border-box;
+      overflow: hidden;
+      z-index: 2;
+      transform: translate(-50%, -50%);
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .hub-spoke:hover {
+      transform: translate(-50%, -50%) scale(1.12);
+      background: var(--sage);
+    }
+
+    a.hub-spoke { text-decoration: none; cursor: pointer; }
+
+    .hub-spoke svg {
+      width: clamp(11px, 3vw, 17px);
+      height: clamp(11px, 3vw, 17px);
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-bottom: 3px;
+    }
+
+    .hub-spoke-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(0.42rem, 1.2vw, 0.56rem);
+      font-weight: 700;
+      color: white;
+      line-height: 1.25;
+      letter-spacing: 0.01em;
+    }
+
+    @media (max-width: 500px) {
+      .hub-diagram { max-width: 300px; }
+    }
+
     /* ── FOOTER ── */
     footer {
       background: var(--forest);
       color: rgba(255,255,255,0.6);
       text-align: center;
       padding: 2.5rem 1.5rem;
-      font-family: 'Zapf Humanist 601', 'Optima', 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.82rem;
     }
 
-    footer strong {
-      color: var(--gold);
+    footer strong { color: var(--gold); }
+
+    .hero-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 0 auto 1.75rem;
     }
 
-    /* ── LOGO ── */
     .hero-logo {
       width: 100px;
       height: 100px;
       border-radius: 50%;
       display: block;
-      margin: 0 auto 1.75rem;
       box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+    }
+
+    .hero-logo-academic {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
     }
 
     .footer-logo {
@@ -718,7 +1120,6 @@
       opacity: 0.9;
     }
 
-    /* ── DIVIDER ── */
     .divider {
       width: 3rem;
       height: 3px;
@@ -732,11 +1133,10 @@
 
   <!-- HERO -->
   <header class="hero">
-    <img src="hub%20logo.png" alt="The Hub logo" class="hero-logo" />
-    <p class="hero-school">Westminster Christian School · PreK–5th Grade</p>
-    <h1>WELCOME TO <span>THE HUB</span></h1>
-    <p class="hero-sub">A collaborative learning space where curiosity, literacy, and discovery come alive.</p>
-    <span class="hero-badge">Harnessing · Understanding · Becoming</span>
+    <div class="hero-logos">
+      <img src="WCS%20academic%20logo.png" alt="Westminster Christian School academic logo" class="hero-logo-academic" />
+    </div>
+    <h1>WCS ELEMENTARY HUB</h1>
   </header>
 
   <!-- WHAT IS THE HUB -->
@@ -745,34 +1145,104 @@
       <p class="section-label">About Our Space</p>
       <h2>What Is The Hub?</h2>
       <div class="divider"></div>
-      <div class="what-grid">
+      <div class="what-layout">
         <div class="what-text">
           <p>The Hub is a central, flexible, and welcoming space designed for students in Preschool through 5th grade. It serves as an extension of the classroom, a place where literacy, curiosity, enrichment learning, and digital citizenship all come together.</p>
           <p>Students don't just visit The Hub, they grow here, guided by dedicated educators and surrounded by resources curated to spark wonder and deepen understanding.</p>
         </div>
-        <ul class="goal-list">
-          <li>
-            <svg class="icon-sm" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-            Develop a love of reading in print and digital forms
-          </li>
-          <li>
-            <svg class="icon-sm" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            Strengthen digital citizenship and responsible technology use
-          </li>
-          <li>
-            <svg class="icon-sm" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Engage in enrichment activities that extend classroom learning
-          </li>
-          <li>
-            <svg class="icon-sm" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            Cultivate curiosity, inquiry, and critical thinking
-          </li>
-          <li>
-            <svg class="icon-sm" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            Grow academically, socially, and spiritually alongside caring teachers
-          </li>
-        </ul>
+        <div class="hub-diagram-wrap">
+        <div class="hub-diagram">
+          <!-- Spoke connection lines (8 spokes, 45° apart) -->
+          <svg class="hub-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <line x1="50" y1="50" x2="50"   y2="14"   stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
+            <line x1="50" y1="50" x2="75.5" y2="24.5" stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
+            <line x1="50" y1="50" x2="86"   y2="50"   stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
+            <line x1="50" y1="50" x2="75.5" y2="75.5" stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
+            <line x1="50" y1="50" x2="50"   y2="86"   stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
+            <line x1="50" y1="50" x2="24.5" y2="75.5" stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
+            <line x1="50" y1="50" x2="14"   y2="50"   stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
+            <line x1="50" y1="50" x2="24.5" y2="24.5" stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
+          </svg>
+
+          <!-- Center Hub logo -->
+          <img src="hub%20logo.png" alt="The Hub" class="hub-center-logo"/>
+
+          <!-- 1. Curated Resources (top) -->
+          <a href="#kf-curated" class="hub-spoke" style="top:14%;left:50%">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            <span class="hub-spoke-label">Curated Resources</span>
+          </a>
+
+          <!-- 2. Flexible Learning Spaces (upper-right) -->
+          <a href="#kf-flexible" class="hub-spoke" style="top:24.5%;left:75.5%">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"/>
+              <rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/>
+              <rect x="3" y="14" width="7" height="7"/>
+            </svg>
+            <span class="hub-spoke-label">Flexible Learning Spaces</span>
+          </a>
+
+          <!-- 3. Teacher-Led Inquiry (right) -->
+          <a href="#kf-inquiry" class="hub-spoke" style="top:50%;left:86%">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="9" y1="18" x2="15" y2="18"/>
+              <line x1="10" y1="22" x2="14" y2="22"/>
+              <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/>
+            </svg>
+            <span class="hub-spoke-label">Teacher-Led Inquiry</span>
+          </a>
+
+          <!-- 4. Enrichment & Extension (lower-right) -->
+          <a href="#kf-enrichment" class="hub-spoke" style="top:75.5%;left:75.5%">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            <span class="hub-spoke-label">Enrichment &amp; Extension</span>
+          </a>
+
+          <!-- 5. Technology & Innovation (bottom) -->
+          <a href="#kf-tech" class="hub-spoke" style="top:86%;left:50%">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+            <span class="hub-spoke-label">Technology &amp; Innovation</span>
+          </a>
+
+          <!-- 6. Faith, Service & Leadership (lower-left) -->
+          <a href="#kf-service" class="hub-spoke" style="top:75.5%;left:24.5%">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <span class="hub-spoke-label">Faith, Service &amp; Leadership</span>
+          </a>
+
+          <!-- 7. Core Academics (left) -->
+          <a href="#kf-core" class="hub-spoke" style="top:50%;left:14%">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+            <span class="hub-spoke-label">Core Academics</span>
+          </a>
+
+          <!-- 8. Responsive Learning (upper-left) -->
+          <a href="#kf-responsive" class="hub-spoke" style="top:24.5%;left:24.5%">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+            <span class="hub-spoke-label">Responsive Learning</span>
+          </a>
+        </div>
       </div>
+      </div><!-- end what-layout -->
     </div>
   </section>
 
@@ -788,7 +1258,7 @@
 
         <div class="pathway-card harness">
           <div class="pathway-letter">H</div>
-          <div class="pathway-word">Harnessing</div>
+          <div class="pathway-word">Harness</div>
           <h3>Gather &amp; Focus</h3>
           <p>Students actively gather, focus, and direct curiosity toward meaningful learning, identifying sources, collecting relevant information, and applying it to real questions.</p>
           <ul class="pathway-steps">
@@ -801,7 +1271,7 @@
 
         <div class="pathway-card understand">
           <div class="pathway-letter">U</div>
-          <div class="pathway-word">Understanding</div>
+          <div class="pathway-word">Understand</div>
           <h3>Connect &amp; Make Meaning</h3>
           <p>Students make sense of ideas by analyzing, synthesizing, and reflecting, moving from isolated facts to rich, connected understanding across texts and experiences.</p>
           <ul class="pathway-steps">
@@ -814,7 +1284,7 @@
 
         <div class="pathway-card become">
           <div class="pathway-letter">B</div>
-          <div class="pathway-word">Becoming</div>
+          <div class="pathway-word">Become</div>
           <h3>Grow &amp; Contribute</h3>
           <p>Students become confident, thoughtful, Christ-centered learners, applying knowledge, collaborating with others, and contributing positively to their world.</p>
           <ul class="pathway-steps">
@@ -837,7 +1307,8 @@
       <div class="divider"></div>
       <div class="features-grid">
 
-        <div class="feature-card">
+        <!-- 1. Curated Resources -->
+        <div class="feature-card" id="kf-curated">
           <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
             <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
@@ -846,7 +1317,8 @@
           <p>Print and digital resources selected to support enrichment learning, literacy, and guided exploration across 20+ nonfiction genres and a rich fiction collection.</p>
         </div>
 
-        <div class="feature-card">
+        <!-- 2. Flexible Learning Spaces -->
+        <div class="feature-card" id="kf-flexible">
           <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="3" width="7" height="7"/>
             <rect x="14" y="3" width="7" height="7"/>
@@ -857,7 +1329,8 @@
           <p>Flexible seating and open learning areas designed for both small-group instruction and individual exploration, a space that adapts to the learner.</p>
         </div>
 
-        <div class="feature-card">
+        <!-- 3. Teacher-Led Inquiry -->
+        <div class="feature-card" id="kf-inquiry">
           <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
             <line x1="9" y1="18" x2="15" y2="18"/>
             <line x1="10" y1="22" x2="14" y2="22"/>
@@ -867,21 +1340,25 @@
           <p>Educators model thinking aloud, ask open-ended questions, and guide students in connecting information across subjects, building critical and creative thinkers.</p>
         </div>
 
-        <div class="feature-card">
+        <!-- 4. Technology & Innovation -->
+        <div class="feature-card feature-card-featured" id="kf-tech">
           <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-          <h3>Digital Citizenship</h3>
-          <p>Students learn to navigate technology responsibly, curating digital resources, evaluating online information, and developing habits for thoughtful, ethical tech use.</p>
-        </div>
-
-        <div class="feature-card feature-card-featured">
-          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
           </svg>
           <div class="feature-body">
-            <h3>Signature Program Pathway</h3>
+            <h3>Technology &amp; Innovation</h3>
+            <p>Students leverage technology as a tool for creativity, communication, collaboration, problem-solving, and innovation while learning to navigate the digital world responsibly. Through thoughtful evaluation of information, responsible digital citizenship, and ethical decision-making, students develop the skills and character needed to use technology wisely and purposefully.</p>
+          </div>
+        </div>
+
+        <!-- 5. Enrichment & Extension -->
+        <div class="feature-card feature-card-featured" id="kf-enrichment">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          <div class="feature-body">
+            <p class="feature-card-sublabel">Signature Program Pathway</p>
+            <h3>Enrichment &amp; Extension</h3>
             <p>Engage in enrichment activities that extend classroom learning through purposeful, connected experiences designed to deepen curiosity and develop the whole learner.</p>
           </div>
           <a class="learn-more" href="https://mglavach.github.io/wcs-signature-programs/" target="_blank" rel="noopener">
@@ -890,7 +1367,8 @@
           </a>
         </div>
 
-        <div class="feature-card feature-card-featured">
+        <!-- 6. Faith, Service & Leadership -->
+        <div class="feature-card feature-card-featured" id="kf-service">
           <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
             <circle cx="9" cy="7" r="4"/>
@@ -898,7 +1376,8 @@
             <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
           </svg>
           <div class="feature-body">
-            <h3>Community Connect Initiative</h3>
+            <p class="feature-card-sublabel">Community Connect Initiative</p>
+            <h3>Faith, Service &amp; Leadership</h3>
             <p>Students become confident, thoughtful, Christ-centered learners, applying knowledge, collaborating with others, and contributing positively to their world.</p>
           </div>
           <a class="learn-more" href="https://mglavach.github.io/community-connect-initiative/" target="_blank" rel="noopener">
@@ -907,30 +1386,37 @@
           </a>
         </div>
 
-        <div class="feature-card feature-card-featured">
+        <!-- 7. Core Academics -->
+        <div class="feature-card feature-card-featured" id="kf-core">
           <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
           </svg>
           <div class="feature-body">
-            <p class="feature-card-sublabel">Literacy</p>
-            <h3>Reading Program</h3>
-            <p>Our reading program is built on the belief that wide, joyful reading creates the strongest readers, aligned to Florida B.E.S.T. ELA Standards for every grade level.</p>
+            <h3>Core Academics</h3>
+            <p>Hub instruction supports and extends in-class learning across Mathematics and Literacy, providing enrichment, foundational skills, and responsive instruction for every learner K–5.</p>
           </div>
-          <a class="learn-more" href="#reading">
-            Learn More
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
+          <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:auto;">
+            <a class="learn-more" href="#math" style="flex:1; min-width:120px;">
+              Mathematics
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a class="learn-more" href="#reading" style="flex:1; min-width:120px;">
+              Literacy
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
         </div>
 
-        <div class="feature-card feature-card-featured">
+        <!-- 8. Responsive Learning -->
+        <div class="feature-card feature-card-featured" id="kf-responsive">
           <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
           </svg>
           <div class="feature-body">
             <p class="feature-card-sublabel">Measurement &amp; Growth</p>
-            <h3>Reading Assessment</h3>
-            <p>Assessment in The Hub celebrates growth, informs instruction, and helps teachers have meaningful conversations with students and families, always in service of the reader.</p>
+            <h3>Responsive Learning</h3>
+            <p>Assessment at WCS is used to understand where students are in their learning journey and to guide responsive instruction. Through ongoing data and observation, we intentionally differentiate instruction with both support and enrichment to meet the needs of every learner.</p>
           </div>
           <a class="learn-more" href="#assessment">
             Learn More
@@ -942,96 +1428,308 @@
     </div>
   </section>
 
-  <!-- READING PROGRAM -->
-  <section class="reading-section" id="reading">
+  <!-- ACADEMICS -->
+  <section id="academics" style="padding: 4rem 0; background: var(--cream);">
     <div class="container">
-      <p class="section-label">Literacy</p>
-      <h2>Reading Program</h2>
+      <p class="section-label">Academics</p>
+      <h2>Programs</h2>
       <div class="divider"></div>
-      <p style="color: #3a3a3a; max-width: 640px;">Our reading program is built on the belief that wide, joyful reading creates the strongest readers, aligned to Florida B.E.S.T. ELA Standards for every grade level.</p>
 
-      <div class="reading-philosophy">
-        <div class="philosophy-card">
-          <svg class="phil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-          </svg>
-          <h3>Wide Reading</h3>
-          <p>Students read within, above, and below their level, exploring fiction, nonfiction, poetry, biography, graphic novels, and more. Genre variety builds vocabulary and empathy.</p>
-        </div>
-        <div class="philosophy-card">
-          <svg class="phil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <polyline points="12 6 12 12 16 14"/>
-          </svg>
-          <h3>Sustained Independent Reading</h3>
-          <p>Daily sustained silent reading builds stamina. From 5–10 minutes in Kindergarten to 30+ minutes in 5th grade, students grow as focused, independent readers.</p>
-        </div>
-        <div class="philosophy-card">
-          <svg class="phil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-          </svg>
-          <h3>AR as Motivation</h3>
-          <p>Accelerated Reader celebrates reading milestones and encourages goal-setting, a tool for motivation and accountability, never a restriction on book choice.</p>
-        </div>
+      <div class="int-tabs">
+        <button class="acad-tab active" onclick="showAcadTab(event,'acad-reading')">Reading</button>
+        <button class="acad-tab" onclick="showAcadTab(event,'acad-math')">Math</button>
+        <button class="acad-tab" onclick="showAcadTab(event,'acad-resources')">Resources</button>
       </div>
 
-      <!-- Grade band summary table -->
-      <table class="grade-table">
-        <thead>
-          <tr>
-            <th>Grade</th>
-            <th>Reading Focus</th>
-            <th>Sustained Reading Goal</th>
-            <th>AR Points (Quarterly)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="grade-badge">PK3 &amp; PK4</span></td>
-            <td>Listening comprehension, print awareness, love of stories</td>
-            <td>Daily read-alouds; independent picture book exploration; share favorite books with the class</td>
-            <td><span class="ar-na">N/A</span></td>
-          </tr>
-          <tr>
-            <td><span class="grade-badge">K</span></td>
-            <td>Concepts of print, story structure, oral retell</td>
-            <td>5–10 minutes sustained attention; weekly book checkout; share favorite books with classmates</td>
-            <td><span class="ar-na">N/A</span></td>
-          </tr>
-          <tr>
-            <td><span class="grade-badge">1st</span></td>
-            <td>Foundational decoding, fluency, comprehension monitoring</td>
-            <td>10–15 minutes; wide reading across formats; share book picks with classmates</td>
-            <td><span class="ar-na">N/A</span></td>
-          </tr>
-          <tr>
-            <td><span class="grade-badge">2nd</span></td>
-            <td>Independent reading growth, vocabulary, story elements</td>
-            <td>15–20 minutes; fiction and nonfiction regularly; peer book recommendations</td>
-            <td><span class="ar-goal">25 pts</span></td>
-          </tr>
-          <tr>
-            <td><span class="grade-badge">3rd</span></td>
-            <td>Reading stamina, text evidence, genre comparison</td>
-            <td>20–25 minutes; 5+ genres annually; one "stretch" book per quarter; peer book recommendations</td>
-            <td><span class="ar-goal">50 pts</span></td>
-          </tr>
-          <tr>
-            <td><span class="grade-badge">4th</span></td>
-            <td>Deeper comprehension, theme, cross-text connections</td>
-            <td>25–30 minutes; wide reading including history, biography, poetry; peer book recommendations</td>
-            <td><span class="ar-goal">75 pts</span></td>
-          </tr>
-          <tr>
-            <td><span class="grade-badge">5th</span></td>
-            <td>Analytical thinking, argument, reading independence</td>
-            <td>30+ minutes; long-form novels each quarter; lead peer book recommendations</td>
-            <td><span class="ar-goal">100 pts</span></td>
-          </tr>
-        </tbody>
-      </table>
+      <!-- READING TAB -->
+      <div id="acad-reading" class="acad-panel active">
+        <p style="color: #3a3a3a; max-width: 640px; margin-bottom: 1.5rem;">Our reading program is built on the belief that wide, joyful reading creates the strongest readers, aligned to Florida B.E.S.T. ELA Standards for every grade level.</p>
+        <div class="reading-philosophy">
+          <div class="philosophy-card">
+            <svg class="phil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+            </svg>
+            <h3>Wide Reading</h3>
+            <p>Students read within, above, and below their level, exploring fiction, nonfiction, poetry, biography, graphic novels, and more. Genre variety builds vocabulary and empathy.</p>
+          </div>
+          <div class="philosophy-card">
+            <svg class="phil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <h3>Sustained Independent Reading</h3>
+            <p>Daily sustained silent reading builds stamina. From 5–10 minutes in Kindergarten to 30+ minutes in 5th grade, students grow as focused, independent readers.</p>
+          </div>
+          <div class="philosophy-card">
+            <svg class="phil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            <h3>AR as Motivation</h3>
+            <p>Accelerated Reader celebrates reading milestones and encourages goal-setting, a tool for motivation and accountability, never a restriction on book choice.</p>
+          </div>
+        </div>
+        <table class="grade-table">
+          <thead>
+            <tr>
+              <th>Grade</th>
+              <th>Reading Focus</th>
+              <th>Sustained Reading Goal</th>
+              <th><a href="AR-Goal-Setting-Chart.pdf" target="_blank">AR Points</a> (Annual)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="grade-badge">PK3 &amp; PK4</span></td>
+              <td>Listening comprehension, print awareness, love of stories</td>
+              <td>Daily read-alouds; independent picture book exploration; share favorite books with the class</td>
+              <td><span class="ar-na">N/A</span></td>
+            </tr>
+            <tr>
+              <td><span class="grade-badge">K</span></td>
+              <td>Concepts of print, story structure, oral retell</td>
+              <td>5–10 minutes sustained attention; weekly book checkout; share favorite books with classmates</td>
+              <td><span class="ar-na">N/A</span></td>
+            </tr>
+            <tr>
+              <td><span class="grade-badge">1st</span></td>
+              <td>Foundational decoding, fluency, comprehension monitoring</td>
+              <td>10–15 minutes; wide reading across formats; share book picks with classmates</td>
+              <td><span class="ar-na">N/A</span></td>
+            </tr>
+            <tr>
+              <td><span class="grade-badge">2nd</span></td>
+              <td>Independent reading growth, vocabulary, story elements</td>
+              <td>15–20 minutes; fiction and nonfiction regularly; peer book recommendations</td>
+              <td><span class="ar-goal">25 pts</span></td>
+            </tr>
+            <tr>
+              <td><span class="grade-badge">3rd</span></td>
+              <td>Reading stamina, text evidence, genre comparison</td>
+              <td>20–25 minutes; wide reading across formats; one "stretch" book per quarter; peer book recommendations</td>
+              <td><span class="ar-goal">50 pts</span></td>
+            </tr>
+            <tr>
+              <td><span class="grade-badge">4th</span></td>
+              <td>Deeper comprehension, theme, cross-text connections</td>
+              <td>25–30 minutes; wide reading including history, biography, poetry; one "stretch" book per quarter; peer book recommendations</td>
+              <td><span class="ar-goal">75 pts</span></td>
+            </tr>
+            <tr>
+              <td><span class="grade-badge">5th</span></td>
+              <td>Analytical thinking, argument, reading independence</td>
+              <td>30+ minutes; long-form novels each quarter; lead peer book recommendations</td>
+              <td><span class="ar-goal">100 pts</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
+      <!-- MATH TAB -->
+      <div id="acad-math" class="acad-panel">
+        <p style="color: #3a3a3a; max-width: 680px; margin-bottom: 1.5rem;">Our math program is built on the belief that math is more than computation; it is a language of patterns, logic, and wonder. Every student deserves both the confidence that comes from solid foundational skills and the excitement of mathematical exploration beyond grade level.</p>
+        <div class="reading-philosophy">
+          <div class="philosophy-card">
+            <svg class="phil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="8" height="8" rx="1"/>
+              <rect x="14" y="2" width="8" height="8" rx="1"/>
+              <rect x="2" y="14" width="8" height="8" rx="1"/>
+              <rect x="14" y="14" width="8" height="8" rx="1"/>
+            </svg>
+            <h3>Foundation &amp; Fluency</h3>
+            <p>Building automaticity with math facts and operations through Reflex (Grades 1–5), so students can focus their thinking on problem-solving rather than computation.</p>
+          </div>
+          <div class="philosophy-card">
+            <svg class="phil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            <h3>Enrichment &amp; Extension</h3>
+            <p>Challenging students in Grades 3–5 with FRACS to deepen fraction and algebraic reasoning, and using IXL to stretch every learner K–5 with personalized practice paths.</p>
+          </div>
+          <div class="philosophy-card">
+            <svg class="phil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <h3>Responsive Intervention</h3>
+            <p>Using MAPS Math data and IXL diagnostic reports to identify students who need targeted support, responding quickly with small-group instruction and adaptive tools.</p>
+          </div>
+        </div>
+        <table class="grade-table">
+          <thead>
+            <tr>
+              <th>Grade</th>
+              <th>Math Focus</th>
+              <th>Program Tools</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="grade-badge">PK3 &amp; PK4</span></td>
+              <td>Counting, patterns, shapes, number recognition</td>
+              <td><span class="ar-na">N/A</span></td>
+            </tr>
+            <tr>
+              <td><span class="grade-badge">K</span></td>
+              <td>Number sense, counting to 100, addition &amp; subtraction concepts</td>
+              <td>IXL Math</td>
+            </tr>
+            <tr>
+              <td><span class="grade-badge">1st</span></td>
+              <td>Addition &amp; subtraction fluency, place value, measurement</td>
+              <td>Reflex, IXL Math</td>
+            </tr>
+            <tr>
+              <td><span class="grade-badge">2nd</span></td>
+              <td>Multi-digit operations, place value to 1,000, geometry</td>
+              <td>Reflex, IXL Math</td>
+            </tr>
+            <tr>
+              <td><span class="grade-badge">3rd</span></td>
+              <td>Multiplication &amp; division, fractions, area &amp; perimeter</td>
+              <td>FRACS, Reflex, IXL Math</td>
+            </tr>
+            <tr>
+              <td><span class="grade-badge">4th</span></td>
+              <td>Multi-digit multiplication, fractions, decimals</td>
+              <td>FRACS, Reflex, IXL Math</td>
+            </tr>
+            <tr>
+              <td><span class="grade-badge">5th</span></td>
+              <td>Fractions, decimals, algebraic thinking, volume</td>
+              <td>FRACS, Reflex, IXL Math</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- RESOURCES TAB -->
+      <div id="acad-resources" class="acad-panel">
+        <p style="color: #3a3a3a; max-width: 640px; margin-bottom: 1.5rem;">Quick access to all digital programs used at WCS Elementary, organized by grade level. Contact Mrs. Glavach if you need login help.</p>
+        <div class="edu-table-wrap">
+        <table class="edu-table">
+          <thead>
+            <tr>
+              <th>Grade</th>
+              <th>Language Arts</th>
+              <th>Math</th>
+              <th>Social Studies</th>
+              <th>Science</th>
+              <th>Bible</th>
+              <th>Spanish</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="grade-badge">K</span></td>
+              <td>
+                <a href="https://sso.rumba.pk12ls.com/sso/login?service=https://www.savvasrealize.com/dashboard/auth-callback&profile=realize" target="_blank" rel="noopener">Savvas</a><br>
+                <a href="https://www.ixl.com/signin/westminstercs" target="_blank" rel="noopener">IXL</a>
+              </td>
+              <td><a href="https://www.ixl.com/signin/westminstercs" target="_blank" rel="noopener">IXL</a></td>
+              <td><a href="https://bjupresstrove.com/login.htm?tenant=bjupress" target="_blank" rel="noopener">Trove</a></td>
+              <td>-</td>
+              <td><a href="https://wcs4.deeprootsbible.com/login" target="_blank" rel="noopener">Deep Roots</a></td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><span class="grade-badge">1st</span></td>
+              <td>
+                <a href="https://sso.rumba.pk12ls.com/sso/login?service=https://www.savvasrealize.com/dashboard/auth-callback&profile=realize" target="_blank" rel="noopener">Savvas</a><br>
+                <a href="https://global-zone50.renaissance-go.com/welcomeportal/65790" target="_blank" rel="noopener">Acc. Reader</a><br>
+                <a href="https://www.ixl.com/signin/westminstercs" target="_blank" rel="noopener">IXL</a>
+              </td>
+              <td>
+                <a href="https://www.ixl.com/signin/westminstercs" target="_blank" rel="noopener">IXL</a><br>
+                <a href="https://accounts.explorelearning.com/reflex/student" target="_blank" rel="noopener">Reflex</a>
+              </td>
+              <td><a href="https://bjupresstrove.com/login.htm?tenant=bjupress" target="_blank" rel="noopener">Trove</a></td>
+              <td>-</td>
+              <td><a href="https://wcs4.deeprootsbible.com/login" target="_blank" rel="noopener">Deep Roots</a></td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><span class="grade-badge">2nd</span></td>
+              <td>
+                <a href="https://sso.rumba.pk12ls.com/sso/login?service=https://www.savvasrealize.com/dashboard/auth-callback&profile=realize" target="_blank" rel="noopener">Savvas</a><br>
+                <a href="https://global-zone50.renaissance-go.com/welcomeportal/65790" target="_blank" rel="noopener">Acc. Reader</a><br>
+                <a href="https://www.ixl.com/signin/westminstercs" target="_blank" rel="noopener">IXL</a>
+              </td>
+              <td>
+                <a href="https://www.ixl.com/signin/westminstercs" target="_blank" rel="noopener">IXL</a><br>
+                <a href="https://accounts.explorelearning.com/reflex/student" target="_blank" rel="noopener">Reflex</a>
+              </td>
+              <td><a href="https://bjupresstrove.com/login.htm?tenant=bjupress" target="_blank" rel="noopener">Trove</a></td>
+              <td>-</td>
+              <td><a href="https://wcs4.deeprootsbible.com/login" target="_blank" rel="noopener">Deep Roots</a></td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><span class="grade-badge">3rd</span></td>
+              <td>
+                <a href="https://sso.rumba.pk12ls.com/sso/login?service=https://www.savvasrealize.com/dashboard/auth-callback&profile=realize" target="_blank" rel="noopener">Savvas</a><br>
+                <a href="https://global-zone50.renaissance-go.com/welcomeportal/65790" target="_blank" rel="noopener">Acc. Reader</a><br>
+                <a href="https://www.ixl.com/signin/westminstercs" target="_blank" rel="noopener">IXL</a>
+              </td>
+              <td>
+                <a href="https://www.ixl.com/signin/westminstercs" target="_blank" rel="noopener">IXL</a><br>
+                <a href="https://accounts.explorelearning.com/reflex/student" target="_blank" rel="noopener">Reflex</a><br>
+                FRACS
+              </td>
+              <td><a href="https://bjupresstrove.com/login.htm?tenant=bjupress" target="_blank" rel="noopener">Trove</a></td>
+              <td>-</td>
+              <td><a href="https://wcs4.deeprootsbible.com/login" target="_blank" rel="noopener">Deep Roots</a></td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><span class="grade-badge">4th</span></td>
+              <td>
+                <a href="https://sso.rumba.pk12ls.com/sso/login?service=https://www.savvasrealize.com/dashboard/auth-callback&profile=realize" target="_blank" rel="noopener">Savvas</a><br>
+                <a href="https://global-zone50.renaissance-go.com/welcomeportal/65790" target="_blank" rel="noopener">Acc. Reader</a><br>
+                <a href="https://www.ixl.com/signin/westminstercs" target="_blank" rel="noopener">IXL</a>
+              </td>
+              <td>
+                <a href="https://www.ixl.com/signin/westminstercs" target="_blank" rel="noopener">IXL</a><br>
+                <a href="https://accounts.explorelearning.com/reflex/student" target="_blank" rel="noopener">Reflex</a><br>
+                FRACS
+              </td>
+              <td><a href="https://bjupresstrove.com/login.htm?tenant=bjupress" target="_blank" rel="noopener">Trove</a></td>
+              <td>-</td>
+              <td><a href="https://wcs4.deeprootsbible.com/login" target="_blank" rel="noopener">Deep Roots</a></td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><span class="grade-badge">5th</span></td>
+              <td>
+                <a href="https://sso.rumba.pk12ls.com/sso/login?service=https://www.savvasrealize.com/dashboard/auth-callback&profile=realize" target="_blank" rel="noopener">Savvas</a><br>
+                <a href="https://global-zone50.renaissance-go.com/welcomeportal/65790" target="_blank" rel="noopener">Acc. Reader</a><br>
+                <a href="https://www.ixl.com/signin/westminstercs" target="_blank" rel="noopener">IXL</a>
+              </td>
+              <td>
+                <a href="https://www.ixl.com/signin/westminstercs" target="_blank" rel="noopener">IXL</a><br>
+                <a href="https://accounts.explorelearning.com/reflex/student" target="_blank" rel="noopener">Reflex</a><br>
+                FRACS
+              </td>
+              <td><a href="https://bjupresstrove.com/login.htm?tenant=bjupress" target="_blank" rel="noopener">Trove</a></td>
+              <td>-</td>
+              <td><a href="https://wcs4.deeprootsbible.com/login" target="_blank" rel="noopener">Deep Roots</a></td>
+              <td>-</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.82rem; color: var(--muted); font-style: italic;">At-home intervention tools (Lexia Core 5, Learning Ally) are available in the Intervention → At Home section.</p>
+      </div>
+
+      <script>
+        function showAcadTab(e, panelId) {
+          document.querySelectorAll('.acad-panel').forEach(p => p.classList.remove('active'));
+          document.querySelectorAll('.acad-tab').forEach(t => t.classList.remove('active'));
+          document.getElementById(panelId).classList.add('active');
+          e.currentTarget.classList.add('active');
+        }
+      </script>
     </div>
   </section>
 
@@ -1039,7 +1737,7 @@
   <section class="assessment-section" id="assessment">
     <div class="container">
       <p class="section-label">Measurement &amp; Growth</p>
-      <h2>Reading Assessment</h2>
+      <h2>Assessment</h2>
       <div class="divider"></div>
 
       <div class="assess-why">
@@ -1049,99 +1747,129 @@
           <line x1="12" y1="16" x2="12.01" y2="16"/>
         </svg>
         <div>
-          <h3>Why Reading Assessment?</h3>
-          <p>Assessment in The Hub is not about labeling students or restricting their reading, it is about understanding each learner so we can serve them better. When we know where a student is, we can celebrate how far they have come and guide them toward what is next.</p>
-          <p>Our assessments measure growth over time, inform instruction, and help teachers have meaningful conversations with students and families. They work alongside, never instead of, wide reading, curiosity, and the joy of books.</p>
+          <h3>Why Assessment?</h3>
+          <p>Assessment in The Hub is not about labeling students or restricting their reading and math work. It is about understanding each learner so we can serve them better. When we know where a student is, we can celebrate how far they have come and guide them toward what is next.</p>
+          <p>Our assessments measure growth over time, inform instruction, and help teachers have meaningful conversations with students and families. They work alongside, never instead of, wide reading, mathematical curiosity, and the joy of learning.</p>
         </div>
       </div>
 
-      <p class="assess-types-label">Assessment Types</p>
-
-      <!-- MAPS -->
-      <div class="maps-card" style="margin-bottom: 1.25rem;">
-        <div>
-          <svg class="maps-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-          </svg>
-          <div class="maps-header">
-            <span class="maps-badge">MAPS</span>
-            <span class="maps-grade-range">Grades K–5</span>
-          </div>
-          <h3>Measures of Academic Progress</h3>
-          <p class="maps-full-name">MAP Growth · NWEA</p>
-          <p>A computer-adaptive benchmark assessment that adjusts in real time to each student's responses, delivering a precise RIT score that measures exactly where a student is, and how much they have grown from one testing window to the next.</p>
-        </div>
-        <div class="maps-details">
-          <div class="maps-detail-block">
-            <h4>Testing Windows</h4>
-            <div class="maps-windows">
-              <span class="window-pill">Fall</span>
-              <span class="window-pill">Winter</span>
-              <span class="window-pill">Spring</span>
-            </div>
-          </div>
-          <div class="maps-detail-block">
-            <h4>What It Measures</h4>
-            <ul class="maps-list">
-              <li>Reading comprehension and vocabulary</li>
-              <li>Foundational skills (K–2)</li>
-              <li>Literature and informational text</li>
-              <li>Growth from window to window</li>
-            </ul>
-          </div>
-          <div class="maps-detail-block">
-            <h4>How We Use Results</h4>
-            <ul class="maps-list">
-              <li>Inform instruction and small-group support</li>
-              <li>Set individual growth goals with students</li>
-              <li>Guide family conferences</li>
-              <li>Celebrate measurable growth</li>
-            </ul>
-          </div>
-        </div>
+      <!-- Assessment Tab Buttons -->
+      <div class="assmt-tabs">
+        <button class="assmt-tab active" onclick="showAssmtTab(event,'assmt-tools')">Assessments</button>
+        <button class="assmt-tab" onclick="showAssmtTab(event,'assmt-system')">Assessment System</button>
       </div>
 
-      <!-- STAR & FLUENCY side by side -->
-      <div class="assess-pair">
+      <!-- TAB 1: Assessment Tools -->
+      <div id="assmt-tools" class="assmt-panel active">
+        <p class="assess-types-label">Assessments</p>
+        <p style="font-size:0.88rem; color:var(--muted); max-width:680px; margin-bottom:1.5rem; line-height:1.65;">MAP and STAR are adaptive assessments that adjust question difficulty in real time to measure student ability and growth. IXL is an adaptive learning platform that adjusts practice based on student responses but is used primarily for instruction and skill development rather than formal benchmarking.</p>
 
-        <!-- STAR -->
+        <div class="assess-grid">
+        <!-- 1. IXL -->
         <div class="maps-card" style="background: #3d6e47;">
-          <div style="grid-column: 1 / -1;">
+          <div>
             <svg class="maps-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M8 12h8M12 8v8"/>
             </svg>
             <div class="maps-header">
-              <span class="maps-badge">STAR</span>
-              <span class="maps-grade-range">Grades 2–4</span>
+              <span class="maps-badge">IXL</span>
+              <span class="maps-grade-range">Grades K–5 · Reading &amp; Math</span>
             </div>
-            <h3>STAR Reading</h3>
-            <p class="maps-full-name">Renaissance STAR</p>
-            <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.65; margin-bottom: 1.25rem;">A computer-adaptive assessment that provides a Scaled Score and grade equivalent, offering a quick, reliable snapshot of reading comprehension and vocabulary to supplement MAP data and inform targeted instruction.</p>
+            <h3>IXL Learning</h3>
+            <p class="maps-full-name">Adaptive Practice &amp; Diagnostic</p>
+            <p>IXL provides personalized practice paths in both reading and mathematics. Diagnostic scores help identify skill gaps and guide targeted instruction, while the SmartScore system tracks mastery in real time.</p>
+          </div>
+          <div class="maps-details">
             <div class="maps-detail-block">
-              <h4>What It Measures</h4>
+              <h4>Assessment Type</h4>
+              <p style="font-size:0.82rem; color:rgba(255,255,255,0.8);">Adaptive practice platform — adjusts to student responses. Used for instruction and skill development, not formal benchmarking.</p>
+            </div>
+            <div class="maps-detail-block">
+              <h4>Testing Window</h4>
+              <div class="maps-windows"><span class="window-pill">Fall</span></div>
+            </div>
+            <div class="maps-detail-block">
+              <h4>What It Covers</h4>
               <ul class="maps-list">
-                <li>Reading comprehension</li>
-                <li>Vocabulary in context</li>
-                <li>Instructional reading level</li>
+                <li>Reading comprehension and language skills</li>
+                <li>Math operations, reasoning, and problem-solving</li>
+                <li>Adaptive difficulty based on student responses</li>
               </ul>
             </div>
           </div>
         </div>
 
-        <!-- FLUENCY -->
+        <!-- 2. MAP Growth -->
+        <div class="maps-card">
+          <div>
+            <svg class="maps-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+            <div class="maps-header">
+              <span class="maps-badge">MAP Growth</span>
+              <span class="maps-grade-range">Grades K–5 · Reading &amp; Math</span>
+            </div>
+            <h3>MAP Growth · Reading &amp; Mathematics</h3>
+            <p class="maps-full-name">NWEA</p>
+            <p>A computer-adaptive benchmark assessment that adjusts in real time to each student's responses, delivering a precise RIT score in both reading and mathematics.</p>
+          </div>
+          <div class="maps-details">
+            <div class="maps-detail-block">
+              <h4>Assessment Type</h4>
+              <p style="font-size:0.82rem; color:rgba(255,255,255,0.8);">Adaptive benchmark — adjusts question difficulty in real time to measure student ability and long-term growth.</p>
+            </div>
+            <div class="maps-detail-block">
+              <h4>Testing Windows</h4>
+              <div class="maps-windows">
+                <span class="window-pill">Fall</span>
+                <span class="window-pill">Spring</span>
+              </div>
+            </div>
+            <div class="maps-detail-block">
+              <h4>What It Measures</h4>
+              <ul class="maps-list">
+                <li>Reading comprehension, vocabulary, foundational skills (K–2)</li>
+                <li>Literature and informational text</li>
+                <li>Number operations, algebraic thinking</li>
+                <li>Geometry, measurement, data and statistics</li>
+              </ul>
+            </div>
+            <div class="maps-detail-block">
+              <h4>How We Use Results</h4>
+              <ul class="maps-list">
+                <li>Inform instruction and small-group support</li>
+                <li>Set individual reading and math growth goals</li>
+                <li>Guide IXL, Reflex, and FRACS pathways</li>
+                <li>Guide family conferences and celebrate growth</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. ORF -->
         <div class="maps-card" style="background: #1e4a38;">
-          <div style="grid-column: 1 / -1;">
+          <div>
             <svg class="maps-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
               <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
               <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
             </svg>
             <div class="maps-header">
-              <span class="maps-badge">Fluency</span>
+              <span class="maps-badge">ORF</span>
               <span class="maps-grade-range">Grades 1–3</span>
             </div>
             <h3>Oral Reading Fluency</h3>
-            <p class="maps-full-name">ORF / CBM-R</p>
-            <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.65; margin-bottom: 1.25rem;">A brief, teacher-administered reading passage assessment that measures words read correctly per minute (WCPM), tracking the development of accurate, expressive, and automatic decoding as a foundation for comprehension.</p>
+            <p class="maps-full-name">Teacher-Administered</p>
+            <p>A brief reading passage assessment measuring words read correctly per minute (WCPM), tracking the development of accurate, expressive, and automatic decoding as a foundation for comprehension.</p>
+          </div>
+          <div class="maps-details">
+            <div class="maps-detail-block">
+              <h4>Testing Window</h4>
+              <div class="maps-windows">
+                <span class="window-pill">Fall</span>
+                <span class="window-pill">Spring</span>
+              </div>
+            </div>
             <div class="maps-detail-block">
               <h4>What It Measures</h4>
               <ul class="maps-list">
@@ -1153,15 +1881,382 @@
           </div>
         </div>
 
+        <!-- 4. STAR -->
+        <div class="maps-card" style="background: #3d6e47;">
+          <div>
+            <svg class="maps-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            <div class="maps-header">
+              <span class="maps-badge">STAR</span>
+              <span class="maps-grade-range">Grades 2–4</span>
+            </div>
+            <h3>STAR Reading</h3>
+            <p class="maps-full-name">Renaissance STAR</p>
+            <p>A computer-adaptive assessment providing a Scaled Score and grade equivalent, a quick, reliable snapshot of reading comprehension and vocabulary to supplement MAP Growth data and inform targeted instruction.</p>
+          </div>
+          <div class="maps-details">
+            <div class="maps-detail-block">
+              <h4>Assessment Type</h4>
+              <p style="font-size:0.82rem; color:rgba(255,255,255,0.8);">Adaptive screening — adjusts question difficulty in real time to quickly measure current performance and growth.</p>
+            </div>
+            <div class="maps-detail-block">
+              <h4>Testing Window</h4>
+              <div class="maps-windows">
+                <span class="window-pill">Fall</span>
+                <span class="window-pill">Spring</span>
+              </div>
+            </div>
+            <div class="maps-detail-block">
+              <h4>What It Measures</h4>
+              <ul class="maps-list">
+                <li>Reading comprehension</li>
+                <li>Vocabulary in context</li>
+                <li>Instructional reading level</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        </div><!-- end assess-grid -->
+
+        <p style="margin-top:1rem; font-size:0.82rem; color:var(--muted); font-style:italic;">Assessment results are shared with classroom teachers and families to celebrate growth and guide next steps, never to define or limit a learner.</p>
+      </div><!-- end assmt-tools panel -->
+
+      <!-- TAB 2: Assessment System -->
+      <div id="assmt-system" class="assmt-panel">
+        <div style="max-width:700px; margin-bottom:1.75rem;">
+          <h3 style="font-size:1.35rem; color:var(--forest); margin-bottom:0.75rem;">How We Understand Student Learning &amp; Growth</h3>
+          <p style="color:#3a3a3a; line-height:1.7;">WCS uses a balanced system of assessments to understand student learning, guide instruction, and support both growth and enrichment. Each type of assessment serves a distinct purpose, from long-term growth to daily skill development.</p>
+        </div>
+
+        <div class="assmt-system-grid">
+
+          <div class="assmt-type-card">
+            <span class="assmt-type-num">1 · Growth Measurement</span>
+            <h4>Big Picture</h4>
+            <h3>MAP Growth</h3>
+            <p>MAP is an adaptive assessment that measures long-term academic growth in reading and math.</p>
+            <ul>
+              <li>Administered 2–3 times per year</li>
+              <li>Adjusts difficulty based on student responses</li>
+              <li>Provides a growth score (RIT)</li>
+              <li>Shows progress over time and across grade levels</li>
+            </ul>
+            <p class="assmt-purpose">Purpose: Understand where a student is and how they are growing over time.</p>
+          </div>
+
+          <div class="assmt-type-card" style="background:#1e4a38;">
+            <span class="assmt-type-num">2 · Benchmark &amp; Screening</span>
+            <h4>Quick Snapshot</h4>
+            <h3>STAR Assessments</h3>
+            <p>STAR is a short, adaptive assessment used to quickly measure reading and math skills.</p>
+            <ul>
+              <li>Administered multiple times per year</li>
+              <li>Efficient, fast, and adaptive</li>
+              <li>Helps with placement and progress monitoring</li>
+              <li>Identifies students needing support or enrichment</li>
+            </ul>
+            <p class="assmt-purpose">Purpose: Provide a quick, reliable snapshot of current performance.</p>
+          </div>
+
+          <div class="assmt-type-card" style="background:#1e4a38;">
+            <span class="assmt-type-num">3 · Reading Fluency</span>
+            <h4>Skill Development</h4>
+            <h3>Oral Reading Fluency (ORF)</h3>
+            <p>ORF measures how accurately and fluently a student reads aloud.</p>
+            <ul>
+              <li>Timed one-minute reading passage</li>
+              <li>Measures accuracy, rate, and fluency</li>
+              <li>Used frequently for progress monitoring</li>
+              <li>Especially important in early literacy development</li>
+            </ul>
+            <p class="assmt-purpose">Purpose: Track reading fluency growth and guide targeted reading support.</p>
+          </div>
+
+          <div class="assmt-type-card">
+            <span class="assmt-type-num">4 · Daily Learning &amp; Practice</span>
+            <h4>Instructional Assessment</h4>
+            <h3>IXL</h3>
+            <p>IXL and classroom assessments measure daily understanding of taught skills.</p>
+            <ul>
+              <li>Aligned to weekly or unit instruction</li>
+              <li>Provides immediate feedback</li>
+              <li>Helps identify reteaching or enrichment needs</li>
+              <li>Supports mastery of specific standards</li>
+            </ul>
+            <p class="assmt-purpose">Purpose: Check understanding of recent learning and guide next steps in instruction.</p>
+          </div>
+
+        </div><!-- end assmt-system-grid -->
+
+        <div class="assmt-cycle-box">
+          <h3>How It Works Together</h3>
+          <p style="font-size:0.9rem; color:rgba(255,255,255,0.8); margin-bottom:0;">The Hub assessment system works as a connected cycle:</p>
+          <div class="assmt-cycle-steps">
+            <span class="assmt-cycle-step">Teach</span>
+            <span class="assmt-cycle-arrow">→</span>
+            <span class="assmt-cycle-step">Assess</span>
+            <span class="assmt-cycle-arrow">→</span>
+            <span class="assmt-cycle-step">Respond</span>
+            <span class="assmt-cycle-arrow">→</span>
+            <span class="assmt-cycle-step">Differentiate</span>
+            <span class="assmt-cycle-arrow">→</span>
+            <span class="assmt-cycle-step">Grow</span>
+          </div>
+          <ul>
+            <li>MAP shows long-term growth</li>
+            <li>STAR provides quick benchmarks</li>
+            <li>ORF monitors reading fluency progress</li>
+            <li>Classroom assessments guide daily instruction</li>
+          </ul>
+          <p style="margin-top:1rem; font-size:0.88rem; color:rgba(255,255,255,0.7); font-style:italic;">Together, these tools ensure every student is supported, challenged, and growing.</p>
+        </div>
+      </div><!-- end assmt-system panel -->
+
+      <script>
+        function showAssmtTab(e, panelId) {
+          document.querySelectorAll('.assmt-panel').forEach(p => p.classList.remove('active'));
+          document.querySelectorAll('.assmt-tab').forEach(t => t.classList.remove('active'));
+          document.getElementById(panelId).classList.add('active');
+          e.currentTarget.classList.add('active');
+        }
+      </script>
+    </div>
+  </section>
+
+  <!-- INTERVENTION -->
+  <section class="intervention-section" id="intervention">
+    <div class="container">
+      <p class="section-label">Support &amp; Growth</p>
+      <h2>Intervention</h2>
+      <div class="divider"></div>
+
+      <div class="assess-why">
+        <svg class="assess-why-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <div>
+          <h3>Why, When &amp; How Intervention</h3>
+          <p>Intervention at The Hub is a targeted, responsive layer of support, not a label. When assessment data or teacher observation signals that a student needs more, we act quickly and intentionally. Each pathway is designed to strengthen specific skills in the least-intrusive, most effective way possible, preserving the student's identity as a capable, growing learner.</p>
+        </div>
       </div>
-      <p style="margin-top: 1rem; font-size: 0.82rem; color: var(--muted); font-style: italic;">Assessment results are shared with classroom teachers and families to celebrate growth and guide next steps, never to define or limit a reader.</p>
+
+      <div class="int-tabs">
+        <button class="int-tab active" onclick="showIntTab(event,'int-internal')">Internal</button>
+        <button class="int-tab" onclick="showIntTab(event,'int-external')">External</button>
+        <button class="int-tab" onclick="showIntTab(event,'int-after-school')">After School</button>
+        <button class="int-tab" onclick="showIntTab(event,'int-at-home')">At Home</button>
+      </div>
+
+      <!-- INTERNAL -->
+      <div id="int-internal" class="int-panel active">
+        <div class="intervention-cards">
+
+          <div class="intervention-card">
+            <span class="int-badge">Foundations</span>
+            <h3>Skills &amp; Academic Intervention</h3>
+            <ul>
+              <li>No additional fee</li>
+              <li>During SAIL time, students may participate in Foundations to strengthen essential skills and prepare for future success</li>
+              <li>Teacher recommendation and administrative approval needed</li>
+            </ul>
+          </div>
+
+          <div class="intervention-card">
+            <span class="int-badge">GRASP</span>
+            <h3>Guidance Remediation and Academic Support Program</h3>
+            <ul>
+              <li>Intensive, individualized literacy support with a GRASP team member (specialized academic clinicians)</li>
+              <li>Educational testing required</li>
+              <li>Additional contract and program fee</li>
+              <li>Contact Mrs. LaRosa for <a href="#contact" style="color: var(--forest); text-decoration: underline;">more information</a></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- EXTERNAL -->
+      <div id="int-external" class="int-panel">
+        <div class="intervention-cards">
+
+          <div class="intervention-card">
+            <span class="int-badge">External</span>
+            <h3><a href="https://westbridgemiami.org/" target="_blank" rel="noopener" style="color: var(--forest); text-decoration: underline;">Westbridge</a></h3>
+            <ul>
+              <li>External specialized support partner</li>
+              <li>Visit westbridgemiami.org for more information</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- AFTER SCHOOL -->
+      <div id="int-after-school" class="int-panel">
+        <div class="intervention-cards">
+
+          <div class="intervention-card">
+            <span class="int-badge">After School</span>
+            <h3>Homework Help</h3>
+            <ul>
+              <li>Homework Club (fee)</li>
+              <li>Free peer mentor (no intervention provided)</li>
+              <li>Teacher tutor (fee)</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- AT HOME -->
+      <div id="int-at-home" class="int-panel">
+        <div class="intervention-cards">
+
+          <div class="intervention-card">
+            <span class="int-badge">Lexia</span>
+            <h3>Lexia Core 5</h3>
+            <ul>
+              <li>Adaptive online reading program</li>
+              <li>Builds foundational literacy skills</li>
+              <li>Grades K–5</li>
+              <li><a href="https://www.lexiacore5.com/register" target="_blank" rel="noopener" style="color: var(--forest); text-decoration: underline;">Student Login</a></li>
+            </ul>
+          </div>
+
+          <div class="intervention-card">
+            <span class="int-badge">Learning Ally</span>
+            <h3>Learning Ally Audio Books</h3>
+            <ul>
+              <li>Human-narrated audiobooks for struggling readers</li>
+              <li>Supports comprehension while building fluency</li>
+              <li>Available for qualifying students</li>
+              <li><a href="https://learningally.org/Login" target="_blank" rel="noopener" style="color: var(--forest); text-decoration: underline;">Student Login</a></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <script>
+        function showIntTab(e, panelId) {
+          document.querySelectorAll('.int-panel').forEach(p => p.classList.remove('active'));
+          document.querySelectorAll('.int-tab').forEach(t => t.classList.remove('active'));
+          document.getElementById(panelId).classList.add('active');
+          e.currentTarget.classList.add('active');
+        }
+      </script>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team-section" id="contact">
+    <div class="container">
+      <p class="section-label">For More Information</p>
+      <h2>Contact</h2>
+      <div class="divider"></div>
+      <table class="contact-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Contact For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <img class="contact-photo"
+                src="https://bbk12e1-cdn.myschoolcdn.com/ftpimages/701/user/large_user3425050_1815611_659.jpg?crop=0px,34px,320px,320px&resize=200,200"
+                alt="Mrs. Arlene Castellanos" />
+            </td>
+            <td>
+              <a class="contact-name" href="mailto:acastellanos@wcsmiami.org">Mrs. Arlene Castellanos</a>
+              <div class="contact-title">acastellanos@wcsmiami.org</div>
+            </td>
+            <td>ES Technology/Enrichment/Resource Teacher</td>
+            <td>Reflex, IXL</td>
+          </tr>
+          <tr>
+            <td>
+              <img class="contact-photo"
+                src="https://bbk12e1-cdn.myschoolcdn.com/ftpimages/701/user/large_user_3553023_661.jpg?resize=200,200"
+                alt="Mrs. Manya Glavach" />
+            </td>
+            <td>
+              <a class="contact-name" href="mailto:mglavach@wcsmiami.org">Mrs. Manya Glavach</a>
+              <div class="contact-title">mglavach@wcsmiami.org</div>
+            </td>
+            <td>ES Media Specialist</td>
+            <td>Accelerated Reader questions</td>
+          </tr>
+          <tr>
+            <td>
+              <img class="contact-photo"
+                src="https://bbk12e1-cdn.myschoolcdn.com/ftpimages/701/user/large_user_5384135_8.jpg?resize=200,200"
+                alt="Mrs. Melissa La Rosa" />
+            </td>
+            <td>
+              <a class="contact-name" href="mailto:mlarosa@wcsmiami.org">Mrs. Melissa La Rosa</a>
+              <div class="contact-title">mlarosa@wcsmiami.org</div>
+            </td>
+            <td>GRASP Director</td>
+            <td>Intervention</td>
+          </tr>
+          <tr>
+            <td>
+              <img class="contact-photo"
+                src="https://bbk12e1-cdn.myschoolcdn.com/ftpimages/701/user/large_user_3454399_52.jpg?resize=200,200"
+                alt="Mrs. Claudia Pastrana" />
+            </td>
+            <td>
+              <a class="contact-name" href="mailto:cpastrana@wcsmiami.org">Mrs. Claudia Pastrana</a>
+              <div class="contact-title">cpastrana@wcsmiami.org</div>
+            </td>
+            <td>PS/ES Assistant Principal, Curriculum</td>
+            <td>Curriculum</td>
+          </tr>
+          <tr>
+            <td>
+              <img class="contact-photo"
+                src="https://bbk12e1-cdn.myschoolcdn.com/ftpimages/701/user/large_user6160389_4492858_899.png?crop=0px,0px,1080px,1080px&resize=200,200"
+                alt="Mrs. Ismarely Torres" />
+            </td>
+            <td>
+              <a class="contact-name" href="mailto:itorres@wcsmiami.org">Mrs. Ismarely Torres</a>
+              <div class="contact-title">itorres@wcsmiami.org</div>
+            </td>
+            <td>Assistant Director of Communications</td>
+            <td>Sign up for <strong>The BRIEF</strong>, a weekly newsletter with updates on all things Westminster</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">
+              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="var(--forest)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:block; margin: 0 auto;">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </td>
+            <td>
+              <a class="contact-name" href="https://login.myschoolbuilding.com/msb" target="_blank" rel="noopener">IT Department</a>
+              <div class="contact-title">mySchoolBuilding Support Portal</div>
+            </td>
+            <td>Technology &amp; myWCS Support</td>
+            <td>Login issues with myWCS or technology issues</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
   <!-- MISSION QUOTE -->
   <div class="mission-quote" style="border-radius: 0; padding: 3rem 2rem;">
     <div style="max-width: 680px; margin: 0 auto;">
-      <p>"We do not raise strong readers by narrowing their choices.<br>We raise strong readers by widening their world."</p>
+      <p>"Strong leaders are not formed by limiting possibilities, but by rooting students in Christ and opening doors to a world of opportunity."</p>
       <strong>Hub Library Mission</strong>
     </div>
   </div>
@@ -1170,7 +2265,7 @@
   <footer>
     <img src="hub%20logo.png" alt="The Hub logo" class="footer-logo" />
     <p><strong>The Hub</strong> · Westminster Christian School · PreK through 5th Grade</p>
-    <p style="margin-top: 0.4rem;">A space for Harnessing · Understanding · Becoming</p>
+    <p style="margin-top: 0.4rem;">A space for Harness · Understand · Become</p>
   </footer>
 
 </body>
