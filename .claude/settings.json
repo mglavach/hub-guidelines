@@ -13,7 +13,9 @@
       "PowerShell($env:GIT_CONFIG_GLOBAL = \"c:\\\\Users\\\\mglavach\\\\.gitconfig\"; $env:HOME = \"c:\\\\Users\\\\mglavach\"; Set-Location \"c:\\\\Users\\\\mglavach\\\\OneDrive - Westminster Christian School\\\\HUB\\\\Hub-Guidelines\"; git -c core.packedGitWindowSize=1m -c core.packedGitLimit=1m add .)",
       "PowerShell($env:GIT_CONFIG_NOSYSTEM = \"1\"; $env:GIT_CONFIG_GLOBAL = \"NUL\"; $env:HOME = \"c:\\\\Users\\\\mglavach\"; Set-Location \"c:\\\\Users\\\\mglavach\\\\OneDrive - Westminster Christian School\\\\HUB\\\\Hub-Guidelines\"; git add .)",
       "PowerShell([System.Environment]::SetEnvironmentVariable\\(\"HOME\", \"C:\\\\Users\\\\mglavach\", \"User\"\\))",
-      "PowerShell($env:HOME = \"C:\\\\Users\\\\mglavach\"; git add .)"
+      "PowerShell($env:HOME = \"C:\\\\Users\\\\mglavach\"; git add .)",
+      "PowerShell($env:HOME = \"C:\\\\Users\\\\mglavach\"; git commit -m \"Update index\")",
+      "PowerShell($env:HOME = \"C:\\\\Users\\\\mglavach\"; git push)"
     ],
     "additionalDirectories": [
       "c:\\Users\\mglavach\\.claude\\projects\\c--Users-mglavach-OneDrive---Westminster-Christian-School-HUB-Hub-Guidelines\\memory"
