@@ -82,6 +82,7 @@
 <div class="quick-wrap" id="quickWrap">
   <button class="qa-btn" onclick="sendQuick('What is the Hub?')">What is the Hub?</button>
   <button class="qa-btn" onclick="sendQuick('Tell me about reading')">Reading</button>
+  <button class="qa-btn" onclick="sendQuick('What is the purpose of AR?')">AR FAQ</button>
   <button class="qa-btn" onclick="sendQuick('Tell me about math')">Math</button>
   <button class="qa-btn" onclick="sendQuick('How does assessment work?')">Assessments</button>
   <button class="qa-btn" onclick="sendQuick('What intervention support is available?')">Support</button>
@@ -276,7 +277,7 @@ const KB = [
   /* ── Reading ─────────────────────────────────────────────── */
   {
     id: 'accelerated_reader',
-    tags: ['accelerated reader', 'ar points', 'ar goals', 'ar quiz', 'ar goal', 'renaissance ar', 'ar program', 'what is ar', 'about ar', 'my ar', ' ar ', 'ar login', 'ar username', 'ar password', 'log into ar', 'login for ar', 'ar user', 'ar pass', 'ar sign in', 'cant sign in', "can't sign in", 'ar not working', 'ar trouble', 'ar site', 'ar website'],
+    tags: ['accelerated reader', 'ar points', 'ar goals', 'ar goal', 'renaissance ar', 'ar program', 'my ar', ' ar ', 'ar login', 'ar username', 'ar password', 'log into ar', 'login for ar', 'ar user', 'ar pass', 'ar sign in', 'cant sign in', "can't sign in", 'ar not working', 'ar trouble', 'ar site', 'ar website'],
     reply: `<p>Here's what I found about <strong>Accelerated Reader (AR)</strong>!</p>
 <p>AR is a reading motivation tool that celebrates milestones and encourages goal-setting. It is never a restriction on book choice.</p>
 <p><strong>Annual AR point goals by grade:</strong></p>
@@ -297,8 +298,134 @@ const KB = [
   <li>Double-check your username: first initial + last name + grad year, all lowercase, no spaces</li>
 </ul>
 <p>For login help, contact <strong>Mrs. Glavach</strong> at mglavach@wcsmiami.org.</p>
-<p class="follow-up">Want to know more about AR goals by grade or the full reading program?</p>`
+<p class="follow-up">Want to know more about AR goals by grade, the AR Honor Code, or the full <a href="ar-guidelines.html#faq" style="color:var(--forest);font-weight:700;">AR FAQ</a>?</p>`
   },
+
+  /* ── AR: What is it / purpose ────────────────────────────── */
+  {
+    id: 'ar_overview',
+    tags: ['what is ar', 'about ar', 'what is accelerated reader', 'purpose of ar', 'why do we use ar', 'point of ar', 'goal of ar', 'what does ar do', 'ar purpose'],
+    reply: `<p>Great question! <strong>Accelerated Reader (AR)</strong> is a reading practice program that helps students build comprehension, confidence, and strong independent reading habits.</p>
+<p>Students choose a book, read it at their own pace, and take a short quiz to check their understanding. But the goal isn't just to earn points or pass quizzes — AR helps students:</p>
+<ul>
+  <li>Practice reading independently</li>
+  <li>Strengthen comprehension</li>
+  <li>Explore a wide range of books</li>
+  <li>Develop the habits of lifelong readers</li>
+</ul>
+<p class="follow-up">Want to know how AR works step by step, or read the full <a href="ar-guidelines.html#faq" style="color:var(--forest);font-weight:700;">AR FAQ</a>?</p>`
+  },
+
+  /* ── AR: How it works ────────────────────────────────────── */
+  {
+    id: 'ar_how_it_works',
+    tags: ['how does ar work', 'how ar works', 'ar steps', 'steps to take a quiz', 'how to take an ar quiz', 'taking a quiz', 'ar process'],
+    reply: `<p>Here's <strong>how AR works</strong>, step by step:</p>
+<ul>
+  <li><strong>Find your book</strong> — search for the title you just finished; not every book has a quiz</li>
+  <li><strong>Read your book</strong> — finish it cover to cover before quizzing</li>
+  <li><strong>Log in to AR</strong> — use your WCS username and password</li>
+  <li><strong>Take the quiz</strong> — answer independently, following the AR Honor Code</li>
+  <li><strong>See your score</strong> — 70%+ earns passing/partial points, 100% earns full credit</li>
+  <li><strong>Track your progress</strong> — watch your points build toward your annual goal</li>
+</ul>
+<p>Students should take a quiz soon after finishing a book, while it's still fresh, and always read the whole book first.</p>
+<p class="follow-up">Want the full <a href="ar-guidelines.html#faq" style="color:var(--forest);font-weight:700;">AR FAQ</a> or details on the Honor Code?</p>`
+  },
+
+  /* ── AR: Book level / Interest level ─────────────────────── */
+  {
+    id: 'ar_book_level',
+    tags: ['book level', 'interest level', 'atos level', 'reading level of a book', 'lg mg ug', 'content level', 'age appropriate book'],
+    reply: `<p>Here's what I found about <strong>book levels</strong>!</p>
+<p>A book level indicates the approximate reading difficulty of the text. It helps students pick books at an appropriate level of challenge — but it's not the same as a student's grade level, and students may enjoy books across a range of levels.</p>
+<p>Books also carry an <strong>Interest Level</strong>, which measures content appropriateness, themes, and maturity rather than difficulty:</p>
+<ul>
+  <li><strong>Lower Grades (LG, K–3)</strong></li>
+  <li><strong>Middle Grades (MG, 4–8)</strong></li>
+  <li><strong>Middle Grades Plus (MG+, 6+)</strong></li>
+  <li><strong>Upper Grades (UG, 9–12)</strong></li>
+</ul>
+<p>If you're ever concerned about content, you can ask <strong>Mrs. Glavach</strong> or look up the title on <a href="https://www.commonsensemedia.org/" target="_blank" rel="noopener" style="color:var(--forest);font-weight:700;">Common Sense Media</a>.</p>
+<p class="follow-up">Want to know more from the full <a href="ar-guidelines.html#faq" style="color:var(--forest);font-weight:700;">AR FAQ</a>?</p>`
+  },
+
+  /* ── AR: Quizzes at home ──────────────────────────────────── */
+  {
+    id: 'ar_home_access',
+    tags: ['ar quiz at home', 'take ar quiz at home', 'quiz from home', 'ar access at home', 'can i take ar at home'],
+    reply: `<p>Access to AR quizzes at home may vary by grade level. Please refer to the current <a href="ar-guidelines.html#reading-goals" style="color:var(--forest);font-weight:700;">Reading Goals chart</a> for your child's grade.</p>
+<p class="follow-up">Want to know how to log in to AR, or see the full <a href="ar-guidelines.html#faq" style="color:var(--forest);font-weight:700;">AR FAQ</a>?</p>`
+  },
+
+  /* ── AR: Retake ───────────────────────────────────────────── */
+  {
+    id: 'ar_retake',
+    tags: ['retake ar quiz', 'retake a quiz', 'take the quiz again', 'redo ar quiz', 'quiz again', 'can i retake'],
+    reply: `<p><strong>No.</strong> AR quizzes are designed to be taken once. Students should read carefully and be prepared before beginning a quiz.</p>
+<p class="follow-up">Want tips on preparing before a quiz, or the full <a href="ar-guidelines.html#faq" style="color:var(--forest);font-weight:700;">AR FAQ</a>?</p>`
+  },
+
+  /* ── AR: Good score ───────────────────────────────────────── */
+  {
+    id: 'ar_good_score',
+    tags: ['good ar score', 'passing ar score', 'what score do i need', 'ar score needed', 'good quiz score'],
+    reply: `<p>A score of <strong>70% or higher</strong> earns passing status and partial points, and <strong>100%</strong> earns the full point value for that book.</p>
+<p>As a personal goal, 80% or higher is a great sign that a student really understood what they read!</p>
+<p class="follow-up">Want to know what to do if a score is lower than expected, or see the full <a href="ar-guidelines.html#faq" style="color:var(--forest);font-weight:700;">AR FAQ</a>?</p>`
+  },
+
+  /* ── AR: Struggling ───────────────────────────────────────── */
+  {
+    id: 'ar_struggling',
+    tags: ['struggling with ar', 'failing ar quizzes', 'low ar score', 'bad quiz score', 'ar quiz too hard', 'child struggling with ar'],
+    reply: `<p>A low quiz score is <em>information, not a label</em>. It may signal that the book was too challenging, the student read too quickly, too much time passed before taking the quiz, or additional comprehension support is needed.</p>
+<p>Teachers can use this information to help guide next steps — reach out to your child's teacher or <strong>Mrs. Glavach</strong> (mglavach@wcsmiami.org) for support.</p>
+<p class="follow-up">Want to know about intervention support options, or see the full <a href="ar-guidelines.html#faq" style="color:var(--forest);font-weight:700;">AR FAQ</a>?</p>`
+  },
+
+  /* ── AR: Finding a quiz ───────────────────────────────────── */
+  {
+    id: 'ar_find_quiz',
+    tags: ['does this book have a quiz', 'find an ar quiz', 'ar bookfinder', 'book finder', 'check if book has a quiz'],
+    reply: `<p>Students can search for a book through the <strong>AR Bookfinder</strong>, or ask a teacher or Hub staff member for help.</p>
+<p>Not every book has a quiz — if yours doesn't, check with your HR teacher <em>before reading</em> for quizzing alternatives, or pick a different book.</p>
+<p class="follow-up">Want to know if graphic novels and nonfiction count too?</p>`
+  },
+
+  /* ── AR: Honor Code ───────────────────────────────────────── */
+  {
+    id: 'ar_honor_code',
+    tags: ['ar honor code', 'honor code', 'cheating on ar', 'academic integrity ar', 'is it cheating', 'honest ar score'],
+    reply: `<p>Here's <strong>The AR Honor Code</strong>! AR points are only meaningful when they represent real reading, so we hold every student to a standard of honesty and integrity:</p>
+<ul>
+  <li>Only take a quiz for a book you have read from beginning to end</li>
+  <li>Do not take a quiz based on a movie, TV show, or summary</li>
+  <li>Do not look up answers online or ask others for help during the quiz</li>
+  <li>Let your points be something to be truly proud of</li>
+  <li>Your honest score helps your teacher help you</li>
+</ul>
+<p>A lower score on a book you really read is worth far more than a high score that isn't honest.</p>
+<p class="follow-up">Want to know more from the full <a href="ar-guidelines.html#faq" style="color:var(--forest);font-weight:700;">AR FAQ</a>?</p>`
+  },
+
+  /* ── AR: Competing with yourself ──────────────────────────── */
+  {
+    id: 'ar_competition',
+    tags: ['competing with myself', 'ar competition', 'ar leaderboard', 'compete with others', 'ar stress', 'ar pressure'],
+    reply: `<p>Remember — with AR, you are <strong>competing with yourself first</strong>. Any competitions are for fun, not stress.</p>
+<p>Everyone excels in different areas, and practice will always bring personal success. Celebrate every milestone; each point represents a book read and a story experienced!</p>
+<p class="follow-up">Want to know more about tracking progress, or see the full <a href="ar-guidelines.html#faq" style="color:var(--forest);font-weight:700;">AR FAQ</a>?</p>`
+  },
+
+  /* ── AR: Graphic novels / nonfiction ──────────────────────── */
+  {
+    id: 'ar_graphic_novels',
+    tags: ['graphic novels ar', 'nonfiction ar quiz', 'comic books ar', 'biography ar quiz', 'do graphic novels count'],
+    reply: `<p><strong>Yes!</strong> Many graphic novels, nonfiction books, biographies, and other high-interest texts have AR quizzes. The Hub encourages students to read broadly across genres, formats, and topics.</p>
+<p class="follow-up">Want to know how to check if a specific book has a quiz?</p>`
+  },
+
   {
     id: 'reading',
     tags: ['reading program', 'reading', 'literacy', 'books', 'read', 'wide reading', 'sustained reading', 'florida best', 'fiction nonfiction', 'book checkout'],
