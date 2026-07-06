@@ -1195,7 +1195,7 @@
           <p>The Hub is a central, flexible, and welcoming space designed for students in Preschool through 5th grade. It serves as an extension of the classroom, a place where literacy, curiosity, enrichment learning, and digital citizenship all come together.</p>
           <p>Students don't just visit The Hub, they grow here, guided by dedicated educators and surrounded by resources curated to spark wonder and deepen understanding.</p>
           <a href="wren.html" class="ask-wren-btn">
-            <img src="Wren.png" alt="Wren" class="ask-wren-img">
+            <img src="WREN.png" alt="Wren" class="ask-wren-img">
             <span class="ask-wren-label">
               <span>Have a question?</span>
               Ask Wren
@@ -1370,11 +1370,11 @@
             <p>Hub instruction supports and extends in-class learning across Mathematics and Literacy, providing enrichment, foundational skills, and responsive instruction for every learner K–5.</p>
           </div>
           <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:auto;">
-            <a class="learn-more" href="#math" style="flex:1; min-width:120px;">
+            <a class="learn-more" href="#academics" onclick="goToAcadTab('acad-math')" style="flex:1; min-width:120px;">
               Mathematics
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
-            <a class="learn-more" href="#reading" style="flex:1; min-width:120px;">
+            <a class="learn-more" href="#academics" onclick="goToAcadTab('acad-reading')" style="flex:1; min-width:120px;">
               Literacy
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
@@ -1771,6 +1771,13 @@
           document.querySelectorAll('.acad-tab').forEach(t => t.classList.remove('active'));
           document.getElementById(panelId).classList.add('active');
           e.currentTarget.classList.add('active');
+        }
+
+        function goToAcadTab(panelId) {
+          document.querySelectorAll('.acad-panel').forEach(p => p.classList.remove('active'));
+          document.querySelectorAll('.acad-tab').forEach(t => t.classList.remove('active'));
+          document.getElementById(panelId).classList.add('active');
+          document.querySelector(`.acad-tab[onclick*="${panelId}"]`).classList.add('active');
         }
       </script>
     </div>
