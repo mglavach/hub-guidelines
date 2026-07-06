@@ -14,3 +14,6 @@ forest: #2c5234;
       --text:   #2c2c2c;
       --muted:  #6b6b6b;
       --gold-rgb: 185, 151, 91;
+
+Use WCS academic.logo as header in green Banner; Title: white font all caps
+

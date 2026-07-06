@@ -159,7 +159,10 @@
     .step-card { background: white; border-radius: 0.75rem; padding: 1.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.06); position: relative; }
     .step-num { width: 36px; height: 36px; background: var(--forest); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 800; margin-bottom: 1rem; flex-shrink: 0; }
     .step-card h3 { font-size: 0.95rem; color: var(--forest); margin-bottom: 0.4rem; }
+    .step-card h3 a { color: inherit; text-decoration: underline; text-decoration-color: var(--sage); }
+    .step-card h3 a:hover { color: var(--sage); }
     .step-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
+    .step-card p a { color: var(--sage); font-weight: 700; text-decoration: underline; }
 
     /* ── TIPS ── */
     .tips-section { background: white; }
@@ -225,6 +228,20 @@
     .find-quiz-box h4 { font-size: 0.92rem; color: var(--forest); font-weight: 700; margin-bottom: 0.35rem; }
     .find-quiz-box p { font-size: 0.85rem; color: var(--text); line-height: 1.6; margin: 0; }
     .find-quiz-box a { color: var(--sage); font-weight: 700; text-decoration: underline; }
+
+    /* ── FAQ ── */
+    .faq-section { background: white; }
+    .faq-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .faq-item { background: var(--cream); border-radius: 0.75rem; box-shadow: 0 2px 10px rgba(0,0,0,0.06); overflow: hidden; }
+    .faq-item summary { list-style: none; cursor: pointer; padding: 1.1rem 1.5rem; font-size: 0.92rem; font-weight: 700; color: var(--forest); display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: '+'; color: var(--gold); font-size: 1.3rem; font-weight: 400; flex-shrink: 0; line-height: 1; transition: transform 0.2s; }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item .faq-answer { padding: 0 1.5rem 1.25rem; font-size: 0.85rem; color: #3a3a3a; line-height: 1.65; }
+    .faq-item .faq-answer ol, .faq-item .faq-answer ul { margin: 0.5rem 0 0 1.2rem; }
+    .faq-item .faq-answer li { margin-bottom: 0.3rem; }
+    .faq-item .faq-answer strong { color: var(--forest); }
+    .faq-item .faq-answer a { color: var(--sage); font-weight: 700; text-decoration: underline; }
 
     /* ── CONTACT ── */
     .contact-section { background: var(--cream); border-top: 1px solid #e0ddd6; padding: 3rem 0; }
@@ -387,7 +404,7 @@
       </div>
     </div>
 
-    <div class="honor-code-box">
+    <div class="honor-code-box" id="honor-code">
       <div class="honor-code-header">
         <div class="honor-code-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -409,7 +426,7 @@
 </section>
 
 <!-- LOGIN -->
-<section class="login-section">
+<section class="login-section" id="how-to-log-in">
   <div class="container">
     <p class="section-label">Getting Started</p>
     <h2>How to Log In</h2>
@@ -476,7 +493,7 @@
 </section>
 
 <!-- GOALS BY GRADE -->
-<section class="goals-section">
+<section class="goals-section" id="reading-goals">
   <div class="container">
     <p class="section-label">Reading Goals</p>
     <h2>Annual AR Point Goals by Grade</h2>
@@ -557,23 +574,23 @@
     <div class="steps-grid">
       <div class="step-card">
         <div class="step-num">1</div>
+        <h3>Find Your Book</h3>
+        <p>Search for the title of the book you just finished. Not every book has a quiz; if yours doesn't, check with your HR teacher BEFORE READING for quizzing alternatives or pick a different book.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
         <h3>Read Your Book</h3>
         <p>Finish the book from cover to cover. The quiz checks real comprehension, so reading the whole book gives you the best chance of success.</p>
       </div>
       <div class="step-card">
-        <div class="step-num">2</div>
-        <h3>Log In to AR</h3>
-        <p>Visit the Renaissance portal and log in with your username and password (see the login section above).</p>
-      </div>
-      <div class="step-card">
         <div class="step-num">3</div>
-        <h3>Find Your Book</h3>
-        <p>Search for the title of the book you just finished. Not every book has a quiz; if yours doesn't, ask Mrs. Glavach about alternatives.</p>
+        <h3><a href="#how-to-log-in">Log In to AR</a></h3>
+        <p>Visit the Renaissance portal and log in with your username and password (see the login section above).</p>
       </div>
       <div class="step-card">
         <div class="step-num">4</div>
         <h3>Take the Quiz</h3>
-        <p>Answer the multiple-choice comprehension questions. Quizzes are usually 5–10 questions. Work independently and do your best!</p>
+        <p>Answer the multiple-choice comprehension questions. Quizzes are usually 5–10 questions. Work independently and do your best! Remember to follow the <a href="#honor-code">AR Honor Code</a>.</p>
       </div>
       <div class="step-card">
         <div class="step-num">5</div>
@@ -583,7 +600,7 @@
       <div class="step-card">
         <div class="step-num">6</div>
         <h3>Track Your Progress</h3>
-        <p>Watch your points add up toward your annual goal. Celebrate every milestone; each point represents a book read and a story experienced!</p>
+        <p>Watch your points add up toward your annual goal. Celebrate every milestone; each point represents a book read and a story experienced! Remember, you are competing with yourself first. Any competitions are for fun, not stress; everyone excels in different areas, and practice will always bring personal success.</p>
       </div>
     </div>
   </div>
@@ -618,6 +635,137 @@
           <li>Celebrate milestones: 25%, 50%, 75%, and 100% of the annual goal!</li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <p class="section-label">Common Questions</p>
+    <h2>Accelerated Reader FAQ</h2>
+    <div class="divider"></div>
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary>What is Accelerated Reader?</summary>
+        <div class="faq-answer">
+          <p>Accelerated Reader (AR) is a reading practice program that helps students build comprehension, confidence, and strong independent reading habits. Students choose books at an appropriate level, read at their own pace, and take a short quiz to check their understanding.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What is the purpose of AR?</summary>
+        <div class="faq-answer">
+          <p>The goal of AR is not simply to earn points or pass quizzes. AR helps students practice reading independently, strengthen comprehension, explore a wide range of books, and develop the habits of lifelong readers.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>How does AR work?</summary>
+        <div class="faq-answer">
+          <p>Students:</p>
+          <ol>
+            <li>Choose a book.</li>
+            <li>Read the book carefully.</li>
+            <li>Take a short AR comprehension quiz.</li>
+            <li>Use feedback to celebrate progress and continue growing.</li>
+          </ol>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What are AR points?</summary>
+        <div class="faq-answer">
+          <p>Each AR book is assigned a point value based on its length and difficulty. Students earn points based on how well they perform on the quiz. Points help recognize reading volume and progress, but they are only one part of a student's overall reading growth.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What is a book level?</summary>
+        <div class="faq-answer">
+          <p>A book level indicates the approximate difficulty of the text. It can help students select books that provide an appropriate level of challenge. Book level is not the same as a student's grade level, and students may enjoy and benefit from books across a range of levels.</p>
+          <p>Books also carry an <strong>Interest Level</strong>, which measures content appropriateness, themes, and maturity level rather than reading difficulty. The four designations are:</p>
+          <ul>
+            <li><strong>Lower Grades (LG, K-3)</strong></li>
+            <li><strong>Middle Grades (MG, 4-8)</strong></li>
+            <li><strong>Middle Grades Plus (MG+, 6+)</strong></li>
+            <li><strong>Upper Grades (UG, 9-12)</strong></li>
+          </ul>
+          <p>If you are ever concerned about content, you can always ask Mrs. Glavach or look up the title on <a href="https://www.commonsensemedia.org/" target="_blank" rel="noopener">Common Sense Media</a>.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Does my child have to read only within a specific level?</summary>
+        <div class="faq-answer">
+          <p>No. Reading growth includes both appropriate challenge and authentic choice. Teachers may guide students toward books that support specific reading goals, but students are also encouraged to explore interests, authors, genres, and topics that build curiosity and a love of reading.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>When should a student take an AR quiz?</summary>
+        <div class="faq-answer">
+          <p>Students should take a quiz soon after finishing a book, while the story or information is still fresh. Students should read the entire book before taking the quiz.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can students take AR quizzes at home?</summary>
+        <div class="faq-answer">
+          <p>Access may vary by grade level. Please refer to the current <a href="#reading-goals">Reading Goals chart</a> for your child's grade.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can a student retake an AR quiz?</summary>
+        <div class="faq-answer">
+          <p>No. AR quizzes are designed to be taken once. Students should read carefully and be prepared before beginning a quiz.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What is a good AR quiz score?</summary>
+        <div class="faq-answer">
+          <p>A strong goal is typically 80% or higher, which suggests that a student is understanding what they read. Teachers may use quiz performance alongside other reading data and observations to support student growth.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What if my child is struggling with AR quizzes?</summary>
+        <div class="faq-answer">
+          <p>A low quiz score is information, not a label. It may signal that the book was too challenging, the student read too quickly, too much time passed before taking the quiz, or additional comprehension support is needed. Teachers can use this information to help guide next steps.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>How do students find out if a book has an AR quiz?</summary>
+        <div class="faq-answer">
+          <p>Students can search for a book through the AR Bookfinder or ask a teacher or Hub staff member for help.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Are graphic novels and nonfiction books part of AR?</summary>
+        <div class="faq-answer">
+          <p>Yes. Many graphic novels, nonfiction books, biographies, and other high-interest texts have AR quizzes. The Hub encourages students to read broadly across genres, formats, and topics.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>How does The Hub use AR?</summary>
+        <div class="faq-answer">
+          <p>The Hub uses AR as one tool within a broader reading culture. AR supports independent reading practice, comprehension, goal-setting, and celebration while helping teachers better understand student reading habits and growth.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What matters most?</summary>
+        <div class="faq-answer">
+          <p>The ultimate goal is not a number, a point total, or a leaderboard. We want students to become curious, confident readers who read widely, think deeply, and discover books that expand their world.</p>
+        </div>
+      </details>
+
     </div>
   </div>
 </section>
