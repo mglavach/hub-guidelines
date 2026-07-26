@@ -1054,6 +1054,17 @@
 
     a.hub-spoke { text-decoration: none; cursor: pointer; }
 
+    .hub-spoke-disabled {
+      background: var(--sage);
+      opacity: 0.8;
+      cursor: default;
+    }
+
+    .hub-spoke-disabled:hover {
+      transform: translate(-50%, -50%);
+      background: var(--sage);
+    }
+
     .hub-spoke svg {
       width: clamp(11px, 3vw, 17px);
       height: clamp(11px, 3vw, 17px);
@@ -1219,17 +1230,8 @@
           <!-- Center Hub logo -->
           <img src="hub%20logo.png" alt="The Hub" class="hub-center-logo"/>
 
-          <!-- 1. Curated Resources (top) -->
-          <a href="#kf-curated" class="hub-spoke" style="top:14%;left:50%">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-            </svg>
-            <span class="hub-spoke-label">Curated Resources</span>
-          </a>
-
-          <!-- 2. Flexible Learning Spaces (upper-right) -->
-          <a href="#kf-flexible" class="hub-spoke" style="top:24.5%;left:75.5%">
+          <!-- 1. Flexible Learning Spaces (12 o'clock) -->
+          <div class="hub-spoke hub-spoke-disabled" style="top:14%;left:50%">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="3" width="7" height="7"/>
               <rect x="14" y="3" width="7" height="7"/>
@@ -1237,47 +1239,45 @@
               <rect x="3" y="14" width="7" height="7"/>
             </svg>
             <span class="hub-spoke-label">Flexible Learning Spaces</span>
-          </a>
+          </div>
 
-          <!-- 3. Teacher-Led Inquiry (right) -->
-          <a href="#kf-inquiry" class="hub-spoke" style="top:50%;left:86%">
+          <!-- 2. Teacher-Led Inquiry (1:30) -->
+          <div class="hub-spoke hub-spoke-disabled" style="top:24.5%;left:75.5%">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
               <line x1="9" y1="18" x2="15" y2="18"/>
               <line x1="10" y1="22" x2="14" y2="22"/>
               <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/>
             </svg>
             <span class="hub-spoke-label">Teacher-Led Inquiry</span>
-          </a>
+          </div>
 
-          <!-- 4. Enrichment & Extension (lower-right) -->
-          <a href="#kf-enrichment" class="hub-spoke" style="top:75.5%;left:75.5%">
+          <!-- 3. Curated Resources (3 o'clock) -->
+          <a href="#kf-curated" class="hub-spoke" style="top:50%;left:86%">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
             </svg>
-            <span class="hub-spoke-label">Enrichment &amp; Extension</span>
+            <span class="hub-spoke-label">Curated Resources</span>
           </a>
 
-          <!-- 5. Technology & Innovation (bottom) -->
-          <a href="#kf-tech" class="hub-spoke" style="top:86%;left:50%">
+          <!-- 4. Technology & Innovation (4:30) -->
+          <a href="#kf-tech" class="hub-spoke" style="top:75.5%;left:75.5%">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
             </svg>
             <span class="hub-spoke-label">Technology &amp; Innovation</span>
           </a>
 
-          <!-- 6. Faith, Service & Leadership (lower-left) -->
-          <a href="#kf-service" class="hub-spoke" style="top:75.5%;left:24.5%">
+          <!-- 5. Enrichment & Extension (6 o'clock) -->
+          <a href="#kf-enrichment" class="hub-spoke" style="top:86%;left:50%">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
             </svg>
-            <span class="hub-spoke-label">Faith, Service &amp; Leadership</span>
+            <span class="hub-spoke-label">Enrichment &amp; Extension</span>
           </a>
 
-          <!-- 7. Core Academics (left) -->
-          <a href="#kf-core" class="hub-spoke" style="top:50%;left:14%">
+          <!-- 6. Core Academics (7:30) -->
+          <a href="#kf-core" class="hub-spoke" style="top:75.5%;left:24.5%">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
               <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
               <path d="M6 12v5c3 3 9 3 12 0v-5"/>
@@ -1285,12 +1285,20 @@
             <span class="hub-spoke-label">Core Academics</span>
           </a>
 
-          <!-- 8. Responsive Learning (upper-left) -->
-          <a href="#kf-responsive" class="hub-spoke" style="top:24.5%;left:24.5%">
+          <!-- 7. Responsive Learning (9 o'clock) -->
+          <a href="#kf-responsive" class="hub-spoke" style="top:50%;left:14%">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
             </svg>
             <span class="hub-spoke-label">Responsive Learning</span>
+          </a>
+
+          <!-- 8. Formation (10:30) -->
+          <a href="#kf-formation" class="hub-spoke" style="top:24.5%;left:24.5%">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20M4 6h16M4 6c0 8 3 14 8 16 5-2 8-8 8-16"/>
+            </svg>
+            <span class="hub-spoke-label">Formation</span>
           </a>
         </div>
       </div>
@@ -1453,11 +1461,32 @@
             <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
           </svg>
           <div class="feature-body">
-            <p class="feature-card-sublabel">Community Connect Initiative</p>
+            <p class="feature-card-sublabel">Formation</p>
             <h3>Faith, Service &amp; Leadership</h3>
             <p>Students become confident, thoughtful, Christ-centered learners, applying knowledge, collaborating with others, and contributing positively to their world.</p>
           </div>
-          <a class="learn-more" href="https://mglavach.github.io/community-connect-initiative/" target="_blank" rel="noopener">
+          <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:auto;">
+            <a class="learn-more" href="https://mglavach.github.io/community-connect-initiative/" target="_blank" rel="noopener" style="flex:1; min-width:120px;">
+              Community Connect
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a class="learn-more" href="formation.html" style="flex:1; min-width:120px;">
+              Learn More
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 7. Formation -->
+        <div class="feature-card feature-card-featured" id="kf-formation">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M4 6h16M4 6c0 8 3 14 8 16 5-2 8-8 8-16"/>
+          </svg>
+          <div class="feature-body">
+            <h3>Formation</h3>
+            <p>Students grow in faith and character through intentional formation experiences that nurture a Christ-centered worldview, spiritual growth, and moral development alongside academic learning.</p>
+          </div>
+          <a class="learn-more" href="formation.html">
             Learn More
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
