@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formation &middot; Preschool &amp; Elementary Campus &middot; Westminster Christian School</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --forest:      #2c5234;
+      --gold:        #B9975B;
+      --cream:       #fdf8ef;
+      --sage:        #4a7c59;
+      --sky:         #4a90c4;
+      --light-gold:  #f5ead8;
+      --light-blue:  #e8f2f9;
+      --light-green: #eaf3ec;
+      --text:        #2c2c2c;
+      --muted:       #6b6b6b;
+    }
+
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 11pt;
+      background: var(--cream);
+      color: var(--text);
+    }
+
+    /* Section wrapper */
+    .section {
+      padding: 44px 24px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      color: var(--forest);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-left: 5px solid var(--gold);
+      padding-left: 14px;
+      margin-bottom: 32px;
+    }
+
+    /* Site header */
+    .site-header {
+      background: var(--forest);
+      padding: 36px 32px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+    }
+    .site-header h1 {
+      color: #fff;
+      font-size: 1.7em;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+    .site-header .header-sub {
+      color: var(--gold);
+      font-size: 0.78em;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .site-header .header-arms {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75em;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+    }
+    .site-header .header-arms .arm { color: rgba(255,255,255,0.88); }
+    @media (max-width: 600px) {
+      .site-header { padding: 28px 20px 24px; }
+      .site-header h1 { font-size: 1.1em; }
+    }
+
+    /* Tabs */
+    .tabs-section {
+      background: #fff;
+      padding: 48px 24px;
+    }
+    .tabs-section .section { padding-top: 0; padding-bottom: 0; }
+
+    .main-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      border-bottom: 2px solid #ddd;
+      margin-bottom: 2rem;
+    }
+    .main-tab {
+      padding: 0.65rem 1.8rem;
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .main-tab i { font-size: 0.95em; }
+    .main-tab:hover { color: var(--forest); }
+    .main-tab.active {
+      color: var(--forest);
+      border-bottom-color: var(--gold);
+    }
+    .main-panel { display: none; }
+    .main-panel.active { display: block; }
+
+    /* Four arms grid */
+    .arms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-top: 8px;
+      margin-bottom: 32px;
+    }
+    @media (max-width: 680px) {
+      .arms-grid { grid-template-columns: 1fr; }
+    }
+
+    .arm-card {
+      border-top: 4px solid var(--gold);
+      padding: 20px 18px 24px;
+      background: #fff;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(44,82,52,0.07);
+    }
+    .arm-card.arm-formation {
+      border-top-color: var(--forest);
+      background: var(--forest);
+    }
+    .arm-card h3 {
+      color: var(--forest);
+      font-size: 1.05em;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .arm-card h3 i { color: var(--gold); font-size: 0.95em; margin-right: 4px; }
+    .arm-card.arm-formation h3 { color: white; }
+    .arm-card .arm-subtitle {
+      font-size: 0.85em;
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+    .arm-card.arm-formation .arm-subtitle { color: rgba(255,255,255,0.65); }
+    .arm-card ul { list-style: none; padding: 0; margin: 0; }
+    .arm-card ul li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+      font-size: 0.95em;
+      padding-left: 14px;
+      position: relative;
+      color: var(--muted);
+    }
+    .arm-card.arm-formation ul li { color: rgba(255,255,255,0.78); }
+    .arm-card ul li::before {
+      content: "›";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: bold;
+    }
+
+    /* Category header */
+    .cat-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .cat-header span {
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--forest);
+      white-space: nowrap;
+      font-weight: 700;
+      font-size: 0.85em;
+    }
+    .cat-header::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: var(--light-gold);
+    }
+
+    /* Lead paragraph */
+    .section-lead {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1em;
+      margin-bottom: 28px;
+    }
+
+    /* Team + side quote layout */
+    .team-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 36px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .team-layout { grid-template-columns: 1fr; }
+    }
+
+    /* Verse/callout block */
+    .verse-block {
+      background: var(--cream);
+      border-left: 5px solid var(--gold);
+      border-radius: 0 6px 6px 0;
+      padding: 24px 28px 20px;
+    }
+    .verse-block blockquote {
+      font-size: 1em;
+      font-style: italic;
+      color: var(--forest);
+      line-height: 1.8;
+      margin: 0 0 12px;
+    }
+    .verse-block cite {
+      display: block;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 0.78em;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .verse-block blockquote p { line-height: 1.5; margin: 0 0 10px; }
+    .verse-block blockquote p:last-child { margin-bottom: 10px; }
+
+    /* Callout block */
+    .callout-block {
+      background: var(--light-green);
+      border-left: 4px solid var(--forest);
+      border-radius: 3px;
+      padding: 12px 14px;
+      margin-bottom: 24px;
+    }
+    .callout-block .callout-label {
+      display: block;
+      font-size: 0.7em;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--forest);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .callout-block p {
+      font-size: 0.88em;
+      color: var(--text);
+      line-height: 1.65;
+      margin-bottom: 0;
+    }
+
+    /* Card grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 6px;
+      border-top: 5px solid var(--forest);
+      box-shadow: 0 2px 10px rgba(44,82,52,0.09);
+      padding: 26px 22px;
+      display: flex;
+      flex-direction: column;
+    }
+    .card.accent { border-top-color: var(--gold); }
+    .card h3 {
+      color: var(--forest);
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .card p {
+      line-height: 1.7;
+      color: var(--muted);
+      flex: 1;
+      margin-bottom: 0;
+    }
+
+    /* Card pillar tags */
+    .card-pillars {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 12px;
+    }
+    .card-pillar {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.7em;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--forest);
+      background: var(--light-green);
+      border: 1px solid rgba(44,82,52,0.18);
+      border-radius: 20px;
+      padding: 2px 9px 2px 7px;
+    }
+    .card-pillar i { color: var(--gold); font-size: 0.95em; }
+
+    /* 2x2 quadrant grid */
+    .chapel-quads {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    @media (max-width: 680px) {
+      .chapel-quads { grid-template-columns: 1fr; }
+    }
+
+    /* Q2: logo cell — no box, centered */
+    .chapel-logo-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .chapel-logo-cell img {
+      max-width: 100%;
+      max-height: 220px;
+      width: auto;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    /* Eden & Ed square card */
+    .eden-card {
+      background: #fff;
+      border-radius: 6px;
+      border-top: 5px solid var(--gold);
+      box-shadow: 0 2px 10px rgba(44,82,52,0.09);
+      overflow: hidden;
+    }
+    .eden-card-img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+    }
+    .eden-card-body {
+      padding: 18px 18px 20px;
+    }
+    .eden-card-body h4 {
+      font-size: 1em;
+      font-weight: 700;
+      color: var(--forest);
+      margin-bottom: 8px;
+    }
+    .eden-card-body p {
+      font-size: 0.88em;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .chapel-theme-card {
+      background: var(--forest);
+      border-radius: 6px;
+      padding: 28px;
+      color: white;
+    }
+    .chapel-theme-card .theme-label {
+      font-size: 0.7em;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .chapel-theme-card h3 {
+      font-size: 1.6em;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 14px;
+      letter-spacing: 0.03em;
+    }
+    .chapel-theme-card p {
+      font-size: 0.9em;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.7;
+    }
+
+
+    /* Formation banner */
+    .formation-banner {
+      background: var(--forest);
+      border-radius: 6px;
+      padding: 28px 32px;
+      margin-bottom: 36px;
+    }
+    .formation-banner .banner-label {
+      font-size: 0.7em;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .formation-banner blockquote {
+      font-size: 1.1em;
+      font-weight: 700;
+      color: white;
+      line-height: 1.55;
+      font-style: normal;
+    }
+    .formation-banner blockquote em {
+      color: var(--gold);
+      font-style: normal;
+    }
+    .formation-banner .banner-sub {
+      margin-top: 12px;
+      font-size: 0.88em;
+      color: rgba(255,255,255,0.68);
+      line-height: 1.65;
+    }
+
+    /* Pillar attrs */
+    .pillar-attrs {
+      display: block;
+      margin-top: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 0.82em;
+    }
+
+    /* Inline program link */
+    .formation-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--forest);
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.78em;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 3px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .formation-link:hover { background: var(--gold); color: var(--forest); }
+
+    /* Connected links */
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+    .link-card {
+      background: #fff;
+      border-radius: 6px;
+      border-top: 5px solid var(--gold);
+      box-shadow: 0 2px 10px rgba(44,82,52,0.09);
+      padding: 20px 18px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: box-shadow 0.15s;
+    }
+    .link-card:hover { box-shadow: 0 4px 18px rgba(44,82,52,0.18); }
+    .link-card .lc-label {
+      font-size: 0.68em;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .link-card h4 {
+      font-size: 0.95em;
+      font-weight: 700;
+      color: var(--forest);
+    }
+    .link-card p {
+      font-size: 0.83em;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .link-card .lc-arrow {
+      font-size: 0.8em;
+      font-weight: 700;
+      color: var(--forest);
+      margin-top: 6px;
+    }
+
+    /* Team section */
+    .team-bg { background: var(--light-green); }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 28px;
+    }
+    .team-card { text-align: center; }
+    .team-avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: var(--forest);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+      overflow: hidden;
+      border: 3px solid var(--gold);
+      position: relative;
+    }
+    .team-avatar .initials {
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      position: absolute;
+    }
+    .team-avatar img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .team-card .name {
+      color: var(--forest);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .team-card .role {
+      color: var(--muted);
+      line-height: 1.4;
+      margin-bottom: 10px;
+      font-size: 0.9em;
+    }
+    .team-card a.email-btn {
+      display: inline-block;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.78em;
+      font-weight: 600;
+      color: var(--forest);
+      border: 1.5px solid var(--forest);
+      border-radius: 3px;
+      padding: 4px 14px;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .team-card a.email-btn:hover { background: var(--forest); color: #fff; }
+
+    /* Contact footer */
+    .contact {
+      background: var(--forest);
+      color: #fff;
+      text-align: center;
+      padding: 32px 24px;
+    }
+    .contact p { line-height: 1.75; }
+    .contact a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .contact a:hover { text-decoration: underline; }
+
+    /* ---- Formation Diagram ---- */
+    .formation-diagram-wrap { margin: 36px auto 12px; text-align: center; }
+    .diagram-caption { font-size: 0.8em; color: var(--muted); font-style: italic; margin-top: 10px; max-width: 380px; margin-left: auto; margin-right: auto; }
+
+    /* ---- Operation Overflow: The Offering Well ---- */
+    .offering-section { margin-top: 44px; }
+    .offering-verse {
+      background: var(--cream); border-left: 5px solid var(--gold);
+      border-radius: 0 6px 6px 0; padding: 16px 22px; margin-bottom: 28px;
+    }
+    .offering-verse blockquote { font-style: italic; color: var(--forest); line-height: 1.7; font-size: 0.95em; margin: 0 0 8px; }
+    .offering-verse cite { font-style: normal; font-weight: 700; font-size: 0.72em; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+
+    .offering-layout {
+      display: grid; grid-template-columns: 210px 1fr; gap: 44px;
+      align-items: start; margin-bottom: 40px;
+    }
+    @media (max-width: 720px) { .offering-layout { grid-template-columns: 1fr; justify-items: center; } }
+
+    /* Jug / Well visual */
+    .well-wrap { text-align: center; }
+    .well-neck {
+      width: 66px; height: 24px; border: 3px solid var(--forest);
+      border-bottom: none; border-radius: 8px 8px 0 0;
+      background: #e8f0ea; margin: 0 auto; position: relative; z-index: 1;
+    }
+    .well-body {
+      width: 156px; height: 228px;
+      border: 3px solid var(--forest); border-radius: 6px 6px 42px 42px;
+      background: rgba(232,243,236,0.5); position: relative; overflow: hidden;
+      margin: 0 auto; box-shadow: inset 2px 2px 8px rgba(44,82,52,0.08), 0 4px 18px rgba(44,82,52,0.14);
+    }
+    .well-marks { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
+    .well-mark { position: absolute; left: 0; right: 0; border-top: 1px dashed rgba(44,82,52,0.18); }
+    .well-mark span {
+      position: absolute; right: 8px; top: 3px;
+      font-size: 0.54em; font-weight: 700; color: rgba(44,82,52,0.38);
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .well-water {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 0%;
+      background: linear-gradient(to top, #1565c0, #1976d2 40%, #42a5f5 80%, #64b5f6);
+      transition: height 2s cubic-bezier(0.4,0,0.2,1); z-index: 2;
+    }
+    .well-wave-wrap { position: absolute; top: -13px; left: 0; right: 0; height: 14px; overflow: hidden; }
+    .well-wave {
+      position: absolute; top: 0; left: -100%; width: 300%; height: 14px;
+      background: radial-gradient(ellipse 50px 7px at 50px 14px, rgba(255,255,255,0.3) 50%, transparent 51%) repeat-x 0 0 / 100px 14px;
+      animation: wellWave 3s linear infinite;
+    }
+    @keyframes wellWave { to { transform: translateX(33.33%); } }
+    .well-overlay {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      text-align: center; z-index: 4; pointer-events: none;
+    }
+    .well-overlay .w-amt {
+      font-size: 1.35em; font-weight: 900; color: var(--forest);
+      text-shadow: 0 0 12px white, 0 0 6px white, 0 0 3px white; line-height: 1;
+    }
+    .well-overlay .w-lbl {
+      font-size: 0.57em; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--muted); margin-top: 4px;
+      text-shadow: 0 0 8px white, 0 0 4px white;
+    }
+    .well-name { font-size: 0.76em; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--forest); margin-top: 10px; }
+    .well-goal-lbl { font-size: 0.78em; color: var(--muted); margin-top: 3px; }
+
+    /* Offering stats */
+    .offering-stats { display: flex; flex-direction: column; gap: 16px; }
+    .o-stat {
+      background: #fff; border-radius: 6px; border-left: 4px solid var(--gold);
+      padding: 14px 18px; box-shadow: 0 1px 6px rgba(44,82,52,0.07);
+    }
+    .o-stat-label { font-size: 0.65em; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+    .o-stat-value { font-size: 1.04em; font-weight: 800; color: var(--forest); }
+    .o-stat-sub { font-size: 0.79em; color: var(--muted); margin-top: 2px; line-height: 1.45; }
+
+    /* Quarter cards */
+    .quarter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; }
+    .q-card { background: #fff; border-radius: 6px; overflow: hidden; border-top: 5px solid var(--forest); box-shadow: 0 2px 10px rgba(44,82,52,0.09); }
+    .q-head {
+      background: var(--forest); color: #fff; padding: 10px 14px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .q-num { font-size: 0.72em; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; }
+    .q-status-badge { font-size: 0.65em; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.7; }
+    .q-body { padding: 16px 16px 18px; }
+    .q-row { margin-bottom: 11px; }
+    .q-row:last-child { margin-bottom: 0; }
+    .q-key { font-size: 0.62em; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 2px; }
+    .q-val { font-size: 0.87em; color: var(--text); font-weight: 600; line-height: 1.45; }
+    .q-val.tba { color: var(--muted); font-style: italic; font-weight: 400; }
+    .q-divider { border: none; border-top: 1px solid var(--light-green); margin: 12px 0; }
+    .q-total-row { display: flex; justify-content: space-between; align-items: baseline; }
+    .q-total-lbl { font-size: 0.62em; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--forest); }
+    .q-total-val { font-size: 1.05em; font-weight: 900; color: var(--forest); }
+    .q-total-val.tba { font-size: 0.82em; color: var(--muted); font-style: italic; font-weight: 400; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <img src="WCS academic logo.png" alt="Westminster Christian School" style="height:90px; width:auto;" />
+    <h1>Formation</h1>
+    <div class="header-sub">Preschool &amp; Elementary Campus</div>
+    <div class="header-arms">
+      <span class="arm">Academics</span>
+      <span>&bull;</span>
+      <span class="arm">Athletics</span>
+      <span>&bull;</span>
+      <span class="arm">Fine Arts</span>
+      <span>&bull;</span>
+      <span class="arm">Formation</span>
+    </div>
+  </header>
+
+  <div class="tabs-section">
+    <div class="section">
+
+      <div class="main-tabs">
+        <button class="main-tab active" onclick="showTab(event,'tab-about')">
+          <i class="fa-solid fa-school"></i> The Why
+        </button>
+        <button class="main-tab" onclick="showTab(event,'tab-formation')">
+          <i class="fa-solid fa-seedling"></i> The How
+        </button>
+        <button class="main-tab" onclick="showTab(event,'tab-chapel')">
+          <i class="fa-solid fa-church"></i> Chapel 2026&ndash;2027
+        </button>
+      </div>
+
+      <!-- ABOUT -->
+      <div id="tab-about" class="main-panel active">
+        <h2 class="section-title">About Formation</h2>
+        <div style="display:flex; align-items:center; gap:32px; flex-wrap:wrap; margin-bottom:28px;">
+          <p class="section-lead" style="margin:0; flex:1; min-width:240px;">
+            At Westminster Christian School's Preschool and Elementary Campus, we believe education is more than academics.
+            Every student is being formed in mind, body, and spirit, and that formation is the shared work of every teacher,
+            coach, and ministry leader on campus.
+          </p>
+          <!-- Biblical Integration diagram -->
+          <svg viewBox="0 0 460 460" xmlns="http://www.w3.org/2000/svg"
+               style="width:280px;max-width:100%;flex-shrink:0;"
+               role="img" aria-label="The four arms of Westminster — Academics, Athletics, Fine Arts, and Formation — each pass through a Biblical lens before shaping the WCS student">
+            <defs>
+              <path id="lp" d="M230,137.5 A92.5,92.5 0 1,1 229.99,137.5"/>
+            </defs>
+
+            <!-- Outer glow -->
+            <circle cx="230" cy="230" r="168" fill="rgba(234,243,236,0.25)"/>
+
+            <!-- Spoke lines: arm tip → through lens → into student circle -->
+            <line x1="107" y1="107" x2="187" y2="187" stroke="#4a7c59" stroke-width="1.5"/>
+            <line x1="353" y1="107" x2="273" y2="187" stroke="#4a7c59" stroke-width="1.5"/>
+            <line x1="107" y1="353" x2="187" y2="273" stroke="#4a7c59" stroke-width="1.5"/>
+            <line x1="353" y1="353" x2="273" y2="273" stroke="#4a7c59" stroke-width="1.5"/>
+
+            <!-- Biblical Lens ring: thick cream stroke hides lines inside the ring band -->
+            <circle cx="230" cy="230" r="92.5" fill="none" stroke="rgba(245,234,216,0.97)" stroke-width="26"/>
+            <!-- Ring outer border -->
+            <circle cx="230" cy="230" r="105.5" fill="none" stroke="#B9975B" stroke-width="1.3"/>
+            <!-- Ring inner border -->
+            <circle cx="230" cy="230" r="79.5" fill="none" stroke="#B9975B" stroke-width="1.3"/>
+
+            <!-- Direction tick marks on outer visible spoke segments (pointing inward) -->
+            <polygon points="-5,-3 5,0 -5,3" transform="translate(131,131) rotate(45)"  fill="#2c5234" opacity="0.75"/>
+            <polygon points="-5,-3 5,0 -5,3" transform="translate(329,131) rotate(135)" fill="#2c5234" opacity="0.75"/>
+            <polygon points="-5,-3 5,0 -5,3" transform="translate(131,329) rotate(315)" fill="#2c5234" opacity="0.75"/>
+            <polygon points="-5,-3 5,0 -5,3" transform="translate(329,329) rotate(225)" fill="#2c5234" opacity="0.75"/>
+
+            <!-- Ring text -->
+            <text fill="#8a6a30" font-size="8.5" font-family="Montserrat,sans-serif" font-weight="700" letter-spacing="0.18em">
+              <textPath href="#lp" startOffset="7%">BIBLICAL LENS &bull; BIBLICAL INTEGRATION</textPath>
+            </text>
+
+            <!-- Student center circle -->
+            <circle cx="230" cy="230" r="62" fill="#2c5234" stroke="rgba(185,151,91,0.5)" stroke-width="2"/>
+            <!-- Head -->
+            <circle cx="230" cy="210" r="15" fill="rgba(255,255,255,0.88)"/>
+            <!-- Shoulders/body -->
+            <path d="M204,238 C204,226 256,226 256,238 L257,258 Q230,255 203,258 Z" fill="rgba(255,255,255,0.88)"/>
+            <!-- Label -->
+            <text x="230" y="278" text-anchor="middle" font-size="6.5" fill="rgba(255,255,255,0.8)"
+                  font-family="Montserrat,sans-serif" font-weight="700" letter-spacing="0.16em">WCS STUDENT</text>
+
+            <!-- Arm labels -->
+            <text x="92" y="88" text-anchor="middle" font-size="11.5" fill="#2c5234" font-family="Montserrat,sans-serif" font-weight="700">Academics</text>
+            <text x="368" y="88" text-anchor="middle" font-size="11.5" fill="#2c5234" font-family="Montserrat,sans-serif" font-weight="700">Athletics</text>
+            <text x="92" y="378" text-anchor="middle" font-size="11.5" fill="#2c5234" font-family="Montserrat,sans-serif" font-weight="700">Fine Arts</text>
+            <text x="368" y="378" text-anchor="middle" font-size="11.5" fill="#2c5234" font-family="Montserrat,sans-serif" font-weight="700">Formation</text>
+
+          </svg>
+        </div>
+
+        <div class="cat-header"><span>The Four Arms of Campus</span></div>
+        <div class="arms-grid">
+
+          <div class="arm-card">
+            <h3><i class="fa-solid fa-book-open-reader"></i> Academics</h3>
+            <p class="arm-subtitle">Learning rooted in truth</p>
+            <ul>
+              <li>Reading and literacy</li>
+              <li>Mathematics and science</li>
+              <li>Humanities and the arts</li>
+              <li>Taught as part of God's story</li>
+            </ul>
+          </div>
+
+          <div class="arm-card">
+            <h3><i class="fa-solid fa-trophy"></i> Athletics</h3>
+            <p class="arm-subtitle">Character built through sport</p>
+            <ul>
+              <li>Teamwork and perseverance</li>
+              <li>Excellence as an act of worship</li>
+              <li>Warrior values on and off the field</li>
+            </ul>
+          </div>
+
+          <div class="arm-card">
+            <h3><i class="fa-solid fa-palette"></i> Fine Arts</h3>
+            <p class="arm-subtitle">Creativity as an act of worship</p>
+            <ul>
+              <li>Visual art and music</li>
+              <li>Drama and creative expression</li>
+              <li>Beauty as a reflection of God</li>
+            </ul>
+          </div>
+
+          <div class="arm-card arm-formation">
+            <h3><i class="fa-solid fa-seedling"></i> Formation</h3>
+            <p class="arm-subtitle">Shaping the whole student</p>
+            <ul>
+              <li>Faith and chapel</li>
+              <li>Discipleship and service</li>
+              <li>Character and leadership</li>
+              <li>Community and belonging</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="callout-block">
+          <span class="callout-label">Why "Formation"?</span>
+          <p>
+            Formation is broader and deeper than "spiritual life." It names the deliberate, whole-person shaping that
+            happens when faith, community, and character are woven into everything. It is distinctly Christian without
+            being limited to chapel programs. It is the thread that runs through every hallway, classroom, and
+            relationship at Westminster.
+          </p>
+        </div>
+
+        <div class="cat-header"><span>At a Glance</span></div>
+        <div class="card-grid">
+          <div class="card accent">
+            <h3><i class="fa-solid fa-school" style="color:var(--gold);margin-right:6px;"></i> Grades Served</h3>
+            <p>Preschool (PK3 and PK4) through 5th grade on the elementary campus.</p>
+          </div>
+          <div class="card accent">
+            <h3><i class="fa-solid fa-star" style="color:var(--gold);margin-right:6px;"></i> Character</h3>
+            <p>Fruit of the Spirit, biblical values, and character formation are woven into daily campus life as students learn to reflect Christ in their words, choices, and relationships.</p>
+          </div>
+          <div class="card accent">
+            <h3><i class="fa-solid fa-book-bible" style="color:var(--gold);margin-right:6px;"></i> Bible Class</h3>
+            <p>Bible curriculum rooted in the whole story of Scripture. Westminster has used <a href="https://deeprootsbible.com/" target="_blank" rel="noopener" style="color:var(--forest);font-weight:700;text-decoration:none;">Deep Roots</a> since 2024.</p>
+          </div>
+          <div class="card accent">
+            <h3><i class="fa-solid fa-church" style="color:var(--gold);margin-right:6px;"></i> Chapel</h3>
+            <p>Weekly campus-wide chapel with grade-appropriate content and worship for every student.</p>
+          </div>
+          <div class="card accent">
+            <h3><i class="fa-solid fa-sun" style="color:var(--gold);margin-right:6px;"></i> Spiritual Emphasis Weeks (SEW)</h3>
+            <p>Dedicated weeks where PS/ES comes together for 20 minutes every morning to dive deep into a Scripture theme as a campus.</p>
+          </div>
+          <div class="card accent">
+            <h3><i class="fa-solid fa-heart" style="color:var(--gold);margin-right:6px;"></i> Service</h3>
+            <p>Students grow as servant leaders through age-appropriate outreach and giving initiatives.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORMATION SITE -->
+      <div id="tab-formation" class="main-panel">
+        <h2 class="section-title">The Shape of a Whole Student</h2>
+        <p class="section-lead">
+          Formation is the third and deepest arm of campus life. It is broader and deeper than any single program.
+          It is the ongoing, intentional shaping of the whole student in faith, character, community, and calling.
+        </p>
+
+        <div class="formation-banner">
+          <div class="banner-label">What Formation Means</div>
+          <blockquote>
+            Formation is <em>faith, chapel, discipleship, service, character, leadership, and community.</em>
+            It is the shaping of the whole student. Distinctly Christian and bigger than any single program.
+          </blockquote>
+          <p class="banner-sub">
+            It is the thread that runs through every hallway, every chapel, every classroom, and every service
+            project at Westminster. Everything we do is formation.
+          </p>
+        </div>
+
+        <div class="cat-header"><span>Formation Programs</span></div>
+        <div class="card-grid">
+
+          <div class="card accent">
+            <div class="card-pillars">
+              <span class="card-pillar"><i class="fa-solid fa-church"></i> Worship</span>
+            </div>
+            <h3>Chapel &amp; Worship</h3>
+            <p>
+              Weekly campus-wide chapel anchors students in Scripture, worship, and shared story. From
+              Preschool through 5th grade, chapel builds a common language of faith and a rhythm of
+              gathering before God together.
+            </p>
+            <div style="margin-top:auto; padding-top:16px;">
+              <a href="#" class="formation-link" onclick="document.querySelectorAll('.main-tab')[2].click(); window.scrollTo({top:0,behavior:'smooth'}); return false;">
+                <i class="fa-solid fa-church"></i> Chapel 2026&ndash;2027 &rsaquo;
+              </a>
+            </div>
+          </div>
+
+          <div class="card accent">
+            <div class="card-pillars">
+              <span class="card-pillar"><i class="fa-solid fa-book-bible"></i> Scripture</span>
+            </div>
+            <h3>Rooted in the Word</h3>
+            <p>
+              Students are formed by the Word, not just informed by it. Bible engagement at Westminster
+              includes daily Scripture, memorization, and the Bible Bee program, where students go deep
+              into the text with purpose and joy.
+            </p>
+            <div style="margin-top:auto; padding-top:16px;">
+              <a href="bible-bee.html" class="formation-link">
+                <i class="fa-solid fa-seedling"></i> Rooted &rsaquo;
+              </a>
+            </div>
+          </div>
+
+          <div class="card accent">
+            <div class="card-pillars">
+              <span class="card-pillar"><i class="fa-solid fa-person-chalkboard"></i> Leadership</span>
+            </div>
+            <h3>Student Leadership</h3>
+            <p>
+              Even the youngest students are given opportunities to lead. From classroom roles to Safety
+              Patrol and Reading Buddies, students grow in confidence, responsibility, and servant
+              leadership rooted in Christ's example.
+            </p>
+          </div>
+
+          <div class="card accent">
+            <div class="card-pillars">
+              <span class="card-pillar"><i class="fa-solid fa-hand-holding-heart"></i> Service</span>
+            </div>
+            <h3>Service &amp; Community Connect</h3>
+            <p>
+              Students learn early that following Jesus means pouring out for others. Through the Community
+              Connect Initiative, Noisy Offering, and outreach partnerships, service becomes a way of
+              life, not just an event.
+            </p>
+            <div style="margin-top:auto; padding-top:16px;">
+              <a href="https://mglavach.github.io/community-connect-initiative/" target="_blank" rel="noopener" class="formation-link">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Community Connect &rsaquo;
+              </a>
+            </div>
+          </div>
+
+          <div class="card accent">
+            <div class="card-pillars">
+              <span class="card-pillar"><i class="fa-solid fa-heart"></i> Care</span>
+            </div>
+            <h3>Spiritual Care</h3>
+            <p>
+              Formation is not only corporate, it is personal. Our counselor and formation team walk
+              alongside students in the hard moments, offering prayer, presence, and pastoral care as an
+              extension of God's love for each child.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CHAPEL 2026-2027 -->
+      <div id="tab-chapel" class="main-panel">
+        <h2 class="section-title">Chapel 2026&ndash;2027</h2>
+
+        <div class="chapel-quads">
+
+          <div class="chapel-theme-card">
+            <div class="theme-label">2026&ndash;27 Theme</div>
+            <h3>Echoes of Eden</h3>
+            <p>
+              Chapel is the heartbeat of Formation. Every week, the elementary campus gathers to worship,
+              hear Scripture, and grow together as a community of faith. This year, students learn to see
+              the echoes of Eden all around them and interpret life through the story God has been telling
+              from the beginning.
+            </p>
+          </div>
+
+          <div class="chapel-logo-cell">
+            <img src="EchoOfEden.jpg" alt="Echoes of Eden" />
+          </div>
+
+          <div class="verse-block">
+            <blockquote>
+              "God has made everything beautiful in its time. He has also set eternity in the human heart;
+              yet no one can fathom what God has done from beginning to end."
+            </blockquote>
+            <cite>Ecclesiastes 3:11 &bull; Verse of the Year</cite>
+          </div>
+
+          <div class="eden-card">
+            <div class="eden-card-body">
+              <h4>Meet Eden &amp; Ed</h4>
+              <p>
+                Two sheep siblings who navigate life's joys and broken moments just like our students do.
+                Their stories bring the Echoes of Eden theme to life in an engaging, age-appropriate format
+                designed to spark wonder and anchor faith in young hearts.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="cat-header"><span>What Makes Chapel Distinct</span></div>
+        <div class="card-grid">
+
+          <div class="card">
+            <div class="card-pillars">
+              <span class="card-pillar"><i class="fa-solid fa-book"></i> Scripture</span>
+            </div>
+            <h3>Scripture-Centered</h3>
+            <p>
+              Every chapel message is anchored in God's Word, moving through a coherent narrative arc across the
+              school year from Genesis to Revelation.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-pillars">
+              <span class="card-pillar"><i class="fa-solid fa-music"></i> Worship</span>
+            </div>
+            <h3>Worship Together</h3>
+            <p>
+              Students learn to sing, pray, and worship as a community, building habits of the heart that last
+              long after graduation.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-pillars">
+              <span class="card-pillar"><i class="fa-solid fa-people-group"></i> Community</span>
+            </div>
+            <h3>Community and Belonging</h3>
+            <p>
+              Chapel is one of the few moments the entire elementary campus gathers. It reinforces shared
+              identity, shared story, and shared mission as Warriors.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-pillars">
+              <span class="card-pillar"><i class="fa-solid fa-hand-holding-heart"></i> Generosity</span>
+            </div>
+            <h3>Noisy Offering and Service</h3>
+            <p>
+              Quarterly giving initiatives teach generosity in action. Students learn that following Jesus
+              means pouring out for others.
+            </p>
+            <div style="margin-top:14px;">
+              <a href="#noisy-offering" onclick="document.querySelectorAll('.main-tab')[2].click(); setTimeout(()=>document.getElementById('noisy-offering').scrollIntoView({behavior:'smooth'}),80); return false;" class="formation-link">
+                <i class="fa-solid fa-droplet"></i> Operation Overflow &rsaquo;
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Operation Overflow: The Offering Well -->
+        <div id="noisy-offering" class="offering-section">
+          <h2 class="section-title">Operation Overflow</h2>
+          <p class="section-lead">
+            Four times a year, the PS/ES campus picks a ministry to provide for financially and pray for. The
+            financial offering is accomplished by collecting coins and bills for a real-world mission. Just as
+            people in Scripture came to the well to meet, be provided for, and pour out for others, our Offering
+            Well is where generosity overflows outward to the world.
+          </p>
+
+          <div class="offering-verse">
+            <blockquote>"The water I give them will become in them a spring of water welling up to eternal life."</blockquote>
+            <cite>John 4:14 &bull; Meeting at the Well to Provide</cite>
+          </div>
+
+          <div class="offering-verse">
+            <blockquote>"You will be enriched in every way so that you can be generous on every occasion, and through us your generosity will result in thanksgiving to God."</blockquote>
+            <cite>2 Corinthians 9:11 &bull; Given Much to Give Much</cite>
+          </div>
+
+          <div class="offering-layout">
+
+            <div class="well-wrap">
+              <div class="well-neck"></div>
+              <div class="well-body">
+                <div class="well-marks">
+                  <div class="well-mark" style="bottom:75%"><span>75%</span></div>
+                  <div class="well-mark" style="bottom:50%"><span>50%</span></div>
+                  <div class="well-mark" style="bottom:25%"><span>25%</span></div>
+                </div>
+                <div class="well-water" id="offeringFill" style="height:0%;">
+                  <div class="well-wave-wrap"><div class="well-wave"></div></div>
+                </div>
+                <div class="well-overlay">
+                  <div class="w-amt">$0</div>
+                  <div class="w-lbl">Collected</div>
+                </div>
+              </div>
+              <div class="well-name">The Offering Well</div>
+              <div class="well-goal-lbl">Year Goal: TBA</div>
+            </div>
+
+            <div class="offering-stats">
+              <div class="o-stat">
+                <div class="o-stat-label">Year Total Collected</div>
+                <div class="o-stat-value">TBA</div>
+                <div class="o-stat-sub">Across all four quarters combined</div>
+              </div>
+              <div class="o-stat">
+                <div class="o-stat-label">Current Quarter</div>
+                <div class="o-stat-value">Q1 &bull; TBA</div>
+                <div class="o-stat-sub">Mission: TBA</div>
+              </div>
+              <div class="o-stat">
+                <div class="o-stat-label">Meeting at the Well</div>
+                <div class="o-stat-value">TBA</div>
+                <div class="o-stat-sub">Community Connect campus challenge this quarter</div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="cat-header"><span>Quarterly Missions</span></div>
+          <div class="quarter-grid">
+
+            <div class="q-card">
+              <div class="q-head"><span class="q-num">Quarter 1</span><span class="q-status-badge">TBA</span></div>
+              <div class="q-body">
+                <div class="q-row"><div class="q-key">Mission Name</div><div class="q-val tba">TBA</div></div>
+                <div class="q-row"><div class="q-key">Mission Reason</div><div class="q-val tba">TBA</div></div>
+                <div class="q-row"><div class="q-key">Mission Goal</div><div class="q-val tba">TBA</div></div>
+                <div class="q-row"><div class="q-key">Community Connect Challenge</div><div class="q-val tba">TBA</div></div>
+                <hr class="q-divider">
+                <div class="q-total-row"><span class="q-total-lbl">Offering Total</span><span class="q-total-val tba">TBA</span></div>
+              </div>
+            </div>
+
+            <div class="q-card">
+              <div class="q-head"><span class="q-num">Quarter 2</span><span class="q-status-badge">TBA</span></div>
+              <div class="q-body">
+                <div class="q-row"><div class="q-key">Mission Name</div><div class="q-val tba">TBA</div></div>
+                <div class="q-row"><div class="q-key">Mission Reason</div><div class="q-val tba">TBA</div></div>
+                <div class="q-row"><div class="q-key">Mission Goal</div><div class="q-val tba">TBA</div></div>
+                <div class="q-row"><div class="q-key">Community Connect Challenge</div><div class="q-val tba">TBA</div></div>
+                <hr class="q-divider">
+                <div class="q-total-row"><span class="q-total-lbl">Offering Total</span><span class="q-total-val tba">TBA</span></div>
+              </div>
+            </div>
+
+            <div class="q-card">
+              <div class="q-head"><span class="q-num">Quarter 3</span><span class="q-status-badge">TBA</span></div>
+              <div class="q-body">
+                <div class="q-row"><div class="q-key">Mission Name</div><div class="q-val tba">TBA</div></div>
+                <div class="q-row"><div class="q-key">Mission Reason</div><div class="q-val tba">TBA</div></div>
+                <div class="q-row"><div class="q-key">Mission Goal</div><div class="q-val tba">TBA</div></div>
+                <div class="q-row"><div class="q-key">Community Connect Challenge</div><div class="q-val tba">TBA</div></div>
+                <hr class="q-divider">
+                <div class="q-total-row"><span class="q-total-lbl">Offering Total</span><span class="q-total-val tba">TBA</span></div>
+              </div>
+            </div>
+
+            <div class="q-card">
+              <div class="q-head"><span class="q-num">Quarter 4</span><span class="q-status-badge">TBA</span></div>
+              <div class="q-body">
+                <div class="q-row"><div class="q-key">Mission Name</div><div class="q-val tba">TBA</div></div>
+                <div class="q-row"><div class="q-key">Mission Reason</div><div class="q-val tba">TBA</div></div>
+                <div class="q-row"><div class="q-key">Mission Goal</div><div class="q-val tba">TBA</div></div>
+                <div class="q-row"><div class="q-key">Community Connect Challenge</div><div class="q-val tba">TBA</div></div>
+                <hr class="q-divider">
+                <div class="q-total-row"><span class="q-total-lbl">Offering Total</span><span class="q-total-val tba">TBA</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="team-bg">
+    <div class="section">
+      <h2 class="section-title">The Team</h2>
+
+      <div class="team-layout">
+        <div>
+
+          <div class="cat-header" style="margin-bottom:20px;"><span>Formation Leadership</span></div>
+          <div class="team-grid" style="margin-bottom:36px;">
+
+            <div class="team-card">
+              <div class="team-avatar">
+                <span class="initials">JB</span>
+                <img src="https://bbk12e1-cdn.myschoolcdn.com/ftpimages/701/user/large_user_6480989_911.jpg?resize=200,200" alt="Mr. Bishop" />
+              </div>
+              <div class="name">Mr. Bishop</div>
+              <div class="role">Director of Spiritual Formation</div>
+              <a class="email-btn" href="mailto:jbishop@wcsmiami.org">Email</a>
+            </div>
+
+            <div class="team-card">
+              <div class="team-avatar">
+                <span class="initials">KB</span>
+                <img src="https://bbk12e1-cdn.myschoolcdn.com/ftpimages/701/user/large_user_3425147_653.jpg?resize=200,200" alt="Mrs. Brigham" />
+              </div>
+              <div class="name">Mrs. Brigham</div>
+              <div class="role">PS/ES Counselor &amp; Formation Coordinator</div>
+              <a class="email-btn" href="mailto:kbrigham@wcsmiami.org">Email</a>
+            </div>
+
+          </div>
+
+          <div class="cat-header" style="margin-bottom:20px;"><span>Chapel Team</span></div>
+          <div class="team-grid">
+
+            <div class="team-card">
+              <div class="team-avatar">
+                <span class="initials">MA</span>
+              </div>
+              <div class="name">Mrs. Abbey</div>
+              <div class="role">Chapel Team</div>
+            </div>
+
+            <div class="team-card">
+              <div class="team-avatar">
+                <span class="initials">MC</span>
+              </div>
+              <div class="name">Mrs. Castellanos</div>
+              <div class="role">Chapel Team</div>
+            </div>
+
+            <div class="team-card">
+              <div class="team-avatar">
+                <span class="initials">MG</span>
+              </div>
+              <div class="name">Mrs. Glavach</div>
+              <div class="role">Chapel Team</div>
+            </div>
+
+            <div class="team-card">
+              <div class="team-avatar">
+                <span class="initials">MM</span>
+              </div>
+              <div class="name">Mrs. Moon</div>
+              <div class="role">Chapel Team</div>
+            </div>
+
+            <div class="team-card">
+              <div class="team-avatar">
+                <span class="initials">MS</span>
+              </div>
+              <div class="name">Mrs. Suris</div>
+              <div class="role">Chapel Team</div>
+            </div>
+
+          </div>
+
+          <div class="cat-header" style="margin-top:36px; margin-bottom:20px;"><span>Rooted &bull; Bible Study</span></div>
+          <div class="team-grid">
+
+            <div class="team-card">
+              <div class="team-avatar bot-av" style="background:#fff;">
+                <img src="Barnabee.png" alt="Barnabee" />
+              </div>
+              <div class="name">Barnabee</div>
+              <div class="role">Son of Encouragement &bull; Bible Study Companion</div>
+              <a class="email-btn" href="barnabee.html">Rooted &rsaquo;</a>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="verse-block">
+          <blockquote>
+            <p>I assume that "Christian formation" means the shaping of communities, and individuals within them, so that they reflect more fully and faithfully the fact that the Spirit of Messiah Jesus is dwelling in their midst (corporately) and within them bodily (individually). Over against any idea that being Christian involves nothing more than mental assent to a doctrine and a personal commitment to follow Jesus, both of which of course still matter enormously, the emphasis on "formation" acknowledges that Christian character, though sown like a seed in faith and baptism, needs nurturing like a young plant if it is to grow to maturity and produce the "fruit" that will exhibit God's Jesus-shaped love to the world.</p>
+            <p>Today virtually all Christians would take it for granted that, in one way or another, the Bible is central for this kind of "Christian formation." Personal reading, corporate study, expository sermons, Bible-based counseling&mdash;all these and more contribute. The Bible tells the story of God, the world, Israel, and above all, Jesus. It tells it in such a way, from many angles and in many genres, as to say to its readers: This is your story. This is your home. Learn what it means to live here.</p>
+            <p>Of course, there are many other "formative" elements: prayer, the sacraments, fellowship, service to the poor, and so on. But the Bible is central to them all.</p>
+          </blockquote>
+          <cite>N.T. Wright</cite>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="contact">
+    <p>
+      Questions about Formation at Westminster?<br />
+      Contact <strong>Mrs. Brigham</strong> at
+      <a href="mailto:kbrigham@wcsmiami.org">kbrigham@wcsmiami.org</a>
+    </p>
+  </div>
+
+  <script>
+    function showTab(e, id) {
+      document.querySelectorAll('.main-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.main-panel').forEach(p => p.classList.remove('active'));
+      e.currentTarget.classList.add('active');
+      document.getElementById(id).classList.add('active');
+    }
+
+  </script>
+
+</body>
+</html>

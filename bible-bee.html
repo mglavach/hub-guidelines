@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rooted &middot; Formation &middot; Westminster Christian School</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --forest:      #2c5234;
+      --gold:        #B9975B;
+      --cream:       #fdf8ef;
+      --sage:        #4a7c59;
+      --light-gold:  #f5ead8;
+      --light-green: #eaf3ec;
+      --text:        #2c2c2c;
+      --muted:       #6b6b6b;
+    }
+
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 11pt;
+      background: var(--cream);
+      color: var(--text);
+    }
+
+    .section {
+      padding: 44px 24px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      color: var(--forest);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-left: 5px solid var(--gold);
+      padding-left: 14px;
+      margin-bottom: 32px;
+    }
+
+    /* Header */
+    .site-header {
+      background: var(--forest);
+      padding: 36px 32px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+    }
+    .site-header img { height: 80px; width: auto; }
+    .site-header h1 {
+      color: #fff;
+      font-size: 1.7em;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+    .site-header .header-sub {
+      color: var(--gold);
+      font-size: 0.78em;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.75em;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      margin-bottom: 4px;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--gold); }
+    @media (max-width: 600px) {
+      .site-header { padding: 28px 20px 24px; }
+      .site-header h1 { font-size: 1.1em; }
+    }
+
+    /* Category header */
+    .cat-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .cat-header span {
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--forest);
+      white-space: nowrap;
+      font-weight: 700;
+      font-size: 0.85em;
+    }
+    .cat-header::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: var(--light-gold);
+    }
+
+    /* Lead */
+    .section-lead {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1em;
+      margin-bottom: 28px;
+    }
+
+    /* What is Rooted two-col */
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 36px;
+      align-items: start;
+      margin-bottom: 36px;
+    }
+    @media (max-width: 720px) {
+      .intro-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Verse block */
+    .verse-block {
+      background: var(--cream);
+      border-left: 5px solid var(--gold);
+      border-radius: 0 6px 6px 0;
+      padding: 24px 28px 20px;
+    }
+    .verse-block blockquote {
+      font-size: 1em;
+      font-style: italic;
+      color: var(--forest);
+      line-height: 1.8;
+      margin: 0 0 12px;
+    }
+    .verse-block cite {
+      display: block;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 0.78em;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* Callout */
+    .callout-block {
+      background: var(--light-green);
+      border-left: 4px solid var(--forest);
+      border-radius: 3px;
+      padding: 12px 14px;
+      margin-bottom: 24px;
+    }
+    .callout-block .callout-label {
+      display: block;
+      font-size: 0.7em;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--forest);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .callout-block p {
+      font-size: 0.88em;
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    /* Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 6px;
+      border-top: 5px solid var(--forest);
+      box-shadow: 0 2px 10px rgba(44,82,52,0.09);
+      padding: 26px 22px;
+      display: flex;
+      flex-direction: column;
+    }
+    .card.accent { border-top-color: var(--gold); }
+    .card h3 { color: var(--forest); font-weight: 700; margin-bottom: 10px; line-height: 1.3; }
+    .card p { line-height: 1.7; color: var(--muted); flex: 1; margin-bottom: 0; }
+
+    .card-pillars {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 12px;
+    }
+    .card-pillar {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.7em;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--forest);
+      background: var(--light-green);
+      border: 1px solid rgba(44,82,52,0.18);
+      border-radius: 20px;
+      padding: 2px 9px 2px 7px;
+    }
+    .card-pillar i { color: var(--gold); font-size: 0.95em; }
+
+    /* Card meta */
+    .card-meta {
+      border-top: 1px solid #eee;
+      padding-top: 14px;
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 6px 12px;
+    }
+    .card-meta .mk {
+      color: var(--gold);
+      font-weight: 700;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78em;
+    }
+    .card-meta .mv { color: var(--text); line-height: 1.4; font-size: 0.88em; }
+    .card-meta .mv a { color: var(--forest); font-weight: 600; text-decoration: none; }
+    .card-meta .mv a:hover { text-decoration: underline; }
+
+    /* Pill CTA link */
+    .pill-btn {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      margin-top: 14px;
+      background: var(--gold); color: var(--forest);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78em; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; padding: 0.55rem 1.2rem; border-radius: 999px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .pill-btn:hover { background: var(--forest); color: #fff; }
+
+    /* Category: coming soon */
+    .card.coming-soon {
+      border: 2px dashed #ddd;
+      border-top: 2px dashed #ddd;
+      background: #faf9f7;
+      box-shadow: none;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 32px 22px;
+      color: #aaa;
+      font-style: italic;
+      letter-spacing: 0.04em;
+    }
+
+    /* HHH visual / Study levels */
+    .levels-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 8px;
+    }
+    @media (max-width: 680px) {
+      .levels-grid { grid-template-columns: 1fr; }
+    }
+    .level-card {
+      border-top: 4px solid var(--gold);
+      padding: 20px 18px 24px;
+      background: #fff;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(44,82,52,0.07);
+    }
+    .level-card.primary { border-top-color: var(--forest); }
+    .level-card h3 {
+      color: var(--forest);
+      font-size: 1.05em;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .level-card h3 i { color: var(--gold); margin-right: 4px; }
+    .level-card .level-sub {
+      font-size: 0.82em;
+      color: var(--muted);
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+    .level-card ul { list-style: none; padding: 0; margin: 0; }
+    .level-card ul li {
+      margin-bottom: 9px;
+      line-height: 1.6;
+      font-size: 0.92em;
+      padding-left: 14px;
+      position: relative;
+      color: var(--muted);
+    }
+    .level-card ul li::before {
+      content: "›";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: bold;
+    }
+
+    /* Pillar attrs */
+    .pillar-attrs {
+      display: block;
+      margin-top: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 0.82em;
+    }
+
+    /* Category */
+    .category { margin-bottom: 44px; }
+
+    /* Team */
+    .team-bg { background: var(--light-green); }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 28px;
+    }
+    .team-card { text-align: center; }
+    .team-avatar {
+      width: 110px; height: 110px; border-radius: 50%;
+      background: var(--forest);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 14px;
+      overflow: hidden; border: 3px solid var(--gold); position: relative;
+    }
+    .team-avatar .initials { color: var(--gold); font-weight: 700; letter-spacing: 0.04em; position: absolute; }
+    .team-avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .team-card .name { color: var(--forest); font-weight: 700; margin-bottom: 4px; }
+    .team-card .role { color: var(--muted); line-height: 1.4; margin-bottom: 10px; font-size: 0.9em; }
+    .team-card a.email-btn {
+      display: inline-block; letter-spacing: 0.08em; text-transform: uppercase;
+      font-size: 0.78em; font-weight: 600; color: var(--forest);
+      border: 1.5px solid var(--forest); border-radius: 3px; padding: 4px 14px;
+      text-decoration: none; transition: background 0.15s, color 0.15s;
+    }
+    .team-card a.email-btn:hover { background: var(--forest); color: #fff; }
+
+    /* Contact footer */
+    .contact {
+      background: var(--forest);
+      color: #fff;
+      text-align: center;
+      padding: 32px 24px;
+    }
+    .contact p { line-height: 1.75; }
+    .contact a { color: var(--gold); text-decoration: none; font-weight: 700; }
+    .contact a:hover { text-decoration: underline; }
+
+    /* Grade-level program cards */
+    .grade-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 22px;
+      margin-top: 8px;
+    }
+    .grade-card {
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 2px 10px rgba(44,82,52,0.09);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .grade-card-header { background: var(--forest); color: white; padding: 14px 18px; }
+    .grade-card.gold-top .grade-card-header { background: var(--gold); color: var(--forest); }
+    .grade-card-header .grade-label {
+      font-size: 0.7em; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 4px;
+    }
+    .grade-card.gold-top .grade-card-header .grade-label { color: var(--forest); }
+    .grade-card-header .grade-track { font-size: 1em; font-weight: 700; }
+    .grade-card-body { padding: 18px 18px 14px; flex: 1; }
+    .grade-goal { color: var(--muted); font-size: 0.87em; line-height: 1.65; margin-bottom: 14px; font-style: italic; }
+    .grade-outcomes { list-style: none; padding: 0; margin: 0 0 10px; }
+    .grade-outcomes li {
+      font-size: 0.87em; color: var(--text); line-height: 1.6;
+      padding-left: 14px; position: relative; margin-bottom: 5px;
+    }
+    .grade-outcomes li::before { content: "›"; position: absolute; left: 0; color: var(--gold); font-weight: bold; }
+    .grade-card-foot {
+      border-top: 1px solid var(--light-green); background: var(--light-green);
+      padding: 10px 18px; font-size: 0.78em; color: var(--forest); font-weight: 600; line-height: 1.5;
+    }
+
+    /* Campus-wide goals */
+    .goals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
+    .goal-card { background: #fff; border-radius: 6px; border-top: 5px solid var(--gold); box-shadow: 0 2px 10px rgba(44,82,52,0.09); padding: 22px 20px; }
+    .goal-card h3 { color: var(--forest); font-weight: 700; font-size: 0.92em; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+    .goal-card h3 i { color: var(--gold); margin-right: 6px; }
+    .goal-card ul { list-style: none; padding: 0; margin: 0; }
+    .goal-card ul li { font-size: 0.87em; color: var(--muted); line-height: 1.6; padding-left: 14px; position: relative; margin-bottom: 6px; }
+    .goal-card ul li::before { content: "›"; position: absolute; left: 0; color: var(--gold); font-weight: bold; }
+
+    /* Annual Rhythm */
+    .rhythm-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 0; }
+    .rhythm-step { padding: 24px 22px; border-left: 3px solid var(--light-gold); }
+    .rhythm-step:first-child { border-left: none; }
+    .rhythm-season { font-size: 0.7em; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+    .rhythm-title { font-size: 0.95em; font-weight: 700; color: var(--forest); margin-bottom: 6px; }
+    .rhythm-desc { font-size: 0.86em; color: var(--muted); line-height: 1.6; }
+
+    /* Ask Olive CTA */
+    .olive-cta { background: var(--forest); padding: 44px 24px; }
+    .olive-cta-inner { max-width: 980px; margin: 0 auto; display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+    .olive-cta-icon { font-size: 3.2rem; line-height: 1; flex-shrink: 0; }
+    .olive-cta-text { flex: 1; min-width: 220px; }
+    .olive-cta-text h3 { color: var(--gold); font-size: 1.1em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+    .olive-cta-text p { color: rgba(255,255,255,0.85); line-height: 1.7; font-size: 0.95em; }
+    .olive-cta-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold); color: var(--forest);
+      font-family: 'Montserrat', sans-serif; font-size: 0.82em; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 28px;
+      border-radius: 4px; text-decoration: none; transition: background 0.15s; flex-shrink: 0;
+    }
+    .olive-cta-btn:hover { background: #cfaa6a; }
+
+    /* Olive bot team card avatar */
+    .team-avatar.bot-av { background: var(--light-green); border-color: var(--forest); }
+    .team-avatar.bot-av .initials { font-size: 2rem; color: var(--forest); }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <img src="WCS academic logo.png" alt="Westminster Christian School" />
+    <a href="formation.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Formation Home</a>
+    <h1>Rooted</h1>
+    <div class="header-sub">Rooted in the Word &bull; Preschool &amp; Elementary</div>
+  </header>
+
+  <!-- What Is Rooted -->
+  <div class="section">
+    <h2 class="section-title">What Is Rooted?</h2>
+
+    <div class="intro-grid">
+      <div>
+        <p class="section-lead">
+          Rooted is Westminster's Bible engagement and memorization program for Preschool through 5th grade.
+          Students are not just informed by Scripture; they are formed by it. Through consistent memorization,
+          study, and community, the Word of God takes root in young hearts for a lifetime.
+        </p>
+        <div class="callout-block">
+          <span class="callout-label">Our Goal</span>
+          <p>
+            To help every student hide God's Word in their heart, building a foundation of Scripture
+            knowledge that shapes how they think, love, and live, from the earliest years all the way
+            through graduation and beyond.
+          </p>
+        </div>
+      </div>
+      <div class="verse-block">
+        <blockquote>
+          "I have hidden your word in my heart that I might not sin against you."
+        </blockquote>
+        <cite>Psalm 119:11</cite>
+      </div>
+    </div>
+
+    <!-- Grade-Level Programs -->
+    <div class="cat-header"><span>Grade-Level Programs</span></div>
+    <div class="grade-grid">
+
+      <div class="grade-card">
+        <div class="grade-card-header">
+          <div class="grade-label">Preschool &bull; PK3 &amp; PK4</div>
+          <div class="grade-track">"Hear the Word"</div>
+        </div>
+        <div class="grade-card-body">
+          <p class="grade-goal">Introduce students to the joy, rhythm, and truth of Scripture through repetition, song, movement, and simple Bible truths.</p>
+          <ul class="grade-outcomes">
+            <li>Recognize that the Bible is God's Word</li>
+            <li>Hear and repeat short Scripture phrases</li>
+            <li>Connect Bible truths to kindness, thankfulness, and prayer</li>
+            <li>Participate joyfully in chapel and call-and-response moments</li>
+          </ul>
+        </div>
+        <div class="grade-card-foot">Recognition: Rooted Blessing Certificate, sticker, or chapel shout-out</div>
+      </div>
+
+      <div class="grade-card">
+        <div class="grade-card-header">
+          <div class="grade-label">Kindergarten &amp; 1st Grade</div>
+          <div class="grade-track">"Remember the Word"</div>
+        </div>
+        <div class="grade-card-body">
+          <p class="grade-goal">Build confidence with short Scripture memory, Bible story recall, and understanding that God's Word teaches us who God is and how we live.</p>
+          <ul class="grade-outcomes">
+            <li>Memorize short verses or selected verse portions</li>
+            <li>Retell key Bible stories in simple language</li>
+            <li>Identify basic Bible truths: God made me, God loves me, Jesus saves</li>
+            <li>Practice speaking Scripture aloud with confidence</li>
+          </ul>
+        </div>
+        <div class="grade-card-foot">K-1 Showcase: classes recite verses and share a Bible truth in chapel (no competition)</div>
+      </div>
+
+      <div class="grade-card">
+        <div class="grade-card-header">
+          <div class="grade-label">2nd Grade</div>
+          <div class="grade-track">"Grow in the Word"</div>
+        </div>
+        <div class="grade-card-body">
+          <p class="grade-goal">Introduce students to the formal Bible Bee track through Scripture memory, Bible facts, and simple comprehension.</p>
+          <ul class="grade-outcomes">
+            <li>Memorize assigned Bible verses and identify their reference</li>
+            <li>Answer simple Bible knowledge questions</li>
+            <li>Demonstrate understanding of what a verse means</li>
+            <li>Participate in a friendly grade-level Bible Bee round</li>
+          </ul>
+        </div>
+        <div class="grade-card-foot">Entry competition level in the annual Bible Bee</div>
+      </div>
+
+      <div class="grade-card">
+        <div class="grade-card-header">
+          <div class="grade-label">3rd Grade</div>
+          <div class="grade-track">"Understand the Word"</div>
+        </div>
+        <div class="grade-card-body">
+          <p class="grade-goal">Strengthen biblical literacy by helping students memorize Scripture, understand context, and explain how God's Word applies to life.</p>
+          <ul class="grade-outcomes">
+            <li>Recite assigned verses with reference and increasing accuracy</li>
+            <li>Identify key people, places, and events in Scripture</li>
+            <li>Explain the meaning of selected verses in their own words</li>
+            <li>Connect Scripture to choices, character, and faith</li>
+          </ul>
+        </div>
+        <div class="grade-card-foot">Developing competition level in the annual Bible Bee</div>
+      </div>
+
+      <div class="grade-card">
+        <div class="grade-card-header">
+          <div class="grade-label">4th Grade</div>
+          <div class="grade-track">"Stand on the Word"</div>
+        </div>
+        <div class="grade-card-body">
+          <p class="grade-goal">Prepare students to handle Scripture with greater confidence by memorizing verses, understanding biblical themes, and articulating truth clearly.</p>
+          <ul class="grade-outcomes">
+            <li>Recite longer or more complex Scripture passages</li>
+            <li>Identify themes: creation, sin, redemption, obedience, grace, faith</li>
+            <li>Explain how Scripture shapes Christian living</li>
+            <li>Model confidence and leadership in Bible engagement</li>
+          </ul>
+        </div>
+        <div class="grade-card-foot">Upper competition level in the annual Bible Bee</div>
+      </div>
+
+      <div class="grade-card gold-top">
+        <div class="grade-card-header">
+          <div class="grade-label">5th Grade</div>
+          <div class="grade-track">"Lead with the Word"</div>
+        </div>
+        <div class="grade-card-body">
+          <p class="grade-goal">Give 5th grade students leadership opportunities connected to the Bible Bee without making them the primary competitors.</p>
+          <ul class="grade-outcomes">
+            <li>Serve as Bible Bee Ambassadors, Verse Buddies, readers, or hosts</li>
+            <li>Encourage younger students in Scripture memory</li>
+            <li>Model reverence, confidence, and joy in God's Word</li>
+            <li>Optional advanced Bible challenges and leadership devotionals</li>
+          </ul>
+        </div>
+        <div class="grade-card-foot">Leadership recognition rather than competition awards</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- How It Works -->
+  <div style="background:#fff; padding: 0;">
+    <div class="section">
+      <h2 class="section-title">How It Works</h2>
+      <div class="category">
+        <div class="card-grid">
+
+          <div class="card accent">
+            <div class="card-pillars">
+              <span class="card-pillar"><i class="fa-solid fa-calendar-week"></i> Weekly</span>
+            </div>
+            <h3>Weekly Memory Verses</h3>
+            <p>
+              Each week students receive a new verse to memorize. Verses are connected to chapel themes,
+              classroom curriculum, and the Echoes of Eden year-long narrative wherever possible.
+            </p>
+            <div class="card-meta">
+              <span class="mk">Grades</span><span class="mv">K through 5th</span>
+              <span class="mk">Format</span><span class="mv">Verse card sent home each Monday</span>
+            </div>
+          </div>
+
+          <div class="card accent">
+            <div class="card-pillars">
+              <span class="card-pillar"><i class="fa-solid fa-robot"></i> AI-Focused</span>
+            </div>
+            <h3>Barnabee Study Sessions</h3>
+            <p>
+              Students in 2nd through 5th grade use Barnabee and Flint Lessons to study for the Bible Bee.
+              This AI-guided approach helps students practice verses, review Bible knowledge, and prepare
+              to qualify for competition at their own pace in a fun, encouraging format.
+            </p>
+            <div class="card-meta">
+              <span class="mk">Grades</span><span class="mv">2nd through 5th</span>
+              <span class="mk">Tools</span><span class="mv">Barnabee &bull; Flint Lessons</span>
+              <span class="mk">Goal</span><span class="mv">Bible Bee qualification</span>
+            </div>
+            <a href="https://app.flintk12.com/activities/barnabee-study--488ef7/sessions/new" target="_blank" rel="noopener" class="pill-btn">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Start a Barnabee Session
+            </a>
+          </div>
+
+          <div class="card accent">
+            <div class="card-pillars">
+              <span class="card-pillar"><i class="fa-solid fa-trophy"></i> Competition</span>
+            </div>
+            <h3>Annual Bible Bee</h3>
+            <p>
+              Each year, 2nd through 4th grade students compete in the Bible Bee. It is a celebration of
+              Scripture knowledge, hard work, and the joy of knowing God's Word. All participants are
+              recognized and celebrated regardless of placement.
+            </p>
+            <div class="card-meta">
+              <span class="mk">Session</span><span class="mv">Annual (Spring)</span>
+              <span class="mk">Grades</span><span class="mv">2nd through 4th</span>
+              <span class="mk">Faculty</span><span class="mv">Mrs. Davis &bull; Mrs. Brigham &bull; Mrs. Barboza</span>
+            </div>
+          </div>
+
+          <div class="card accent">
+            <div class="card-pillars">
+              <span class="card-pillar"><i class="fa-solid fa-house"></i> Family</span>
+            </div>
+            <h3>Family Connection</h3>
+            <p>
+              Formation does not stop at the school door. Families receive weekly devotions from Mr. Bishop
+              through The Brief, and parents are invited to deepen their own study through Parent Partners
+              Bible Study.
+            </p>
+            <div class="card-meta">
+              <span class="mk">Weekly</span><span class="mv">The Brief devotion from Mr. Bishop</span>
+              <span class="mk">Parents</span><span class="mv">Parent Partners Bible Study</span>
+              <span class="mk">Grades</span><span class="mv">All grades</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Study Tips -->
+      <div class="cat-header"><span>Study Tips for Families</span></div>
+      <div class="card-grid">
+
+        <div class="card">
+          <div class="card-pillars">
+            <span class="card-pillar"><i class="fa-solid fa-repeat"></i> Repetition</span>
+          </div>
+          <h3>Say It Together</h3>
+          <p>
+            Read the verse aloud together at breakfast, in the car, and at bedtime. Hearing it spoken
+            in a trusted voice anchors it faster than reading alone.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-pillars">
+            <span class="card-pillar"><i class="fa-solid fa-music"></i> Song</span>
+          </div>
+          <h3>Sing It</h3>
+          <p>
+            Many of our weekly verses have musical versions. Singing a verse dramatically increases
+            retention and makes memorization feel like play rather than work.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-pillars">
+            <span class="card-pillar"><i class="fa-solid fa-lightbulb"></i> Meaning</span>
+          </div>
+          <h3>Talk About What It Means</h3>
+          <p>
+            Ask your child what they think the verse means. Connect it to something real in their
+            day. When Scripture connects to life, it moves from memory into formation.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Campus-Wide Goals -->
+  <div class="section" style="padding-bottom: 0;">
+    <h2 class="section-title">Campus-Wide Rooted Goals</h2>
+    <div class="goals-grid">
+
+      <div class="goal-card">
+        <h3><i class="fa-solid fa-heart fa-fw"></i> Spiritual Formation</h3>
+        <ul>
+          <li>Grow in love for God's Word</li>
+          <li>Understand that Scripture is true, trustworthy, and useful</li>
+          <li>Learn that Bible memory helps us follow Christ</li>
+          <li>Connect Scripture to daily life, choices, relationships, and worship</li>
+        </ul>
+      </div>
+
+      <div class="goal-card">
+        <h3><i class="fa-solid fa-book-bible fa-fw"></i> Biblical Literacy</h3>
+        <ul>
+          <li>Learn key Bible verses</li>
+          <li>Recognize major Bible stories, people, and themes</li>
+          <li>Understand the basic structure of the Bible</li>
+          <li>Build confidence using Bible language and references</li>
+        </ul>
+      </div>
+
+      <div class="goal-card">
+        <h3><i class="fa-solid fa-microphone-lines fa-fw"></i> Communication</h3>
+        <ul>
+          <li>Practice speaking clearly and confidently</li>
+          <li>Recite Scripture with reverence</li>
+          <li>Answer questions thoughtfully</li>
+          <li>Encourage others as they learn</li>
+        </ul>
+      </div>
+
+      <div class="goal-card">
+        <h3><i class="fa-solid fa-people-group fa-fw"></i> Community</h3>
+        <ul>
+          <li>Celebrate Scripture together as a campus</li>
+          <li>Encourage classmates and younger students</li>
+          <li>See Bible engagement as part of who we are at Westminster</li>
+          <li>Connect chapel, classroom, and home through shared Scripture</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Annual Rhythm -->
+  <div style="background: #fff;">
+    <div class="section">
+      <h2 class="section-title">Annual Rhythm</h2>
+      <div class="rhythm-row">
+
+        <div class="rhythm-step" style="border-left: none;">
+          <div class="rhythm-season">Fall</div>
+          <div class="rhythm-title">Launch</div>
+          <div class="rhythm-desc">Introduce the Rooted theme, memory verses, and campus-wide language for the year.</div>
+        </div>
+
+        <div class="rhythm-step">
+          <div class="rhythm-season">Winter</div>
+          <div class="rhythm-title">Practice</div>
+          <div class="rhythm-desc">Begin classroom practice, verse challenges, and chapel Scripture spotlights.</div>
+        </div>
+
+        <div class="rhythm-step">
+          <div class="rhythm-season">Spring</div>
+          <div class="rhythm-title">Prepare</div>
+          <div class="rhythm-desc">Hold classroom rounds and grade-level preparation leading into the Final.</div>
+        </div>
+
+        <div class="rhythm-step">
+          <div class="rhythm-season">Final Chapel</div>
+          <div class="rhythm-title">Bible Bee Final</div>
+          <div class="rhythm-desc">Host the 2nd through 4th Grade Bible Bee Final as a campus celebration.</div>
+        </div>
+
+        <div class="rhythm-step">
+          <div class="rhythm-season">End of Year</div>
+          <div class="rhythm-title">Recognition</div>
+          <div class="rhythm-desc">Celebrate all levels: preschool participation, K-1 Showcase, 2nd-4th finalists, and 5th grade leaders.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Team -->
+  <div class="team-bg">
+    <div class="section">
+      <h2 class="section-title">The Team</h2>
+
+      <div class="cat-header"><span>Rooted Leadership</span></div>
+      <div class="team-grid">
+
+        <div class="team-card">
+          <div class="team-avatar">
+            <span class="initials">JB</span>
+            <img src="https://bbk12e1-cdn.myschoolcdn.com/ftpimages/701/user/large_user_6480989_911.jpg?resize=200,200" alt="Mr. Bishop" />
+          </div>
+          <div class="name">Mr. Bishop</div>
+          <div class="role">Director of Spiritual Formation</div>
+          <a class="email-btn" href="mailto:jbishop@wcsmiami.org">Email</a>
+        </div>
+
+        <div class="team-card">
+          <div class="team-avatar">
+            <span class="initials">KB</span>
+            <img src="https://bbk12e1-cdn.myschoolcdn.com/ftpimages/701/user/large_user_3425147_653.jpg?resize=200,200" alt="Mrs. Brigham" />
+          </div>
+          <div class="name">Mrs. Brigham</div>
+          <div class="role">PS/ES Counselor &amp; Formation Coordinator</div>
+          <a class="email-btn" href="mailto:kbrigham@wcsmiami.org">Email</a>
+        </div>
+
+        <div class="team-card">
+          <div class="team-avatar bot-av" style="background: #fff;">
+            <img src="Barnabee.png" alt="Barnabee" />
+          </div>
+          <div class="name">Barnabee</div>
+          <div class="role">Son of Encouragement &bull; Bible Study Companion</div>
+          <a class="email-btn" href="barnabee.html">Chat with Barnabee</a>
+        </div>
+
+      </div>
+
+      <div class="cat-header" style="margin-top:32px;"><span>Bible Bee Team</span></div>
+      <div class="team-grid">
+
+        <div class="team-card">
+          <div class="team-avatar">
+            <span class="initials">KD</span>
+          </div>
+          <div class="name">Mrs. Davis</div>
+          <div class="role">Bible Bee Team</div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-avatar">
+            <span class="initials">AB</span>
+          </div>
+          <div class="name">Mrs. Barboza</div>
+          <div class="role">Bible Bee Team</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="contact">
+    <p>
+      Questions about Rooted or the Bible Bee?<br />
+      Contact <strong>Mrs. Brigham</strong> at
+      <a href="mailto:kbrigham@wcsmiami.org">kbrigham@wcsmiami.org</a>
+    </p>
+  </div>
+
+</body>
+</html>

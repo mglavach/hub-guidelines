@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barnabee &middot; Bible Study Companion &middot; WCS Formation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --forest: #2c5234; --gold: #B9975B; --cream: #fdf8ef;
+      --sage: #4a7c59; --light-green: #eaf3ec; --text: #2c2c2c; --muted: #6b6b6b;
+    }
+    body { font-family: 'Montserrat', sans-serif; background: var(--cream); height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
+
+    /* HEADER */
+    .chat-header { background: var(--forest); padding: 0.85rem 1.25rem; flex-shrink: 0; box-shadow: 0 2px 12px rgba(0,0,0,0.22); }
+    .header-inner { max-width: 740px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .olive-id { display: flex; align-items: center; gap: 0.8rem; }
+    .olive-avatar {
+      width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0;
+      background: var(--gold); border: 2px solid rgba(255,255,255,0.4);
+      overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+    .olive-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .olive-name { font-size: 1.1rem; font-weight: 800; color: white; letter-spacing: 0.02em; }
+    .olive-sub { font-size: 0.7rem; color: rgba(255,255,255,0.65); font-weight: 500; margin-top: 1px; }
+    .back-link {
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22);
+      color: rgba(255,255,255,0.85); border-radius: 0.5rem; padding: 0.38rem 0.85rem;
+      font-family: 'Montserrat', sans-serif; font-size: 0.76rem; font-weight: 600;
+      text-decoration: none; transition: background 0.15s;
+    }
+    .back-link:hover { background: rgba(255,255,255,0.2); }
+
+    /* CHAT BODY */
+    .chat-body { flex: 1; overflow-y: auto; padding: 1.25rem 1.25rem 0.5rem; max-width: 740px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+
+    /* MESSAGES */
+    .msg-row { display: flex; gap: 0.65rem; align-items: flex-end; }
+    .msg-row.user { flex-direction: row-reverse; }
+    .msg-av {
+      width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 0.8rem;
+    }
+    .msg-row.olive .msg-av { background: var(--gold); overflow: hidden; }
+    .msg-row.olive .msg-av img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .msg-row.user .msg-av { background: var(--sage); font-size: 0.58rem; font-weight: 700; color: white; }
+    .msg-bubble { max-width: 82%; padding: 0.75rem 1rem; font-size: 0.88rem; line-height: 1.65; border-radius: 1.2rem; }
+    .msg-row.olive .msg-bubble { background: white; color: var(--text); border-radius: 0.3rem 1.2rem 1.2rem 1.2rem; box-shadow: 0 1px 5px rgba(0,0,0,0.07); border: 1px solid rgba(44,82,52,0.1); }
+    .msg-row.user .msg-bubble { background: var(--forest); color: white; border-radius: 1.2rem 1.2rem 0.3rem 1.2rem; }
+    .msg-bubble p { margin-bottom: 0.5rem; }
+    .msg-bubble p:last-child { margin-bottom: 0; }
+    .msg-bubble ul { padding-left: 1.2rem; margin: 0.35rem 0; }
+    .msg-bubble li { margin-bottom: 0.25rem; }
+    .msg-bubble strong { font-weight: 700; }
+    .msg-bubble .follow-up { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(44,82,52,0.1); font-size: 0.82rem; color: var(--sage); font-style: italic; }
+    .verse-pull { background: var(--light-green); border-left: 3px solid var(--gold); border-radius: 0 6px 6px 0; padding: 0.5rem 0.75rem; margin: 0.5rem 0; font-style: italic; font-size: 0.85rem; color: var(--forest); }
+    .verse-pull cite { display: block; margin-top: 0.25rem; font-style: normal; font-weight: 700; font-size: 0.78em; color: var(--gold); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    /* QUICK ACTIONS */
+    .quick-wrap { max-width: 740px; width: 100%; margin: 0 auto; padding: 0.5rem 1.25rem 0.35rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .qa-btn { background: white; border: 1.5px solid var(--gold); color: var(--forest); padding: 0.4rem 0.85rem; border-radius: 999px; font-family: 'Montserrat', sans-serif; font-size: 0.76rem; font-weight: 600; cursor: pointer; transition: background 0.15s, color 0.15s; white-space: nowrap; }
+    .qa-btn:hover { background: var(--gold); color: white; }
+
+    /* STATUS */
+    .status-bar { font-size: 0.68rem; color: var(--muted); text-align: center; padding: 0.15rem 1rem 0.35rem; max-width: 740px; width: 100%; margin: 0 auto; }
+
+    /* INPUT */
+    .chat-input-wrap { background: white; border-top: 1px solid rgba(0,0,0,0.08); padding: 0.7rem 1.25rem; flex-shrink: 0; }
+    .input-inner { max-width: 740px; margin: 0 auto; display: flex; gap: 0.65rem; align-items: flex-end; }
+    .chat-ta { flex: 1; border: 1.5px solid #ddd; border-radius: 1.2rem; padding: 0.62rem 1rem; font-family: 'Montserrat', sans-serif; font-size: 0.88rem; resize: none; line-height: 1.5; max-height: 110px; overflow-y: auto; outline: none; transition: border-color 0.15s; }
+    .chat-ta:focus { border-color: var(--forest); }
+    .send-btn { background: var(--forest); color: white; border: none; border-radius: 50%; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: background 0.15s; }
+    .send-btn:hover { background: var(--sage); }
+    .send-btn:disabled { background: #ccc; cursor: default; }
+  </style>
+</head>
+<body>
+
+<header class="chat-header">
+  <div class="header-inner">
+    <div class="olive-id">
+      <div class="olive-avatar"><img src="Barnabee.png" alt="Barnabee" /></div>
+      <div>
+        <div class="olive-name">Barnabee</div>
+        <div class="olive-sub">Son of Encouragement &middot; WCS Rooted</div>
+      </div>
+    </div>
+    <a class="back-link" href="formation.html">&#8592; Rooted</a>
+  </div>
+</header>
+
+<div class="chat-body" id="chatBody"></div>
+
+<div class="quick-wrap" id="quickWrap">
+  <button class="qa-btn" onclick="sendQuick('Who are you, Barnabee?')">Who is Barnabee?</button>
+  <button class="qa-btn" onclick="sendQuick('Quiz me on the books of the Bible')">Books of the Bible</button>
+  <button class="qa-btn" onclick="sendQuick('Help me with the verse of the week')">Verse of the Week</button>
+  <button class="qa-btn" onclick="sendQuick('Tell me a Bible story')">Bible Stories</button>
+  <button class="qa-btn" onclick="sendQuick('What are the Fruit of the Spirit?')">Fruit of the Spirit</button>
+  <button class="qa-btn" onclick="sendQuick('Tell me about Echoes of Eden')">Echoes of Eden</button>
+  <button class="qa-btn" onclick="sendQuick('Give me a Rooted challenge')">Rooted Challenge</button>
+  <button class="qa-btn" onclick="sendQuick('Help me memorize a verse')">Memorize a Verse</button>
+</div>
+
+<div class="status-bar">Barnabee knows the Bible &middot; Ask anything about Scripture, stories, or Rooted</div>
+
+<div class="chat-input-wrap">
+  <div class="input-inner">
+    <textarea class="chat-ta" id="userInput" placeholder="Ask Barnabee about the Bible..." rows="1"></textarea>
+    <button class="send-btn" id="sendBtn">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"/>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+const KB = [
+
+  /* Identity */
+  {
+    id: 'greeting',
+    tags: ['hello', 'hi barnabee', 'hey', 'good morning', 'good afternoon', 'hi there', 'howdy'],
+    reply: `<p>Hello! I'm so glad you're here! I'm <strong>Barnabee</strong>, your Bible study friend at Westminster.</p>
+<p>I'm named after Barnabas, the <em>Son of Encouragement</em> from the book of Acts. Just like Barnabas cheered on his friends in the faith, I'm here to cheer YOU on as you learn God's Word!</p>
+<p class="follow-up">What would you like to do today?</p>`
+  },
+  {
+    id: 'who_olive',
+    tags: ['who are you', 'who is barnabee', 'what are you', 'about barnabee', 'tell me about yourself', 'what can you do', 'what can you help', 'barnabee'],
+    reply: `<p>I'm <strong>Barnabee</strong>, your Bible Study Companion at Westminster Christian School!</p>
+<p>I'm named after <strong>Barnabas</strong>, a man in the New Testament whose name means <em>"Son of Encouragement."</em> Barnabas is famous for cheering people on, giving second chances, and helping others grow in their faith. That's exactly what I love to do!</p>
+<p>I can help you:</p>
+<ul>
+  <li>Practice and memorize Bible verses</li>
+  <li>Learn the Books of the Bible</li>
+  <li>Explore amazing Bible stories</li>
+  <li>Study the Fruit of the Spirit</li>
+  <li>Get ready for Rooted</li>
+  <li>Discover this year's chapel theme, Echoes of Eden</li>
+</ul>
+<div class="verse-pull">"I have hidden your word in my heart that I might not sin against you."<cite>Psalm 119:11</cite></div>
+<p class="follow-up">Pick a challenge and let's get started! You've got this!</p>`
+  },
+  {
+    id: 'barnabas',
+    tags: ['barnabas', 'who was barnabas', 'barnabas in the bible', 'son of encouragement', 'acts barnabas', 'tell me about barnabas'],
+    reply: `<p><strong>Barnabas</strong> is one of the most encouraging people in the whole New Testament!</p>
+<p>His real name was Joseph, but the apostles gave him the nickname <strong>Barnabas</strong>, which means <em>"Son of Encouragement"</em> in Aramaic. (Acts 4:36)</p>
+<p>Here's what made Barnabas special:</p>
+<ul>
+  <li><strong>Generosity:</strong> He sold a field and gave ALL the money to help others in the church (Acts 4:37)</li>
+  <li><strong>Courage:</strong> When everyone was afraid of Paul after his conversion, Barnabas stood up for him and brought him to the apostles (Acts 9:27)</li>
+  <li><strong>Second chances:</strong> He believed in John Mark even when Paul gave up on him, and John Mark went on to write the Gospel of Mark!</li>
+  <li><strong>Mission:</strong> He traveled with Paul on the very first missionary journey, spreading the Good News</li>
+</ul>
+<div class="verse-pull">"He was a good man, full of the Holy Spirit and faith, and a great number of people were brought to the Lord."<cite>Acts 11:24</cite></div>
+<p class="follow-up">Barnabas shows us that encouragement is one of the most powerful things you can do for someone. Want to learn more about Acts or the early church?</p>`
+  },
+
+  /* Books of the Bible */
+  {
+    id: 'books_quiz',
+    tags: ['books of the bible', 'quiz me', 'books quiz', 'old testament books', 'new testament books', 'name the books', 'books in order'],
+    reply: `<p>Let's explore the <strong>Books of the Bible</strong>! The Bible has <strong>66 books</strong> total: 39 in the Old Testament and 27 in the New Testament.</p>
+<p><strong>Old Testament sections:</strong></p>
+<ul>
+  <li><strong>The Law (5 books):</strong> Genesis, Exodus, Leviticus, Numbers, Deuteronomy</li>
+  <li><strong>History (12 books):</strong> Joshua through Esther</li>
+  <li><strong>Poetry (5 books):</strong> Job, Psalms, Proverbs, Ecclesiastes, Song of Solomon</li>
+  <li><strong>Prophets (17 books):</strong> Isaiah through Malachi</li>
+</ul>
+<p><strong>New Testament sections:</strong></p>
+<ul>
+  <li><strong>Gospels (4):</strong> Matthew, Mark, Luke, John</li>
+  <li><strong>History (1):</strong> Acts</li>
+  <li><strong>Letters (21):</strong> Romans through Jude</li>
+  <li><strong>Prophecy (1):</strong> Revelation</li>
+</ul>
+<p class="follow-up">Want me to quiz you on a section? Try asking "Quiz me on the Gospels" or "What are the books of the Law?"</p>`
+  },
+  {
+    id: 'gospels',
+    tags: ['gospels', 'four gospels', 'matthew mark luke john', 'quiz gospels', 'names of gospels'],
+    reply: `<p>The <strong>Four Gospels</strong> tell the story of Jesus! Can you name them?</p>
+<p>Ready? The four Gospels are:</p>
+<ul>
+  <li><strong>Matthew</strong> - Written for Jewish readers, shows Jesus as King</li>
+  <li><strong>Mark</strong> - The shortest Gospel, full of action and miracles</li>
+  <li><strong>Luke</strong> - Written by a doctor, shows Jesus caring for everyone</li>
+  <li><strong>John</strong> - "The beloved disciple" wrote this one, focuses on who Jesus IS</li>
+</ul>
+<div class="verse-pull">"For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."<cite>John 3:16</cite></div>
+<p class="follow-up">Can you name all four Gospels from memory now? Want to try another section?</p>`
+  },
+  {
+    id: 'books_law',
+    tags: ['books of the law', 'first five books', 'pentateuch', 'genesis exodus leviticus numbers deuteronomy', 'five books of moses'],
+    reply: `<p>The first five books of the Bible are called <strong>The Law</strong> or the Pentateuch (that's a big word that means "five scrolls").</p>
+<ul>
+  <li><strong>1. Genesis</strong> - The beginning of everything: creation, the fall, Noah, Abraham</li>
+  <li><strong>2. Exodus</strong> - Moses leads God's people out of Egypt</li>
+  <li><strong>3. Leviticus</strong> - God's laws and instructions for worship</li>
+  <li><strong>4. Numbers</strong> - 40 years of wandering in the wilderness</li>
+  <li><strong>5. Deuteronomy</strong> - Moses reminds the people of God's commands</li>
+</ul>
+<p class="follow-up">Can you say all five in order? Genesis, Exodus, Leviticus, Numbers, Deuteronomy. Try it!</p>`
+  },
+
+  /* Verse memorization */
+  {
+    id: 'memorize_verse',
+    tags: ['memorize', 'memory verse', 'help me memorize', 'how to memorize', 'remember a verse', 'verse of the week', 'practice verse'],
+    reply: `<p>Memorizing Bible verses is one of the best things you can do! Here are Olive's favorite tips:</p>
+<ul>
+  <li><strong>Say it out loud</strong> - Read the verse aloud 3 times in a row</li>
+  <li><strong>Chunk it</strong> - Break the verse into small pieces and learn one piece at a time</li>
+  <li><strong>Sing it</strong> - Make up a little tune. Songs stick in your brain!</li>
+  <li><strong>Write it</strong> - Write the verse on a card and put it somewhere you'll see it</li>
+  <li><strong>Teach it</strong> - Say the verse to a parent or friend. Teaching helps you remember!</li>
+</ul>
+<div class="verse-pull">"I have hidden your word in my heart that I might not sin against you."<cite>Psalm 119:11</cite></div>
+<p class="follow-up">Tell me a verse you're working on and I'll help you practice it!</p>`
+  },
+  {
+    id: 'psalm_119',
+    tags: ['psalm 119', 'psalm 119:11', 'hidden your word', 'hide your word', 'heart verse'],
+    reply: `<p>That's one of Olive's favorite verses! Here it is:</p>
+<div class="verse-pull">"I have hidden your word in my heart that I might not sin against you."<cite>Psalm 119:11</cite></div>
+<p>This verse tells us that when we memorize Scripture, God's Word lives <em>inside</em> us. It helps us make good choices, even when no one is watching.</p>
+<p>Try memorizing it in two parts:</p>
+<ul>
+  <li>Part 1: "I have hidden your word in my heart..."</li>
+  <li>Part 2: "...that I might not sin against you."</li>
+</ul>
+<p class="follow-up">Can you say the whole verse now? You've got this!</p>`
+  },
+  {
+    id: 'john_316',
+    tags: ['john 3:16', 'john 3 16', 'god so loved the world', 'for god so loved'],
+    reply: `<p>John 3:16 is one of the most famous verses in the whole Bible!</p>
+<div class="verse-pull">"For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."<cite>John 3:16</cite></div>
+<p>Let's break it down:</p>
+<ul>
+  <li><strong>"For God so loved the world"</strong> - God loves every single person, including YOU</li>
+  <li><strong>"that he gave his one and only Son"</strong> - Jesus came because of God's love</li>
+  <li><strong>"that whoever believes in him"</strong> - That means anyone who trusts in Jesus</li>
+  <li><strong>"shall not perish but have eternal life"</strong> - We get to be with God forever!</li>
+</ul>
+<p class="follow-up">Can you say John 3:16 from memory? Give it a try!</p>`
+  },
+  {
+    id: 'eccl_311',
+    tags: ['ecclesiastes 3:11', 'ecclesiastes 3 11', 'beautiful in its time', 'eternity in the human heart', 'verse of the year', 'echoes of eden verse'],
+    reply: `<p>That's Westminster's <strong>Verse of the Year</strong> for 2026-27!</p>
+<div class="verse-pull">"God has made everything beautiful in its time. He has also set eternity in the human heart; yet no one can fathom what God has done from beginning to end."<cite>Ecclesiastes 3:11</cite></div>
+<p>This verse tells us some amazing things:</p>
+<ul>
+  <li>God makes <em>everything</em> beautiful, even things that feel hard right now</li>
+  <li>God has put a longing for forever inside every one of us</li>
+  <li>God's plan is too wonderful for us to fully understand, and that's okay!</li>
+</ul>
+<p class="follow-up">Can you say Ecclesiastes 3:11 from memory? Break it into two pieces and try!</p>`
+  },
+
+  /* Fruit of the Spirit */
+  {
+    id: 'fruit_spirit',
+    tags: ['fruit of the spirit', 'fruits of the spirit', 'galatians 5', 'love joy peace', 'what are the fruits', 'nine fruits', 'spirit fruits'],
+    reply: `<p>The <strong>Fruit of the Spirit</strong> comes from Galatians 5:22-23. These are 9 qualities that grow in us when we walk with God!</p>
+<ul>
+  <li><strong>Love</strong> - Caring deeply for God and others</li>
+  <li><strong>Joy</strong> - A happiness that doesn't depend on things going perfectly</li>
+  <li><strong>Peace</strong> - Calm and trust even when life is hard</li>
+  <li><strong>Patience</strong> - Waiting without getting frustrated</li>
+  <li><strong>Kindness</strong> - Being gentle and good to others</li>
+  <li><strong>Goodness</strong> - Choosing what's right even when it's hard</li>
+  <li><strong>Faithfulness</strong> - Keeping your promises and being trustworthy</li>
+  <li><strong>Gentleness</strong> - Being humble and soft-spoken</li>
+  <li><strong>Self-control</strong> - Choosing wisely even when you don't feel like it</li>
+</ul>
+<div class="verse-pull">"But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control."<cite>Galatians 5:22-23</cite></div>
+<p class="follow-up">Can you name all nine? Love, Joy, Peace... keep going!</p>`
+  },
+
+  /* Echoes of Eden */
+  {
+    id: 'echoes_eden',
+    tags: ['echoes of eden', 'chapel theme', 'this year theme', '2026 theme', 'eden and ed', 'meet eden and ed', 'echoes'],
+    reply: `<p>This year's chapel theme is <strong>Echoes of Eden</strong>!</p>
+<p>The idea is that our whole world, both the beautiful parts and the broken parts, finds its beginning in the story of <strong>Genesis 1-3</strong>. When we look around us, we can see "echoes" of what God created in the beginning.</p>
+<p>You'll get to follow <strong>Eden and Ed</strong>, two sheep siblings who experience life just like you do, sometimes doing the right thing and sometimes not, to help us understand these big truths in a fun way.</p>
+<div class="verse-pull">"God has made everything beautiful in its time."<cite>Ecclesiastes 3:11</cite></div>
+<p><strong>Three big ideas to remember:</strong></p>
+<ul>
+  <li>God created the world as <em>good and beautiful</em></li>
+  <li>Sin broke things, but God had a plan</li>
+  <li>Jesus came to fix what sin broke!</li>
+</ul>
+<p class="follow-up">Want to learn more about Genesis 1-3 or about Eden and Ed?</p>`
+  },
+  {
+    id: 'creation',
+    tags: ['creation', 'genesis 1', 'in the beginning', 'god created', 'seven days', 'six days', 'day one', 'what did god create'],
+    reply: `<p>The story of <strong>Creation</strong> is in Genesis 1 and 2. In six days, God made everything!</p>
+<ul>
+  <li><strong>Day 1</strong> - Light (and dark)</li>
+  <li><strong>Day 2</strong> - Sky and water</li>
+  <li><strong>Day 3</strong> - Land, seas, and plants</li>
+  <li><strong>Day 4</strong> - Sun, moon, and stars</li>
+  <li><strong>Day 5</strong> - Birds and fish</li>
+  <li><strong>Day 6</strong> - Animals and people (Adam and Eve!)</li>
+  <li><strong>Day 7</strong> - God rested and called it holy</li>
+</ul>
+<div class="verse-pull">"In the beginning God created the heavens and the earth."<cite>Genesis 1:1</cite></div>
+<p class="follow-up">Can you name all 7 days of creation? Try it! And want to learn about Adam and Eve next?</p>`
+  },
+  {
+    id: 'adam_eve',
+    tags: ['adam and eve', 'garden of eden', 'the fall', 'forbidden fruit', 'serpent', 'adam eve snake', 'original sin'],
+    reply: `<p>God created <strong>Adam and Eve</strong> and placed them in the beautiful Garden of Eden. Everything was perfect!</p>
+<p>God gave them one rule: do not eat from the Tree of the Knowledge of Good and Evil.</p>
+<p>But a sneaky serpent came and tricked Eve into thinking it would be okay. She ate the fruit, and Adam did too. This was called <strong>the Fall</strong>.</p>
+<p>Because of their choice, sin and sadness entered the world. But even then, God showed his love by making a promise: one day, Someone would come to make things right.</p>
+<p>That Someone was <strong>Jesus!</strong></p>
+<div class="verse-pull">"For God so loved the world that he gave his one and only Son."<cite>John 3:16</cite></div>
+<p class="follow-up">This is the start of the Echoes of Eden story! Want to learn about Noah or another Bible story?</p>`
+  },
+
+  /* Bible Stories */
+  {
+    id: 'bible_stories',
+    tags: ['tell me a bible story', 'bible story', 'story from the bible', 'what stories', 'what stories are in the bible'],
+    reply: `<p>The Bible is full of amazing stories! Here are some I can tell you about:</p>
+<ul>
+  <li><strong>Creation</strong> - God makes the world in 6 days</li>
+  <li><strong>Noah and the Ark</strong> - A giant boat and a rainbow promise</li>
+  <li><strong>Moses and the Exodus</strong> - Parting the Red Sea!</li>
+  <li><strong>David and Goliath</strong> - A small boy with big faith</li>
+  <li><strong>Daniel in the Lion's Den</strong> - Courage when it's scary</li>
+  <li><strong>Jonah and the Whale</strong> - Running away from God doesn't work</li>
+  <li><strong>The Birth of Jesus</strong> - The greatest gift ever given</li>
+  <li><strong>Jesus Feeds 5,000</strong> - A little becomes a lot</li>
+  <li><strong>Easter</strong> - Jesus rose from the dead!</li>
+</ul>
+<p class="follow-up">Which story would you like to hear? Just ask!</p>`
+  },
+  {
+    id: 'noah',
+    tags: ['noah', 'noah ark', 'noahs ark', 'flood', 'rainbow', 'noah and the ark', 'animals two by two'],
+    reply: `<p>The story of <strong>Noah and the Ark</strong> is in Genesis 6-9!</p>
+<p>The world had become very sinful, but Noah loved and obeyed God. So God gave Noah a big job: build a giant boat called an <strong>ark</strong>. Noah brought two of every kind of animal on board.</p>
+<p>It rained for 40 days and 40 nights. The whole earth flooded. But Noah, his family, and all the animals were safe on the ark.</p>
+<p>When the waters went down, God put a beautiful <strong>rainbow</strong> in the sky as a promise: He would never flood the whole earth again.</p>
+<div class="verse-pull">"I have set my rainbow in the clouds, and it will be the sign of the covenant between me and the earth."<cite>Genesis 9:13</cite></div>
+<p class="follow-up">The olive branch in this story is special! Do you know what it meant? (Hint: it meant dry land was near!) Want to hear another story?</p>`
+  },
+  {
+    id: 'david_goliath',
+    tags: ['david and goliath', 'goliath', 'david goliath', 'giant', 'slingshot', 'david story'],
+    reply: `<p><strong>David and Goliath</strong> is one of the most exciting stories in the Bible! (1 Samuel 17)</p>
+<p>The Philistines had a giant warrior named <strong>Goliath</strong>. He was over 9 feet tall! Every day he dared the Israelites to fight him, and everyone was afraid.</p>
+<p>Then came <strong>David</strong>, a young shepherd boy who brought food to his brothers. He couldn't believe no one was willing to stand up for God's honor.</p>
+<p>David picked up 5 smooth stones and a sling. With one stone and a whole lot of faith, he knocked Goliath right down!</p>
+<p>David said something important before the fight:</p>
+<div class="verse-pull">"The battle is the Lord's."<cite>1 Samuel 17:47</cite></div>
+<p class="follow-up">The lesson? No giant is too big for God! Want to hear another story?</p>`
+  },
+  {
+    id: 'easter',
+    tags: ['easter', 'resurrection', 'jesus rose', 'empty tomb', 'jesus died', 'cross', 'jesus died and rose', 'good friday'],
+    reply: `<p><strong>Easter</strong> is the most important story in the whole Bible!</p>
+<p>Jesus, God's Son, came to earth to save us from sin. But the religious leaders were jealous and afraid of him, so they had him arrested and put on a cross.</p>
+<p>Jesus died on that cross. It seemed like the end. His friends were so sad.</p>
+<p>But three days later, on the first Easter Sunday, the tomb was <strong>empty</strong>. Jesus had risen from the dead! He appeared to his friends, ate with them, and showed them his hands and feet.</p>
+<p>This is called the <strong>Resurrection</strong>, and it changes everything!</p>
+<div class="verse-pull">"He is not here; he has risen, just as he said."<cite>Matthew 28:6</cite></div>
+<p class="follow-up">Because Jesus rose, we can have forever life with God! Want to learn another verse about Easter?</p>`
+  },
+  {
+    id: 'jesus_birth',
+    tags: ['birth of jesus', 'christmas', 'nativity', 'baby jesus', 'bethlehem', 'manger', 'wise men', 'shepherds'],
+    reply: `<p>The story of <strong>Jesus being born</strong> is in Luke 2 and Matthew 1-2!</p>
+<p>God sent an angel to a young woman named <strong>Mary</strong> to tell her she would have a very special baby: God's own Son. Mary said yes to God's plan.</p>
+<p>Mary and her husband Joseph traveled to <strong>Bethlehem</strong>. When Jesus was born, there was no room in the inn, so he was laid in a <strong>manger</strong> (a feeding trough for animals).</p>
+<p>Shepherds in nearby fields heard angels singing and ran to see the baby. Later, wise men from far away followed a star and brought gifts.</p>
+<div class="verse-pull">"For to us a child is born, to us a son is given."<cite>Isaiah 9:6</cite></div>
+<p class="follow-up">Isn't it amazing that the King of the world was born in a stable? Want to hear about when Jesus grew up?</p>`
+  },
+
+  /* Rooted Challenges */
+  {
+    id: 'bible_bee_challenge',
+    tags: ['bible bee challenge', 'challenge me', 'quiz me', 'give me a challenge', 'test me', 'bible quiz', 'bee challenge'],
+    reply: `<p>Let's do a <strong>Rooted Challenge!</strong> I'll ask you a question. Think about it, then tap the message box and tell me your answer!</p>
+<p><strong>Challenge 1:</strong> How many books are in the New Testament?</p>
+<p><em>(Take your time! When you're ready, type your answer.)</em></p>
+<p class="follow-up">Hint: It's between 25 and 30...</p>`
+  },
+  {
+    id: 'answer_27',
+    tags: ['27', 'twenty seven', 'twenty-seven'],
+    reply: `<p><strong>That's right! Great job!</strong> There are <strong>27 books</strong> in the New Testament!</p>
+<p>Here's your next challenge:</p>
+<p><strong>Challenge 2:</strong> What is the shortest verse in the Bible?</p>
+<p><em>(Hint: It's only two words and it's in the Gospel of John.)</em></p>`
+  },
+  {
+    id: 'answer_jesus_wept',
+    tags: ['jesus wept', 'john 11:35', 'john 11 35', 'two words'],
+    reply: `<p><strong>YES! Amazing!</strong> "Jesus wept." John 11:35 is the shortest verse in the Bible!</p>
+<p>It's from the story of Lazarus. Jesus cried because he loved his friend Lazarus and saw how sad everyone was. Even though Jesus was about to raise Lazarus from the dead, he still felt the pain of loss with his friends.</p>
+<p>One more challenge!</p>
+<p><strong>Challenge 3:</strong> In what city was Jesus born?</p>`
+  },
+
+  /* Ten Commandments */
+  {
+    id: 'ten_commandments',
+    tags: ['ten commandments', '10 commandments', 'commandments', 'moses commandments', 'thou shalt not', 'exodus 20'],
+    reply: `<p>The <strong>Ten Commandments</strong> are in Exodus 20! God gave them to Moses on Mount Sinai.</p>
+<ul>
+  <li><strong>1.</strong> Have no other gods before God</li>
+  <li><strong>2.</strong> Do not worship idols</li>
+  <li><strong>3.</strong> Do not misuse God's name</li>
+  <li><strong>4.</strong> Keep the Sabbath day holy</li>
+  <li><strong>5.</strong> Honor your father and mother</li>
+  <li><strong>6.</strong> Do not murder</li>
+  <li><strong>7.</strong> Do not commit adultery</li>
+  <li><strong>8.</strong> Do not steal</li>
+  <li><strong>9.</strong> Do not lie</li>
+  <li><strong>10.</strong> Do not covet (wish for what belongs to others)</li>
+</ul>
+<p class="follow-up">Can you name all ten? Try it! Which one is hardest for you to remember?</p>`
+  },
+
+  /* Lord's Prayer */
+  {
+    id: 'lords_prayer',
+    tags: ['lords prayer', "lord's prayer", 'our father', 'our father who art in heaven', 'how to pray', 'what is prayer', 'teach me to pray'],
+    reply: `<p>Jesus taught us how to pray in what we call <strong>The Lord's Prayer</strong> (Matthew 6:9-13):</p>
+<div class="verse-pull">"Our Father in heaven, hallowed be your name, your kingdom come, your will be done, on earth as it is in heaven. Give us today our daily bread. And forgive us our debts, as we also have forgiven our debtors. And lead us not into temptation, but deliver us from the evil one."<cite>Matthew 6:9-13</cite></div>
+<p>This prayer teaches us to:</p>
+<ul>
+  <li>Praise God first</li>
+  <li>Ask for what we need</li>
+  <li>Ask for forgiveness and forgive others</li>
+  <li>Ask for protection</li>
+</ul>
+<p class="follow-up">Can you say the Lord's Prayer from memory? Try it out loud!</p>`
+  },
+
+  /* Armor of God */
+  {
+    id: 'armor_god',
+    tags: ['armor of god', 'armour of god', 'ephesians 6', 'belt of truth', 'shield of faith', 'sword of the spirit', 'helmet of salvation', 'full armor'],
+    reply: `<p>The <strong>Armor of God</strong> is found in Ephesians 6:10-18! God gives us spiritual armor to stand strong.</p>
+<ul>
+  <li><strong>Belt of Truth</strong> - Know what is true</li>
+  <li><strong>Breastplate of Righteousness</strong> - Living right protects your heart</li>
+  <li><strong>Shoes of Peace</strong> - Be ready to share the Good News</li>
+  <li><strong>Shield of Faith</strong> - Faith blocks the enemy's attacks</li>
+  <li><strong>Helmet of Salvation</strong> - Protect your mind with what you know about God</li>
+  <li><strong>Sword of the Spirit</strong> - The Bible! This is the only weapon for attacking</li>
+</ul>
+<div class="verse-pull">"Put on the full armor of God, so that you can take your stand against the devil's schemes."<cite>Ephesians 6:11</cite></div>
+<p class="follow-up">Can you name all six pieces of the Armor of God?</p>`
+  },
+
+  /* Who is God / Trinity */
+  {
+    id: 'who_is_god',
+    tags: ['who is god', 'what is god like', 'tell me about god', 'trinity', 'father son holy spirit', 'three in one', 'god the father'],
+    reply: `<p><strong>Who is God?</strong> This is the biggest and best question anyone can ask!</p>
+<p>The Bible teaches that God is <strong>one God in three persons</strong>: Father, Son, and Holy Spirit. We call this the Trinity.</p>
+<ul>
+  <li><strong>God the Father</strong> - Our Creator who loves us like a perfect Dad</li>
+  <li><strong>God the Son (Jesus)</strong> - Came to earth, died for our sins, rose again</li>
+  <li><strong>God the Holy Spirit</strong> - Lives inside believers and helps us follow God</li>
+</ul>
+<p>Some things the Bible says about God's character:</p>
+<ul>
+  <li>God is <strong>love</strong> (1 John 4:8)</li>
+  <li>God is <strong>holy</strong> (Isaiah 6:3)</li>
+  <li>God is <strong>faithful</strong> (Lamentations 3:23)</li>
+  <li>God is <strong>everywhere</strong> (Psalm 139)</li>
+  <li>God knows <strong>everything</strong> (Psalm 147:5)</li>
+</ul>
+<p class="follow-up">What else would you like to know about God?</p>`
+  },
+
+  /* Out of scope */
+  {
+    id: 'out_of_scope',
+    tags: ['homework', 'math problem', 'science', 'weather', 'sports score', 'video game', 'movie', 'television', 'tv show', 'social media', 'tiktok', 'youtube', 'minecraft', 'roblox', 'news', 'politics'],
+    reply: `<p>That's a little outside my area! I'm Olive, and I know all about the Bible, Bible stories, and things that help you grow in your faith.</p>
+<p>For homework and other questions, your teacher is the best person to ask!</p>
+<p class="follow-up">Is there something from the Bible I can help you with today?</p>`
+  },
+
+  /* Encouragement / Prayer */
+  {
+    id: 'prayer',
+    tags: ['pray', 'prayer', 'pray for me', 'can you pray', 'i need prayer', 'praying'],
+    reply: `<p>I love that you want to pray! Prayer is just talking to God, and He loves to hear from you.</p>
+<p>You can pray anywhere, anytime. You don't need special words. Just talk to God like you'd talk to someone who loves you very much, because He does!</p>
+<p>Here's a simple prayer to get started:</p>
+<div class="verse-pull"><em>"God, thank you for today. Help me to know you more and love others well. Amen."</em></div>
+<p class="follow-up">Want to learn about the Lord's Prayer, which is how Jesus taught us to pray?</p>`
+  },
+  {
+    id: 'encouragement',
+    tags: ['i am scared', 'i feel sad', 'i am worried', 'nervous', 'hard day', 'i messed up', 'i feel bad', 'i made a mistake'],
+    reply: `<p>It sounds like today might be a little hard. That's okay. God knows exactly how you feel, and He cares so much about you.</p>
+<div class="verse-pull">"Cast all your anxiety on him because he cares for you."<cite>1 Peter 5:7</cite></div>
+<p>You can always talk to God about how you feel. He is always listening. You can also talk to a trusted adult at school like Mrs. Brigham.</p>
+<p class="follow-up">Would you like to learn a verse that might help when things feel hard?</p>`
+  },
+
+  /* Fallback */
+  {
+    id: 'fallback',
+    tags: [],
+    reply: `<p>Hmm, I'm not sure I know about that one! I'm Olive, and I know lots about the Bible, Bible stories, verses, and things that help you grow in faith.</p>
+<p>Try asking me about:</p>
+<ul>
+  <li>A Bible story (like Noah, David and Goliath, or Easter)</li>
+  <li>The Books of the Bible</li>
+  <li>The Fruit of the Spirit</li>
+  <li>A Bible verse you're learning</li>
+  <li>A Rooted challenge</li>
+</ul>
+<p class="follow-up">What sounds fun to you?</p>`
+  }
+
+];
+
+/* Scoring engine */
+function score(entry, q) {
+  if (!entry.tags.length) return -1;
+  return entry.tags.reduce((n, t) => n + (q.includes(t) ? 1 : 0), 0);
+}
+
+function getBestReply(q) {
+  q = q.toLowerCase();
+  let best = KB[KB.length - 1], bestScore = 0;
+  for (const e of KB) {
+    const s = score(e, q);
+    if (s > bestScore) { bestScore = s; best = e; }
+  }
+  return best.reply;
+}
+
+/* UI helpers */
+function addMsg(html, role) {
+  const body = document.getElementById('chatBody');
+  const row = document.createElement('div');
+  row.className = 'msg-row ' + role;
+  const av = document.createElement('div');
+  av.className = 'msg-av';
+  if (role === 'olive') av.innerHTML = '<img src="Barnabee.png" alt="Barnabee" />';
+  else { av.textContent = 'Me'; }
+  const bubble = document.createElement('div');
+  bubble.className = 'msg-bubble';
+  bubble.innerHTML = html;
+  row.appendChild(av);
+  row.appendChild(bubble);
+  body.appendChild(row);
+  body.scrollTop = body.scrollHeight;
+}
+
+function typing() {
+  const body = document.getElementById('chatBody');
+  const row = document.createElement('div');
+  row.className = 'msg-row olive'; row.id = 'typing';
+  row.innerHTML = '<div class="msg-av" style="overflow:hidden;"><img src="Barnabee.png" alt="Barnabee" style="width:100%;height:100%;object-fit:cover;display:block;" /></div><div class="msg-bubble" style="color:var(--muted);font-style:italic;font-size:0.82rem;">Barnabee is thinking...</div>';
+  body.appendChild(row);
+  body.scrollTop = body.scrollHeight;
+}
+
+function removeTyping() { const t = document.getElementById('typing'); if (t) t.remove(); }
+
+function send(text) {
+  if (!text.trim()) return;
+  addMsg('<p>' + text.replace(/</g,'&lt;') + '</p>', 'user');
+  document.getElementById('userInput').value = '';
+  document.getElementById('sendBtn').disabled = true;
+  document.getElementById('quickWrap').style.display = 'none';
+  typing();
+  setTimeout(() => {
+    removeTyping();
+    addMsg(getBestReply(text), 'olive');
+    document.getElementById('sendBtn').disabled = false;
+  }, 600 + Math.random() * 400);
+}
+
+function sendQuick(t) { send(t); }
+
+/* Input events */
+document.getElementById('sendBtn').addEventListener('click', () => send(document.getElementById('userInput').value));
+document.getElementById('userInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(document.getElementById('userInput').value); }
+});
+document.getElementById('userInput').addEventListener('input', function() {
+  this.style.height = 'auto';
+  this.style.height = Math.min(this.scrollHeight, 110) + 'px';
+});
+
+/* Opening message */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    addMsg(`<p>Hi! I'm <strong>Barnabee</strong>, your Bible study friend at Westminster!</p>
+<p>I'm named after Barnabas, the <em>Son of Encouragement</em> from Acts. He cheered people on, gave second chances, and helped others grow in faith. That's my job here too!</p>
+<p>I can help you memorize verses, explore Bible stories, learn the Books of the Bible, and get ready for Rooted.</p>
+<div class="verse-pull">"I have hidden your word in my heart that I might not sin against you."<cite>Psalm 119:11</cite></div>
+<p class="follow-up">What would you like to do today? You've got this!</p>`, 'olive');
+  }, 300);
+});
+</script>
+</body>
+</html>
