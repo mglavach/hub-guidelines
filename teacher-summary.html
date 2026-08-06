@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teacher Summary · WCS Elementary Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest: #2c5234;
+      --gold:   #B9975B;
+      --cream:  #fdf8ef;
+      --sage:   #4a7c59;
+      --light-gold:  #f5ead8;
+      --light-blue:  #e8f2f9;
+      --light-green: #eaf3ec;
+      --text:   #2c2c2c;
+      --muted:  #6b6b6b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body { font-family: 'Montserrat', sans-serif; background: var(--cream); color: var(--text); line-height: 1.7; }
+
+    .container { max-width: 980px; margin: 0 auto; padding: 0 1.5rem; }
+    section { padding: 3.5rem 0; scroll-margin-top: 3.5rem; }
+    section + section { border-top: 1px solid #e6e0d4; }
+
+    .section-label { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+    h2 { font-size: clamp(1.5rem, 3.2vw, 2.1rem); color: var(--forest); line-height: 1.25; margin-bottom: 1rem; }
+    h3 { font-size: 1rem; color: var(--forest); margin-bottom: 0.6rem; }
+    .divider { width: 3rem; height: 3px; background: var(--gold); border-radius: 2px; margin: 1.25rem 0; }
+
+    /* HERO */
+    .hero { background: var(--forest); color: white; text-align: center; padding: 3.5rem 2rem 3rem; }
+    .hero-back {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      color: rgba(255,255,255,0.65); font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+      margin-bottom: 1.75rem; transition: color 0.15s;
+    }
+    .hero-back:hover { color: var(--gold); }
+    .hero h1 { font-size: clamp(1.9rem, 4.5vw, 3rem); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.1; color: white; margin-bottom: 0.6rem; }
+    .hero p { color: rgba(255,255,255,0.75); font-size: 0.92rem; max-width: 520px; margin: 0 auto; }
+
+    /* TOC */
+    .toc-nav { background: white; border-bottom: 1px solid #e6e0d4; position: sticky; top: 0; z-index: 50; }
+    .toc-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; padding: 0.75rem 1.5rem; list-style: none; }
+    .toc-links a { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    .toc-links a:hover { color: var(--forest); }
+
+    /* CARDS */
+    .quick-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-top: 1.5rem; }
+    @media (max-width: 700px) { .quick-grid { grid-template-columns: 1fr; } }
+
+    .quick-card { background: white; border-radius: 1rem; padding: 1.5rem 1.75rem; border-top: 4px solid var(--forest); box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .quick-card ul { list-style: none; padding: 0; margin: 0; }
+    .quick-card ul li { font-size: 0.88rem; color: #3a3a3a; line-height: 1.6; padding: 0.3rem 0; border-bottom: 1px solid #eee; }
+    .quick-card ul li:last-child { border-bottom: none; }
+    .quick-card ul li::before { content: '→ '; color: var(--gold); font-weight: 700; }
+    .quick-card .contact-line { margin-top: 0.85rem; font-size: 0.85rem; color: var(--forest); font-weight: 600; }
+    .quick-card .contact-line a { color: inherit; text-decoration: underline; }
+
+    .badge { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.22rem 0.6rem; border-radius: 2rem; margin-bottom: 0.75rem; background: var(--light-green); color: var(--forest); }
+
+    .page-link { display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 0.85rem; font-size: 0.78rem; font-weight: 600; color: var(--forest); text-decoration: none; }
+    .page-link:hover { color: var(--gold); }
+
+    /* TABLE */
+    table.mini-table { width: 100%; border-collapse: collapse; background: white; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); font-size: 0.86rem; margin-top: 1.25rem; }
+    table.mini-table thead { background: var(--forest); color: white; }
+    table.mini-table th { padding: 0.65rem 0.9rem; text-align: left; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    table.mini-table td { padding: 0.65rem 0.9rem; border-bottom: 1px solid #eee; }
+    table.mini-table tr:last-child td { border-bottom: none; }
+    table.mini-table tr:nth-child(even) td { background: #fafafa; }
+
+    /* CONTACT TABLE */
+    .contact-table { width: 100%; border-collapse: collapse; background: white; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.07); font-size: 0.86rem; margin-top: 1.5rem; }
+    .contact-table thead { background: var(--forest); color: white; }
+    .contact-table th { padding: 0.7rem 0.9rem; text-align: left; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .contact-table td { padding: 0.75rem 0.9rem; border-bottom: 1px solid #eee; vertical-align: top; color: #3a3a3a; }
+    .contact-table tr:last-child td { border-bottom: none; }
+    .contact-table tr:nth-child(even) td { background: #fafafa; }
+    .contact-table a { color: var(--forest); text-decoration: underline; }
+
+    .note { font-size: 0.82rem; color: var(--muted); font-style: italic; margin-top: 1rem; }
+
+    footer { background: var(--forest); color: rgba(255,255,255,0.6); text-align: center; padding: 2.5rem 1.5rem; font-size: 0.82rem; }
+    footer strong { color: var(--gold); }
+    .footer-logo { width: 40px; height: 40px; border-radius: 50%; display: block; margin: 0 auto 0.75rem; opacity: 0.9; }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <a href="index.html" class="hero-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to the Hub
+  </a>
+  <h1>Teacher Summary</h1>
+  <p>A condensed, one-page reference to every Hub program, key dates, and who to contact.</p>
+</header>
+
+<!-- TOC -->
+<nav class="toc-nav" aria-label="Section jump links">
+  <ul class="toc-links">
+    <li><a href="#academics">Academics</a></li>
+    <li><a href="#assessment">Assessment</a></li>
+    <li><a href="#intervention">Intervention</a></li>
+    <li><a href="#formation">Formation</a></li>
+    <li><a href="#library">Library</a></li>
+    <li><a href="#technology">Technology</a></li>
+    <li><a href="#contacts">Contacts</a></li>
+  </ul>
+</nav>
+
+<!-- ACADEMICS -->
+<section id="academics">
+  <div class="container">
+    <p class="section-label">Core Academics</p>
+    <h2>Reading &amp; Math</h2>
+    <div class="divider"></div>
+
+    <div class="quick-grid">
+      <div class="quick-card">
+        <span class="badge">Reading</span>
+        <h3>Wide Reading &amp; AR</h3>
+        <ul>
+          <li>Aligned to Florida B.E.S.T. ELA Standards; AR is used for motivation, never to restrict book choice</li>
+          <li>Sustained reading time by grade: K 5&ndash;10 min &middot; 1st 10&ndash;15 &middot; 2nd 15&ndash;20 &middot; 3rd 20&ndash;25 &middot; 4th 25&ndash;30 &middot; 5th 30+ min</li>
+          <li>AR annual point goals: 2nd = 25 &middot; 3rd = 50 &middot; 4th = 75 &middot; 5th = 100</li>
+        </ul>
+        <a class="page-link" href="academics.html">Full Academics page &rarr;</a>
+      </div>
+      <div class="quick-card">
+        <span class="badge">Math</span>
+        <h3>Fluency &amp; Enrichment</h3>
+        <ul>
+          <li>K = IXL Math &middot; 1st&ndash;2nd = Reflex + IXL &middot; 3rd&ndash;5th = FRACS + Reflex + IXL</li>
+          <li>MAP Math data used to identify intervention needs</li>
+          <li>Resources directory (per grade): Savvas/Realize, IXL, Accelerated Reader, Reflex, Trove, Deep Roots</li>
+        </ul>
+        <a class="page-link" href="academics.html">Full Academics page &rarr;</a>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 2.5rem;">AR Grading Quarters (2026&ndash;2027)</h3>
+    <table class="mini-table">
+      <thead><tr><th>Quarter</th><th>Dates</th></tr></thead>
+      <tbody>
+        <tr><td>Qtr 1</td><td>8/10/2026 &ndash; 10/11/2026</td></tr>
+        <tr><td>Qtr 2</td><td>10/12/2026 &ndash; 1/3/2027</td></tr>
+        <tr><td>Qtr 3</td><td>1/4/2027 &ndash; 3/14/2027</td></tr>
+        <tr><td>Qtr 4</td><td>3/15/2027 &ndash; 5/27/2027</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Login help for Savvas, IXL, AR, Reflex, Trove, or Deep Roots: contact Mrs. Glavach.</p>
+  </div>
+</section>
+
+<!-- ASSESSMENT -->
+<section id="assessment">
+  <div class="container">
+    <p class="section-label">Responsive Learning</p>
+    <h2>Assessment</h2>
+    <div class="divider"></div>
+
+    <div class="quick-grid">
+      <div class="quick-card">
+        <span class="badge">IXL</span>
+        <h3>Daily Learning &amp; Practice</h3>
+        <ul>
+          <li>Grades K&ndash;5, Reading &amp; Math &middot; testing window: Fall</li>
+          <li>Adaptive practice (SmartScore) &mdash; instruction/skill development, not formal benchmarking</li>
+        </ul>
+      </div>
+      <div class="quick-card">
+        <span class="badge">MAP Growth</span>
+        <h3>NWEA &middot; Growth Measurement</h3>
+        <ul>
+          <li>Grades K&ndash;5, Reading &amp; Math &middot; Fall &amp; Spring (2&ndash;3x/year)</li>
+          <li>Produces RIT score; sets growth goals, guides IXL/Reflex/FRACS pathways and conferences</li>
+        </ul>
+      </div>
+      <div class="quick-card">
+        <span class="badge">ORF</span>
+        <h3>Oral Reading Fluency</h3>
+        <ul>
+          <li>Grades 1&ndash;3, teacher-administered &middot; Fall &amp; Spring</li>
+          <li>Timed 1-minute passage &mdash; WCPM, accuracy, expression, decoding automaticity</li>
+        </ul>
+      </div>
+      <div class="quick-card">
+        <span class="badge">STAR Reading</span>
+        <h3>Renaissance STAR &middot; Benchmark &amp; Screening</h3>
+        <ul>
+          <li>Grades 2&ndash;4 &middot; Fall &amp; Spring</li>
+          <li>Scaled Score &amp; grade equivalent &mdash; comprehension, vocabulary, instructional reading level</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 2.5rem;">AR Grading Quarters &amp; STAR Testing Windows (2026&ndash;2027)</h3>
+    <table class="mini-table">
+      <thead><tr><th>Quarter</th><th>Dates</th></tr></thead>
+      <tbody>
+        <tr><td>Qtr 1</td><td>8/10/2026 &ndash; 10/11/2026</td></tr>
+        <tr><td>Qtr 2</td><td>10/12/2026 &ndash; 1/3/2027</td></tr>
+        <tr><td>Qtr 3</td><td>1/4/2027 &ndash; 3/14/2027</td></tr>
+        <tr><td>Qtr 4</td><td>3/15/2027 &ndash; 5/27/2027</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Cycle: Teach &rarr; Assess &rarr; Respond &rarr; Differentiate &rarr; Grow. Results are shared with teachers/families to guide next steps, not to label students.</p>
+    <a class="page-link" href="assessment.html">Full Assessment page &rarr;</a>
+  </div>
+</section>
+
+<!-- INTERVENTION -->
+<section id="intervention">
+  <div class="container">
+    <p class="section-label">Support &amp; Growth</p>
+    <h2>Intervention</h2>
+    <div class="divider"></div>
+
+    <div class="quick-grid">
+      <div class="quick-card">
+        <span class="badge">Internal</span>
+        <h3>Foundations &amp; GRASP</h3>
+        <ul>
+          <li>Foundations: no fee, during SAIL time &mdash; requires teacher recommendation + admin approval</li>
+          <li>GRASP: intensive individualized literacy support &mdash; educational testing + contract/fee required &mdash; contact Mrs. LaRosa</li>
+        </ul>
+      </div>
+      <div class="quick-card">
+        <span class="badge">External &amp; After School</span>
+        <h3>Westbridge &amp; Warrior Lab</h3>
+        <ul>
+          <li>Westbridge: external specialized support &mdash; westbridgemiami.org</li>
+          <li>Warrior Lab: after-school academic support, peer groups to certified specialists</li>
+        </ul>
+      </div>
+      <div class="quick-card">
+        <span class="badge">At Home</span>
+        <h3>Lexia &amp; Learning Ally</h3>
+        <ul>
+          <li>Lexia Core 5: adaptive reading practice, Grades K&ndash;5</li>
+          <li>Learning Ally: human-narrated audiobooks for qualifying students</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">Intervention is a targeted, responsive layer of support, not a label &mdash; triggered by assessment data or teacher observation and acted on quickly.</p>
+    <a class="page-link" href="intervention.html">Full Intervention page &rarr;</a>
+  </div>
+</section>
+
+<!-- FORMATION -->
+<section id="formation">
+  <div class="container">
+    <p class="section-label">Faith, Service &amp; Leadership</p>
+    <h2>Formation</h2>
+    <div class="divider"></div>
+
+    <div class="quick-grid">
+      <div class="quick-card">
+        <span class="badge">Rooted in the Word</span>
+        <h3>Deep Roots &amp; Bible Bee</h3>
+        <ul>
+          <li>Deep Roots Bible curriculum (since 2024); Bible Bee scripture memorization program</li>
+          <li>Spiritual Emphasis Weeks (SEW): 20 min every morning on a Scripture theme</li>
+        </ul>
+      </div>
+      <div class="quick-card">
+        <span class="badge">Chapel 2026&ndash;27</span>
+        <h3>"Echoes of Eden"</h3>
+        <ul>
+          <li>Verse of the year: Ecclesiastes 3:11 &middot; characters Eden &amp; Ed</li>
+          <li>Operation Overflow / The Offering Well: quarterly (4x/year) giving initiative</li>
+        </ul>
+      </div>
+      <div class="quick-card">
+        <span class="badge">Service &amp; Leadership</span>
+        <h3>Community Connect &amp; Barnabee</h3>
+        <ul>
+          <li>Community Connect Initiative &amp; Noisy Offering (service/generosity)</li>
+          <li>Student leadership: Safety Patrol, Reading Buddies &middot; Barnabee Bible Study Companion</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">Formation questions: contact Mrs. Brigham (kbrigham@wcsmiami.org), PS/ES Counselor &amp; Formation Coordinator, or Mr. Bishop (jbishop@wcsmiami.org), Director of Spiritual Formation.</p>
+    <a class="page-link" href="formation.html">Full Formation page &rarr;</a>
+  </div>
+</section>
+
+<!-- LIBRARY -->
+<section id="library">
+  <div class="container">
+    <p class="section-label">Curated Resources</p>
+    <h2>Library</h2>
+    <div class="divider"></div>
+
+    <div class="quick-grid">
+      <div class="quick-card">
+        <span class="badge">Hours &amp; Borrowing</span>
+        <h3>Access &amp; Loan Policy</h3>
+        <ul>
+          <li>Mon&ndash;Fri, 8:00am&ndash;3:00pm</li>
+          <li>PK&ndash;2nd: borrow weekly during Hub Time &middot; 3rd&ndash;5th: as needed with LA teacher</li>
+          <li>Loan period 2 weeks (renewable) &middot; 2-book checkout limit</li>
+        </ul>
+      </div>
+      <div class="quick-card">
+        <span class="badge">Programs</span>
+        <h3>Storytime, Book Club &amp; Challenges</h3>
+        <ul>
+          <li>Storytime &amp; Read-Alouds: PK&ndash;K5, weekly</li>
+          <li>Nerd Herd Book Club: Grades 3&ndash;5, monthly &middot; Reading Challenges: Grades 2&ndash;5</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">Volunteering, login help, or general library questions: Mrs. Manya Glavach &mdash; mglavach@wcsmiami.org, 305-233-2030.</p>
+    <a class="page-link" href="library-resources.html">Full Library Resources page &rarr;</a>
+  </div>
+</section>
+
+<!-- TECHNOLOGY -->
+<section id="technology">
+  <div class="container">
+    <p class="section-label">Technology &amp; Innovation</p>
+    <h2>Technology</h2>
+    <div class="divider"></div>
+
+    <div class="quick-grid">
+      <div class="quick-card">
+        <span class="badge">Devices</span>
+        <h3>1:1 &amp; Tech Time by Grade</h3>
+        <ul>
+          <li>K: school computer, Tech Time weekly &middot; 1st&ndash;2nd: computer + Tech Time elective (SAIL)</li>
+          <li>3rd&ndash;5th: personal device purchased through school, taken home &middot; Tech Time elective (SAIL)</li>
+        </ul>
+      </div>
+      <div class="quick-card">
+        <span class="badge">Focus Areas</span>
+        <h3>Digital Citizenship &amp; EdTech</h3>
+        <ul>
+          <li>Digital Literacy &amp; Responsible Research &middot; EdTech Integration (coding, STEM, faith-based media)</li>
+          <li>Discernment &amp; Worldview &middot; Schoolwide Initiatives (PD, e-resources, internet safety workshops)</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">Microsoft Showcase School designation. For classroom tech integration support or PD: Mrs. Arlene Castellanos &mdash; acastellanos@wcsmiami.org.</p>
+    <a class="page-link" href="technology-innovation.html">Full Technology &amp; Innovation page &rarr;</a>
+  </div>
+</section>
+
+<!-- CONTACTS -->
+<section id="contacts">
+  <div class="container">
+    <p class="section-label">Quick Reference</p>
+    <h2>Who to Contact</h2>
+    <div class="divider"></div>
+
+    <table class="contact-table">
+      <thead>
+        <tr><th>Name</th><th>Role</th><th>Contact For</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Mrs. Manya Glavach</strong></td><td>ES Media Specialist</td><td>Library, Accelerated Reader, Warrior Lab, platform login help</td></tr>
+        <tr><td><strong>Mrs. Arlene Castellanos</strong></td><td>ES Technology/Enrichment/Resource Teacher</td><td>Reflex, IXL, classroom tech integration &amp; PD</td></tr>
+        <tr><td><strong>Mrs. Melissa La Rosa</strong></td><td>GRASP Director</td><td>GRASP Intervention</td></tr>
+        <tr><td><strong>Mrs. Claudia Pastrana</strong></td><td>PS/ES Assistant Principal, Curriculum</td><td>Curriculum, Assessment</td></tr>
+        <tr><td><strong>Mrs. Brigham</strong> &middot; kbrigham@wcsmiami.org</td><td>PS/ES Counselor &amp; Formation Coordinator</td><td>Formation questions</td></tr>
+        <tr><td><strong>Mr. Bishop</strong> &middot; jbishop@wcsmiami.org</td><td>Director of Spiritual Formation</td><td>Chapel &amp; spiritual formation</td></tr>
+        <tr><td><strong>Mrs. Ismarely Torres</strong></td><td>Assistant Director of Communications</td><td>The BRIEF newsletter</td></tr>
+        <tr><td><strong>IT Department</strong></td><td>mySchoolBuilding Support Portal</td><td>myWCS &amp; technology login issues</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Ask <a href="wren.html" style="color:var(--forest); text-decoration:underline;">Wren</a>, the Hub chatbot, for instant answers about any program or policy on this page.</p>
+  </div>
+</section>
+
+<footer>
+  <img src="hub%20logo.png" alt="The Hub" class="footer-logo" />
+  <p><strong>WCS Elementary Hub</strong> &nbsp;&middot;&nbsp; Westminster Christian School</p>
+  <p style="margin-top:0.4rem;">Teacher Summary &mdash; For Staff Reference</p>
+</footer>
+
+</body>
+</html>

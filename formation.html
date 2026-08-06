@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+' <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -56,6 +56,19 @@
       text-align: center;
       gap: 16px;
     }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.75em;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--gold); }
     .site-header h1 {
       color: #fff;
       font-size: 1.7em;
@@ -696,6 +709,7 @@
 <body>
 
   <header class="site-header">
+    <a href="index.html" class="back-link">&#8592; Back to the Hub</a>
     <img src="WCS academic logo.png" alt="Westminster Christian School" style="height:90px; width:auto;" />
     <h1>Formation</h1>
     <div class="header-sub">Preschool &amp; Elementary Campus</div>

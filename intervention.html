@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intervention · WCS Elementary Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest: #2c5234;
+      --gold:   #B9975B;
+      --cream:  #fdf8ef;
+      --sage:   #4a7c59;
+      --sky:    #4a90c4;
+      --light-gold:  #f5ead8;
+      --light-blue:  #e8f2f9;
+      --light-green: #eaf3ec;
+      --text:   #2c2c2c;
+      --muted:  #6b6b6b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body { font-family: 'Montserrat', sans-serif; background: var(--cream); color: var(--text); line-height: 1.7; }
+
+    .container { max-width: 980px; margin: 0 auto; padding: 0 1.5rem; }
+    section { padding: 4rem 0; }
+
+    .section-label { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: var(--forest); line-height: 1.25; margin-bottom: 1rem; }
+
+    .divider { width: 3rem; height: 3px; background: var(--gold); border-radius: 2px; margin: 1.25rem 0; }
+
+    /* HERO */
+    .hero { background: var(--forest); color: white; text-align: center; padding: 3.5rem 2rem 4.5rem; }
+    .hero-back {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      color: rgba(255,255,255,0.65); font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+      margin-bottom: 2rem; transition: color 0.15s;
+    }
+    .hero-back:hover { color: var(--gold); }
+    .hero-title-row { display: flex; align-items: center; justify-content: center; gap: 1.25rem; }
+    .hero-icon {
+      width: 72px; height: 72px; background: var(--gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700;
+      letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.1; color: white; margin: 0;
+    }
+
+    /* LEARN MORE PILL */
+    .learn-more {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      align-self: flex-start; margin-top: 1rem;
+      background: var(--forest); color: var(--gold);
+      font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+      padding: 0.5rem 1rem; border-radius: 0.4rem;
+      transition: background 0.15s, color 0.15s;
+    }
+    .learn-more:hover { background: var(--gold); color: var(--forest); }
+    .learn-more svg { width: 0.8rem; height: 0.8rem; }
+
+    /* WHY BOX */
+    .assess-why {
+      display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.25rem;
+      align-items: flex-start; background: var(--light-gold);
+      border-left: 4px solid var(--gold); border-radius: 0 0.75rem 0.75rem 0;
+      padding: 1.5rem 1.75rem; margin: 2rem 0 3rem;
+    }
+    .assess-why-icon { color: var(--gold); margin-top: 0.15rem; }
+    .assess-why h3 { font-size: 1rem; color: var(--forest); margin-bottom: 0.5rem; }
+    .assess-why p { font-size: 0.92rem; color: #3a3a3a; line-height: 1.65; margin-bottom: 0.5rem; }
+    .assess-why p:last-child { margin-bottom: 0; }
+
+    /* INTERVENTION TABS */
+    .int-tabs {
+      display: flex; flex-wrap: wrap; gap: 0;
+      border-bottom: 2px solid #ddd; margin-bottom: 2rem;
+    }
+    .int-tab {
+      padding: 0.65rem 1.4rem; background: none; border: none;
+      border-bottom: 3px solid transparent; margin-bottom: -2px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+      cursor: pointer; transition: color 0.15s, border-color 0.15s;
+    }
+    .int-tab:hover { color: var(--forest); }
+    .int-tab.active { color: var(--forest); border-bottom-color: var(--forest); }
+    .int-panel { display: none; }
+    .int-panel.active { display: block; }
+
+    .intervention-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem; margin-top: 2rem;
+    }
+    @media (max-width: 800px) { .intervention-cards { grid-template-columns: 1fr; } }
+
+    .intervention-card {
+      background: white; border-radius: 1rem; padding: 1.75rem;
+      border-top: 4px solid var(--forest); box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .intervention-card .int-badge {
+      display: inline-block; background: var(--forest); color: white;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 0.25rem 0.65rem; border-radius: 2rem;
+      margin-bottom: 0.85rem;
+    }
+    .intervention-card h3 { font-size: 1.05rem; color: var(--forest); margin-bottom: 0.75rem; }
+    .intervention-card ul { list-style: none; padding: 0; margin: 0; }
+    .intervention-card ul li {
+      font-size: 0.9rem; color: #3a3a3a; line-height: 1.6;
+      padding: 0.35rem 0; border-bottom: 1px solid #eee;
+    }
+    .intervention-card ul li:last-child { border-bottom: none; }
+    .intervention-card ul li::before { content: '→ '; color: var(--gold); font-weight: 700; }
+
+    /* FOOTER */
+    footer { background: var(--forest); color: rgba(255,255,255,0.6); text-align: center; padding: 2.5rem 1.5rem; font-size: 0.82rem; }
+    footer strong { color: var(--gold); }
+    .footer-logo { width: 40px; height: 40px; border-radius: 50%; display: block; margin: 0 auto 0.75rem; opacity: 0.9; }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <a href="index.html" class="hero-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to the Hub
+  </a>
+  <div class="hero-title-row">
+    <div class="hero-icon">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <circle cx="12" cy="12" r="4"/>
+        <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/>
+        <line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+        <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/>
+        <line x1="9.17" y1="14.83" x2="4.93" y2="19.07"/>
+      </svg>
+    </div>
+    <h1>Intervention</h1>
+  </div>
+</header>
+
+<!-- INTERVENTION -->
+<section>
+  <div class="container">
+    <p class="section-label">Support &amp; Growth</p>
+    <h2>Intervention</h2>
+    <div class="divider"></div>
+
+    <div class="assess-why">
+      <svg class="assess-why-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+      <div>
+        <h3>Why, When &amp; How Intervention</h3>
+        <p>Intervention at The Hub is a targeted, responsive layer of support, not a label. When assessment data or teacher observation signals that a student needs more, we act quickly and intentionally. Each pathway is designed to strengthen specific skills in the least-intrusive, most effective way possible, preserving the student's identity as a capable, growing learner.</p>
+      </div>
+    </div>
+
+    <div class="int-tabs">
+      <button class="int-tab active" onclick="showIntTab(event,'int-internal')">Internal</button>
+      <button class="int-tab" onclick="showIntTab(event,'int-external')">External</button>
+      <button class="int-tab" onclick="showIntTab(event,'int-after-school')">After School</button>
+      <button class="int-tab" onclick="showIntTab(event,'int-at-home')">At Home</button>
+    </div>
+
+    <!-- INTERNAL -->
+    <div id="int-internal" class="int-panel active">
+      <div class="intervention-cards">
+
+        <div class="intervention-card">
+          <span class="int-badge">Foundations</span>
+          <h3>Skills &amp; Academic Intervention</h3>
+          <ul>
+            <li>No additional fee</li>
+            <li>During SAIL time, students may participate in Foundations to strengthen essential skills and prepare for future success</li>
+            <li>Teacher recommendation and administrative approval needed</li>
+          </ul>
+        </div>
+
+        <div class="intervention-card">
+          <span class="int-badge">GRASP</span>
+          <h3>Guidance Remediation and Academic Support Program</h3>
+          <ul>
+            <li>Intensive, individualized literacy support with a GRASP team member (specialized academic clinicians)</li>
+            <li>Educational testing required</li>
+            <li>Additional contract and program fee</li>
+            <li>Contact Mrs. LaRosa for <a href="index.html#contact" style="color: var(--forest); text-decoration: underline;">more information</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- EXTERNAL -->
+    <div id="int-external" class="int-panel">
+      <div class="intervention-cards">
+
+        <div class="intervention-card">
+          <span class="int-badge">External</span>
+          <h3><a href="https://westbridgemiami.org/" target="_blank" rel="noopener" style="color: var(--forest); text-decoration: underline;">Westbridge</a></h3>
+          <ul>
+            <li>External specialized support partner</li>
+            <li>Visit westbridgemiami.org for more information</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- AFTER SCHOOL -->
+    <div id="int-after-school" class="int-panel">
+      <div class="intervention-cards">
+
+        <div class="intervention-card">
+          <span class="int-badge">After School</span>
+          <h3>Warrior Lab</h3>
+          <p>Warrior Lab is an umbrella program connecting elementary students with the right level of after-school academic support, from peer study groups to certified learning specialists.</p>
+          <a class="learn-more" href="https://mglavach.github.io/warrior-lab/" target="_blank" style="margin-top:auto;">
+            Learn more
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- AT HOME -->
+    <div id="int-at-home" class="int-panel">
+      <div class="intervention-cards">
+
+        <div class="intervention-card">
+          <span class="int-badge">Lexia</span>
+          <h3>Lexia Core 5</h3>
+          <ul>
+            <li>Adaptive online reading program</li>
+            <li>Builds foundational literacy skills</li>
+            <li>Grades K–5</li>
+            <li><a href="https://www.lexiacore5.com/register" target="_blank" rel="noopener" style="color: var(--forest); text-decoration: underline;">Student Login</a></li>
+          </ul>
+        </div>
+
+        <div class="intervention-card">
+          <span class="int-badge">Learning Ally</span>
+          <h3>Learning Ally Audio Books</h3>
+          <ul>
+            <li>Human-narrated audiobooks for struggling readers</li>
+            <li>Supports comprehension while building fluency</li>
+            <li>Available for qualifying students</li>
+            <li><a href="https://learningally.org/Login" target="_blank" rel="noopener" style="color: var(--forest); text-decoration: underline;">Student Login</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="hub%20logo.png" alt="The Hub" class="footer-logo" />
+  <p><strong>WCS Elementary Hub</strong> &nbsp;·&nbsp; Westminster Christian School</p>
+  <p style="margin-top:0.4rem;">Intervention</p>
+</footer>
+
+<script>
+  function showIntTab(e, panelId) {
+    document.querySelectorAll('.int-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.int-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(panelId).classList.add('active');
+    e.currentTarget.classList.add('active');
+  }
+</script>
+</body>
+</html>
