@@ -70,6 +70,30 @@
     .skill-pill svg { width: 18px; height: 18px; color: var(--gold); flex-shrink: 0; }
     .skill-pill span { font-size: 0.88rem; color: rgba(255,255,255,0.88); font-weight: 500; line-height: 1.35; }
 
+    /* AI TOOLS */
+    .ai-section { background: var(--light-green); border-top: 1px solid #c8dece; border-bottom: 1px solid #c8dece; }
+    .ai-section .section-label { color: #2f6b3f; }
+    .ai-section .divider { background: var(--sage); }
+    .ai-intro { font-size: 0.95rem; color: #2a3a2a; max-width: 680px; margin-bottom: 0.5rem; }
+    .ai-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+    @media (max-width: 680px) { .ai-grid { grid-template-columns: 1fr; } }
+    .ai-card { background: white; border-radius: 1rem; padding: 1.75rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border-top: 4px solid var(--sage); }
+    .ai-badge {
+      display: inline-block; background: var(--sage); color: white;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.22rem 0.65rem; border-radius: 2rem; margin-bottom: 0.85rem;
+    }
+    .ai-card h3 { font-size: 1rem; color: var(--forest); margin-bottom: 0.6rem; }
+    .ai-card > p { font-size: 0.88rem; color: #3a3a3a; margin-bottom: 0.75rem; }
+    .step-list { list-style: none; padding: 0; counter-reset: step; display: flex; flex-direction: column; gap: 0.6rem; }
+    .step-list li { font-size: 0.88rem; color: #3a3a3a; line-height: 1.5; padding-left: 2.1rem; position: relative; counter-increment: step; }
+    .step-list li::before {
+      content: counter(step); position: absolute; left: 0; top: -0.05rem;
+      width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--light-gold); color: var(--forest);
+      font-weight: 700; font-size: 0.78rem; display: flex; align-items: center; justify-content: center;
+    }
+    .ai-note { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-top: 1.5rem; max-width: 680px; }
+
     /* FOCUS TABS */
     .pillars-section { background: var(--cream); }
     .focus-tabs {
@@ -315,6 +339,41 @@
         </tr>
       </tbody>
     </table>
+  </div>
+</section>
+
+<!-- AI TOOLS -->
+<section class="ai-section">
+  <div class="container">
+    <p class="section-label">AI Tools</p>
+    <h2>Flint AI</h2>
+    <div class="divider"></div>
+    <p class="ai-intro">We're excited to be using Flint AI, a K&ndash;12 platform designed to support instruction, streamline tasks, and enhance student learning with AI-powered tools. If you've already joined Flint, you're ready to get started &mdash; below are the steps to set up your classes and begin using the platform.</p>
+
+    <div class="ai-grid">
+      <div class="ai-card">
+        <span class="ai-badge">Teachers</span>
+        <h3>Create Your Own Classes</h3>
+        <p>Teachers can create their own groups (classes) directly without needing a code:</p>
+        <ol class="step-list">
+          <li>Go to the home page</li>
+          <li>Click to create a new group</li>
+          <li>Set it up with a class name, students, etc.</li>
+        </ol>
+      </div>
+      <div class="ai-card">
+        <span class="ai-badge">Students</span>
+        <h3>Join Classes with a Code</h3>
+        <p>If you want students to join classes using codes:</p>
+        <ol class="step-list">
+          <li>Teacher creates a group (class)</li>
+          <li>Teacher shares the group by clicking the share button</li>
+          <li>Students use that join code or link to join</li>
+        </ol>
+      </div>
+    </div>
+
+    <p class="ai-note">Haven't joined yet, or new to our school this year? An invite was sent out &mdash; if you don't see it in your inbox, check your Clutter, Junk, or Spam folder, as it may have been filtered there. Let Mrs. Castellanos know if you still haven't received it.</p>
   </div>
 </section>
 

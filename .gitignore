@@ -1,2 +1,6 @@
-# Admin-only page — kept locally, never published to GitHub Pages
+# Admin-only / internal-only pages — kept locally, never published to GitHub Pages
 calendar.html
+chapelcalendar.html
+
+# Separate nested repo (github.com/mglavach/formation) — not part of this repo
+Formation_VSCODE/

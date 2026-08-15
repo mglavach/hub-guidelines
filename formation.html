@@ -515,9 +515,9 @@
     }
     .formation-banner .banner-sub {
       margin-top: 12px;
-      font-size: 0.88em;
-      color: rgba(255,255,255,0.68);
-      line-height: 1.65;
+      font-size: 0.98em;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.7;
     }
 
     /* Pillar attrs */
@@ -753,6 +753,7 @@
     }
     .q-num { font-size: 0.72em; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; }
     .q-status-badge { font-size: 0.65em; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.7; }
+    .q-status-badge.current { opacity: 1; color: var(--forest); background: var(--gold); padding: 3px 8px; border-radius: 10px; }
     .q-body { padding: 16px 16px 18px; }
     .q-row { margin-bottom: 11px; }
     .q-row:last-child { margin-bottom: 0; }
@@ -764,9 +765,45 @@
     .q-total-lbl { font-size: 0.62em; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--forest); }
     .q-total-val { font-size: 1.05em; font-weight: 900; color: var(--forest); }
     .q-total-val.tba { font-size: 0.82em; color: var(--muted); font-style: italic; font-weight: 400; }
+
+    /* ── EYEBROW ── */
+    .eyebrow {
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      background: var(--forest);
+      border-bottom: 1px solid rgba(185, 151, 91, 0.35);
+    }
+    .eyebrow-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      list-style: none;
+      padding: 0.6rem 1.5rem;
+      flex-wrap: wrap;
+    }
+    .eyebrow-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .eyebrow-links a:hover { color: var(--gold); }
   </style>
 </head>
 <body>
+
+  <nav class="eyebrow" aria-label="Formation pages">
+    <ul class="eyebrow-links">
+      <li><a href="bible-bee.html">Rooted</a></li>
+      <li><a href="barnabee.html">Barnabee</a></li>
+      <li><a href="chapelcalendar.html">Chapel Calendar</a></li>
+    </ul>
+  </nav>
 
   <header class="site-header">
     <a href="index.html" class="back-link">&#8592; Back to the Hub</a>
@@ -870,29 +907,18 @@
 
         <div class="formation-banner">
           <div class="banner-label">What Formation Means</div>
-          <blockquote>
-            Formation is <em>faith, chapel, discipleship, service, character, leadership, and community.</em>
-            It is the shaping of the whole student. Distinctly Christian and bigger than any single program.
-          </blockquote>
-          <p class="banner-sub">
-            It is the thread that runs through every hallway, every chapel, every classroom, and every service
-            project at Westminster. Everything we do is formation.
+          <p class="banner-sub" style="margin-top:0;">
+            Formation is faith, chapel, discipleship, service, character, leadership, and community shaping
+            of the whole student, distinctly Christian and bigger than any single program. It is the thread that
+            runs through every hallway, every chapel, every classroom, and every service project at Westminster,
+            from Preschool through 5th grade. Everything we do is formation: each thread weaves through the life
+            of a Westminster student, not as a separate program to check off, but as part of the everyday fabric
+            of faith, character, and community, woven into daily campus life as students learn to reflect Christ
+            in their words, choices, and relationships.
           </p>
         </div>
 
         <div class="cat-header" style="margin-top:36px;"><span>Formation Threads</span></div>
-        <p class="section-lead">
-          Each thread below weaves through the life of a Westminster student — not as a separate program to check
-          off, but as part of the everyday fabric of faith, character, and community.
-        </p>
-        <div class="glance-rows" style="margin-bottom:24px;">
-          <div class="glance-row">
-            <p><strong>Grades Served:</strong> Preschool through 5th grade.</p>
-          </div>
-          <div class="glance-row">
-            <p><strong>Character formation</strong> is woven into daily campus life as students learn to reflect Christ in their words, choices, and relationships.</p>
-          </div>
-        </div>
         <div class="card-grid">
 
           <div class="card accent">
@@ -925,7 +951,7 @@
 
           <div class="card accent">
             <div class="card-pillars">
-              <span class="card-pillar"><i class="fa-solid fa-book-bible"></i> Scripture</span>
+              <span class="card-pillar"><i class="fa-solid fa-book-bible"></i> Curriculum</span>
             </div>
             <h3>Rooted in the Word</h3>
             <p>
@@ -938,18 +964,6 @@
                 <i class="fa-solid fa-seedling"></i> Rooted &rsaquo;
               </a>
             </div>
-          </div>
-
-          <div class="card accent">
-            <div class="card-pillars">
-              <span class="card-pillar"><i class="fa-solid fa-book-bible"></i> Curriculum</span>
-            </div>
-            <h3>Bible Class</h3>
-            <p>
-              Bible curriculum rooted in the whole story of Scripture. Westminster has used
-              <a href="https://deeprootsbible.com/" target="_blank" rel="noopener" style="color:var(--forest);font-weight:700;text-decoration:none;">Deep Roots</a>
-              on the ES campus since 2024.
-            </p>
           </div>
 
           <div class="card accent">
@@ -1141,12 +1155,12 @@
               </div>
               <div class="o-stat">
                 <div class="o-stat-label">Current Quarter</div>
-                <div class="o-stat-value">Q1 &bull; TBA</div>
-                <div class="o-stat-sub">Mission: TBA</div>
+                <div class="o-stat-value">Q1</div>
+                <div class="o-stat-sub">Mission: Samaritan&rsquo;s Purse: International Disaster Relief</div>
               </div>
               <div class="o-stat">
                 <div class="o-stat-label">Meeting at the Well</div>
-                <div class="o-stat-value">TBA</div>
+                <div class="o-stat-value">Art for Awareness</div>
                 <div class="o-stat-sub">Community Connect campus challenge this quarter</div>
               </div>
             </div>
@@ -1157,12 +1171,12 @@
           <div class="quarter-grid">
 
             <div class="q-card">
-              <div class="q-head"><span class="q-num">Quarter 1</span><span class="q-status-badge">TBA</span></div>
+              <div class="q-head"><span class="q-num">Quarter 1</span><span class="q-status-badge current">Current</span></div>
               <div class="q-body">
-                <div class="q-row"><div class="q-key">Mission Name</div><div class="q-val tba">TBA</div></div>
-                <div class="q-row"><div class="q-key">Mission Reason</div><div class="q-val tba">TBA</div></div>
-                <div class="q-row"><div class="q-key">Mission Goal</div><div class="q-val tba">TBA</div></div>
-                <div class="q-row"><div class="q-key">Community Connect Challenge</div><div class="q-val tba">TBA</div></div>
+                <div class="q-row"><div class="q-key">Mission Name</div><div class="q-val">Samaritan&rsquo;s Purse: International Disaster Relief</div></div>
+                <div class="q-row"><div class="q-key">Mission Reason</div><div class="q-val">Samaritan&rsquo;s Purse works around the world helping men, women, and children who are victims of war, poverty, disaster, disease, and famine. Receiving food, clean water, shelter, and medical care can mean the difference between life and death for families in crisis.</div></div>
+                <div class="q-row"><div class="q-key">Mission Goal</div><div class="q-val">$2,000</div></div>
+                <div class="q-row"><div class="q-key">Community Connect Challenge</div><div class="q-val"><strong>Art for Awareness</strong> &mdash; At home: Students create posters, banners, or a mural depicting an area of the mission (clean water, shelter, disaster relief) to display at WCS to raise awareness of where Samaritan's Purse serves.</div></div>
                 <hr class="q-divider">
                 <div class="q-total-row"><span class="q-total-lbl">Offering Total</span><span class="q-total-val tba">TBA</span></div>
               </div>
@@ -1171,7 +1185,7 @@
             <div class="q-card">
               <div class="q-head"><span class="q-num">Quarter 2</span><span class="q-status-badge">TBA</span></div>
               <div class="q-body">
-                <div class="q-row"><div class="q-key">Mission Name</div><div class="q-val tba">TBA</div></div>
+                <div class="q-row"><div class="q-key">Mission Name</div><div class="q-val">Caring for Miami / Angel Share Food Bags</div></div>
                 <div class="q-row"><div class="q-key">Mission Reason</div><div class="q-val tba">TBA</div></div>
                 <div class="q-row"><div class="q-key">Mission Goal</div><div class="q-val tba">TBA</div></div>
                 <div class="q-row"><div class="q-key">Community Connect Challenge</div><div class="q-val tba">TBA</div></div>
@@ -1183,7 +1197,7 @@
             <div class="q-card">
               <div class="q-head"><span class="q-num">Quarter 3</span><span class="q-status-badge">TBA</span></div>
               <div class="q-body">
-                <div class="q-row"><div class="q-key">Mission Name</div><div class="q-val tba">TBA</div></div>
+                <div class="q-row"><div class="q-key">Mission Name</div><div class="q-val">Type 1 Diabetes</div></div>
                 <div class="q-row"><div class="q-key">Mission Reason</div><div class="q-val tba">TBA</div></div>
                 <div class="q-row"><div class="q-key">Mission Goal</div><div class="q-val tba">TBA</div></div>
                 <div class="q-row"><div class="q-key">Community Connect Challenge</div><div class="q-val tba">TBA</div></div>
@@ -1195,7 +1209,7 @@
             <div class="q-card">
               <div class="q-head"><span class="q-num">Quarter 4</span><span class="q-status-badge">TBA</span></div>
               <div class="q-body">
-                <div class="q-row"><div class="q-key">Mission Name</div><div class="q-val tba">TBA</div></div>
+                <div class="q-row"><div class="q-key">Mission Name</div><div class="q-val">Youth for Christ KIX</div></div>
                 <div class="q-row"><div class="q-key">Mission Reason</div><div class="q-val tba">TBA</div></div>
                 <div class="q-row"><div class="q-key">Mission Goal</div><div class="q-val tba">TBA</div></div>
                 <div class="q-row"><div class="q-key">Community Connect Challenge</div><div class="q-val tba">TBA</div></div>
