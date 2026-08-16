@@ -210,6 +210,94 @@
 
   .footnote { font-size: 0.78rem; color: var(--muted); margin-top: 1rem; }
 
+  .standalone-todo-card {
+    background: var(--light-green);
+    border-radius: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    max-width: 480px;
+  }
+  .todo-widget { display: flex; flex-direction: column; gap: 0.5rem; }
+  .todo-add { display: flex; gap: 0.4rem; }
+  .todo-add input {
+    flex: 1;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    padding: 0.4rem 0.5rem;
+    border: 1px solid #cfd8d2;
+    border-radius: 0.4rem;
+  }
+  .todo-add select.todo-cat-select {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    padding: 0.4rem 0.3rem;
+    border: 1px solid #cfd8d2;
+    border-radius: 0.4rem;
+    background: white;
+    color: var(--text);
+  }
+  .todo-add button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border: none;
+    background: var(--forest);
+    color: white;
+    border-radius: 0.4rem;
+    width: 2rem;
+    cursor: pointer;
+  }
+  .todo-add button:hover { background: var(--sage); }
+  .todo-list { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
+  .todo-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    background: white;
+    border-radius: 0.4rem;
+    padding: 0.35rem 0.5rem;
+  }
+  .todo-list li input[type="checkbox"] { margin-top: 0.15rem; cursor: pointer; accent-color: var(--forest); }
+  .todo-list.completed li { color: var(--muted); }
+  .todo-list.completed li span { text-decoration: line-through; }
+  .todo-list li span { flex: 1; word-break: break-word; }
+  .todo-list li button {
+    border: none;
+    background: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 0.75rem;
+  }
+  .todo-list li button:hover { color: #8b2020; }
+  .todo-empty { font-size: 0.75rem; color: var(--muted); font-style: italic; }
+  .todo-completed-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 0.75rem;
+    border-top: 1px solid #dde5e0;
+    padding-top: 0.5rem;
+  }
+  .todo-cat-badge {
+    flex-shrink: 0;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.4rem;
+    border-radius: 999px;
+    cursor: pointer;
+    color: white;
+    margin-top: 0.1rem;
+    white-space: nowrap;
+  }
+  .todo-cat-badge.todo-cat-none { background: #b7c2bc; color: white; }
+  .todo-cat-badge.todo-cat-parent { background: var(--gold); }
+  .todo-cat-badge.todo-cat-student { background: var(--sage); }
+  .todo-cat-badge.todo-cat-teacher { background: var(--forest); }
+
   footer {
     background: var(--forest);
     color: rgba(255,255,255,0.6);
@@ -275,6 +363,33 @@
   </div>
 
   <p class="footnote">Lead-up items are drafted at 3 weeks, 2 weeks, and days before each event &mdash; adjust dates/titles as plans firm up, and add more with <strong>+ Add Row</strong>.</p>
+
+  <p class="section-label" style="margin-top:2.5rem;">Communications</p>
+  <h2>Task List</h2>
+  <div class="divider"></div>
+
+  <div class="intro-box">
+    Tasks related to Hub communications &mdash; newsletters, family updates, and announcements. Tag each task with who it's
+    for by clicking its category badge to cycle through <strong>Parent</strong>, <strong>Student</strong>, and <strong>Teacher</strong>.
+  </div>
+
+  <div class="standalone-todo-card">
+    <div class="todo-widget">
+      <div class="todo-add">
+        <input type="text" id="commsTodoInput" placeholder="Add a task..." onkeydown="if (event.key === 'Enter') addCommsTodo()">
+        <select id="commsTodoCategory" class="todo-cat-select">
+          <option value="">Category&hellip;</option>
+          <option value="Parent">Parent</option>
+          <option value="Student">Student</option>
+          <option value="Teacher">Teacher</option>
+        </select>
+        <button type="button" onclick="addCommsTodo()">+</button>
+      </div>
+      <ul class="todo-list" id="commsTodoList"></ul>
+      <div class="todo-completed-label">Completed Tasks</div>
+      <ul class="todo-list completed" id="commsTodoCompletedList"></ul>
+    </div>
+  </div>
 </div>
 
 <footer>
@@ -290,35 +405,35 @@
 
   var DEFAULT_COMMS = [
     { date: 'Aug 2026', type: 'Article', title: 'FLINT Lesson &mdash; Student Council', link: '', status: 'Draft', notes: 'Pin down exact date once scheduled.', done: false },
-    { date: 'Aug 25, 2026', type: 'Article', title: 'Sunshine Squad Calendar &mdash; Production (Sep issue)', link: '', status: 'Draft', notes: 'Prep content, 1 week before Sep 1.', done: false },
-    { date: 'Sep 1, 2026', type: 'Article', title: 'Sunshine Squad Calendar Goes Out (Sep issue)', link: '', status: 'Draft', notes: '', done: false },
+    { date: 'Aug 24, 2026', type: 'Article', title: 'Sunshine Squad Calendar &mdash; Production (Sep issue)', link: '', status: 'Draft', notes: 'Last Monday of the month.', done: false },
+    { date: 'Aug 28, 2026', type: 'Article', title: 'Sunshine Squad Calendar Goes Out (Sep issue)', link: '', status: 'Draft', notes: 'Last Friday of the month.', done: false },
     { date: 'Sep 10, 2026', type: 'Email', title: 'Student Ambassadors &mdash; Request for Open House', link: '', status: 'Draft', notes: '1 week before Open House (Sep 17). Repeat this a week out for any future Open House event.', done: false },
-    { date: 'Sep 24, 2026', type: 'Article', title: 'Sunshine Squad Calendar &mdash; Production (Oct issue)', link: '', status: 'Draft', notes: 'Prep content, 1 week before Oct 1.', done: false },
-    { date: 'Oct 1, 2026', type: 'Article', title: 'Sunshine Squad Calendar Goes Out (Oct issue)', link: '', status: 'Draft', notes: '', done: false },
+    { date: 'Sep 21, 2026', type: 'Article', title: 'Sunshine Squad Calendar &mdash; Production (Oct issue)', link: '', status: 'Draft', notes: 'Last Monday of the month.', done: false },
+    { date: 'Sep 25, 2026', type: 'Article', title: 'Sunshine Squad Calendar Goes Out (Oct issue)', link: '', status: 'Draft', notes: 'Last Friday of the month.', done: false },
     { date: 'Oct 2026', type: 'Article', title: 'FLINT Lesson &mdash; Entrepreneurship Academy', link: '', status: 'Draft', notes: 'Pin down exact date once scheduled.', done: false },
-    { date: 'Oct 25, 2026', type: 'Article', title: 'Sunshine Squad Calendar &mdash; Production (Nov issue)', link: '', status: 'Draft', notes: 'Prep content, 1 week before Nov 1.', done: false },
+    { date: 'Oct 26, 2026', type: 'Article', title: 'Sunshine Squad Calendar &mdash; Production (Nov issue)', link: '', status: 'Draft', notes: 'Last Monday of the month.', done: false },
     { date: 'Oct 26, 2026', type: 'Event', title: 'Thanksgiving Food Drive Begins &mdash; Caring for Miami (Noisy Offering)', link: '', status: 'Scheduled', notes: 'Starts last week of October; benefits Caring for Miami.', done: false },
-    { date: 'Nov 1, 2026', type: 'Article', title: 'Sunshine Squad Calendar Goes Out (Nov issue)', link: '', status: 'Draft', notes: '', done: false },
+    { date: 'Oct 30, 2026', type: 'Article', title: 'Sunshine Squad Calendar Goes Out (Nov issue)', link: '', status: 'Draft', notes: 'Last Friday of the month.', done: false },
     { date: 'Nov 13, 2026', type: 'Article', title: 'Worship Night &mdash; Save the Date', link: '', status: 'Draft', notes: 'Initial announcement, 3 weeks out.', done: false },
     { date: 'Nov 20, 2026', type: 'Article', title: 'Worship Night &mdash; Details & Info', link: '', status: 'Draft', notes: '2 weeks out, before Thanksgiving Break.', done: false },
-    { date: 'Nov 20, 2026', type: 'Article', title: 'Sunshine Squad Calendar &mdash; Production (Dec issue)', link: '', status: 'Draft', notes: 'Shifted earlier &mdash; Thanksgiving Break covers the usual 1-week-out date.', done: false },
+    { date: 'Nov 23, 2026', type: 'Article', title: 'Sunshine Squad Calendar &mdash; Production (Dec issue)', link: '', status: 'Draft', notes: 'Last Monday of the month &mdash; falls on the first day of Thanksgiving Break, adjust if needed.', done: false },
+    { date: 'Nov 27, 2026', type: 'Article', title: 'Sunshine Squad Calendar Goes Out (Dec issue)', link: '', status: 'Draft', notes: 'Last Friday of the month &mdash; falls during Thanksgiving Break, adjust if needed.', done: false },
     { date: 'Dec 1, 2026', type: 'Article', title: 'Cuckoo for Hot Cocoa &mdash; Call for Writers', link: '', status: 'Draft', notes: 'First week of December.', done: false },
     { date: 'Dec 1, 2026', type: 'Article', title: 'Worship Night &mdash; Reminder', link: '', status: 'Draft', notes: 'Final reminder, back from Thanksgiving Break.', done: false },
-    { date: 'Dec 1, 2026', type: 'Article', title: 'Sunshine Squad Calendar Goes Out (Dec issue)', link: '', status: 'Draft', notes: '', done: false },
     { date: 'Dec 4, 2026', type: 'Event', title: 'PS/ES Worship Night', link: '', status: 'Scheduled', notes: '', done: false },
-    { date: 'Dec 18, 2026', type: 'Article', title: 'Sunshine Squad Calendar &mdash; Production (Jan issue)', link: '', status: 'Draft', notes: 'Shifted earlier &mdash; Christmas Break covers the usual 1-week-out date.', done: false },
-    { date: 'Jan 1, 2027', type: 'Article', title: 'Sunshine Squad Calendar Goes Out (Jan issue)', link: '', status: 'Draft', notes: '', done: false },
-    { date: 'Jan 25, 2027', type: 'Article', title: 'Sunshine Squad Calendar &mdash; Production (Feb issue)', link: '', status: 'Draft', notes: 'Prep content, 1 week before Feb 1.', done: false },
-    { date: 'Feb 1, 2027', type: 'Article', title: 'Sunshine Squad Calendar Goes Out (Feb issue)', link: '', status: 'Draft', notes: '', done: false },
-    { date: 'Feb 22, 2027', type: 'Article', title: 'Sunshine Squad Calendar &mdash; Production (Mar issue)', link: '', status: 'Draft', notes: 'Prep content, 1 week before Mar 1.', done: false },
-    { date: 'Mar 1, 2027', type: 'Article', title: 'Sunshine Squad Calendar Goes Out (Mar issue)', link: '', status: 'Draft', notes: '', done: false },
-    { date: 'Mar 19, 2027', type: 'Article', title: 'Sunshine Squad Calendar &mdash; Production (Apr issue)', link: '', status: 'Draft', notes: 'Shifted earlier &mdash; Spring Break covers the usual 1-week-out date.', done: false },
-    { date: 'Apr 1, 2027', type: 'Article', title: 'Sunshine Squad Calendar Goes Out (Apr issue)', link: '', status: 'Draft', notes: '', done: false },
+    { date: 'Dec 21, 2026', type: 'Article', title: 'Sunshine Squad Calendar &mdash; Production (Jan issue)', link: '', status: 'Draft', notes: 'Last Monday of the month &mdash; falls on the first day of Christmas Break, adjust if needed.', done: false },
+    { date: 'Dec 25, 2026', type: 'Article', title: 'Sunshine Squad Calendar Goes Out (Jan issue)', link: '', status: 'Draft', notes: 'Last Friday of the month &mdash; falls on Christmas Day, adjust if needed.', done: false },
+    { date: 'Jan 25, 2027', type: 'Article', title: 'Sunshine Squad Calendar &mdash; Production (Feb issue)', link: '', status: 'Draft', notes: 'Last Monday of the month.', done: false },
+    { date: 'Jan 29, 2027', type: 'Article', title: 'Sunshine Squad Calendar Goes Out (Feb issue)', link: '', status: 'Draft', notes: 'Last Friday of the month.', done: false },
+    { date: 'Feb 22, 2027', type: 'Article', title: 'Sunshine Squad Calendar &mdash; Production (Mar issue)', link: '', status: 'Draft', notes: 'Last Monday of the month.', done: false },
+    { date: 'Feb 26, 2027', type: 'Article', title: 'Sunshine Squad Calendar Goes Out (Mar issue)', link: '', status: 'Draft', notes: 'Last Friday of the month.', done: false },
+    { date: 'Mar 22, 2027', type: 'Article', title: 'Sunshine Squad Calendar &mdash; Production (Apr issue)', link: '', status: 'Draft', notes: 'Last Monday of the month &mdash; falls on the first day of Spring Break, adjust if needed.', done: false },
+    { date: 'Mar 26, 2027', type: 'Article', title: 'Sunshine Squad Calendar Goes Out (Apr issue)', link: '', status: 'Draft', notes: 'Last Friday of the month &mdash; falls during Spring Break, adjust if needed.', done: false },
     { date: 'Apr 15, 2027', type: 'Article', title: 'Book Fair &mdash; Save the Date', link: '', status: 'Draft', notes: 'Initial announcement, 3 weeks out.', done: false },
     { date: 'Apr 22, 2027', type: 'Article', title: 'Book Fair &mdash; Volunteer Sign-Up', link: '', status: 'Draft', notes: '2 weeks out.', done: false },
-    { date: 'Apr 24, 2027', type: 'Article', title: 'Sunshine Squad Calendar &mdash; Production (May issue)', link: '', status: 'Draft', notes: 'Prep content, 1 week before May 1.', done: false },
+    { date: 'Apr 26, 2027', type: 'Article', title: 'Sunshine Squad Calendar &mdash; Production (May issue)', link: '', status: 'Draft', notes: 'Last Monday of the month.', done: false },
     { date: 'Apr 29, 2027', type: 'Article', title: 'Book Fair &mdash; Reminder & Wish Lists', link: '', status: 'Draft', notes: '1 week out.', done: false },
-    { date: 'May 1, 2027', type: 'Article', title: 'Sunshine Squad Calendar Goes Out (May issue)', link: '', status: 'Draft', notes: '', done: false },
+    { date: 'Apr 30, 2027', type: 'Article', title: 'Sunshine Squad Calendar Goes Out (May issue)', link: '', status: 'Draft', notes: 'Last Friday of the month.', done: false },
     { date: 'May 5, 2027', type: 'Article', title: 'Book Fair &mdash; Starts Tomorrow! eWallet Reminder', link: '', status: 'Draft', notes: 'Day before the fair opens.', done: false },
     { date: 'May 6, 2027', type: 'Event', title: 'Scholastic Book Fair (through May 14)', link: '', status: 'Scheduled', notes: 'Runs May 6&ndash;14, 2027.', done: false }
   ];
@@ -563,7 +678,118 @@
     document.getElementById('sortIcon-comms-date').textContent = dir === 1 ? '▲' : '▼';
   }
 
+  var COMMS_TODO_KEY = 'hubCommsTodos_2026_27';
+  var TODO_CATEGORY_CYCLE = ['', 'Parent', 'Student', 'Teacher'];
+  var todoIdCounter = 0;
+
+  function nextTodoId() {
+    todoIdCounter += 1;
+    return Date.now() + '_' + todoIdCounter;
+  }
+
+  function loadCommsTodos() {
+    try {
+      var saved = localStorage.getItem(COMMS_TODO_KEY);
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) { return []; }
+  }
+
+  function saveCommsTodos(todos) {
+    localStorage.setItem(COMMS_TODO_KEY, JSON.stringify(todos));
+  }
+
+  function buildCommsTodoItem(t) {
+    var li = document.createElement('li');
+
+    var checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = t.done;
+    checkbox.addEventListener('change', function () { toggleCommsTodo(t.id); });
+    li.appendChild(checkbox);
+
+    var cat = t.category || '';
+    var badge = document.createElement('span');
+    badge.className = 'todo-cat-badge todo-cat-' + (cat ? cat.toLowerCase() : 'none');
+    badge.textContent = cat || 'None';
+    badge.title = 'Click to change category';
+    badge.addEventListener('click', function () { cycleCommsTodoCategory(t.id); });
+    li.appendChild(badge);
+
+    var span = document.createElement('span');
+    span.textContent = t.text;
+    li.appendChild(span);
+
+    var del = document.createElement('button');
+    del.type = 'button';
+    del.textContent = '×';
+    del.title = 'Remove';
+    del.addEventListener('click', function () { deleteCommsTodo(t.id); });
+    li.appendChild(del);
+
+    return li;
+  }
+
+  function renderCommsTodos() {
+    var activeList = document.getElementById('commsTodoList');
+    var doneList = document.getElementById('commsTodoCompletedList');
+    if (!activeList || !doneList) return;
+
+    var todos = loadCommsTodos();
+    var active = todos.filter(function (t) { return !t.done; });
+    var done = todos.filter(function (t) { return t.done; });
+
+    activeList.innerHTML = '';
+    if (!active.length) activeList.innerHTML = '<li class="todo-empty">No tasks yet.</li>';
+    active.forEach(function (t) { activeList.appendChild(buildCommsTodoItem(t)); });
+
+    doneList.innerHTML = '';
+    if (!done.length) doneList.innerHTML = '<li class="todo-empty">Nothing completed yet.</li>';
+    done.forEach(function (t) { doneList.appendChild(buildCommsTodoItem(t)); });
+  }
+
+  function addCommsTodo() {
+    var input = document.getElementById('commsTodoInput');
+    var text = input.value.trim();
+    if (!text) return;
+
+    var catSelect = document.getElementById('commsTodoCategory');
+    var item = { id: nextTodoId(), text: text, done: false, category: catSelect ? catSelect.value : '' };
+    if (catSelect) catSelect.value = '';
+
+    var todos = loadCommsTodos();
+    todos.push(item);
+    saveCommsTodos(todos);
+    input.value = '';
+    renderCommsTodos();
+    input.focus();
+  }
+
+  function toggleCommsTodo(id) {
+    var todos = loadCommsTodos();
+    todos.forEach(function (t) { if (t.id === id) t.done = !t.done; });
+    saveCommsTodos(todos);
+    renderCommsTodos();
+  }
+
+  function deleteCommsTodo(id) {
+    saveCommsTodos(loadCommsTodos().filter(function (t) { return t.id !== id; }));
+    renderCommsTodos();
+  }
+
+  function cycleCommsTodoCategory(id) {
+    var todos = loadCommsTodos();
+    todos.forEach(function (t) {
+      if (t.id === id) {
+        var idx = TODO_CATEGORY_CYCLE.indexOf(t.category || '');
+        t.category = TODO_CATEGORY_CYCLE[(idx + 1) % TODO_CATEGORY_CYCLE.length];
+      }
+    });
+    saveCommsTodos(todos);
+    renderCommsTodos();
+  }
+
   renderComms();
+  renderCommsTodos();
 </script>
 </body>
 </html>
