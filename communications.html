@@ -265,6 +265,7 @@
           <th>Title / Description</th>
           <th>Link</th>
           <th style="text-align:center;">Status</th>
+          <th style="text-align:center;">Social Media Request</th>
           <th>Notes</th>
           <th></th>
         </tr>
@@ -301,6 +302,7 @@
     { date: 'Nov 13, 2026', type: 'Article', title: 'Worship Night &mdash; Save the Date', link: '', status: 'Draft', notes: 'Initial announcement, 3 weeks out.', done: false },
     { date: 'Nov 20, 2026', type: 'Article', title: 'Worship Night &mdash; Details & Info', link: '', status: 'Draft', notes: '2 weeks out, before Thanksgiving Break.', done: false },
     { date: 'Nov 20, 2026', type: 'Article', title: 'Sunshine Squad Calendar &mdash; Production (Dec issue)', link: '', status: 'Draft', notes: 'Shifted earlier &mdash; Thanksgiving Break covers the usual 1-week-out date.', done: false },
+    { date: 'Dec 1, 2026', type: 'Article', title: 'Cuckoo for Hot Cocoa &mdash; Call for Writers', link: '', status: 'Draft', notes: 'First week of December.', done: false },
     { date: 'Dec 1, 2026', type: 'Article', title: 'Worship Night &mdash; Reminder', link: '', status: 'Draft', notes: 'Final reminder, back from Thanksgiving Break.', done: false },
     { date: 'Dec 1, 2026', type: 'Article', title: 'Sunshine Squad Calendar Goes Out (Dec issue)', link: '', status: 'Draft', notes: '', done: false },
     { date: 'Dec 4, 2026', type: 'Event', title: 'PS/ES Worship Night', link: '', status: 'Scheduled', notes: '', done: false },
@@ -449,6 +451,20 @@
       statusTd.appendChild(statusBadge);
       tr.appendChild(statusTd);
 
+      var socialTd = document.createElement('td');
+      socialTd.className = 'done-cell';
+      var socialCb = document.createElement('input');
+      socialCb.type = 'checkbox';
+      socialCb.title = 'Social media coverage requested';
+      socialCb.checked = !!row.social;
+      socialCb.addEventListener('change', function () {
+        var current = loadComms();
+        current[i].social = socialCb.checked;
+        saveComms(current);
+      });
+      socialTd.appendChild(socialCb);
+      tr.appendChild(socialTd);
+
       var notesTd = document.createElement('td');
       notesTd.contentEditable = 'true';
       notesTd.innerHTML = row.notes || '';
@@ -513,7 +529,7 @@
 
   function addCommsRow() {
     var current = loadComms();
-    current.push({ date: '', type: 'Article', title: '', link: '', status: 'Draft', notes: '', done: false });
+    current.push({ date: '', type: 'Article', title: '', link: '', status: 'Draft', social: false, notes: '', done: false });
     saveComms(current);
     renderComms();
   }
