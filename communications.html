@@ -271,7 +271,7 @@
     </table>
   </div>
 
-  <p class="footnote">Example rows below show the format &mdash; edit or remove them and add your own with <strong>+ Add Row</strong>.</p>
+  <p class="footnote">Lead-up items are drafted at 3 weeks, 2 weeks, and days before each event &mdash; adjust dates/titles as plans firm up, and add more with <strong>+ Add Row</strong>.</p>
 </div>
 
 <footer>
@@ -286,8 +286,15 @@
   var STATUS_CYCLE = ['Draft', 'Scheduled', 'Sent'];
 
   var DEFAULT_COMMS = [
-    { date: 'Sep 4, 2026', type: 'Article', title: 'Example: September Family Newsletter', link: '', status: 'Draft', notes: '', done: false },
-    { date: 'Sep 17, 2026', type: 'Event', title: 'Example: Open House', link: '', status: 'Scheduled', notes: 'Reminder to go out the week before.', done: false }
+    { date: 'Nov 13, 2026', type: 'Article', title: 'Worship Night &mdash; Save the Date', link: '', status: 'Draft', notes: 'Initial announcement, 3 weeks out.', done: false },
+    { date: 'Nov 20, 2026', type: 'Article', title: 'Worship Night &mdash; Details & Info', link: '', status: 'Draft', notes: '2 weeks out, before Thanksgiving Break.', done: false },
+    { date: 'Dec 1, 2026', type: 'Article', title: 'Worship Night &mdash; Reminder', link: '', status: 'Draft', notes: 'Final reminder, back from Thanksgiving Break.', done: false },
+    { date: 'Dec 4, 2026', type: 'Event', title: 'PS/ES Worship Night', link: '', status: 'Scheduled', notes: '', done: false },
+    { date: 'Apr 15, 2027', type: 'Article', title: 'Book Fair &mdash; Save the Date', link: '', status: 'Draft', notes: 'Initial announcement, 3 weeks out.', done: false },
+    { date: 'Apr 22, 2027', type: 'Article', title: 'Book Fair &mdash; Volunteer Sign-Up', link: '', status: 'Draft', notes: '2 weeks out.', done: false },
+    { date: 'Apr 29, 2027', type: 'Article', title: 'Book Fair &mdash; Reminder & Wish Lists', link: '', status: 'Draft', notes: '1 week out.', done: false },
+    { date: 'May 5, 2027', type: 'Article', title: 'Book Fair &mdash; Starts Tomorrow! eWallet Reminder', link: '', status: 'Draft', notes: 'Day before the fair opens.', done: false },
+    { date: 'May 6, 2027', type: 'Event', title: 'Scholastic Book Fair (through May 14)', link: '', status: 'Scheduled', notes: 'Runs May 6&ndash;14, 2027.', done: false }
   ];
 
   function loadComms() {
