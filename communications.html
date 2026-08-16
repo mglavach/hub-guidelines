@@ -101,6 +101,7 @@
   }
   .badge-article  { background: var(--light-blue);  color: #1a4a6b; }
   .badge-event    { background: var(--light-gold);  color: #6b4a1a; }
+  .badge-email    { background: var(--light-green); color: #1f5c30; }
   .badge-draft     { background: #eee; color: #555; }
   .badge-scheduled { background: var(--light-blue); color: #1a4a6b; }
   .badge-sent      { background: var(--light-green); color: #1f5c30; }
@@ -242,6 +243,7 @@
   <div class="legend">
     <span class="badge badge-article">Article</span>
     <span class="badge badge-event">Event</span>
+    <span class="badge badge-email">Email</span>
     <span class="badge badge-draft">Draft</span>
     <span class="badge badge-scheduled">Scheduled</span>
     <span class="badge badge-sent">Sent</span>
@@ -282,13 +284,14 @@
 
 <script>
   var COMMS_KEY = 'hubCommsCalendar_2026_27';
-  var TYPE_CYCLE = ['Article', 'Event'];
+  var TYPE_CYCLE = ['Article', 'Event', 'Email'];
   var STATUS_CYCLE = ['Draft', 'Scheduled', 'Sent'];
 
   var DEFAULT_COMMS = [
     { date: 'Aug 2026', type: 'Article', title: 'FLINT Lesson &mdash; Student Council', link: '', status: 'Draft', notes: 'Pin down exact date once scheduled.', done: false },
     { date: 'Aug 25, 2026', type: 'Article', title: 'Sunshine Squad Calendar &mdash; Production (Sep issue)', link: '', status: 'Draft', notes: 'Prep content, 1 week before Sep 1.', done: false },
     { date: 'Sep 1, 2026', type: 'Article', title: 'Sunshine Squad Calendar Goes Out (Sep issue)', link: '', status: 'Draft', notes: '', done: false },
+    { date: 'Sep 10, 2026', type: 'Email', title: 'Student Ambassadors &mdash; Request for Open House', link: '', status: 'Draft', notes: '1 week before Open House (Sep 17). Repeat this a week out for any future Open House event.', done: false },
     { date: 'Sep 24, 2026', type: 'Article', title: 'Sunshine Squad Calendar &mdash; Production (Oct issue)', link: '', status: 'Draft', notes: 'Prep content, 1 week before Oct 1.', done: false },
     { date: 'Oct 1, 2026', type: 'Article', title: 'Sunshine Squad Calendar Goes Out (Oct issue)', link: '', status: 'Draft', notes: '', done: false },
     { date: 'Oct 2026', type: 'Article', title: 'FLINT Lesson &mdash; Entrepreneurship Academy', link: '', status: 'Draft', notes: 'Pin down exact date once scheduled.', done: false },
