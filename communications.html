@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Communications Content Calendar · WCS Elementary Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #2c5234;
+    --gold:   #B9975B;
+    --cream:  #fdf8ef;
+    --sage:   #4a7c59;
+    --sky:    #4a90c4;
+    --light-gold:  #f5ead8;
+    --light-blue:  #e8f2f9;
+    --light-green: #eaf3ec;
+    --text:   #2c2c2c;
+    --muted:  #6b6b6b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .hero {
+    background: var(--forest);
+    color: white;
+    padding: 2.5rem 1.5rem 2rem;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .hero p { color: rgba(255,255,255,0.8); font-size: 0.9rem; max-width: 560px; margin: 0 auto; }
+  .back-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid var(--gold);
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+  }
+  .back-link:hover { background: var(--gold); color: var(--forest); }
+
+  .container { max-width: 1180px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  h2 { color: var(--forest); font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .divider { width: 3rem; height: 3px; background: var(--gold); border-radius: 2px; margin: 0.75rem 0 1.5rem; }
+
+  .intro-box {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: #3a3a3a;
+  }
+  .intro-box strong { color: var(--forest); }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.5rem; }
+  .legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+  }
+  .dot { width: 0.6rem; height: 0.6rem; border-radius: 50%; display: inline-block; }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 0.3rem;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+  }
+  .badge-article  { background: var(--light-blue);  color: #1a4a6b; }
+  .badge-event    { background: var(--light-gold);  color: #6b4a1a; }
+  .badge-draft     { background: #eee; color: #555; }
+  .badge-scheduled { background: var(--light-blue); color: #1a4a6b; }
+  .badge-sent      { background: var(--light-green); color: #1f5c30; }
+
+  .toolbar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .toolbar button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--forest);
+    background: white;
+    color: var(--forest);
+    cursor: pointer;
+  }
+  .toolbar button:hover { background: var(--forest); color: white; }
+  .toolbar .save-note { font-size: 0.72rem; color: var(--muted); align-self: center; margin-right: auto; }
+
+  .table-scroll {
+    overflow-x: auto;
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 900px;
+    font-size: 0.85rem;
+  }
+
+  thead th {
+    background: var(--forest);
+    color: white;
+    text-align: left;
+    padding: 0.8rem 0.9rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  thead th.sortable { cursor: pointer; user-select: none; }
+  thead th.sortable:hover { background: var(--sage); }
+  .sort-icon { color: var(--gold); font-size: 0.7rem; }
+
+  tbody td {
+    padding: 0.75rem 0.9rem;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even) td { background: #fafafa; }
+  tr.comms-done td { opacity: 0.55; }
+  tr.comms-done .comms-title { text-decoration: line-through; }
+
+  .done-cell { text-align: center; }
+  .done-cell input[type="checkbox"] { width: 1.1rem; height: 1.1rem; cursor: pointer; accent-color: var(--forest); }
+
+  td[contenteditable="true"] {
+    cursor: text;
+    border-radius: 0.3rem;
+    transition: background 0.15s;
+  }
+  td[contenteditable="true"]:hover { background: var(--light-gold) !important; }
+  td[contenteditable="true"]:focus {
+    outline: 2px solid var(--gold);
+    background: white !important;
+  }
+
+  .comms-date { font-weight: 700; color: var(--forest); white-space: nowrap; }
+
+  .comms-link-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid var(--forest);
+    background: white;
+    color: var(--forest);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .comms-link-btn:hover { background: var(--forest); color: white; }
+  .comms-no-link { color: var(--muted); font-style: italic; margin-right: 0.6rem; font-size: 0.8rem; }
+  .comms-open-link { color: var(--forest); font-weight: 600; text-decoration: none; margin-right: 0.6rem; }
+  .comms-open-link:hover { text-decoration: underline; }
+
+  .row-actions { white-space: nowrap; text-align: center; }
+  .row-actions button {
+    width: 1.5em; height: 1.5em; line-height: 1; font-size: 0.8rem; font-weight: 700;
+    padding: 0; margin-right: 0.25rem; border-radius: 50%; cursor: pointer;
+  }
+  .btn-move { border: 1px solid var(--forest); background: white; color: var(--forest); }
+  .btn-move:disabled { opacity: 0.35; cursor: default; }
+  .btn-remove { border: 1px solid #8b2020; background: white; color: #8b2020; margin-right: 0; }
+
+  .footnote { font-size: 0.78rem; color: var(--muted); margin-top: 1rem; }
+
+  footer {
+    background: var(--forest);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-size: 0.8rem;
+  }
+  footer strong { color: var(--gold); }
+  .footer-logo { width: 40px; height: 40px; border-radius: 50%; display: block; margin: 0 auto 0.75rem; opacity: 0.9; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>Communications Content Calendar</h1>
+  <p>A running list of articles, newsletter items, and events that need to go out to families &amp; staff &mdash; with a direct link to each piece.</p>
+  <a class="back-link" href="index.html">&larr; Back to The Hub</a>
+</header>
+
+<div class="container">
+  <p class="section-label">Communications</p>
+  <h2>What's Going Out</h2>
+  <div class="divider"></div>
+
+  <div class="intro-box">
+    Click any cell to edit it directly &mdash; changes save automatically in this browser (via local storage). Use
+    <strong>+ Add Link</strong> to paste the URL for an article, draft, or event page, and click the <strong>Type</strong> or
+    <strong>Status</strong> badge to cycle it. Check a row off once it's been sent or the event has passed.
+  </div>
+
+  <div class="legend">
+    <span class="badge badge-article">Article</span>
+    <span class="badge badge-event">Event</span>
+    <span class="badge badge-draft">Draft</span>
+    <span class="badge badge-scheduled">Scheduled</span>
+    <span class="badge badge-sent">Sent</span>
+  </div>
+
+  <div class="toolbar">
+    <span class="save-note" id="commsSaveNote"></span>
+    <button type="button" onclick="addCommsRow()">+ Add Row</button>
+    <button type="button" onclick="resetComms()">Reset to Default</button>
+  </div>
+
+  <div class="table-scroll">
+    <table id="commsTable">
+      <thead>
+        <tr>
+          <th style="text-align:center;">Done</th>
+          <th class="sortable" onclick="sortComms('date')">Date <span class="sort-icon" id="sortIcon-comms-date"></span></th>
+          <th style="text-align:center;">Type</th>
+          <th>Title / Description</th>
+          <th>Link</th>
+          <th style="text-align:center;">Status</th>
+          <th>Notes</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="commsBody"></tbody>
+    </table>
+  </div>
+
+  <p class="footnote">Example rows below show the format &mdash; edit or remove them and add your own with <strong>+ Add Row</strong>.</p>
+</div>
+
+<footer>
+  <img src="hub%20logo.png" alt="The Hub" class="footer-logo" />
+  <p><strong>WCS Elementary Hub</strong> &nbsp;&middot;&nbsp; Westminster Christian School</p>
+  <p style="margin-top:0.4rem;">Communications Content Calendar</p>
+</footer>
+
+<script>
+  var COMMS_KEY = 'hubCommsCalendar_2026_27';
+  var TYPE_CYCLE = ['Article', 'Event'];
+  var STATUS_CYCLE = ['Draft', 'Scheduled', 'Sent'];
+
+  var DEFAULT_COMMS = [
+    { date: 'Sep 4, 2026', type: 'Article', title: 'Example: September Family Newsletter', link: '', status: 'Draft', notes: '', done: false },
+    { date: 'Sep 17, 2026', type: 'Event', title: 'Example: Open House', link: '', status: 'Scheduled', notes: 'Reminder to go out the week before.', done: false }
+  ];
+
+  function loadComms() {
+    try {
+      var saved = JSON.parse(localStorage.getItem(COMMS_KEY));
+      return saved || JSON.parse(JSON.stringify(DEFAULT_COMMS));
+    } catch (e) { return JSON.parse(JSON.stringify(DEFAULT_COMMS)); }
+  }
+
+  function saveComms(rows) {
+    localStorage.setItem(COMMS_KEY, JSON.stringify(rows));
+    document.getElementById('commsSaveNote').textContent = 'Saved ' + new Date().toLocaleTimeString();
+  }
+
+  function badgeClass(prefix, value) {
+    return 'badge badge-' + (value || prefix).toLowerCase();
+  }
+
+  function renderComms() {
+    var rows = loadComms();
+    var body = document.getElementById('commsBody');
+    body.innerHTML = '';
+
+    rows.forEach(function (row, i) {
+      var tr = document.createElement('tr');
+      if (row.done) tr.classList.add('comms-done');
+
+      var doneTd = document.createElement('td');
+      doneTd.className = 'done-cell';
+      var checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.checked = !!row.done;
+      checkbox.addEventListener('change', function () {
+        var current = loadComms();
+        current[i].done = checkbox.checked;
+        saveComms(current);
+        renderComms();
+      });
+      doneTd.appendChild(checkbox);
+      tr.appendChild(doneTd);
+
+      var dateTd = document.createElement('td');
+      var dateSpan = document.createElement('span');
+      dateSpan.className = 'comms-date';
+      dateSpan.contentEditable = 'true';
+      dateSpan.innerHTML = row.date || '';
+      dateSpan.addEventListener('blur', function () {
+        var current = loadComms();
+        current[i].date = dateSpan.innerHTML;
+        saveComms(current);
+      });
+      dateTd.appendChild(dateSpan);
+      tr.appendChild(dateTd);
+
+      var typeTd = document.createElement('td');
+      typeTd.style.textAlign = 'center';
+      var typeBadge = document.createElement('span');
+      typeBadge.className = badgeClass('article', row.type);
+      typeBadge.textContent = row.type || 'Article';
+      typeBadge.title = 'Click to change type';
+      typeBadge.onclick = function () {
+        var current = loadComms();
+        var idx = TYPE_CYCLE.indexOf(current[i].type || 'Article');
+        current[i].type = TYPE_CYCLE[(idx + 1) % TYPE_CYCLE.length];
+        saveComms(current);
+        renderComms();
+      };
+      typeTd.appendChild(typeBadge);
+      tr.appendChild(typeTd);
+
+      var titleTd = document.createElement('td');
+      var titleSpan = document.createElement('span');
+      titleSpan.className = 'comms-title';
+      titleSpan.contentEditable = 'true';
+      titleSpan.innerHTML = row.title || '';
+      titleSpan.addEventListener('blur', function () {
+        var current = loadComms();
+        current[i].title = titleSpan.innerHTML;
+        saveComms(current);
+      });
+      titleTd.appendChild(titleSpan);
+      tr.appendChild(titleTd);
+
+      var linkTd = document.createElement('td');
+      if (row.link) {
+        var a = document.createElement('a');
+        a.href = row.link;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.className = 'comms-open-link';
+        a.textContent = 'Open →';
+        linkTd.appendChild(a);
+      } else {
+        var noLink = document.createElement('span');
+        noLink.className = 'comms-no-link';
+        noLink.textContent = 'No link yet';
+        linkTd.appendChild(noLink);
+      }
+      var linkBtn = document.createElement('button');
+      linkBtn.type = 'button';
+      linkBtn.className = 'comms-link-btn';
+      linkBtn.textContent = row.link ? 'Edit Link' : '+ Add Link';
+      linkBtn.onclick = function () {
+        var current = loadComms();
+        var url = prompt('Paste the link to the article/event page:', current[i].link || '');
+        if (url !== null) {
+          current[i].link = url.trim();
+          saveComms(current);
+          renderComms();
+        }
+      };
+      linkTd.appendChild(linkBtn);
+      tr.appendChild(linkTd);
+
+      var statusTd = document.createElement('td');
+      statusTd.style.textAlign = 'center';
+      var statusBadge = document.createElement('span');
+      statusBadge.className = badgeClass('draft', row.status);
+      statusBadge.textContent = row.status || 'Draft';
+      statusBadge.title = 'Click to change status';
+      statusBadge.onclick = function () {
+        var current = loadComms();
+        var idx = STATUS_CYCLE.indexOf(current[i].status || 'Draft');
+        current[i].status = STATUS_CYCLE[(idx + 1) % STATUS_CYCLE.length];
+        saveComms(current);
+        renderComms();
+      };
+      statusTd.appendChild(statusBadge);
+      tr.appendChild(statusTd);
+
+      var notesTd = document.createElement('td');
+      notesTd.contentEditable = 'true';
+      notesTd.innerHTML = row.notes || '';
+      notesTd.addEventListener('blur', function () {
+        var current = loadComms();
+        current[i].notes = notesTd.innerHTML;
+        saveComms(current);
+      });
+      tr.appendChild(notesTd);
+
+      var actionTd = document.createElement('td');
+      actionTd.className = 'row-actions';
+
+      var upBtn = document.createElement('button');
+      upBtn.className = 'btn-move';
+      upBtn.textContent = '↑';
+      upBtn.title = 'Move up';
+      upBtn.disabled = (i === 0);
+      upBtn.onclick = function () {
+        var current = loadComms();
+        if (i === 0) return;
+        var temp = current[i - 1];
+        current[i - 1] = current[i];
+        current[i] = temp;
+        saveComms(current);
+        renderComms();
+      };
+      actionTd.appendChild(upBtn);
+
+      var downBtn = document.createElement('button');
+      downBtn.className = 'btn-move';
+      downBtn.textContent = '↓';
+      downBtn.title = 'Move down';
+      downBtn.disabled = (i === rows.length - 1);
+      downBtn.onclick = function () {
+        var current = loadComms();
+        if (i === current.length - 1) return;
+        var temp = current[i + 1];
+        current[i + 1] = current[i];
+        current[i] = temp;
+        saveComms(current);
+        renderComms();
+      };
+      actionTd.appendChild(downBtn);
+
+      var removeBtn = document.createElement('button');
+      removeBtn.className = 'btn-remove';
+      removeBtn.textContent = '−';
+      removeBtn.title = 'Remove row';
+      removeBtn.onclick = function () {
+        var current = loadComms();
+        current.splice(i, 1);
+        saveComms(current);
+        renderComms();
+      };
+      actionTd.appendChild(removeBtn);
+      tr.appendChild(actionTd);
+
+      body.appendChild(tr);
+    });
+  }
+
+  function addCommsRow() {
+    var current = loadComms();
+    current.push({ date: '', type: 'Article', title: '', link: '', status: 'Draft', notes: '', done: false });
+    saveComms(current);
+    renderComms();
+  }
+
+  function resetComms() {
+    if (confirm('Reset the Content Calendar back to the default example rows? Any added/edited rows in this browser will be lost.')) {
+      localStorage.removeItem(COMMS_KEY);
+      renderComms();
+      document.getElementById('commsSaveNote').textContent = 'Reset to default.';
+    }
+  }
+
+  var commsSortState = { field: null, dir: 1 };
+
+  function sortComms(field) {
+    var rows = loadComms();
+    var dir = commsSortState.field === field ? -commsSortState.dir : 1;
+    commsSortState = { field: field, dir: dir };
+    rows.sort(function (a, b) {
+      var av = (a[field] || '').toString().toLowerCase();
+      var bv = (b[field] || '').toString().toLowerCase();
+      var aDate = new Date(a[field]);
+      var bDate = new Date(b[field]);
+      if (!isNaN(aDate) && !isNaN(bDate)) { av = aDate.getTime(); bv = bDate.getTime(); }
+      if (av < bv) return -1 * dir;
+      if (av > bv) return 1 * dir;
+      return 0;
+    });
+    saveComms(rows);
+    renderComms();
+    document.getElementById('sortIcon-comms-date').textContent = dir === 1 ? '▲' : '▼';
+  }
+
+  renderComms();
+</script>
+</body>
+</html>
