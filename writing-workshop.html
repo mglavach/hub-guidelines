@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Writing Workshop · WCS Elementary Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest: #2c5234;
+      --gold:   #B9975B;
+      --cream:  #fdf8ef;
+      --sage:   #4a7c59;
+      --sky:    #4a90c4;
+      --light-gold:  #f5ead8;
+      --light-blue:  #e8f2f9;
+      --light-green: #eaf3ec;
+      --text:   #2c2c2c;
+      --muted:  #6b6b6b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body { font-family: 'Montserrat', sans-serif; background: var(--cream); color: var(--text); line-height: 1.7; }
+
+    .container { max-width: 980px; margin: 0 auto; padding: 0 1.5rem; }
+    section { padding: 4rem 0; }
+    section + section { padding-top: 0; }
+
+    .section-label { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: var(--forest); line-height: 1.25; margin-bottom: 1rem; }
+
+    .divider { width: 3rem; height: 3px; background: var(--gold); border-radius: 2px; margin: 1.25rem 0; }
+
+    .lead { color: #3a3a3a; max-width: 680px; margin-bottom: 1.5rem; }
+
+    /* HERO */
+    .hero { background: var(--forest); color: white; text-align: center; padding: 3.5rem 2rem 4.5rem; }
+    .hero-back {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      color: rgba(255,255,255,0.65); font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+      margin-bottom: 2rem; transition: color 0.15s;
+    }
+    .hero-back:hover { color: var(--gold); }
+    .hero-title-row { display: flex; align-items: center; justify-content: center; gap: 1.25rem; }
+    .hero-icon {
+      width: 72px; height: 72px; background: var(--gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700;
+      letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.1; color: white; margin: 0;
+    }
+    .hero-sub { margin-top: 1rem; color: var(--gold); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; }
+
+    /* WHY BOX */
+    .assess-why {
+      display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.25rem;
+      align-items: flex-start; background: var(--light-gold);
+      border-left: 4px solid var(--gold); border-radius: 0 0.75rem 0.75rem 0;
+      padding: 1.5rem 1.75rem; margin: 2rem 0 3rem;
+    }
+    .assess-why-icon { color: var(--gold); margin-top: 0.15rem; }
+    .assess-why h3 { font-size: 1rem; color: var(--forest); margin-bottom: 0.5rem; }
+    .assess-why p { font-size: 0.92rem; color: #3a3a3a; line-height: 1.65; margin-bottom: 0.5rem; }
+    .assess-why p:last-child { margin-bottom: 0; }
+
+    /* ROUTINE CARDS */
+    .routine-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+    @media (max-width: 800px) { .routine-cards { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .routine-cards { grid-template-columns: 1fr; } }
+    .routine-card {
+      background: white; border-radius: 1rem; padding: 1.5rem;
+      border-top: 4px solid var(--forest); box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .routine-step {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 2rem; height: 2rem; border-radius: 50%;
+      background: var(--forest); color: var(--gold); font-weight: 700; font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+    .routine-card h3 { font-size: 1rem; color: var(--forest); margin-bottom: 0.15rem; }
+    .routine-time { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+    .routine-card p { font-size: 0.88rem; color: #3a3a3a; line-height: 1.55; }
+
+    /* TABLES */
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .grade-table {
+      width: 100%; border-collapse: collapse; margin-top: 1.5rem;
+      background: white; border-radius: 0.75rem; overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07); font-size: 0.88rem;
+    }
+    .grade-table thead { background: var(--forest); color: white; }
+    .grade-table th {
+      padding: 0.9rem 1rem; text-align: left; font-weight: 600;
+      font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .grade-table td {
+      padding: 0.8rem 1rem; border-bottom: 1px solid #eee;
+      vertical-align: top; line-height: 1.5; color: #3a3a3a;
+    }
+    .grade-table tr:last-child td { border-bottom: none; }
+    .grade-table tr:nth-child(even) td { background: #fafafa; }
+    .grade-table td.prompt { font-weight: 600; color: var(--forest); }
+    .grade-table tr.this-week td { background: var(--light-gold); }
+    .starter {
+      display: block; margin-top: 0.5rem; padding: 0.4rem 0.6rem;
+      background: var(--light-green); border-left: 3px solid var(--sage); border-radius: 0 0.35rem 0.35rem 0;
+      font-weight: 500; color: #3a3a3a; font-style: italic;
+    }
+    .starter-label {
+      display: block; font-style: normal; font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage);
+    }
+    .grade-badge {
+      display: inline-block; background: var(--forest); color: var(--gold);
+      font-size: 0.72rem; font-weight: 700;
+      padding: 0.2rem 0.55rem; border-radius: 0.25rem; white-space: nowrap;
+    }
+    .now-tag {
+      display: inline-block; margin-top: 0.35rem; background: var(--gold); color: white;
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.1rem 0.45rem; border-radius: 2rem; white-space: nowrap;
+    }
+
+    /* MONTH TABS */
+    .int-tabs {
+      display: flex; flex-wrap: wrap; gap: 0;
+      border-bottom: 2px solid #ddd; margin-bottom: 1.5rem;
+    }
+    .int-tab {
+      padding: 0.65rem 1.1rem; background: none; border: none;
+      border-bottom: 3px solid transparent; margin-bottom: -2px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+      cursor: pointer; transition: color 0.15s, border-color 0.15s;
+    }
+    .int-tab:hover { color: var(--forest); }
+    .int-tab.active { color: var(--forest); border-bottom-color: var(--forest); }
+    .int-panel { display: none; }
+    .int-panel.active { display: block; }
+    .month-skill { font-size: 1.15rem; color: var(--forest); margin-bottom: 0.4rem; }
+    .month-intro { font-size: 0.92rem; color: #3a3a3a; max-width: 720px; }
+
+    /* DIFFERENTIATION */
+    .diff-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.5rem; }
+    @media (max-width: 700px) { .diff-cards { grid-template-columns: 1fr; } }
+    .diff-card {
+      background: white; border-radius: 1rem; padding: 1.5rem;
+      border-top: 4px solid var(--sage); box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .diff-card.more { border-top-color: var(--gold); }
+    .diff-card h3 { font-size: 1rem; color: var(--forest); margin-bottom: 0.6rem; }
+    .diff-card ul { list-style: none; }
+    .diff-card li { font-size: 0.9rem; color: #3a3a3a; line-height: 1.6; padding: 0.3rem 0; border-bottom: 1px solid #eee; }
+    .diff-card li:last-child { border-bottom: none; }
+    .diff-card li::before { content: '→ '; color: var(--gold); font-weight: 700; }
+
+    /* FOOTER */
+    footer { background: var(--forest); color: rgba(255,255,255,0.6); text-align: center; padding: 2.5rem 1.5rem; font-size: 0.82rem; }
+    footer strong { color: var(--gold); }
+    .footer-logo { width: 40px; height: 40px; border-radius: 50%; display: block; margin: 0 auto 0.75rem; opacity: 0.9; }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <a href="index.html" class="hero-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to the Hub
+  </a>
+  <div class="hero-title-row">
+    <div class="hero-icon">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 20h9"/>
+        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+      </svg>
+    </div>
+    <h1>Writing Workshop</h1>
+  </div>
+  <p class="hero-sub">Grade 1 &nbsp;·&nbsp; Weekly Free Write &nbsp;·&nbsp; 2026&ndash;27</p>
+</header>
+
+<!-- OVERVIEW -->
+<section>
+  <div class="container">
+    <p class="section-label">Grade 1 Free Write</p>
+    <h2>How It Works</h2>
+    <div class="divider"></div>
+    <p class="lead">One free write prompt each week, from the week of September 7 through the week of May 17 (33 weeks). Each month adds one skill on top of the last, so first graders grow from drawing and labeling to writing short pieces they can revise and share. Break weeks are skipped: Thanksgiving (Nov 23&ndash;27), Christmas (Dec 21 &ndash; Jan 4) and Spring Break (Mar 22&ndash;29). The last day of school is Thursday, May 20.</p>
+
+    <div class="assess-why">
+      <svg class="assess-why-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+      </svg>
+      <div>
+        <h3>Keep a Free Write Folder</h3>
+        <p>Every free write goes into each student's folder. In May, students choose a favorite to revise and publish, so they can see how much they have grown as writers.</p>
+      </div>
+    </div>
+
+    <p class="section-label">Weekly Routine &middot; 15&ndash;20 minutes</p>
+    <div class="routine-cards">
+      <div class="routine-card">
+        <span class="routine-step">1</span>
+        <h3>Say the Prompt</h3>
+        <p class="routine-time">2 min</p>
+        <p>Read it aloud and post it on the board. Think aloud with one quick idea of your own.</p>
+      </div>
+      <div class="routine-card">
+        <span class="routine-step">2</span>
+        <h3>Talk It Out</h3>
+        <p class="routine-time">2 min</p>
+        <p>Partners tell each other what they will draw and write.</p>
+      </div>
+      <div class="routine-card">
+        <span class="routine-step">3</span>
+        <h3>Write</h3>
+        <p class="routine-time">8&ndash;12 min</p>
+        <p>Students draw first, then write. Any spelling they can stretch out is fine.</p>
+      </div>
+      <div class="routine-card">
+        <span class="routine-step">4</span>
+        <h3>Share</h3>
+        <p class="routine-time">3 min</p>
+        <p>Two or three students read their work. Name one thing they did well that matches the skill focus.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEEKLY PROMPTS -->
+<section>
+  <div class="container">
+    <p class="section-label">Week by Week</p>
+    <h2>Weekly Prompts</h2>
+    <div class="divider"></div>
+    <p class="lead">This week's prompt is highlighted. Choose a month to see its skill focus and prompts.</p>
+
+    <div class="int-tabs" id="month-tabs"></div>
+    <div id="month-panels"></div>
+  </div>
+</section>
+
+<!-- PROGRESSION -->
+<section>
+  <div class="container">
+    <p class="section-label">The Year at a Glance</p>
+    <h2>Skill Progression</h2>
+    <div class="divider"></div>
+    <div class="table-wrap">
+      <table class="grade-table">
+        <thead>
+          <tr><th>Month</th><th>Skill Focus</th><th>By the End of the Month, Students Can...</th></tr>
+        </thead>
+        <tbody id="progression-body"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATION -->
+<section>
+  <div class="container">
+    <p class="section-label">Meeting Every Writer</p>
+    <h2>Differentiation</h2>
+    <div class="divider"></div>
+    <div class="diff-cards">
+      <div class="diff-card">
+        <h3>Needs Support</h3>
+        <ul>
+          <li>Offer a sentence starter</li>
+          <li>Let the student say a sentence for you to write</li>
+          <li>Accept a labeled picture</li>
+        </ul>
+      </div>
+      <div class="diff-card more">
+        <h3>Ready for More</h3>
+        <ul>
+          <li>Ask for one more sentence</li>
+          <li>Use a new word from the word wall</li>
+          <li>Add a speech bubble to the picture</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="hub%20logo.png" alt="The Hub" class="footer-logo" />
+  <p><strong>WCS Elementary Hub</strong> &nbsp;·&nbsp; Westminster Christian School</p>
+  <p style="margin-top:0.4rem;">Writing Workshop</p>
+</footer>
+
+<script>
+  // One entry per month; each week's date is the Monday of that school week.
+  var MONTHS = [
+    { id: 'sep', name: 'September', skill: 'Drawing to Tell',
+      goal: 'Draw a picture with details, tell about it, and write their name and a label',
+      intro: 'Pictures tell stories too. Students draw with details, talk about their picture, and add their name and a first label. Model adding details: "Is it sunny? What are you holding?"',
+      weeks: [
+        { date: '2026-09-07', prompt: 'Draw a picture of you! Write your name at the top.', skill: 'Writing name; drawing a person', look: 'Name written; a person with face, body, arms and legs' },
+        { date: '2026-09-14', prompt: 'Draw the people in your family. Tell your partner who each person is.', skill: 'Telling about a picture', look: 'Can say who is in the picture' },
+        { date: '2026-09-21', prompt: 'Draw something you did this weekend. Add details so we can see where you were.', skill: 'Details in a drawing', look: 'A background, colors and objects' },
+        { date: '2026-09-28', prompt: 'Draw your favorite toy. Write a label that tells what it is.', skill: 'First label', look: 'One label using beginning sounds' }
+      ] },
+    { id: 'oct', name: 'October', skill: 'Ideas on Paper',
+      goal: 'Draw a picture, label it, and write one sentence about it',
+      intro: 'The goal is confidence: every student puts an idea on paper with a picture, labels and one sentence. Model how to stretch out sounds and keep going.',
+      weeks: [
+        { date: '2026-10-05', prompt: 'Draw and write about something you love to do.', skill: 'Draw first, then write', look: 'A picture that matches the words' },
+        { date: '2026-10-12', prompt: 'Who is someone special to you? Draw them and label what they are wearing.', skill: 'Labeling a picture', look: '3 or more labels with stretched-out spelling' },
+        { date: '2026-10-19', prompt: 'Draw your favorite place to play. Write one sentence that starts with "I like to..."', skill: 'One sentence with a starter', look: 'One sentence that tells about the picture' },
+        { date: '2026-10-26', prompt: 'If you could have any pet, what would it be? Draw it and tell about it.', skill: 'One sentence on your own', look: 'A sentence without a starter' }
+      ] },
+    { id: 'nov', name: 'November', skill: 'Complete Sentences',
+      goal: 'Write 2 sentences with a capital letter, finger spaces and an end mark',
+      intro: 'Students now write 2 sentences that look like real sentences: capital letter, finger spaces, end mark. Post a sentence checklist and have them check each sentence when they finish.',
+      weeks: [
+        { date: '2026-11-02', prompt: 'What is your favorite food? Write 2 sentences about it.', skill: 'Capital at the start', look: 'Both sentences start with a capital' },
+        { date: '2026-11-09', prompt: 'Tell about a time you helped someone.', skill: 'Finger spaces', look: 'Spaces between every word' },
+        { date: '2026-11-16', prompt: 'What are you thankful for? Write 2 sentences about it.', skill: 'Periods at the end', look: 'A period after each sentence' },
+        { date: '2026-11-30', prompt: 'Write about one fun thing you did over Thanksgiving Break.', skill: 'All three together; one small moment', look: 'Capital, spaces and end mark in 2 sentences' }
+      ] },
+    { id: 'dec', name: 'December', skill: 'Details',
+      goal: 'Add a describing word and a "with/because" detail to a sentence',
+      intro: 'Students make sentences more interesting with describing words and senses. Model turning "I see a tree" into "I see a tall green tree with shiny lights."',
+      weeks: [
+        { date: '2026-12-07', prompt: 'Describe your favorite Christmas decoration. What color, size and shape is it?', skill: 'Describing words (adjectives)', look: 'At least 2 describing words' },
+        { date: '2026-12-14', prompt: 'Write about the Christmas story. What do you think the night Jesus was born looked, sounded and felt like?', skill: 'Using the 5 senses', look: 'Details from at least 2 senses' }
+      ] },
+    { id: 'jan', name: 'January', skill: 'Sequence',
+      goal: 'Tell a true story in order with First, Next, Last',
+      intro: 'Students tell true stories in order. Give them a 3-box paper (First, Next, Last) to sketch in before they write.',
+      weeks: [
+        { date: '2027-01-04', prompt: 'Tell about your Christmas Break. What happened first, next and last?', skill: 'First, Next, Last', look: '3 sentences in order' },
+        { date: '2027-01-11', prompt: 'How do you get ready for school in the morning?', skill: 'Time-order words', look: 'First, Next, Then or Last used' },
+        { date: '2027-01-18', prompt: 'Write about a time you learned something new, like riding a bike or tying your shoes.', skill: 'Beginning, middle, end', look: 'A clear start and finish' },
+        { date: '2027-01-25', prompt: 'Tell about a time you felt really happy.', skill: 'Telling how you felt', look: 'A feeling word in the story' }
+      ] },
+    { id: 'feb', name: 'February', skill: 'Opinion',
+      goal: 'State an opinion and give one reason with "because"',
+      intro: 'Students say what they think and back it up. Teach the frame "I think ___ because ___." and point out that there is no wrong opinion, only a missing reason.',
+      weeks: [
+        { date: '2027-02-01', prompt: 'Which is better: summer or winter?', skill: 'Stating an opinion', look: '"I think..." or "I like..."' },
+        { date: '2027-02-08', prompt: 'What is the best way to show someone you care?', skill: 'Giving a reason with "because"', look: 'One reason with "because"' },
+        { date: '2027-02-15', prompt: 'What is the best book you have read this year? Tell why.', skill: 'Opinion about a book', look: 'Names the book and gives a reason' },
+        { date: '2027-02-22', prompt: 'Should our class get a class pet?', skill: 'Telling who it helps', look: 'A reason that tells how it helps' }
+      ] },
+    { id: 'mar', name: 'March', skill: 'Information',
+      goal: 'Teach a topic with 3 facts or steps, using words like First and Then',
+      intro: 'Students become the teacher and write what they know. Before writing, have them count facts or steps on their fingers.',
+      weeks: [
+        { date: '2027-03-01', prompt: 'Teach me about an animal you know a lot about.', skill: 'Facts, not a story', look: '3 true facts' },
+        { date: '2027-03-08', prompt: 'How do you make your favorite snack?', skill: 'How-to steps', look: 'Steps in order with First, Then, Last' },
+        { date: '2027-03-15', prompt: 'What is something you are an expert at? Teach a friend.', skill: 'Topic sentence', look: 'A first sentence that names the topic' },
+        { date: '2027-03-29', prompt: 'Easter was this Sunday! Teach me what Easter is about and how your family celebrates.', skill: 'Topic plus facts', look: 'A topic sentence and 3 facts' }
+      ] },
+    { id: 'apr', name: 'April', skill: 'Stronger Pieces',
+      goal: 'Give 2 reasons, add feelings, and write a real ending',
+      intro: 'Students combine earlier skills and write 4 or more sentences. Each week adds one way to make writing stronger.',
+      weeks: [
+        { date: '2027-04-05', prompt: 'Tell about a time you were brave. What were you thinking and feeling?', skill: 'Feelings and inner thinking', look: 'A feeling word and why they felt it' },
+        { date: '2027-04-12', prompt: 'What is the best job in the world? Give 2 reasons.', skill: '2 reasons in an opinion', look: '2 reasons, the second with "also"' },
+        { date: '2027-04-19', prompt: 'Write about a time something surprised you.', skill: 'Strong endings', look: 'A last sentence that wraps it up, not "The End"' },
+        { date: '2027-04-26', prompt: 'God made so many things in nature. Write about your favorite part of creation.', skill: 'Strong beginnings', look: 'A first sentence that hooks the reader' }
+      ] },
+    { id: 'may', name: 'May', skill: 'Independence',
+      goal: 'Choose a kind of writing, reread it, fix one thing, and share it',
+      intro: 'Students choose what kind of writing fits their idea (story, opinion or teaching) and learn to reread and fix their own work. The year ends the week of May 17 (last day Thursday, May 20) with a celebration of their best writing.',
+      weeks: [
+        { date: '2027-05-03', prompt: 'Free choice: write a story, an opinion or a teaching piece about anything you like.', skill: 'Choosing a type of writing', look: 'Can say which type they chose and why' },
+        { date: '2027-05-10', prompt: 'Pick your favorite free write from your folder. Reread it and make it even better.', skill: 'Revising and editing', look: 'One change added and one mistake fixed' },
+        { date: '2027-05-17', prompt: "Write a letter to next year's first graders. What should they know? Then read your best piece to the class.", skill: 'Letter format; publishing and sharing', look: '"Dear..." and a closing; reads work aloud' }
+      ] }
+  ];
+
+  // Sample sentence starter for each week, keyed by the week's Monday.
+  var STARTERS = {
+    '2026-09-07': 'This is me. My name is ___.',
+    '2026-09-14': 'This is my ___.',
+    '2026-09-21': 'I went to the ___.',
+    '2026-09-28': 'My toy is a ___.',
+    '2026-10-05': 'I love to ___.',
+    '2026-10-12': 'This is my ___. They are wearing a ___.',
+    '2026-10-19': 'I like to ___ at the ___.',
+    '2026-10-26': 'I would get a ___.',
+    '2026-11-02': 'My favorite food is ___. It tastes ___.',
+    '2026-11-09': 'I helped ___ when ___.',
+    '2026-11-16': 'I am thankful for ___ because ___.',
+    '2026-11-30': 'Over Thanksgiving Break, I ___.',
+    '2026-12-07': 'My favorite decoration is the ___. It is ___ and ___.',
+    '2026-12-14': 'The night Jesus was born looked ___ and sounded ___.',
+    '2027-01-04': 'First, I ___. Next, I ___. Last, I ___.',
+    '2027-01-11': 'First, I wake up and ___. Next, ___.',
+    '2027-01-18': 'I learned how to ___. At first, ___.',
+    '2027-01-25': 'I felt so happy when ___.',
+    '2027-02-01': 'I think ___ is better because ___.',
+    '2027-02-08': 'The best way to show someone you care is ___ because ___.',
+    '2027-02-15': 'The best book I read is ___ because ___.',
+    '2027-02-22': 'I think our class should get a pet because ___.',
+    '2027-03-01': 'I know a lot about ___. They ___.',
+    '2027-03-08': 'Here is how to make ___. First, ___.',
+    '2027-03-15': 'I am an expert at ___. First, ___.',
+    '2027-03-29': 'Easter is about ___. My family ___.',
+    '2027-04-05': 'I was brave when ___. I felt ___ because ___.',
+    '2027-04-12': 'The best job is ___ because ___. Also, ___.',
+    '2027-04-19': 'I was so surprised when ___.',
+    '2027-04-26': "My favorite part of God's creation is ___ because ___.",
+    '2027-05-03': 'I am going to write a ___ about ___.',
+    '2027-05-10': 'I made my writing better by ___.',
+    '2027-05-17': 'Dear future first graders, ___. Love, ___'
+  };
+
+  var MONTH_ABBR =['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+  function esc(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function weekLabel(iso) {
+    return MONTH_ABBR[Number(iso.slice(5, 7)) - 1] + ' ' + Number(iso.slice(8, 10));
+  }
+
+  // Monday of the current week, as YYYY-MM-DD in local time.
+  function currentMonday() {
+    var d = new Date();
+    var offset = (d.getDay() + 6) % 7;
+    d.setDate(d.getDate() - offset);
+    var mm = String(d.getMonth() + 1).padStart(2, '0');
+    var dd = String(d.getDate()).padStart(2, '0');
+    return d.getFullYear() + '-' + mm + '-' + dd;
+  }
+
+  function render() {
+    var today = currentMonday();
+    var tabs = '', panels = '', progression = '';
+    var activeId = null;
+
+    // Open the month holding this week; otherwise the next upcoming month, else September.
+    MONTHS.forEach(function (m) {
+      if (!activeId && m.weeks.some(function (w) { return w.date >= today; })) activeId = m.id;
+    });
+    if (!activeId) activeId = MONTHS[0].id;
+
+    MONTHS.forEach(function (m) {
+      var active = m.id === activeId ? ' active' : '';
+      tabs += '<button class="int-tab' + active + '" onclick="showMonth(event,\'month-' + m.id + '\')">' + m.name + '</button>';
+
+      var rows = m.weeks.map(function (w) {
+        var now = w.date === today;
+        return '<tr' + (now ? ' class="this-week"' : '') + '>' +
+          '<td><span class="grade-badge">' + weekLabel(w.date) + '</span>' + (now ? '<br><span class="now-tag">This Week</span>' : '') + '</td>' +
+          '<td class="prompt">' + esc(w.prompt) +
+            (STARTERS[w.date] ? '<span class="starter"><span class="starter-label">Sentence starter</span>' + esc(STARTERS[w.date]) + '</span>' : '') + '</td>' +
+          '<td>' + esc(w.skill) + '</td>' +
+          '<td>' + esc(w.look) + '</td></tr>';
+      }).join('');
+
+      panels += '<div id="month-' + m.id + '" class="int-panel' + active + '">' +
+        '<h3 class="month-skill">' + m.name + ': ' + esc(m.skill) + '</h3>' +
+        '<p class="month-intro">' + esc(m.intro) + '</p>' +
+        '<div class="table-wrap"><table class="grade-table"><thead><tr>' +
+        '<th>Week of</th><th>Prompt (Say to Students)</th><th>Skill Focus</th><th>Look For</th>' +
+        '</tr></thead><tbody>' + rows + '</tbody></table></div></div>';
+
+      progression += '<tr><td><span class="grade-badge">' + m.name + '</span></td>' +
+        '<td><strong style="color:var(--forest);">' + esc(m.skill) + '</strong></td>' +
+        '<td>' + esc(m.goal) + '</td></tr>';
+    });
+
+    document.getElementById('month-tabs').innerHTML = tabs;
+    document.getElementById('month-panels').innerHTML = panels;
+    document.getElementById('progression-body').innerHTML = progression;
+  }
+
+  function showMonth(e, panelId) {
+    document.querySelectorAll('.int-panel').forEach(function (p) { p.classList.remove('active'); });
+    document.querySelectorAll('.int-tab').forEach(function (t) { t.classList.remove('active'); });
+    document.getElementById(panelId).classList.add('active');
+    e.currentTarget.classList.add('active');
+  }
+
+  render();
+</script>
+</body>
+</html>
