@@ -146,9 +146,8 @@
     .grade-table tr:nth-child(even) td { background: #f8faf8; }
     .grade-badge { display: inline-block; background: var(--forest); color: white; font-size: 0.72rem; font-weight: 700; padding: 0.22rem 0.65rem; border-radius: 999px; white-space: nowrap; }
     .ar-goal { display: inline-block; background: var(--gold); color: white; font-size: 0.78rem; font-weight: 700; padding: 0.22rem 0.65rem; border-radius: 999px; }
-    .grade-guideline-row td { background: var(--gold); color: white; font-size: 0.82rem; line-height: 1.5; padding: 0.75rem 1.25rem; }
-    .grade-guideline-row td strong { text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.72rem; margin-right: 0.4rem; }
-    .grade-table tr.grade-guideline-row:nth-child(even) td { background: var(--gold); }
+    .teacher-guideline-note { display: block; background: var(--gold); color: white; font-size: 0.78rem; line-height: 1.5; padding: 0.6rem 0.75rem; border-radius: 0.4rem; }
+    .teacher-guideline-note strong { display: block; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.68rem; margin-bottom: 0.25rem; }
     .ar-na { display: inline-block; color: var(--muted); font-size: 0.82rem; font-style: italic; }
     .ar-enrich { display: inline-block; background: var(--light-gold); color: #6b4a1a; font-size: 0.76rem; font-weight: 700; padding: 0.22rem 0.65rem; border-radius: 999px; white-space: nowrap; }
     .quiz-home { display: inline-block; background: var(--light-blue); color: #1a4a6b; font-size: 0.76rem; font-weight: 700; padding: 0.22rem 0.65rem; border-radius: 999px; white-space: nowrap; }
@@ -176,49 +175,6 @@
     .tips-col ul li { font-size: 0.88rem; color: #3a3a3a; padding: 0.45rem 0 0.45rem 1.2rem; border-bottom: 1px solid #f0f0f0; position: relative; line-height: 1.5; }
     .tips-col ul li:last-child { border-bottom: none; }
     .tips-col ul li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
-
-    /* ── WHY WE READ ── */
-    .why-section { background: white; }
-    .why-section h2 { color: var(--forest); }
-    .why-section .section-label { color: var(--sage); }
-    .why-section .divider { background: rgba(44,82,52,0.25); }
-    .why-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-top: 1.5rem; }
-    @media (max-width: 700px) { .why-layout { grid-template-columns: 1fr; } }
-
-    .why-diagram-wrap { display: flex; justify-content: center; }
-    .why-diagram { position: relative; width: 100%; max-width: 340px; aspect-ratio: 1; }
-    .why-lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-    .why-center {
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 28%; height: 28%;
-      background: var(--gold); border-radius: 50%;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 4%;
-      z-index: 3; box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    }
-    .why-center-label { font-family: 'Montserrat', sans-serif; font-size: clamp(0.42rem, 1.4vw, 0.58rem); font-weight: 800; color: white; line-height: 1.25; letter-spacing: 0.01em; }
-    .why-spoke {
-      position: absolute;
-      width: 26%; height: 26%;
-      border-radius: 50%;
-      background: var(--forest);
-      border: 2.5px solid var(--gold);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center; padding: 4%;
-      overflow: hidden; z-index: 2;
-      transform: translate(-50%, -50%);
-      transition: transform 0.2s, background 0.2s;
-    }
-    .why-spoke:hover { transform: translate(-50%, -50%) scale(1.1); background: var(--sage); }
-    .why-spoke svg { width: clamp(12px, 3vw, 18px); height: clamp(12px, 3vw, 18px); color: var(--gold); flex-shrink: 0; margin-bottom: 3px; }
-    .why-spoke-label { font-family: 'Montserrat', sans-serif; font-size: clamp(0.42rem, 1.2vw, 0.56rem); font-weight: 700; color: white; line-height: 1.25; }
-
-    .why-text-col { color: var(--text); }
-    .why-text-col p { font-size: 0.92rem; line-height: 1.75; margin-bottom: 1rem; }
-    .why-text-col p:last-child { margin-bottom: 0; }
-    .why-text-col strong { color: var(--forest); }
 
     .find-quiz-box {
       background: var(--light-green);
@@ -265,10 +221,6 @@
 
 <!-- HERO -->
 <header class="hero">
-  <a href="index.html" class="hero-back">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-    Back to the Hub
-  </a>
   <div class="hero-title-row">
     <div class="hero-icon">
       <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
@@ -278,99 +230,6 @@
     <h1>Accelerated Reader</h1>
   </div>
 </header>
-
-<!-- WHY WE READ -->
-<section class="why-section">
-  <div class="container">
-    <p class="section-label">The Bigger Picture</p>
-    <h2>Why We Read</h2>
-    <div class="divider"></div>
-    <div class="why-layout">
-
-      <!-- Starburst diagram -->
-      <div class="why-diagram-wrap">
-        <div class="why-diagram">
-          <svg class="why-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <line x1="50" y1="50" x2="50"  y2="13"  stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
-            <line x1="50" y1="50" x2="87"  y2="50"  stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
-            <line x1="50" y1="50" x2="50"  y2="87"  stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
-            <line x1="50" y1="50" x2="13"  y2="50"  stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
-          </svg>
-
-          <!-- Center -->
-          <div class="why-center">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:3px;">
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-            </svg>
-            <span class="why-center-label">Why We Read</span>
-          </div>
-
-          <!-- Top: For Fun -->
-          <div class="why-spoke" style="top:13%;left:50%;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M8 13s1.5 2 4 2 4-2 4-2"/>
-              <line x1="9" y1="9" x2="9.01" y2="9"/>
-              <line x1="15" y1="9" x2="15.01" y2="9"/>
-            </svg>
-            <span class="why-spoke-label">For Fun</span>
-          </div>
-
-          <!-- Right: Challenge -->
-          <div class="why-spoke" style="top:50%;left:87%;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-            </svg>
-            <span class="why-spoke-label">Challenge</span>
-          </div>
-
-          <!-- Bottom: To Learn -->
-          <div class="why-spoke" style="top:87%;left:50%;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-            </svg>
-            <span class="why-spoke-label">To Learn</span>
-          </div>
-
-          <!-- Left: To Relax -->
-          <div class="why-spoke" style="top:50%;left:13%;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>
-            <span class="why-spoke-label">To Relax</span>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Text column -->
-      <div class="why-text-col">
-        <p>Reading is about so much more than earning AR points. <strong>Students read for fun, to challenge themselves, to relax, and to discover new ideas.</strong> AR is simply a tool to track and celebrate the reading that is already happening.</p>
-        <p>Every book a student picks up, whether it has an AR quiz or not, builds vocabulary, empathy, knowledge, and imagination. <strong>The goal is always a lifelong love of reading first.</strong> AR points are just one small way to celebrate that journey.</p>
-        <p>Encourage your child to read books that excite them, books that challenge them, and books that let them unwind. The points will follow.</p>
-      </div>
-
-    </div>
-
-    <!-- Find a Quiz box -->
-    <div class="find-quiz-box">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="11" cy="11" r="8"/>
-        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-      </svg>
-      <div>
-        <h4>Want to check if a book has an AR quiz?</h4>
-        <p>Visit the AR Book Find website to search by title, author, or topic before your child starts reading: <a href="https://www.arbookfind.com/" target="_blank" rel="noopener">www.arbookfind.com</a>. You can also search directly from the WCS AR site once logged in.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
 
 <!-- ABOUT AR -->
 <section>
@@ -492,6 +351,18 @@
         <li><strong>Still having trouble?</strong> Contact Mrs. Glavach at <a href="mailto:mglavach@wcsmiami.org">mglavach@wcsmiami.org</a> for login help.</li>
       </ul>
     </div>
+
+    <!-- Find a Quiz box -->
+    <div class="find-quiz-box">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <div>
+        <h4>Want to check if a book has an AR quiz?</h4>
+        <p>Visit the AR Book Find website to search by title, author, or topic before your child starts reading: <a href="https://www.arbookfind.com/" target="_blank" rel="noopener">www.arbookfind.com</a>. You can also search directly from the WCS AR site once logged in.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -506,79 +377,90 @@
       <thead>
         <tr>
           <th>Grade</th>
-          <th>Annual AR Goal</th>
-          <th>Reading Focus</th>
-          <th>Sustained Reading Time</th>
-          <th>Quiz Location</th>
           <th>Teacher Expectations</th>
+          <th>Quiz Location</th>
+          <th>Hub Challenge (AR Points for the Quarter)</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><span class="grade-badge">PK3 &amp; PK4</span></td>
           <td><span class="ar-na">N/A</span></td>
-          <td>Listening comprehension, print awareness, love of stories</td>
-          <td>Daily read-alouds; picture book exploration</td>
           <td><span class="ar-na">N/A</span></td>
           <td><span class="ar-na">N/A</span></td>
         </tr>
         <tr>
           <td><span class="grade-badge">K</span></td>
           <td><span class="ar-na">N/A</span></td>
-          <td>Concepts of print, story structure, oral retell</td>
-          <td>5–10 minutes; weekly book checkout</td>
           <td><span class="ar-na">N/A</span></td>
           <td><span class="ar-na">N/A</span></td>
         </tr>
         <tr>
           <td><span class="grade-badge">1st</span></td>
-          <td><span class="ar-enrich">Enrichment as needed</span></td>
-          <td>Foundational decoding, fluency, comprehension</td>
-          <td>10–15 minutes; wide reading across formats</td>
-          <td><span class="quiz-home">Quizzes may be taken at home</span></td>
           <td><span class="ar-na">N/A</span></td>
+          <td><span class="quiz-home">Quizzes may be taken at home</span></td>
+          <td><span class="ar-enrich">Enrichment as needed</span></td>
         </tr>
         <tr>
           <td><span class="grade-badge">2nd</span></td>
-          <td><span class="ar-goal">25 pts</span></td>
-          <td>Independent reading growth, vocabulary, story elements</td>
-          <td>15–20 minutes; fiction and nonfiction regularly</td>
+          <td><span class="teacher-guideline-note"><strong>Teacher Guideline</strong>Administer STAR Reading the first week of each new quarter; use the resulting reading level to set each student's individualized AR point goal as part of the 2nd&ndash;4th grade differentiated learning plan.</span></td>
           <td><span class="quiz-home">Quizzes may be taken at home or school</span></td>
-          <td><span class="ar-na">N/A</span></td>
+          <td><span class="ar-goal">25 pts</span></td>
         </tr>
         <tr>
           <td><span class="grade-badge">3rd</span></td>
-          <td><span class="ar-goal">50 pts</span></td>
-          <td>Reading stamina, text evidence, genre comparison</td>
-          <td>20–25 minutes; one "stretch" book per quarter</td>
+          <td><span class="teacher-guideline-note"><strong>Teacher Guideline</strong>Administer STAR Reading the first week of each new quarter; use the resulting reading level to set each student's individualized AR point goal as part of the 2nd&ndash;4th grade differentiated learning plan.</span></td>
           <td><span class="quiz-school">Quizzes must be taken at school</span></td>
-          <td><span class="ar-na">See guideline below</span></td>
-        </tr>
-        <tr class="grade-guideline-row">
-          <td colspan="6"><strong>Teacher Guideline</strong>Administer STAR Reading the first week of each new quarter; use the resulting reading level to set each student's individualized AR point goal as part of the 3rd&ndash;4th grade differentiated learning plan.</td>
+          <td><span class="ar-goal">50 pts</span></td>
         </tr>
         <tr>
           <td><span class="grade-badge">4th</span></td>
-          <td><span class="ar-goal">75 pts</span></td>
-          <td>Deeper comprehension, theme, cross-text connections</td>
-          <td>25–30 minutes; history, biography, poetry included</td>
+          <td><span class="teacher-guideline-note"><strong>Teacher Guideline</strong>Administer STAR Reading the first week of each new quarter; use the resulting reading level to set each student's individualized AR point goal as part of the 2nd&ndash;4th grade differentiated learning plan.</span></td>
           <td><span class="quiz-school">Quizzes must be taken at school</span></td>
-          <td><span class="ar-na">See guideline below</span></td>
-        </tr>
-        <tr class="grade-guideline-row">
-          <td colspan="6"><strong>Teacher Guideline</strong>Administer STAR Reading the first week of each new quarter; use the resulting reading level to set each student's individualized AR point goal as part of the 3rd&ndash;4th grade differentiated learning plan.</td>
+          <td><span class="ar-goal">75 pts</span></td>
         </tr>
         <tr>
           <td><span class="grade-badge">5th</span></td>
-          <td><span class="ar-goal">100 pts</span></td>
-          <td>Analytical thinking, argument, reading independence</td>
-          <td>30+ minutes; long-form novels each quarter</td>
+          <td>Student read 3 books a quarter. Additional AR quizzing is optional.</td>
           <td><span class="quiz-school">Quizzes must be taken at school</span></td>
-          <td><span class="ar-na">N/A</span></td>
+          <td><span class="ar-goal">100 pts</span></td>
         </tr>
       </tbody>
     </table>
     <p style="margin-top:1rem; font-size:0.82rem; color:var(--muted); font-style:italic;">Point goals are cumulative across the school year. Students can earn partial credit for any quiz score above 60%.</p>
+
+    <div class="intro-box" style="margin-top:1.75rem;">
+      <p><strong>A Note on 5th Grade:</strong> Fifth grade follows a slightly different approach. Instead of STAR testing each quarter, students are asked to read 3 books per quarter. AR quizzes on those books are optional &mdash; a tool students and teachers can use if helpful, but not a requirement.</p>
+      <p style="margin-top:0.85rem;">Why the difference? By 5th grade, many students have a well-established reading identity and habits, so the focus shifts from close point-tracking toward building independence and sustaining a consistent reading habit, while still keeping teachers informed of progress through book completion.</p>
+    </div>
+
+    <h3 style="margin-top: 2.5rem; color: var(--forest); font-size: 1.05rem;">AR Grading Quarters (2026&ndash;2027)</h3>
+    <table class="grade-table" style="margin-top: 1rem;">
+      <thead>
+        <tr>
+          <th>Quarter</th>
+          <th>Dates</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="grade-badge">Qtr 1</span></td>
+          <td>8/10/2026 &ndash; 10/11/2026</td>
+        </tr>
+        <tr>
+          <td><span class="grade-badge">Qtr 2</span></td>
+          <td>10/12/2026 &ndash; 1/3/2027</td>
+        </tr>
+        <tr>
+          <td><span class="grade-badge">Qtr 3</span></td>
+          <td>1/4/2027 &ndash; 3/14/2027</td>
+        </tr>
+        <tr>
+          <td><span class="grade-badge">Qtr 4</span></td>
+          <td>3/15/2027 &ndash; 5/27/2027</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section>
 

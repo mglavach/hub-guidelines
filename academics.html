@@ -79,6 +79,48 @@
     .acad-panel { display: none; }
     .acad-panel.active { display: block; }
 
+    /* SUB TABS (inside a program tab) */
+    .sub-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.75rem; }
+    .sub-tab {
+      padding: 0.4rem 1rem; background: white; border: 1.5px solid #ddd; border-radius: 2rem;
+      font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+      cursor: pointer; transition: all 0.15s;
+    }
+    .sub-tab:hover { color: var(--forest); border-color: var(--forest); }
+    .sub-tab.active { background: var(--forest); border-color: var(--forest); color: white; }
+    .sub-panel { display: none; }
+    .sub-panel.active { display: block; }
+
+    /* EVENT CARDS */
+    .event-card {
+      background: white; border-radius: 1rem; padding: 1.75rem;
+      border-top: 4px solid var(--forest); box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      max-width: 720px;
+    }
+    .event-badges { display: flex; gap: 0.4rem; margin-bottom: 0.85rem; }
+    .int-badge {
+      display: inline-block; background: var(--forest); color: white;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 0.25rem 0.65rem; border-radius: 2rem;
+    }
+    .int-badge.gold { background: var(--gold); }
+    .event-card h3 { font-size: 1.15rem; color: var(--forest); margin-bottom: 0.6rem; }
+    .event-card p { font-size: 0.92rem; color: #3a3a3a; line-height: 1.65; }
+    .tag-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; margin-top: 1.25rem; }
+    @media (max-width: 650px) { .tag-grid { grid-template-columns: 1fr; } }
+    .tag-item {
+      display: flex; gap: 0.7rem; align-items: center;
+      background: var(--light-gold); border-radius: 0.6rem; padding: 0.75rem 0.9rem;
+      font-size: 0.85rem; color: #3a3a3a; line-height: 1.4;
+    }
+    .tag-item strong { color: var(--forest); }
+    .tag-letter {
+      flex-shrink: 0; width: 2rem; height: 2rem; border-radius: 50%;
+      background: var(--forest); color: var(--gold); font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+    }
+
     /* PHILOSOPHY CARDS */
     .reading-philosophy { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 2.5rem 0; }
     @media (max-width: 650px) { .reading-philosophy { grid-template-columns: 1fr; } }
@@ -91,6 +133,49 @@
     .philosophy-card:nth-child(3) .phil-icon { color: var(--sage); }
     .philosophy-card h3 { font-size: 0.95rem; color: var(--forest); margin-bottom: 0.5rem; }
     .philosophy-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
+
+    /* WHY WE READ */
+    .why-block { margin-top: 3rem; }
+    .why-block h2 { color: var(--forest); }
+    .why-block .section-label { color: var(--sage); }
+    .why-block .divider { background: rgba(44,82,52,0.25); }
+    .why-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-top: 1.5rem; }
+    @media (max-width: 700px) { .why-layout { grid-template-columns: 1fr; } }
+
+    .why-diagram-wrap { display: flex; justify-content: center; }
+    .why-diagram { position: relative; width: 100%; max-width: 340px; aspect-ratio: 1; }
+    .why-lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+    .why-center {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 28%; height: 28%;
+      background: var(--gold); border-radius: 50%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 4%;
+      z-index: 3; box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .why-center-label { font-family: 'Montserrat', sans-serif; font-size: clamp(0.42rem, 1.4vw, 0.58rem); font-weight: 800; color: white; line-height: 1.25; letter-spacing: 0.01em; }
+    .why-spoke {
+      position: absolute;
+      width: 26%; height: 26%;
+      border-radius: 50%;
+      background: var(--forest);
+      border: 2.5px solid var(--gold);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 4%;
+      overflow: hidden; z-index: 2;
+      transform: translate(-50%, -50%);
+      transition: transform 0.2s, background 0.2s;
+    }
+    .why-spoke:hover { transform: translate(-50%, -50%) scale(1.1); background: var(--sage); }
+    .why-spoke svg { width: clamp(12px, 3vw, 18px); height: clamp(12px, 3vw, 18px); color: var(--gold); flex-shrink: 0; margin-bottom: 3px; }
+    .why-spoke-label { font-family: 'Montserrat', sans-serif; font-size: clamp(0.42rem, 1.2vw, 0.56rem); font-weight: 700; color: white; line-height: 1.25; }
+
+    .why-text-col { color: var(--text); }
+    .why-text-col p { font-size: 0.92rem; line-height: 1.75; margin-bottom: 1rem; }
+    .why-text-col p:last-child { margin-bottom: 0; }
+    .why-text-col strong { color: var(--forest); }
 
     /* GRADE TABLE */
     .grade-table {
@@ -177,6 +262,7 @@
 
     <div class="acad-tabs">
       <button class="acad-tab active" onclick="showAcadTab(event,'acad-reading')">Reading</button>
+      <button class="acad-tab" onclick="showAcadTab(event,'acad-writing')">Writing</button>
       <button class="acad-tab" onclick="showAcadTab(event,'acad-math')">Math</button>
       <button class="acad-tab" onclick="showAcadTab(event,'acad-resources')">Resources</button>
     </div>
@@ -219,7 +305,6 @@
             <th>Grade</th>
             <th>Reading Focus</th>
             <th>Sustained Reading Goal</th>
-            <th><a href="AR-Goal-Setting-Chart.pdf" target="_blank">AR Points</a> (Annual)</th>
             <th>Teacher Expectations</th>
           </tr>
         </thead>
@@ -229,13 +314,11 @@
             <td>Listening comprehension, print awareness, love of stories</td>
             <td>Daily read-alouds; independent picture book exploration; share favorite books with the class</td>
             <td><span class="ar-na">N/A</span></td>
-            <td><span class="ar-na">N/A</span></td>
           </tr>
           <tr>
             <td><span class="grade-badge">K</span></td>
             <td>Concepts of print, story structure, oral retell</td>
             <td>5–10 minutes sustained attention; weekly book checkout; share favorite books with classmates</td>
-            <td><span class="ar-na">N/A</span></td>
             <td><span class="ar-na">N/A</span></td>
           </tr>
           <tr>
@@ -243,66 +326,300 @@
             <td>Foundational decoding, fluency, comprehension monitoring</td>
             <td>10–15 minutes; wide reading across formats; share book picks with classmates</td>
             <td><span class="ar-na">N/A</span></td>
-            <td><span class="ar-na">N/A</span></td>
           </tr>
           <tr>
             <td><span class="grade-badge">2nd</span></td>
             <td>Independent reading growth, vocabulary, story elements</td>
             <td>15–20 minutes; fiction and nonfiction regularly; peer book recommendations</td>
-            <td><span class="ar-goal">25 pts</span></td>
             <td><span class="ar-na">N/A</span></td>
           </tr>
           <tr>
             <td><span class="grade-badge">3rd</span></td>
             <td>Reading stamina, text evidence, genre comparison</td>
             <td>20–25 minutes; wide reading across formats; one "stretch" book per quarter; peer book recommendations</td>
-            <td><span class="ar-goal">50 pts</span></td>
             <td>Administer STAR Reading the first week of each new quarter; use the resulting reading level to set each student's individualized AR point goal as part of the 3rd&ndash;4th grade differentiated learning plan.</td>
           </tr>
           <tr>
             <td><span class="grade-badge">4th</span></td>
             <td>Deeper comprehension, theme, cross-text connections</td>
             <td>25–30 minutes; wide reading including history, biography, poetry; one "stretch" book per quarter; peer book recommendations</td>
-            <td><span class="ar-goal">75 pts</span></td>
             <td>Administer STAR Reading the first week of each new quarter; use the resulting reading level to set each student's individualized AR point goal as part of the 3rd&ndash;4th grade differentiated learning plan.</td>
           </tr>
           <tr>
             <td><span class="grade-badge">5th</span></td>
             <td>Analytical thinking, argument, reading independence</td>
             <td>30+ minutes; long-form novels each quarter; lead peer book recommendations</td>
-            <td><span class="ar-goal">100 pts</span></td>
             <td><span class="ar-na">N/A</span></td>
           </tr>
         </tbody>
       </table>
 
-      <h3 style="margin-top: 2.5rem; color: var(--forest); font-size: 1.05rem;">AR Grading Quarters (2026&ndash;2027)</h3>
-      <table class="grade-table" style="margin-top: 1rem;">
+      <!-- WHY WE READ -->
+      <div class="why-block">
+        <p class="section-label">The Bigger Picture</p>
+        <h2>Why We Read</h2>
+        <div class="divider"></div>
+        <div class="why-layout">
+
+          <!-- Starburst diagram -->
+          <div class="why-diagram-wrap">
+            <div class="why-diagram">
+              <svg class="why-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <line x1="50" y1="50" x2="50"  y2="13"  stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
+                <line x1="50" y1="50" x2="87"  y2="50"  stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
+                <line x1="50" y1="50" x2="50"  y2="87"  stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
+                <line x1="50" y1="50" x2="13"  y2="50"  stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
+              </svg>
+
+              <!-- Center -->
+              <div class="why-center">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:3px;">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                </svg>
+                <span class="why-center-label">Why We Read</span>
+              </div>
+
+              <!-- Top: For Fun -->
+              <div class="why-spoke" style="top:13%;left:50%;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M8 13s1.5 2 4 2 4-2 4-2"/>
+                  <line x1="9" y1="9" x2="9.01" y2="9"/>
+                  <line x1="15" y1="9" x2="15.01" y2="9"/>
+                </svg>
+                <span class="why-spoke-label">For Fun</span>
+              </div>
+
+              <!-- Right: Challenge -->
+              <div class="why-spoke" style="top:50%;left:87%;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+                <span class="why-spoke-label">Challenge</span>
+              </div>
+
+              <!-- Bottom: To Learn -->
+              <div class="why-spoke" style="top:87%;left:50%;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                  <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                </svg>
+                <span class="why-spoke-label">To Learn</span>
+              </div>
+
+              <!-- Left: To Relax -->
+              <div class="why-spoke" style="top:50%;left:13%;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                <span class="why-spoke-label">To Relax</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Text column -->
+          <div class="why-text-col">
+            <p>Reading is about so much more than earning AR points. <strong>Students read for fun, to challenge themselves, to relax, and to discover new ideas.</strong> AR is simply a tool to track and celebrate the reading that is already happening.</p>
+            <p>Every book a student picks up, whether it has an AR quiz or not, builds vocabulary, empathy, knowledge, and imagination. <strong>The goal is always a lifelong love of reading first.</strong> AR points are just one small way to celebrate that journey.</p>
+            <p>Encourage your child to read books that excite them, books that challenge them, and books that let them unwind. The points will follow.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- WRITING TAB -->
+    <div id="acad-writing" class="acad-panel">
+      <div class="sub-tabs">
+        <button class="sub-tab active" onclick="showSubTab(event,'acad-writing','write-overview')">Overview</button>
+        <button class="sub-tab" onclick="showSubTab(event,'acad-writing','write-events')">Events</button>
+      </div>
+
+      <!-- WRITING: EVENTS -->
+      <div id="write-events" class="sub-panel">
+        <p style="color: #3a3a3a; max-width: 680px; margin-bottom: 1.5rem;">Writing events give students a real audience, so they can see that their words matter to the people who read them.</p>
+        <div class="event-card">
+          <div class="event-badges">
+            <span class="int-badge">K&ndash;2</span>
+            <span class="int-badge gold">December</span>
+          </div>
+          <h3>Cuckoo for Hot Cocoa Writers</h3>
+          <p>Students in Kindergarten through 2nd grade share a piece of their writing with administrators and teachers over a cup of hot cocoa. Each writer reads aloud and receives encouraging TAG feedback from their listeners.</p>
+          <div class="tag-grid">
+            <div class="tag-item"><span class="tag-letter">T</span><div><strong>Tell</strong> something you like about the writing</div></div>
+            <div class="tag-item"><span class="tag-letter">A</span><div><strong>Ask</strong> a question about the writing</div></div>
+            <div class="tag-item"><span class="tag-letter">G</span><div><strong>Give</strong> a kind suggestion for next time</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WRITING: OVERVIEW -->
+      <div id="write-overview" class="sub-panel active">
+      <p style="color: #3a3a3a; max-width: 680px; margin-bottom: 1.5rem;">Our writing program is built on the belief that every child is a writer, from the first labeled drawing in Kindergarten to a fully revised essay in 5th grade, aligned to Florida B.E.S.T. ELA Standards for every grade level.</p>
+      <div class="reading-philosophy">
+        <div class="philosophy-card">
+          <svg class="phil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9"/>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+          </svg>
+          <h3>Write Every Week</h3>
+          <p>Regular free writes build stamina and confidence. Students get ideas onto paper without worrying about perfection, and their writing grows a little each week.</p>
+        </div>
+        <div class="philosophy-card">
+          <svg class="phil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"/>
+            <polyline points="1 20 1 14 7 14"/>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+          </svg>
+          <h3>The Writing Process</h3>
+          <p>Students plan, draft, revise, edit and share. Learning to reread and improve their own work matters as much as the first draft.</p>
+        </div>
+        <div class="philosophy-card" style="display:flex; flex-direction:column;">
+          <svg class="phil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+          <h3>Writing Workshop</h3>
+          <p style="flex:1;">A short lesson, time to write, and time to share. Each month adds one new skill, so students move from stories to opinions to teaching pieces.</p>
+          <a class="learn-more" href="writing-workshop.html" style="margin-top:1rem;">
+            Grade 1 Prompts
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+      <table class="grade-table">
         <thead>
           <tr>
-            <th>Quarter</th>
-            <th>Dates</th>
+            <th>Grade</th>
+            <th>Writing Focus</th>
+            <th>Sustained Writing Goal</th>
+            <th>Workshop Resources</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><span class="grade-badge">Qtr 1</span></td>
-            <td>8/10/2026 &ndash; 10/11/2026</td>
+            <td><span class="grade-badge">PK3 &amp; PK4</span></td>
+            <td>Drawing to tell a story, scribble and letter-like writing, writing their name</td>
+            <td>Daily drawing and "telling" about pictures; dictate words for a grown-up to write</td>
+            <td><span class="ar-na">N/A</span></td>
           </tr>
           <tr>
-            <td><span class="grade-badge">Qtr 2</span></td>
-            <td>10/12/2026 &ndash; 1/3/2027</td>
+            <td><span class="grade-badge">K</span></td>
+            <td>Labeling pictures, beginning sounds, writing a simple sentence</td>
+            <td>5&ndash;10 minutes; draw, label and write one sentence</td>
+            <td><span class="ar-na">In development</span></td>
           </tr>
           <tr>
-            <td><span class="grade-badge">Qtr 3</span></td>
-            <td>1/4/2027 &ndash; 3/14/2027</td>
+            <td><span class="grade-badge">1st</span></td>
+            <td>Complete sentences, sequence (first, next, last), opinions with a reason, simple teaching pieces</td>
+            <td>10&ndash;15 minutes; weekly free write; share writing with classmates</td>
+            <td><a href="writing-workshop.html" style="color: var(--forest); font-weight: 600; text-decoration: underline;">Weekly Free Write Prompts</a></td>
           </tr>
           <tr>
-            <td><span class="grade-badge">Qtr 4</span></td>
-            <td>3/15/2027 &ndash; 5/27/2027</td>
+            <td><span class="grade-badge">2nd</span></td>
+            <td>Paragraphs, stories with a beginning, middle and end, linking words, editing for capitals and punctuation</td>
+            <td>15&ndash;20 minutes; revise one piece each month</td>
+            <td><span class="ar-na">In development</span></td>
+          </tr>
+          <tr>
+            <td><span class="grade-badge">3rd</span></td>
+            <td>Multi-paragraph writing, opinion with reasons, research-based informational writing, cursive</td>
+            <td>20&ndash;25 minutes; plan before drafting; peer feedback</td>
+            <td><span class="ar-na">In development</span></td>
+          </tr>
+          <tr>
+            <td><span class="grade-badge">4th</span></td>
+            <td>Organizing with an introduction and conclusion, using evidence from texts, varied sentences</td>
+            <td>25&ndash;30 minutes; writing across subjects; revise for word choice</td>
+            <td><span class="ar-na">In development</span></td>
+          </tr>
+          <tr>
+            <td><span class="grade-badge">5th</span></td>
+            <td>Argument with evidence, multi-paragraph essays, research, writing with a clear voice</td>
+            <td>30+ minutes; take pieces through the full writing process; publish for an audience</td>
+            <td><span class="ar-na">In development</span></td>
           </tr>
         </tbody>
       </table>
+
+      <!-- WHY WE WRITE -->
+      <div class="why-block">
+        <p class="section-label">The Bigger Picture</p>
+        <h2>Why We Write</h2>
+        <div class="divider"></div>
+        <div class="why-layout">
+
+          <!-- Starburst diagram -->
+          <div class="why-diagram-wrap">
+            <div class="why-diagram">
+              <svg class="why-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <line x1="50" y1="50" x2="50"  y2="13"  stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
+                <line x1="50" y1="50" x2="87"  y2="50"  stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
+                <line x1="50" y1="50" x2="50"  y2="87"  stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
+                <line x1="50" y1="50" x2="13"  y2="50"  stroke="#B9975B" stroke-width="0.9" stroke-dasharray="2.5,2" opacity="0.65"/>
+              </svg>
+
+              <!-- Center -->
+              <div class="why-center">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:3px;">
+                  <path d="M12 20h9"/>
+                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                </svg>
+                <span class="why-center-label">Why We Write</span>
+              </div>
+
+              <!-- Top: To Share -->
+              <div class="why-spoke" style="top:13%;left:50%;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+                <span class="why-spoke-label">To Share</span>
+              </div>
+
+              <!-- Right: To Create -->
+              <div class="why-spoke" style="top:50%;left:87%;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+                <span class="why-spoke-label">To Create</span>
+              </div>
+
+              <!-- Bottom: To Think -->
+              <div class="why-spoke" style="top:87%;left:50%;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 18h6"/>
+                  <path d="M10 22h4"/>
+                  <path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/>
+                </svg>
+                <span class="why-spoke-label">To Think</span>
+              </div>
+
+              <!-- Left: To Remember -->
+              <div class="why-spoke" style="top:50%;left:13%;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+                <span class="why-spoke-label">To Remember</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Text column -->
+          <div class="why-text-col">
+            <p>For young writers, writing is about so much more than neat handwriting and correct spelling. <strong>Children write to share their stories, to remember the moments that matter, to figure out what they think, and to create something new.</strong> A first grader's labeled drawing and a fifth grader's essay are both real writing.</p>
+            <p>We serve a creative God who uses words to speak, and every child is made in His image with a voice worth hearing. <strong>The goal is always confident writers who love putting their ideas into words.</strong> Spelling, grammar and handwriting grow along the way.</p>
+            <p>Encourage your child to write at home: grocery lists, cards for family, notes to friends, or stories about their day. Every word counts.</p>
+          </div>
+
+        </div>
+      </div>
+      </div>
     </div>
 
     <!-- MATH TAB -->
@@ -514,6 +831,14 @@
   function showAcadTab(e, panelId) {
     document.querySelectorAll('.acad-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.acad-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(panelId).classList.add('active');
+    e.currentTarget.classList.add('active');
+  }
+
+  function showSubTab(e, parentId, panelId) {
+    var parent = document.getElementById(parentId);
+    parent.querySelectorAll('.sub-panel').forEach(p => p.classList.remove('active'));
+    parent.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
     document.getElementById(panelId).classList.add('active');
     e.currentTarget.classList.add('active');
   }

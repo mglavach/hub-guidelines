@@ -24,6 +24,7 @@
     background: var(--cream);
     color: var(--text);
     line-height: 1.6;
+    padding-top: 3rem;
   }
 
   .hero {
@@ -53,7 +54,35 @@
   }
   .back-link:hover { background: var(--gold); color: var(--forest); }
 
+  .eyebrow-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.75rem;
+    background: white;
+    border-bottom: 1px solid #eee;
+    padding: 0.85rem 1.5rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .eyebrow-nav a {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--forest);
+    text-decoration: none;
+    padding-bottom: 0.2rem;
+    border-bottom: 2px solid transparent;
+  }
+  .eyebrow-nav a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
   .container { max-width: 1180px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+  h2 { scroll-margin-top: 4.5rem; }
 
   .section-label {
     font-size: 0.72rem;
@@ -317,8 +346,55 @@
   <a class="back-link" href="index.html">&larr; Back to The Hub</a>
 </header>
 
+<nav class="eyebrow-nav">
+  <a href="#posting-in-app">Posting in the App</a>
+  <a href="#whats-going-out">What's Going Out</a>
+  <a href="#task-list">Task List</a>
+</nav>
+
 <div class="container">
-  <p class="section-label">Communications</p>
+  <p class="section-label" id="posting-in-app">Communications</p>
+  <h2>Posting in the App</h2>
+  <div class="divider"></div>
+
+  <div class="intro-box">
+    Updates and reminders about publishing content in the Westminster app, whether posting directly from the app or through myWCS.
+  </div>
+
+  <div class="intro-box">
+    <strong>Publishing a Post in the App</strong>
+    <p style="margin-top:0.6rem;">New features are now available in the app's post publishing window! You can now:</p>
+    <ul style="margin:0.5rem 0 0.75rem 1.25rem;">
+      <li>Add a title to your post (recommended).</li>
+      <li>Attach a document from your phone's Files (PDF files are recommended).</li>
+      <li>Upload photos or videos from your phone's Photo Gallery.</li>
+      <li>Use your phone's camera to take a photo or record a video and upload it directly.</li>
+    </ul>
+    <p>To publish a post in your group, open the app, tap <strong>Groups</strong> (bottom menu), select your homeroom or class under <strong>Classes</strong>, and you'll see the group's main feed in the <strong>Posts</strong> tab. Tap the pencil icon on the bottom right to bring up the post publishing window.</p>
+  </div>
+
+  <div class="intro-box">
+    <strong>Publishing in myWCS for the App</strong>
+
+    <p style="margin-top:0.75rem;"><strong>For Faculty &mdash; Class Bulletin Boards</strong></p>
+    <ul style="margin:0.5rem 0 0.75rem 1.25rem;">
+      <li>Preschool and Elementary School homeroom teachers can publish posts to their homeroom class Bulletin Board using only the News or Announcements modules in myWCS.</li>
+      <li>Middle School and High School teachers can publish posts to their course/class Bulletin Boards using only the News or Announcements modules in myWCS. Since MS and HS teachers teach subject-specific classes, they are not limited to posting only to a homeroom.</li>
+    </ul>
+    <p>Posts published in myWCS will automatically appear in your homeroom class group's main feed in the app within one hour. To view published posts, open the app, tap <strong>Groups</strong> (bottom menu), select your homeroom or class under <strong>Classes</strong>, and you'll see the group's main feed.</p>
+
+    <p style="margin-top:0.75rem;"><strong>For Faculty and Staff &mdash; Student Grade Level and Parent Community Groups</strong></p>
+    <p style="margin-top:0.4rem;">Posting to Student Grade Level or Parent Community Groups is limited to approved campus leaders and trained parent liaisons. Parent liaisons and Room Moms must complete an app training before receiving publishing permissions.</p>
+    <p style="margin-top:0.4rem;">Approved campus leaders include:</p>
+    <ul style="margin:0.5rem 0 0.75rem 1.25rem;">
+      <li>Elementary School: Claudia Pastrana</li>
+      <li>Middle School: Yeni Dumas</li>
+      <li>High School: Jannett Lopez (Parent groups), Jennifer Pino (Student groups)</li>
+    </ul>
+    <p>Any news or announcements that should appear in myWCS and in the app for Parent Community Groups should be submitted to <strong>communications@wcsmiami.org</strong> for publishing.</p>
+  </div>
+
+  <p class="section-label" id="whats-going-out" style="margin-top:2.5rem;">Communications</p>
   <h2>What's Going Out</h2>
   <div class="divider"></div>
 
@@ -364,7 +440,7 @@
 
   <p class="footnote">Lead-up items are drafted at 3 weeks, 2 weeks, and days before each event &mdash; adjust dates/titles as plans firm up, and add more with <strong>+ Add Row</strong>.</p>
 
-  <p class="section-label" style="margin-top:2.5rem;">Communications</p>
+  <p class="section-label" id="task-list" style="margin-top:2.5rem;">Communications</p>
   <h2>Task List</h2>
   <div class="divider"></div>
 
