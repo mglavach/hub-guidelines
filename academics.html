@@ -842,6 +842,12 @@
     document.getElementById(panelId).classList.add('active');
     e.currentTarget.classList.add('active');
   }
+
+  // Open a tab from the URL hash, e.g. academics.html#acad-writing
+  (function () {
+    var tab = document.querySelector('.acad-tab[onclick*="' + location.hash.slice(1) + '"]');
+    if (location.hash && tab) tab.click();
+  })();
 </script>
 </body>
 </html>
