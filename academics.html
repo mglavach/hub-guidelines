@@ -121,6 +121,69 @@
       display: flex; align-items: center; justify-content: center;
     }
 
+    /* WRITING YEAR AT A GLANCE */
+    .yag-grades { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .yag-grade-btn {
+      padding: 0.45rem 1.1rem; background: white; border: 1.5px solid var(--gold); border-radius: 0.4rem;
+      font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700;
+      color: var(--forest); cursor: pointer; transition: all 0.15s;
+    }
+    .yag-grade-btn:hover { background: var(--light-gold); }
+    .yag-grade-btn.active { background: var(--gold); color: white; }
+    .yag-grade { display: none; }
+    .yag-grade.active { display: block; }
+    .yag-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1rem; }
+    .yag-card {
+      background: white; border-radius: 0.75rem; padding: 1.1rem 1.15rem;
+      border-top: 4px solid var(--forest); box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      display: flex; flex-direction: column; font-size: 0.84rem; color: #3a3a3a; line-height: 1.45;
+    }
+    .yag-card.alt { border-top-color: var(--gold); }
+    .yag-card.all-year { border-top-color: var(--sage); }
+    .yag-card .int-badge { align-self: flex-start; font-size: 0.65rem; margin-bottom: 0.6rem; }
+    .yag-card.all-year .int-badge { background: var(--sage); }
+    .yag-card h3 { font-size: 1rem; color: var(--forest); line-height: 1.3; margin-bottom: 0.6rem; }
+    .yag-card ul { padding-left: 1.1rem; margin-bottom: 0.75rem; flex: 1; }
+    .yag-card li { margin-bottom: 0.2rem; }
+    .yag-note { font-size: 0.78rem; color: var(--muted); font-style: italic; margin-bottom: 0.75rem; }
+    .yag-meta { border-top: 1px solid #eee; padding-top: 0.6rem; margin-top: 0.4rem; font-size: 0.8rem; }
+    .yag-meta-label {
+      display: block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 0.2rem;
+    }
+
+    .ss-summary {
+      background: white; border-radius: 0.75rem; padding: 1rem 1.25rem; margin-bottom: 0.5rem;
+      border-left: 4px solid var(--gold); box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .ss-summary .int-badge { font-size: 0.65rem; margin-right: 0.3rem; }
+    .ss-summary p { font-size: 0.88rem; color: #3a3a3a; margin-top: 0.6rem; line-height: 1.55; }
+    .ss-table { margin-top: 1rem; }
+    .ss-table td:first-child { width: 5.5rem; }
+    .ss-table td:nth-child(2), .ss-table td:nth-child(3) { width: 47%; }
+    .ss-page {
+      display: inline-block; font-size: 0.68rem; font-weight: 700; color: var(--forest);
+      background: var(--light-green); border-radius: 0.25rem; padding: 0.05rem 0.4rem; margin-left: 0.2rem; white-space: nowrap;
+    }
+    .ss-std { display: block; font-size: 0.78rem; color: var(--muted); margin-top: 0.25rem; line-height: 1.4; }
+    .ss-spell { display: block; font-size: 0.8rem; margin-top: 0.4rem; color: #3a3a3a; font-weight: 600; }
+    .ss-assess {
+      display: inline-block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      background: var(--gold); color: white; border-radius: 2rem; padding: 0.1rem 0.5rem; margin-right: 0.25rem; vertical-align: 1px;
+    }
+
+    /* DEPARTMENT LEADS */
+    .dept-leads { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .dept-lead {
+      background: white; border-left: 4px solid var(--gold); border-radius: 0.6rem;
+      padding: 0.6rem 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .dept-lead-label {
+      display: block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold);
+    }
+    .dept-lead-name { font-size: 0.95rem; font-weight: 700; color: var(--forest); }
+
     /* PHILOSOPHY CARDS */
     .reading-philosophy { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 2.5rem 0; }
     @media (max-width: 650px) { .reading-philosophy { grid-template-columns: 1fr; } }
@@ -435,9 +498,731 @@
 
     <!-- WRITING TAB -->
     <div id="acad-writing" class="acad-panel">
+      <div class="dept-leads">
+        <div class="dept-lead">
+          <span class="dept-lead-label">Writing Lead &middot; K&ndash;2</span>
+          <span class="dept-lead-name">Julie Kenney</span>
+        </div>
+        <div class="dept-lead">
+          <span class="dept-lead-label">Writing Lead &middot; 3rd&ndash;5th</span>
+          <span class="dept-lead-name">Jenny Childers</span>
+        </div>
+      </div>
       <div class="sub-tabs">
         <button class="sub-tab active" onclick="showSubTab(event,'acad-writing','write-overview')">Overview</button>
+        <button class="sub-tab" onclick="showSubTab(event,'acad-writing','write-yag')">Year at a Glance</button>
         <button class="sub-tab" onclick="showSubTab(event,'acad-writing','write-events')">Events</button>
+      </div>
+
+      <!-- WRITING: YEAR AT A GLANCE (K-2) -->
+      <div id="write-yag" class="sub-panel">
+        <p style="color: #3a3a3a; max-width: 680px; margin-bottom: 1.5rem;">For K&ndash;2, the year at a glance shows the genres, skills and mentor texts each grade covers, quarter by quarter, taught using the SJT writing curriculum (and Little Writers in Kindergarten). For 3rd&ndash;5th, the scope and sequence lays out the Quarter 2 writing unit day by day.</p>
+        <div class="yag-grades">
+          <button class="yag-grade-btn active" onclick="showYagGrade(event,'yag-k')">Kindergarten</button>
+          <button class="yag-grade-btn" onclick="showYagGrade(event,'yag-1')">1st Grade</button>
+          <button class="yag-grade-btn" onclick="showYagGrade(event,'yag-2')">2nd Grade</button>
+          <button class="yag-grade-btn" onclick="showYagGrade(event,'yag-3')">3rd Grade</button>
+          <button class="yag-grade-btn" onclick="showYagGrade(event,'yag-4')">4th Grade</button>
+          <button class="yag-grade-btn" onclick="showYagGrade(event,'yag-5')">5th Grade</button>
+        </div>
+
+        <!-- KINDERGARTEN -->
+        <div id="yag-k" class="yag-grade active">
+          <div class="yag-grid">
+            <div class="yag-card">
+              <span class="int-badge">Quarter 1</span>
+              <h3>Word Structure / Writing Launch</h3>
+              <ul>
+                <li>We are writers</li>
+                <li>Organizing materials</li>
+                <li>Look like / sound like a writer</li>
+                <li>How to use a journal</li>
+                <li>Drawing and sketching a person</li>
+                <li>Writers plan their stories</li>
+                <li>Writers tell stories</li>
+                <li>Stories have characters and settings</li>
+                <li>Stories have a beginning, middle and end</li>
+                <li>Adding character feelings</li>
+              </ul>
+              <div class="yag-meta"><span class="yag-meta-label">Mentor Texts</span>Ralph Tells a Story; Alpert; Alpert and Friends</div>
+            </div>
+            <div class="yag-card">
+              <span class="int-badge">Quarter 1</span>
+              <h3>Draw to Tell, Narrative (Wordless Book)</h3>
+              <ul>
+                <li>Choosing a topic</li>
+                <li>Using a graphic organizer</li>
+                <li>Drawing and sketching</li>
+                <li>Drawing a beginning, middle and end</li>
+                <li>Adding details (colors, people, places, things)</li>
+                <li>Labels</li>
+                <li>Revision</li>
+                <li>Sharing stories</li>
+              </ul>
+              <p class="yag-note">Topics: how to make an apple pie; how an apple tree grows</p>
+              <div class="yag-meta"><span class="yag-meta-label">Mentor Texts</span>A Ball for Daisy</div>
+            </div>
+            <div class="yag-card alt">
+              <span class="int-badge gold">Quarter 2</span>
+              <h3>Pattern Books</h3>
+              <ul>
+                <li>Choosing a topic</li>
+                <li>Idea development</li>
+                <li>Using graphic organizers</li>
+                <li>Staying on topic</li>
+                <li>Conventions: capitals and punctuation</li>
+                <li>Including a beginning, middle and end</li>
+                <li>Adding details (motions)</li>
+                <li>Revision</li>
+              </ul>
+              <div class="yag-meta"><span class="yag-meta-label">Mentor Texts</span>Level Aa books on EPIC; I See Pink; We Like Fishing; I Like My Bike; Friends Are Fun; P Is for Pumpkin</div>
+            </div>
+            <div class="yag-card alt">
+              <span class="int-badge gold">Quarter 2</span>
+              <h3>Informational Writing: Research (Caribou)</h3>
+              <ul>
+                <li>Use of conventions</li>
+                <li>Title, author, illustrator</li>
+                <li>Writing from left to right</li>
+                <li>Matching the sounds they hear to letters</li>
+                <li>Spacing</li>
+                <li>How to research and gather information</li>
+                <li>Supporting sentences</li>
+                <li>Can / Have / Are: sharing facts</li>
+                <li>Adding illustrations to match writing</li>
+                <li>Revision process</li>
+              </ul>
+              <div class="yag-meta"><span class="yag-meta-label">Mentor Texts</span>Reindeer Facts; A Day in the Life of Polar Animals: Reindeer; Animals of the Arctic: Reindeer (EPIC); Animals of North America: Caribou (EPIC); The Gingerbread Man</div>
+            </div>
+            <div class="yag-card">
+              <span class="int-badge">Quarter 3</span>
+              <h3>How-To Writing</h3>
+              <ul>
+                <li>Use of conventions</li>
+                <li>Resolution writing</li>
+                <li>Idea development</li>
+                <li>Graphic organizer</li>
+                <li>Steps for how-to</li>
+                <li>Editing, revising and publishing</li>
+                <li>Title and cover</li>
+              </ul>
+              <p class="yag-note">Subtopic: cause and effect, using Laura Numeroff books</p>
+              <div class="yag-meta"><span class="yag-meta-label">Mentor Texts</span>How to Teach a Slug to Read; How a House Is Built (Gail Gibbons); How to Babysit a Grandpa; How to Surprise a Dad; If You Give a Mouse a Cookie; If You Give a Pig a Pancake; If You Give a Pig a Party</div>
+            </div>
+            <div class="yag-card">
+              <span class="int-badge">Quarter 3</span>
+              <h3>Fiction Writing</h3>
+              <ul>
+                <li>Use of conventions</li>
+                <li>Idea development</li>
+                <li>Elements of fiction and fairy tales</li>
+                <li>Beginning, middle and end</li>
+                <li>Sensory words</li>
+                <li>Edit, revise and publish</li>
+              </ul>
+              <div class="yag-meta"><span class="yag-meta-label">Mentor Texts</span>Fairy tales and fiction</div>
+            </div>
+            <div class="yag-card alt">
+              <span class="int-badge gold">Quarter 4</span>
+              <h3>Opinion Writing</h3>
+              <ul>
+                <li>Use of conventions</li>
+                <li>Telling the difference between fact and opinion</li>
+                <li>Forming opinions</li>
+                <li>Using a graphic organizer</li>
+                <li>Providing reasons to support</li>
+                <li>Revision</li>
+              </ul>
+              <p class="yag-note">Students complete two opinion pieces: Best Job and Best Candy</p>
+              <div class="yag-meta"><span class="yag-meta-label">Mentor Texts</span>Red Is Best; Duck! Rabbit!</div>
+            </div>
+            <div class="yag-card all-year">
+              <span class="int-badge">Throughout the Year</span>
+              <h3>Journaling</h3>
+              <p style="flex:1;">Students keep a writing journal all year to build stamina and confidence.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1ST GRADE -->
+        <div id="yag-1" class="yag-grade">
+          <div class="yag-grid">
+            <div class="yag-card">
+              <span class="int-badge">Quarter 1</span>
+              <h3>Sentence Structure / Writing Launch</h3>
+              <ul>
+                <li>Subject and predicate</li>
+                <li>Sentence formation</li>
+                <li>Use of conventions</li>
+                <li>We are all writers: we have a voice</li>
+                <li>Idea development and brainstorming</li>
+                <li>Using a graphic organizer</li>
+                <li>Using a writer's notebook</li>
+              </ul>
+              <p class="yag-note">3 weeks sentence structure; 4 weeks launch and narrative</p>
+              <div class="yag-meta"><span class="yag-meta-label">Mentor Texts</span>No, David!; Rocket Writes a Story</div>
+              <div class="yag-meta"><span class="yag-meta-label">Standards</span>CW2: Uses subject/verb agreement when writing a sentence</div>
+            </div>
+            <div class="yag-card">
+              <span class="int-badge">Quarter 1</span>
+              <h3>Sentence and Paragraph Writing</h3>
+              <ul>
+                <li>What is a paragraph?</li>
+                <li>Different parts of a paragraph</li>
+                <li>Planning with a graphic organizer</li>
+                <li>How to write and expand a paragraph</li>
+                <li>Conventions in a paragraph</li>
+                <li>Use of transition words</li>
+                <li>Adding details</li>
+                <li>Bare / Extend / Elaborate</li>
+                <li>Other ways to say&hellip;</li>
+              </ul>
+              <p class="yag-note">Includes 2 weeks of Christmas writing</p>
+              <div class="yag-meta"><span class="yag-meta-label">Standards</span>CW2: Uses subject/verb agreement when writing a sentence<br>CW6: Improves writing by revising and editing with help from an adult when needed</div>
+            </div>
+            <div class="yag-card alt">
+              <span class="int-badge gold">Quarter 2</span>
+              <h3>Opinion Writing</h3>
+              <ul>
+                <li>Use of conventions</li>
+                <li>Telling the difference between fact and opinion</li>
+                <li>Forming opinions</li>
+                <li>Using a graphic organizer</li>
+                <li>Catchy opening / hook</li>
+                <li>Providing reasons to support</li>
+                <li>Using transition words</li>
+                <li>Sentence starters for the ending</li>
+                <li>Revision</li>
+              </ul>
+              <p class="yag-note">4&ndash;5 weeks</p>
+              <div class="yag-meta"><span class="yag-meta-label">Mentor Texts</span>National Geographic books</div>
+              <div class="yag-meta"><span class="yag-meta-label">Standards</span>CW2: Writes an opinion piece about a topic or text with a supporting reason and a conclusion</div>
+            </div>
+            <div class="yag-card">
+              <span class="int-badge">Quarter 3</span>
+              <h3>Informative with Research (Animal Reports)</h3>
+              <ul>
+                <li>Use of conventions</li>
+                <li>How to research</li>
+                <li>Catchy opening / hook</li>
+                <li>Topic sentence</li>
+                <li>Supporting sentences</li>
+                <li>Using a closing sentence</li>
+                <li>Revision process</li>
+                <li>Using a rubric</li>
+              </ul>
+              <p class="yag-note">4&ndash;5 weeks</p>
+              <div class="yag-meta"><span class="yag-meta-label">Mentor Texts</span>The Perfect Pet; Story Works Jr.; The Big Bed</div>
+              <div class="yag-meta"><span class="yag-meta-label">Standards</span>CW2: Writes an opinion piece about a topic or text with a supporting reason and a conclusion<br>CW6: Improves writing by revising and editing with help from an adult when needed</div>
+            </div>
+            <div class="yag-card">
+              <span class="int-badge">Quarter 3</span>
+              <h3>Poetry</h3>
+              <ul>
+                <li>Acrostic poems</li>
+                <li>Shape poems</li>
+                <li>Sensory poems</li>
+                <li>Couplets</li>
+                <li>Rebus poems</li>
+                <li>Using descriptive words (adjectives and adverbs)</li>
+              </ul>
+              <div class="yag-meta"><span class="yag-meta-label">Mentor Texts</span>Shel Silverstein; I Love You (a rebus poem)</div>
+              <div class="yag-meta"><span class="yag-meta-label">Standards</span>CW8: Creates a self-describing acrostic poem using their name</div>
+            </div>
+            <div class="yag-card alt">
+              <span class="int-badge gold">Quarter 4</span>
+              <h3>Begin Narrative Writing</h3>
+              <ul>
+                <li>Use of conventions</li>
+                <li>Idea development</li>
+                <li>Using graphic organizers</li>
+                <li>Identifying a small moment</li>
+                <li>Including a beginning, middle and end</li>
+                <li>Adding illustrations</li>
+                <li>Adding transition words (first, next, last)</li>
+                <li>Adding dialogue</li>
+                <li>Adding character feelings and actions</li>
+                <li>Other ways to say "said"</li>
+                <li>Revision</li>
+              </ul>
+              <div class="yag-meta"><span class="yag-meta-label">Mentor Texts</span>Kitchen Dance; Jabari Jumps; Owl Moon</div>
+              <div class="yag-meta"><span class="yag-meta-label">Standards</span>CW3: Writes a narrative with a main idea, supporting details and a conclusion<br>CW4: Recognizes and uses organization in writing (first, next, then, last)<br>CW6: Improves writing by revising and editing with help from an adult when needed</div>
+            </div>
+            <div class="yag-card alt">
+              <span class="int-badge gold">Quarter 4</span>
+              <h3>Narrative</h3>
+              <ul>
+                <li>Use of conventions</li>
+                <li>Idea development</li>
+                <li>Using graphic organizers</li>
+                <li>Identifying a small moment</li>
+                <li>Including a beginning, middle and end</li>
+                <li>Adding transition words (first, next, then, last)</li>
+                <li>Adding dialogue</li>
+                <li>Adding character feelings and actions</li>
+                <li>Other ways to say "said"</li>
+                <li>Revision process</li>
+                <li>Using rubrics and TAG feedback</li>
+                <li>Sharing stories</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2ND GRADE -->
+        <div id="yag-2" class="yag-grade">
+          <div class="yag-grid">
+            <div class="yag-card">
+              <span class="int-badge">Quarter 1</span>
+              <h3>Sentence Structure Review / Writing Launch</h3>
+              <ul>
+                <li>Subject and predicate</li>
+                <li>Sentence formation</li>
+                <li>Use of conventions</li>
+                <li>Idea development and brainstorming</li>
+                <li>Using a graphic organizer</li>
+                <li>Using a writer's notebook</li>
+              </ul>
+              <div class="yag-meta"><span class="yag-meta-label">Mentor Texts</span>The Best Story (Eileen Spinelli)</div>
+            </div>
+            <div class="yag-card">
+              <span class="int-badge">Quarter 1</span>
+              <h3>Personal Narrative Writing</h3>
+              <ul>
+                <li>Use of conventions</li>
+                <li>Idea development</li>
+                <li>Using graphic organizers</li>
+                <li>Identifying a small moment</li>
+                <li>Including a beginning, middle and end</li>
+                <li>Adding transition words (first, next, then, last)</li>
+                <li>Adding dialogue</li>
+                <li>Adding character feelings and actions</li>
+                <li>Other ways to say "said"</li>
+              </ul>
+              <div class="yag-meta"><span class="yag-meta-label">Mentor Texts</span>The Best Story (Eileen Spinelli); Arthur Writes a Story</div>
+            </div>
+            <div class="yag-card alt">
+              <span class="int-badge gold">Quarter 2</span>
+              <h3>How-To Writing</h3>
+              <ul>
+                <li>Use of conventions</li>
+                <li>Idea development</li>
+                <li>Using graphic organizers</li>
+                <li>Zooming in on a smaller topic</li>
+                <li>Including a beginning, middle and end</li>
+                <li>Adding details</li>
+                <li>Rereading to make sure it makes sense</li>
+              </ul>
+            </div>
+            <div class="yag-card alt">
+              <span class="int-badge gold">Quarter 2</span>
+              <h3>Sentence Elaboration / Writing Paragraphs</h3>
+              <ul>
+                <li>What is a paragraph?</li>
+                <li>Different parts of a paragraph</li>
+                <li>Planning with a graphic organizer</li>
+                <li>How to write and expand a paragraph</li>
+                <li>Conventions in a paragraph</li>
+                <li>Use of transition words</li>
+                <li>Adding details</li>
+                <li>Elaborating sentences</li>
+                <li>Other ways to say&hellip;</li>
+                <li>Idioms</li>
+              </ul>
+            </div>
+            <div class="yag-card">
+              <span class="int-badge">Quarter 3</span>
+              <h3>Opinion</h3>
+              <ul>
+                <li>Use of conventions</li>
+                <li>Telling the difference between fact and opinion</li>
+                <li>Forming opinions</li>
+                <li>Using a graphic organizer</li>
+                <li>Catchy opening / hook</li>
+                <li>Providing reasons to support</li>
+                <li>Using transition words</li>
+                <li>Sentence starters for the ending</li>
+                <li>Revision process</li>
+              </ul>
+              <div class="yag-meta"><span class="yag-meta-label">Mentor Texts</span>The Big Bed; Story Works Jr.; I Wanna Iguana; The Best Part of Me; The Great Kapok Tree</div>
+            </div>
+            <div class="yag-card">
+              <span class="int-badge">Quarter 3</span>
+              <h3>Informative with Research (National Parks)</h3>
+              <ul>
+                <li>Use of conventions</li>
+                <li>How to research</li>
+                <li>Catchy opening / hook</li>
+                <li>Topic sentence</li>
+                <li>Supporting sentences</li>
+                <li>Sentence starters for the ending</li>
+                <li>Revision process</li>
+              </ul>
+              <div class="yag-meta"><span class="yag-meta-label">Mentor Texts</span>All About Sharks</div>
+            </div>
+            <div class="yag-card alt">
+              <span class="int-badge gold">Quarter 4</span>
+              <h3>Friendly Letter</h3>
+              <ul>
+                <li>Use of conventions</li>
+                <li>Parts of a letter: date, greeting, body, closing, signature</li>
+              </ul>
+              <div class="yag-meta"><span class="yag-meta-label">Mentor Texts</span>I Wanna Iguana</div>
+            </div>
+            <div class="yag-card alt">
+              <span class="int-badge gold">Quarter 4</span>
+              <h3>Narrative</h3>
+              <ul>
+                <li>Use of conventions</li>
+                <li>Idea development</li>
+                <li>Using graphic organizers</li>
+                <li>Identifying a small moment</li>
+                <li>Including a beginning, middle and end</li>
+                <li>Adding transition words (first, next, then, last)</li>
+                <li>Adding dialogue</li>
+                <li>Adding character feelings and actions</li>
+                <li>Other ways to say "said"</li>
+                <li>Revision process</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3RD GRADE -->
+        <div id="yag-3" class="yag-grade">
+          <div class="ss-summary">
+            <span class="int-badge gold">Quarter 2</span>
+            <span class="int-badge">18 Days</span>
+            <p><strong>Unit focus:</strong> Informative / explanatory writing (how-to article) and a short research project. Each day pairs a writing lesson with a grammar skill. Page numbers refer to the Teacher's Edition.</p>
+          </div>
+          <div class="edu-table-wrap">
+          <table class="grade-table ss-table">
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Writing Lesson</th>
+                <th>Grammar &amp; Spelling</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="grade-badge">Day 1</span></td>
+                <td><strong>Analyze student model</strong> <span class="ss-page">T446&ndash;447</span><span class="ss-std">Conduct short research project that builds knowledge about a topic</span></td>
+                <td><strong>Form and use contractions</strong> <span class="ss-page">T420</span><span class="ss-spell">Spelling: Contractions</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 2</span></td>
+                <td><strong>Plan Your How-to-Article</strong> <span class="ss-page">T342</span><span class="ss-std">Write informative/explanatory text to examine a topic and convey ideas and information clearly</span></td>
+                <td><strong>Form and use contractions</strong> <span class="ss-page">T424</span><span class="ss-spell">Spelling: Contractions</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 3</span></td>
+                <td><strong>Add illustrations</strong> <span class="ss-page">T382&ndash;383</span><span class="ss-std">Introduce a topic and group related information together</span></td>
+                <td><strong>Form and use contractions</strong></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 4</span></td>
+                <td><strong>Develop an engaging main idea</strong> <span class="ss-page">T348&ndash;349</span><span class="ss-std">Introduce a topic and group related information together</span></td>
+                <td><strong>Form and use contractions</strong></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 5</span></td>
+                <td><strong>Develop an introduction</strong> <span class="ss-page">T370&ndash;371</span><span class="ss-std">Introduce a topic and group related information together</span></td>
+                <td><span class="ss-assess">Assess</span> <strong>Form and use contractions</strong></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 6</span></td>
+                <td><strong>Organize ideas into steps</strong> <span class="ss-page">T374&ndash;375</span><span class="ss-std">Introduce a topic and group related information together</span></td>
+                <td><strong>Singular and Plural nouns</strong> <span class="ss-page">T333</span><span class="ss-std">Form and use regular and irregular plural nouns</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 7</span></td>
+                <td><span class="ss-assess">Assess</span> Writing skill check <span class="ss-page">T378&ndash;379</span></td>
+                <td><strong>Singular and Plural nouns</strong> <span class="ss-page">T337</span><span class="ss-std">Form and use regular and irregular plural nouns</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 8</span></td>
+                <td><strong>Compose facts and details</strong> <span class="ss-page">T334&ndash;335</span><span class="ss-std">Develop the topic with facts, definitions, and details</span></td>
+                <td><strong>Singular and Plural nouns</strong> <span class="ss-page">T341</span><span class="ss-std">Form and use regular and irregular plural nouns</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 9</span></td>
+                <td><strong>Add facts and definitions</strong> <span class="ss-page">T356&ndash;357</span><span class="ss-std">Develop the topic with facts, definitions, and details</span></td>
+                <td><strong>Irregular Plural Nouns</strong> <span class="ss-page">T355</span><span class="ss-std">Form and use regular and irregular plural nouns</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 10</span></td>
+                <td><strong>Develop relevant details</strong> <span class="ss-page">T352&ndash;353</span><span class="ss-std">Develop the topic with facts, definitions, and details</span></td>
+                <td><strong>Irregular Plural Nouns</strong> <span class="ss-page">T359</span><span class="ss-std">Form and use regular and irregular plural nouns</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 11</span></td>
+                <td><strong>Revising for coherence and clarity</strong> <span class="ss-page">T396</span><span class="ss-std">Use linking words and phrases to connect ideas within categories of information</span></td>
+                <td><strong>Irregular Plural Nouns</strong> <span class="ss-page">T363</span><span class="ss-std">Form and use regular and irregular plural nouns</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 12</span></td>
+                <td><strong>Develop and compose a conclusion</strong> <span class="ss-page">T386</span><span class="ss-std">Provide a concluding statement or section</span></td>
+                <td><span class="ss-assess">Assess</span> <strong>Irregular Plural Nouns</strong> <span class="ss-page">T400&ndash;401</span><span class="ss-std">Form and use regular and irregular plural nouns</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 13</span></td>
+                <td><span class="ss-assess">Assess</span> <strong>Brainstorm and set a purpose</strong> <span class="ss-page">T338&ndash;339</span></td>
+                <td><strong>Ensure subject-verb agreement</strong> <span class="ss-page">T418&ndash;419</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 14</span></td>
+                <td><strong>Introduce the project</strong> <span class="ss-page">T440&ndash;441</span><span class="ss-std">Conduct short research project that builds knowledge about a topic</span></td>
+                <td><span class="ar-na">&mdash;</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 15</span></td>
+                <td><strong>Informational writing</strong> <span class="ss-page">T442&ndash;443</span><span class="ss-std">Conduct short research project that builds knowledge about a topic</span></td>
+                <td><span class="ar-na">&mdash;</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 16</span></td>
+                <td>Conduct short research project that builds knowledge about a topic <span class="ss-page">T444&ndash;445</span></td>
+                <td><span class="ar-na">&mdash;</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 17</span></td>
+                <td>Conduct short research project that builds knowledge about a topic</td>
+                <td><span class="ar-na">&mdash;</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 18</span></td>
+                <td><span class="ss-assess">Assess</span> Short research project that builds knowledge about a topic</td>
+                <td><span class="ar-na">&mdash;</span></td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+
+        <!-- 4TH GRADE -->
+        <div id="yag-4" class="yag-grade">
+          <div class="ss-summary">
+            <span class="int-badge gold">Quarter 2</span>
+            <span class="int-badge">18 Days</span>
+            <p><strong>Unit focus:</strong> Informative / explanatory writing and a short research project. Each day pairs a writing lesson with a grammar skill. Page numbers refer to the Teacher's Edition.</p>
+          </div>
+          <div class="edu-table-wrap">
+          <table class="grade-table ss-table">
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Writing Lesson</th>
+                <th>Grammar &amp; Spelling</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="grade-badge">Day 1</span></td>
+                <td><strong>Analyze a student model</strong> <span class="ss-page">T454&ndash;455</span><span class="ss-std">Conduct short research project that builds knowledge about a topic</span></td>
+                <td><strong>Singular and Plural Nouns</strong> <span class="ss-page">T411</span><span class="ss-std">Edit drafts using standard English conventions including singular, plural, common, and proper nouns</span><span class="ss-spell">Spelling: Plurals <span class="ss-page">T336, 340, T344, T352</span></span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 2</span></td>
+                <td><strong>Compose captions for visuals</strong> <span class="ss-page">T368&ndash;369</span><span class="ss-std">Introduce a topic and group related information together in paragraphs and sections</span></td>
+                <td><strong>Singular and Plural Nouns</strong> <span class="ss-page">T415</span><span class="ss-std">Edit drafts using standard English conventions including singular, plural, common, and proper nouns</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 3</span></td>
+                <td><strong>Compose a headline</strong> <span class="ss-page">T378&ndash;379</span><span class="ss-std">Introduce a topic and group related information together in paragraphs and sections</span></td>
+                <td><strong>Singular and Plural Nouns</strong> <span class="ss-page">T419</span><span class="ss-std">Edit drafts using standard English conventions including singular, plural, common, and proper nouns</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 4</span></td>
+                <td><strong>Develop an introduction</strong> <span class="ss-page">T356&ndash;357</span><span class="ss-std">Write informative/explanatory text to examine a topic and convey ideas and information clearly</span></td>
+                <td><strong>Review common and proper nouns</strong> <span class="ss-page">T403</span><span class="ss-std">Edit drafts using standard English conventions, including singular, plural, common, and proper nouns</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 5</span></td>
+                <td><strong>Compose body paragraphs</strong> <span class="ss-page">T382&ndash;383</span><span class="ss-std">Introduce a topic and group related information together in paragraphs and sections</span></td>
+                <td><strong>Edit for Capitalization</strong> <span class="ss-page">T408&ndash;409</span><span class="ss-std">Edit drafts using standard English conventions, including: capitalization of historical periods, events, and documents</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 6</span></td>
+                <td><strong>Develop relevant details</strong> <span class="ss-page">T360&ndash;361</span><span class="ss-std">Develop the topic with facts, definitions, concrete details, quotations, or other information and examples related to the topic</span></td>
+                <td><strong>Edit for nouns</strong> <span class="ss-page">T426&ndash;427</span><span class="ss-std">Demonstrate command of the conventions of standard English, capitalization, punctuation, and spelling when writing</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 7</span></td>
+                <td><strong>Develop different types of details</strong> <span class="ss-page">T364&ndash;365</span><span class="ss-std">Develop the topic with facts, definitions, concrete details, quotations, or other information and examples related to the topic</span></td>
+                <td><strong>Edit complete sentences</strong> <span class="ss-page">T422&ndash;423</span><span class="ss-std">Demonstrate command of the conventions of standard English grammar and usage when writing</span><span class="ss-spell">Spelling: Irregular plurals <span class="ss-page">T380, 384, 388, 396</span></span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 8</span></td>
+                <td><span class="ss-assess">Assess</span> <strong>Group paragraphs into sections</strong> <span class="ss-page">T386&ndash;387</span></td>
+                <td><strong>Subject-verb agreement</strong> <span class="ss-page">T429</span><span class="ss-std">Demonstrate command of the conventions of standard English grammar and usage when writing</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 9</span></td>
+                <td><strong>Use linking words and phrases</strong> <span class="ss-page">T400&ndash;401</span><span class="ss-std">Link ideas within categories of information using words and phrases (e.g. another, for example, also, because)</span></td>
+                <td><strong>Subject-verb agreement</strong> <span class="ss-page">T433</span><span class="ss-std">Demonstrate command of the conventions of standard English grammar and usage when writing</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 10</span></td>
+                <td><strong>Use precise language and vocabulary</strong> <span class="ss-page">T404&ndash;405</span><span class="ss-std">Use precise language and domain-specific vocabulary to inform about or explain the topic</span></td>
+                <td><strong>Subject-verb agreement</strong> <span class="ss-page">T437</span><span class="ss-std">Demonstrate command of the conventions of standard English grammar and usage when writing</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 11</span></td>
+                <td><strong>Develop a conclusion</strong> <span class="ss-page">T372</span><span class="ss-std">Provide a concluding statement or section related to the information or explanation presented</span></td>
+                <td><strong>Subject-verb agreement</strong> <span class="ss-page">T441</span><span class="ss-std">Demonstrate command of the conventions of standard English grammar and usage when writing</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 12</span></td>
+                <td><span class="ss-assess">Assess</span> Any of the skills taught so far</td>
+                <td><strong>Compound Sentences</strong> <span class="ss-page">T341</span><span class="ss-std">Edit drafts using standard English conventions, including: coordinating conjunctions to form compound predicates, subjects, and sentences</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 13</span></td>
+                <td><strong>Introduce the project</strong> <span class="ss-page">T448&ndash;449</span><span class="ss-std">Conduct short research project that builds knowledge through investigation of different aspects of a topic</span></td>
+                <td><strong>Compound Sentences</strong> <span class="ss-page">T345</span><span class="ss-std">Edit drafts using standard English conventions, including: coordinating conjunctions to form compound predicates, subjects, and sentences</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 14</span></td>
+                <td><strong>Informational writing</strong> <span class="ss-page">T450&ndash;451</span><span class="ss-std">Conduct short research project that builds knowledge through investigation of different aspects of a topic</span></td>
+                <td><strong>Compound Sentences</strong> <span class="ss-page">T349</span><span class="ss-std">Edit drafts using standard English conventions, including: coordinating conjunctions to form compound predicates, subjects, and sentences</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 15</span></td>
+                <td>Conduct short research project that builds knowledge about a topic</td>
+                <td><strong>Compound Sentences</strong> <span class="ss-page">T353</span><span class="ss-std">Edit drafts using standard English conventions, including: coordinating conjunctions to form compound predicates, subjects, and sentences</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 16</span></td>
+                <td>Conduct short research project that builds knowledge about a topic</td>
+                <td><strong>Compound Sentences</strong> <span class="ss-page">T359</span><span class="ss-std">Edit drafts using standard English conventions, including: coordinating conjunctions to form compound predicates, subjects, and sentences</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 17</span></td>
+                <td>Conduct short research project that builds knowledge about a topic</td>
+                <td><span class="ar-na">&mdash;</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 18</span></td>
+                <td><span class="ss-assess">Assess</span> Short research project that builds knowledge about a topic</td>
+                <td><span class="ar-na">&mdash;</span></td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+
+        <!-- 5TH GRADE -->
+        <div id="yag-5" class="yag-grade">
+          <div class="ss-summary">
+            <span class="int-badge gold">Quarter 2</span>
+            <span class="int-badge">18 Days</span>
+            <p><strong>Unit focus:</strong> Informative / explanatory writing and a short research project using several sources. Each day pairs a writing lesson with a grammar skill. Page numbers refer to the Teacher's Edition.</p>
+          </div>
+          <div class="edu-table-wrap">
+          <table class="grade-table ss-table">
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Writing Lesson</th>
+                <th>Grammar &amp; Spelling</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="grade-badge">Day 1</span></td>
+                <td><strong>Analyze student model</strong> <span class="ss-page">T452&ndash;453</span><span class="ss-std">Conduct short research projects that use several sources to build knowledge through investigation of different aspects of a topic</span></td>
+                <td><strong>Principal parts of regular verbs</strong> <span class="ss-page">T361</span><span class="ss-std">Use verb tense to convey various times, sequences, states, and conditions</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 2</span></td>
+                <td><strong>Develop an engaging idea</strong> <span class="ss-page">T354&ndash;355</span><span class="ss-std">Write informative/explanatory texts to examine a topic and convey ideas and information clearly</span></td>
+                <td><strong>Principal parts of regular verbs</strong> <span class="ss-page">T365</span><span class="ss-std">Use verb tense to convey various times, sequences, states, and conditions</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 3</span></td>
+                <td><strong>Develop with visuals and multimedia</strong> <span class="ss-page">T370</span><span class="ss-std">Introduce a topic clearly, provide a general observation and focus, and group related information logically</span></td>
+                <td><strong>Principal parts of regular verbs</strong> <span class="ss-page">T369</span><span class="ss-std">Use verb tense to convey various times, sequences, states, and conditions</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 4</span></td>
+                <td><strong>Develop and compose an introduction</strong> <span class="ss-page">T376&ndash;377</span><span class="ss-std">Introduce a topic clearly, provide a general observation and focus, and group related information logically</span></td>
+                <td><strong>Principal parts of irregular verbs</strong> <span class="ss-page">T383</span><span class="ss-std">Use verb tense to convey various times, sequences, states, and conditions</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 5</span></td>
+                <td><strong>Develop with related information</strong> <span class="ss-page">T380&ndash;381</span><span class="ss-std">Introduce a topic clearly, provide a general observation and focus, and group related information logically</span></td>
+                <td><strong>Principal parts of irregular verbs</strong> <span class="ss-page">T387</span><span class="ss-std">Use verb tense to convey various times, sequences, states, and conditions</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 6</span></td>
+                <td><strong>Use formatting</strong> <span class="ss-page">T388&ndash;389</span><span class="ss-std">Introduce a topic clearly, provide a general observation and focus, and group related information logically</span></td>
+                <td><strong>Principal parts of irregular verbs</strong> <span class="ss-page">T391</span><span class="ss-std">Use verb tense to convey various times, sequences, states, and conditions</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 7</span></td>
+                <td><strong>Draft with specific facts and concrete details</strong> <span class="ss-page">T358&ndash;359</span><span class="ss-std">Develop the topic with facts, definitions, concrete details, quotations, or other information and examples related to the topic</span></td>
+                <td><strong>Use correct verb tense</strong> <span class="ss-page">T402&ndash;403</span><span class="ss-std">Use verb tense to convey various times, sequences, states, and conditions</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 8</span></td>
+                <td><strong>Develop with definitions and quotations</strong> <span class="ss-page">T362&ndash;363</span><span class="ss-std">Develop the topic with facts, definitions, concrete details, quotations, or other information and examples related to the topic</span></td>
+                <td><strong>Perfect verb tense</strong> <span class="ss-page">T405</span><span class="ss-std">Use verb tense to convey various times, sequences, states, and conditions</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 9</span></td>
+                <td><span class="ss-assess">Assess</span> <strong>Develop with other information and examples</strong> <span class="ss-page">T366&ndash;367</span><span class="ss-std">Develop the topic with facts, definitions, concrete details, quotations, or other information and examples related to the topic</span></td>
+                <td><strong>Perfect verb tense</strong> <span class="ss-page">T409</span><span class="ss-std">Use verb tense to convey various times, sequences, states, and conditions</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 10</span></td>
+                <td><strong>Develop with transitions</strong> <span class="ss-page">T384&ndash;385</span><span class="ss-std">Link ideas within and across categories of information using words, phrases, and clauses (e.g. in contrast, especially)</span></td>
+                <td><strong>Perfect verb tense</strong> <span class="ss-page">T413</span><span class="ss-std">Use verb tense to convey various times, sequences, states, and conditions</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 11</span></td>
+                <td><strong>Edit for adverbs</strong> <span class="ss-page">T406&ndash;407</span><span class="ss-std">Link ideas within and across categories of information using words, phrases, and clauses (e.g. in contrast, especially)</span></td>
+                <td><strong>Edit for punctuation marks</strong> <span class="ss-page">T420&ndash;421</span><span class="ss-std">Demonstrate command of the conventions of standard English capitalization, punctuation, and spelling when writing</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 12</span></td>
+                <td><strong>Edit simple and compound sentences</strong> <span class="ss-page">T410&ndash;411</span><span class="ss-std">Link ideas within and across categories of information using words, phrases, and clauses (e.g. in contrast, especially)</span></td>
+                <td><strong>Edit for capitalization</strong> <span class="ss-page">T424&ndash;425</span><span class="ss-std">Demonstrate command of the conventions of standard English capitalization, punctuation, and spelling when writing</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 13</span></td>
+                <td><strong>Draft with specific facts and concrete details</strong> <span class="ss-page">T358&ndash;359</span><span class="ss-std">Use precise language and domain-specific vocabulary to inform about or explain the topic</span></td>
+                <td><strong>Review regular and irregular plural nouns</strong> <span class="ss-page">T335</span><span class="ss-std">Edit drafts using standard English conventions, including complete simple and compound sentences with subject-verb agreement and avoidance of splices, run-ons, and fragments</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 14</span></td>
+                <td><strong>Use precise language and domain-specific vocabulary</strong> <span class="ss-page">T398&ndash;399</span><span class="ss-std">Use precise language and domain-specific vocabulary to inform about or explain the topic</span></td>
+                <td><strong>Subject-verb agreement</strong> <span class="ss-page">T339</span><span class="ss-std">Edit drafts using standard English conventions, including complete simple and compound sentences with subject-verb agreement and avoidance of splices, run-ons, and fragments</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 15</span></td>
+                <td><strong>Develop and compose a conclusion</strong> <span class="ss-page">T392</span><span class="ss-std">Provide a concluding statement or section related to the information or explanation presented</span></td>
+                <td><strong>Subject-verb agreement</strong> <span class="ss-page">T343</span><span class="ss-std">Edit drafts using standard English conventions, including complete simple and compound sentences with subject-verb agreement and avoidance of splices, run-ons, and fragments</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 16</span></td>
+                <td><strong>Introduce the project</strong> <span class="ss-page">T446&ndash;447</span><span class="ss-std">Conduct short research projects that use several sources to build knowledge through investigation of different aspects of a topic</span></td>
+                <td><strong>Subject-verb agreement</strong> <span class="ss-page">T347</span><span class="ss-std">Edit drafts using standard English conventions, including complete simple and compound sentences with subject-verb agreement and avoidance of splices, run-ons, and fragments</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 17</span></td>
+                <td><strong>Informational writing</strong> <span class="ss-page">T448&ndash;449</span><span class="ss-std">Conduct short research projects that use several sources to build knowledge through investigation of different aspects of a topic</span></td>
+                <td><strong>Subject-verb agreement</strong> <span class="ss-page">T351</span><span class="ss-std">Edit drafts using standard English conventions, including complete simple and compound sentences with subject-verb agreement and avoidance of splices, run-ons, and fragments</span></td>
+              </tr>
+              <tr>
+                <td><span class="grade-badge">Day 18</span></td>
+                <td>Conduct short research projects that use several sources to build knowledge through investigation of different aspects of a topic</td>
+                <td><span class="ar-na">&mdash;</span></td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
       </div>
 
       <!-- WRITING: EVENTS -->
@@ -840,6 +1625,13 @@
     parent.querySelectorAll('.sub-panel').forEach(p => p.classList.remove('active'));
     parent.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
     document.getElementById(panelId).classList.add('active');
+    e.currentTarget.classList.add('active');
+  }
+
+  function showYagGrade(e, gradeId) {
+    document.querySelectorAll('.yag-grade').forEach(g => g.classList.remove('active'));
+    document.querySelectorAll('.yag-grade-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(gradeId).classList.add('active');
     e.currentTarget.classList.add('active');
   }
 
